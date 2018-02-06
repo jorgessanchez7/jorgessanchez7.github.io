@@ -1,10 +1,16 @@
-//
-//
 
 
-
-function lengthUnitConverter (inputValue, inputUnits, outputUnits) {
+function lengthUnitConverter () {
 	
+	var inputValue = document.getElementById('inputValue');
+	
+	var e = document.getElementById("inputUnits");
+	var inputUnits = e.options[e.selectedIndex].value;
+	
+	var f = document.getElementById("outputUnits");
+	var inputUnits = f.options[e.selectedIndex].value;
+	
+	alert("You clicked it!")
 	var outputValue = 0;
 	
 	if (inputUnits == "centimeters") {
@@ -177,4 +183,6 @@ function lengthUnitConverter (inputValue, inputUnits, outputUnits) {
 	
 	return (outputValue)
 }
+
+document.write("<h2>Here is my website!</h2>")
 	
