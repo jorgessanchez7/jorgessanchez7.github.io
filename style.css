@@ -53,10 +53,9 @@ h1 {
   text-align: right;
   background: red;
   border: 1px solid red;
-  border-radius: 3px;
+  border-radius: 10px;
   color: white;
   font-size: 25px;
-  height: 100px;
   display: inline-block;
   margin: 10px 0px 50px 0px;
   text-decoration: none;
@@ -70,6 +69,20 @@ h1 {
 	background: linear-gradient(-45deg, #35577D, #141E30);
 	padding: 0px;
 	margin: 0px 0px 0px 0px;
+}
+.icons {
+  position: relative-right;
+  text-align: right;
+  background: red;
+  border: 1px solid red;
+  border-radius: 3px;
+  color: white;
+  font-size: 25px;
+  height: 100px;
+  display: inline-block;
+  margin: 10px 0px 50px 0px;
+  text-decoration: none;
+  padding: 20px;
 }
 
 .selectbar {
@@ -105,7 +118,7 @@ h2 {
 
 #map {
 	width:100%;
-	height:589px;
+	height:490px;
 	padding: 0px;
 	margin: 0px 0px 0px 0px;
 }
@@ -124,6 +137,6 @@ h2 {
 
 .legend {
 	width:100%;
-	height:400px;
+	height:300px;
 	margin: 5px 0px 0px 0px;
 }
