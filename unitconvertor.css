@@ -3,9 +3,7 @@
 }
 
 body {
-  /*background: #141E30;*/
-  /*background: #35577D;*/
-  background: #4db399;
+  background: linear-gradient(-45deg, #04B431, green);
   margin: 0;
   padding: 0;
   font-family: 'Raleway', Arial;
