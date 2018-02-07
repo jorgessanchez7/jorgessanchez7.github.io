@@ -14,13 +14,13 @@
 
 <form>
   <p> Enter a value and choose the units to convert
-    <input id="inputValue" type="number">
+    <input id="inputValue" class="selectbar" type="number">
   </p>
 </form>
 
 <form>
   <p>
-    <input type="button" value="Select your input units"/>
+    <input class="buttons" type="button" value="Select your input units"/>
 	  <select class="selectbar" id="inputUnits" name="select">
 	    <option value=""selected> </option>
 		<option value="centimeters">centimeters</option>
@@ -36,7 +36,7 @@
 
 <form>
   <p>
-    <input type="button" value="Select your output units"/>
+    <input class="buttons" type="button" value="Select your output units"/>
 	  <select class="selectbar" id="outputUnits" name="select">
 	    <option value=""selected> </option>
 		<option value="centimeters">centimeters</option>
@@ -51,7 +51,7 @@
 </form>
 
 <form>
-  <p> <input type="button" value="Convertir" onClick="lengthUnitConverter();"/> </p>
+  <p> <input class="buttons" type="button" value="Convertir" onClick="lengthUnitConverter();"/> </p>
 </form>
 
 <div id="result"> </div>
