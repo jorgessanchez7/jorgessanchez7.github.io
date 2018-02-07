@@ -2,15 +2,16 @@
 
 function lengthUnitConverter () {
 	
-	var inputValue = document.getElementById('inputValue');
+	var inputValue = parseFloat(document.getElementById('inputValue').value);
 	
 	var e = document.getElementById("inputUnits");
 	var inputUnits = e.options[e.selectedIndex].value;
 	
 	var f = document.getElementById("outputUnits");
-	var inputUnits = f.options[e.selectedIndex].value;
+	var outputUnits = f.options[f.selectedIndex].value;
 	
-	alert("You clicked it!")
+	//alert("You are going to convert length units!")
+	
 	var outputValue = 0;
 	
 	if (inputUnits == "centimeters") {
@@ -181,8 +182,9 @@ function lengthUnitConverter () {
 		}
 	}
 	
-	return (outputValue)
+	var resultDIV = document.getElementById('result')
+	resultDIV.innerHTML="<p>"+ inputValue + " " + inputUnits + " is equal to " + outputValue + " " + outputUnits +"</p>"
 }
 
-document.write("<h2>Here is my website!</h2>")
+
 	

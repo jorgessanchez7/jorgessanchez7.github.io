@@ -3,18 +3,18 @@
 
 <head>
   <title>Length Unit Converter</title>
-  <link href="unitconvertor.css" type="text/css" rel="stylesheet">
-  <link href="unitconvertor.js" type="text/javascript">
+  <link href="unitconvertor.css" type="text/css" rel="stylesheet"/>
+  <script type="text/javascript" src="unitconvertor.js"></script>
 </head>
 
 <form>
-  <h1> Wlcome to my Length Unit Converter </h1>
+  <h1> Welcome to my Length Unit Converter </h1>
   <h2> by Jorge Luis Sanchez-Lozano </h2>
 </form>
 
 <form>
   <p> Enter a value and choose the units to convert
-    <input id="inputValue" type="text">
+    <input id="inputValue" type="number">
   </p>
 </form>
 
@@ -51,7 +51,9 @@
 </form>
 
 <form>
-  <p> <input type="button" value="Convertir" onClick="lengthUnitConverter(inputValue, inputUnits, outputUnits);"/> </p>
+  <p> <input type="button" value="Convertir" onClick="lengthUnitConverter();"/> </p>
 </form>
+
+<div id="result"> </div>
 
 </html>
