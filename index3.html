@@ -4,7 +4,10 @@
 
   <head>
     <title>Regional Analysis</title>
-	<link href="style.css" type="text/css" rel="stylesheet">
+	<link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css">
+	<script src="https://js.arcgis.com/4.6/"></script>
+	<link href="index3.css" type="text/css" rel="stylesheet">
+	<script type="text/javascript" src="index3.js"></script>
   </head>
   
   <body>
@@ -14,7 +17,7 @@
 	    <img class="logo-header" src="http://www.blindfiveyearold.com/wp-content/uploads/2013/03/snowpack.jpg"/>
 		The SnowPack Project
 		<input class="buttons" type="button" value="i">
-		<a href="index3.html"><input class="buttons" type="button" value="Home"></a>
+		<a href="index2.html"><input class="buttons" type="button" value="Home"></a>
 		<input class="buttons" type="button" value="Settings">
 	  </h1>
 	</form>
@@ -131,20 +134,7 @@
 		  <img class="icons" id="video" src="https://n6-img-fp.akamaized.net/free-icon/fast-forward-circular-button_318-70424.jpg"/>
 		</h2>
 		
-		<h2><div id="map" ></div></h2>
-		
-		<script>
-		  function myMap() {
-		    var mapOptions = {
-			 center: new google.maps.LatLng(39.5, -111.5),
-			 zoom: 10,
-			 mapTypeId: google.maps.MapTypeId.TERRAIN
-			}
-			var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-		  }
-		</script>
-		
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1MEURKMtakLYzLI_t7ysStDRT3qb8UWE&callback=myMap"></script>
+		<div id="showMap"></div>
 		
 		<br>
 		<form class="download">
