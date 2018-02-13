@@ -22,6 +22,20 @@ h1 {
   border: 3px solid #35577D;
 }
 
+h3 {
+  color: white;
+  font-size: 25px;
+  text-align: center;
+  width: 100%;
+}
+
+h4 {
+  color: white;
+  font-size: 15px;
+  text-align: center;
+  width: 100%;
+}
+
 .wrapper{position:relative;}
 .right,.left{
 	width:70%;
