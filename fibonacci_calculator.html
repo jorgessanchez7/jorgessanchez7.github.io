@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Fibonacci Calculator</title>
+  <link href="fibonacci_calculator.css" type="text/css" rel="stylesheet"/>
+  <script type="text/javascript" src="fibonacci_calculator.js"></script>
+</head>
+
+<form>
+  <h1> Welcome to my Fibonacci Calculator </h1>
+  <h2> by Jorge Luis Sanchez-Lozano </h2>
+</form>
+
+<form>
+  <p> The Fibonacci sequence, such that each number is the sum of the two preceding ones,
+  starting from 0 and 1. That is, <br>
+  Fibonacci(0) = 0 <br>
+  Fibonacci (1) = 1 <br>
+  Fibonacci (n) = Fibonacci (n-1) + Fibonacci (n-2) <br>
+  The begining of the sequence is thus: <br>
+  0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, …
+  </p>
+  
+</form>
+
+<form>
+  <p> Enter the position value you want to calculate in the Fibonacci Serie
+    <input id="inputValue" class="selectbar" type="number" value=0>
+  </p>
+</form>
+
+
+<form>
+  <p> <input class="buttons" type="button" value="Calculate" onClick="fibonacciCalculator();"/> </p>
+</form>
+
+<div id="result"> </div>
+
+</html>
