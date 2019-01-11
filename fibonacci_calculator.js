@@ -7,8 +7,8 @@ function fibonacciCalculator() {
 	var outputValue = fibonacci(inputValue);
 	
 	if (isNaN(outputValue) == true) {
-		resultDIV.innerHTML="<p>"+ inputValue + " is not an Integer. Please enter an Integer Number" + "</p>"
-		console.log(inputValue + " is not an Integer. Please enter an Integer Number");
+		resultDIV.innerHTML="<p>"+ inputValue + " is not an Integer or a Positive Integer. Please, enter a Positive Integer." + "</p>"
+		console.log(inputValue + " is not an Integer or a Positive Integer. Please, enter a Positive Integer.");
 	} else if (outputValue == 0) {
 		resultDIV.innerHTML="<p>"+ "The element " + inputValue + " for the Fibonacci Serie is: " + outputValue + "</p>"
 		console.log("The element " + inputValue + " for the Fibonacci Serie is: " + outputValue);
@@ -39,7 +39,7 @@ function fibonacci(n, memo) {
 		return n
 	}
 	
-	if (n%1 !== 0) {
+	if (n%1 !== 0 || n < 0) {
 		return NaN;
 	}
 	

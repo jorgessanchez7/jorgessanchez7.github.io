@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Factorial Calculator</title>
+  <link href="factorial_calculator.css" type="text/css" rel="stylesheet"/>
+  <script type="text/javascript" src="factorial_calculator.js"></script>
+</head>
+
+<form>
+  <h1> Welcome to my Factorial Calculator </h1>
+  <h2> by Jorge Luis Sanchez-Lozano </h2>
+</form>
+
+<form>
+  <p> factorial of a positive integer <i>n</i>, denoted by <i>n!</i>, is the product of all positive 
+  integers less than or equal to <i>n</i>. For example, <br>
+  5! = 5 x 4 x 3 x 2 x 1 = 120 <br>
+  The value of 0! is 1, according to the convention for an empty product. <br>
+  </p>
+  
+</form>
+
+<form>
+  <p> Enter the value to which you want to calculate the Factorial
+    <input id="inputValue" class="selectbar" type="number" value=0>
+  </p>
+</form>
+
+
+<form>
+  <p> <input class="buttons" type="button" value="Calculate" onClick="factorialCalculator();"/> </p>
+</form>
+
+<div id="result"> </div>
+
+</html>
