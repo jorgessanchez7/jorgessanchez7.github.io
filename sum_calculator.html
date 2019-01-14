@@ -2,34 +2,47 @@
 <html>
 
 <head>
-  <title>Factorial Calculator</title>
+  <title>Sum Calculator</title>
   <link href="sum_calculator.css" type="text/css" rel="stylesheet"/>
   <script type="text/javascript" src="sum_calculator.js"></script>
 </head>
 
 <form>
-  <h1> Welcome to my Factorial Calculator </h1>
-  <h2> by Jorge Luis Sanchez-Lozano </h2>
+  <h1> Welcome!</h1>
+  <h2> This app calculates the sum of all integers between two given integers (inclusive) </h2>
+  <h3> by Jorge Luis Sanchez-Lozano </h3>
 </form>
 
 <form>
-  <p> factorial of a positive integer <i>n</i>, denoted by <i>n!</i>, is the product of all positive 
-  integers less than or equal to <i>n</i>. For example, <br>
-  5! = 5 x 4 x 3 x 2 x 1 = 120 <br>
-  The value of 0! is 1, according to the convention for an empty product. <br>
-  </p>
+  <p> Gauss found that the sum of the first n integers is: <br></p>
+</form>
+
+<div class="equation">
+  n =
+  <div class="fraction">
+	<span class="fup">n x (n+1)</span>
+	<span class="bar">/</span>
+	<span class="fdn">2</span>
+	</div>
+</div>
+  
   
 </form>
 
 <form>
-  <p> Enter the value to which you want to calculate the Factorial
-    <input id="inputValue" class="selectbar" type="number" value=0>
+  <p> Enter the lower limit of the number range to be sum
+    <input id="inputValue1" class="selectbar" type="number" value=0>
   </p>
 </form>
 
+<form>
+  <p> Enter the upper limit of the number range to be sum
+    <input id="inputValue2" class="selectbar" type="number" value=1>
+  </p>
+</form>
 
 <form>
-  <p> <input class="buttons" type="button" value="Calculate" onClick="factorialCalculator();"/> </p>
+  <p> <input class="buttons" type="button" value="Calculate" onClick="sumCalculator();"/> </p>
 </form>
 
 <div id="result"> </div>

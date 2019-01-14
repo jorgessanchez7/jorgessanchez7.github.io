@@ -43,13 +43,6 @@ p {
   text-align: center;
 }
 
-.equation {
-  color: white;
-  font-size: 25px;
-  line-height: 48px;
-  text-align: center;
-}
-
 .buttons {
   text-align: center;
   background: green;
@@ -69,17 +62,3 @@ p {
   text-decoration: none;
   padding: 10px;
 }
-
-.fraction {
-    display: inline-block;
-    vertical-align: middle; 
-    margin: 0 0.2em 0.4ex;
-    text-align: center;
-	color: white;
-}
-.fraction > span {
-    display: block;
-    padding-top: 0.15em;
-}
-.fraction span.fdn {border-top: thin solid black;}
-.fraction span.bar {display: none;}

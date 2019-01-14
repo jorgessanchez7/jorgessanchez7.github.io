@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Coins Counter</title>
+  <link href="coins_counter.css" type="text/css" rel="stylesheet"/>
+  <script type="text/javascript" src="coins_counter.js"></script>
+</head>
+
+<form>
+  <h1> Welcome! </h1>
+  <h2> Given a number of cents, this app calculate the corresponding U.S. coins that total to the given number,
+		considering the fewest amount of coins. Using pennies, nickels, dimes, and quarters. </h2>
+  <h3> by Jorge Luis Sanchez-Lozano </h3>
+</form>
+
+<form>
+  <p> Enter the amount of cents to which you want to calculate the number of U.S. coins (pennies, nickels, dimes, quarters)
+    <input id="inputValue" class="selectbar" type="number" value=0>
+  </p>
+</form>
+
+
+<form>
+  <p> <input class="buttons" type="button" value="Calculate" onClick="coinsCalculator();"/> </p>
+</form>
+
+<div id="result"> </div>
+
+</html>

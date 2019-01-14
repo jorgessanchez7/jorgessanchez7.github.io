@@ -2,7 +2,6 @@
 function factorialCalculator() {
 	var inputValue = parseFloat(document.getElementById('inputValue').value);
 	var resultDIV = document.getElementById('result');
-	var str = inputValue.toString();
 	
 	var outputValue = factorial(inputValue);
 	outputValue = outputValue.toString();
