@@ -204,11 +204,8 @@ function lengthIsInRangeString () {
 function matchRegexString () {
 	
 	var inputValueRegex = document.getElementById('inputValueRegex').value;
-	console.log(inputValueRegex)
 	inputValueRegex = inputValueRegex.substring(inputValueRegex.length-1,1)
-	console.log(inputValueRegex)
 	inputValueRegex = RegExp(inputValueRegex)
-	console.log(inputValueRegex)
 	
 	var inputValueString = document.getElementById('inputValueString').value;
 	inputValueString = String(inputValueString);
