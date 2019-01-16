@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Encapsulation</title>
+  <link href="encapsulation.css" type="text/css" rel="stylesheet"/>
+  <script type="text/javascript" src="encapsulation.js"></script>
+</head>
+
+<form>
+  <h1> Welcome! </h1>
+  <h3> by Jorge Luis Sanchez-Lozano </h3>
+  <h2> Using the encapsulation pattern, this app includes methods that validate strings for the following conditions:
+		<ul>
+		<li>Is non-empty</li>
+		<li>Is numeric</li>
+		<li>Is integer</li>
+		<li>Is negative integer</li>
+		<li>is positive integer</li>
+		<li>Is non-negative integer</li>
+		<li>Is a number whose value is at least m and at most n (m or n could be missing)</li>
+		<li>Is a valid email address according to the standard “RFC 2822”</li>
+		<li>Is at least m and at most n characters in length (m or n could be missing)</li>
+		<li>Matches a regular expression supplied by the users</li>
+		</ul>
+  </h2>
+</form>
+
+<form>
+   <p>
+    Enter the value to be validated as a non-empty string: 
+    <input id="inputValueNonEmpty" class="selectbar" type="string">
+	<input class="buttons" type="button" value="Validate" onClick="isNonEmptyString();"/>
+   </p>
+   <div id="resultNonEmpty"> </div>
+</form>
+
+<form>
+   <p>
+    Enter the value to be validated as numeric: 
+    <input id="inputValueNumeric" class="selectbar" type="string">
+	<input class="buttons" type="button" value="Validate" onClick="isNumericString();"/>
+   </p>
+   <div id="resultNumeric"> </div>
+</form>
+
+<form>
+   <p>
+    Enter the value to be validated as an integer: 
+    <input id="inputValueInteger" class="selectbar" type="number" value=0>
+	<input class="buttons" type="button" value="Validate" onClick="isIntegerString();"/>
+   </p>
+   <div id="resultInteger"> </div>
+</form>
+
+<form>
+   <p>
+    Enter the value to be validated as a negative integer: 
+    <input id="inputValueNegativeInteger" class="selectbar" type="number" value=0>
+	<input class="buttons" type="button" value="Validate" onClick="isNegativeIntegerString();"/>
+   </p>
+   <div id="resultNegativeInteger"> </div>
+</form>
+
+<form>
+   <p>
+    Enter the value to be validated as a positive integer: 
+    <input id="inputValuePositiveInteger" class="selectbar" type="number" value=0>
+	<input class="buttons" type="button" value="Validate" onClick="isPositiveIntegerString();"/>
+   </p>
+   <div id="resultPositiveInteger"> </div>
+</form>
+
+<form>
+   <p>
+    Enter the value to be validated as a no negative integer: 
+    <input id="inputValueNonNegativeInteger" class="selectbar" type="number" value=0>
+	<input class="buttons" type="button" value="Validate" onClick="isNonNegativeIntegerString();"/>
+   </p>
+   <div id="resultNonNegativeInteger"> </div>
+</form>
+
+<form>
+   <p> Enter the values to validate if a number is in the range between m and n. </p>
+   <p>
+   Enter the lower limit of the number range: 
+   <input id="inputValueInRangeLower" class="selectbar" type="number">
+   </p>
+   <p>
+   Enter the upper limit of the number range: 
+   <input id="inputValueInRangeUpper" class="selectbar" type="number">
+   </p>
+   <p>
+   Enter the value to be validated in the range: 
+   <input id="inputValueInRange" class="selectbar" type="number" value=0>
+   </p>
+   <p>
+	<input class="buttons" type="button" value="Validate" onClick="isInRangeString();"/>
+   </p>
+   <div id="resultInRange"> </div>
+</form>
+
+<form>
+   <p>
+    Enter the value to be validated as an email: 
+    <input id="inputValueEmail" class="selectbar" type="string">
+	<input class="buttons" type="button" value="Validate" onClick="isEmail();"/>
+   </p>
+   <div id="resultEmail"> </div>
+</form>
+
+<form>
+   <p> Enter the values to validate if the number of characters is in the range between m and n (inclusive). </p>
+   <p>
+   Enter the lower limit of the number of characters range: 
+   <input id="inputValueLengthInRangeLower" class="selectbar" type="number">
+   </p>
+   <p>
+   Enter the upper limit of the number of characters range: 
+   <input id="inputValueLengthInRangeUpper" class="selectbar" type="number">
+   </p>
+   <p>
+   Enter your string: 
+   <input id="inputValueLengthInRange" class="selectbar" type="string">
+   </p>
+   <p>
+	<input class="buttons" type="button" value="Validate" onClick="lengthIsInRangeString();"/>
+   </p>
+   <div id="resultLengthInRange"> </div>
+</form>
+
+<form>
+   <p> Enter the values to validate if a string matches a regular expression. </p>
+   <p>
+   Enter the regular expression: 
+   <input id="inputValueRegex" class="selectbar" type="string">
+   </p>
+   <p>
+   Enter your string: 
+   <input id="inputValueString" class="selectbar" type="string">
+   </p>
+   <p>
+	<input class="buttons" type="button" value="Validate" onClick="matchRegexString();"/>
+   </p>
+   <div id="resultMatchRegexString"> </div>
+</form>
+
+</html>
