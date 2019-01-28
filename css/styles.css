@@ -1,0 +1,64 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(-45deg, #04B431, green);
+  margin: 0;
+  padding: 0;
+  font-family: 'Raleway', Arial;
+}
+
+h1 {
+  color: white;
+  font-size: 100px;
+  font-weight: 600;
+  margin-top: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+h2 {
+  color: white;
+  font-size: 35px;
+  font-weight: 600;
+  margin-top: 20px;
+  width: 100%;
+}
+
+h3 {
+  color: white;
+  font-size: 25px;
+  font-weight: 600;
+  margin-top: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+
+p {
+  color: white;
+  font-size: 25px;
+  line-height: 48px;
+  text-align: center;
+}
+
+.buttons {
+  text-align: center;
+  background: green;
+  border: 1px solid green;
+  border-radius: 10px;
+  color: white;
+  font-size: 25px;
+  display: inline-block;
+  margin: 10px 0px 10px 0px;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.selectbar {
+  font-size: 20px;
+  margin: 10px 0px 10px 0px;
+  text-decoration: none;
+  padding: 10px;
+}
