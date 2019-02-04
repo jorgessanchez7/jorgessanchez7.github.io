@@ -8,10 +8,10 @@
 *
 */
 /*property
-    books, forEach, fullName, getElementById, gridName, hash, id, init,
-    innerHTML, length, log, maxBookId, minBookId, onHashChanged, onerror,
-    onload, open, parse, push, responseText, send, slice, split, status,
-    substring
+    books, bookChapterValid, forEach, fullName, getElementById, gridName,
+    hash, id, init, innerHTML, length, log, maxBookId, minBookId, onHashChanged,
+    onerror, onload, open, parse, push, responseText, send, slice, split,
+    status, substring
 */
 /*global
     console
@@ -41,7 +41,8 @@ const Scriptures = (function (){
     let onHashChanged;
     let navigateHome;
     let navigateBook;
-    let navigateBookChapter;
+    let navigateChapter;
+    let bookChapterValid;
 
     /*--------------------------------------------------------------------------
      *                      PRIVATE METHODS
@@ -68,6 +69,10 @@ const Scriptures = (function (){
 
         request.onerror = failureCallback;
         request.send();
+    };
+
+    bookChapterValid = function (bookId, chapter) {
+    	return true;
     };
 
     cacheBooks = function (callback) {
@@ -153,10 +158,21 @@ const Scriptures = (function (){
     };
 
     navigateBook = function (bookId) {
-        console.log("book" + bookId);
+	    //console.log("book" + bookId);
+    	document.getElementById("scriptures").innerHTML = "<div>" + bookId + "</div>";
+
+
     };
 
-    navigateBookChapter = function (bookId, chapter) {
+    navigateChapter = function (bookId, chapter) {
+    	if (bookId != undefined) {
+    		let book = books[bookId];
+    		let volume = volumes[book.patentBookId -1];
+
+    		//ajax()
+		    document.getElementById("scriptures").innerHTML = "<div>Chapter" + chapter + "</div>";
+
+	    }
         console.log("book chapter" + bookId + ", " + chapter);
     };
 
@@ -186,19 +202,25 @@ const Scriptures = (function (){
             } else {
                 navigateHome(volumeId);
             }
-        } else if (ids.length === 2){
+        } else if (ids.length >= 2){
             let bookId = Number(ids[1]);
 
-            if (books[bookId]=== undefined) {
+            if (books[bookId] === undefined) {
                 navigateHome();
             } else {
-                navigateBook(bookId);
+            	if (ids.length === 2) {
+		            navigateBook(bookId);
+	            } else {
+		            let chapter = Number (ids[2]);
+
+		            if (bookChapterValid (bookId, chapter)) {
+			            navigateChapter(bookId, chapter);
+		            } else {
+		            	navigateHome();
+		            }
+	            }
             }
-        } else {
-            navigateBookChapter();
         }
-
-
     };
 
     /*--------------------------------------------------------------------------
