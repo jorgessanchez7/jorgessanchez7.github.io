@@ -38,6 +38,16 @@
     </div>
 
     <script type="text/javascript">
+
+	    let map;
+
+	    function initMap () {
+		    map = new google.maps.Map(document.getElementById('map'), {
+			    center: {lat: 31.777444, lng: 35.234935},
+			    zoom: 8
+		    });
+        };
+
         function ready(eventHandeler) {
             "use strict";
             if (document.attachEvent
@@ -50,9 +60,16 @@
         }
 
         ready(function(){
-            Scriptures.init(function () {console.log("Initialized");});
-            window.addEventListener("hashchange", Scriptures.onHashChanged);
+            //Scriptures.init(function () {console.log("Initialized");});
+            //window.addEventListener("hashchange", Scriptures.onHashChanged);
+            Scriptures.init(function () {
+	            window.addEventListener("hashchange", Scriptures.onHashChanged);
+	            Scriptures.onHashChanged();
+            });
+
         });
     </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcmgeT4l8ii_57DoU9gKcJ4MPoRRcmC7E&callback=initMap"
+            async defer></script>
 </body>
 </html>
