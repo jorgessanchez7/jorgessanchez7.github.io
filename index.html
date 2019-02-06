@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html class="no-js" lang="">
 <head>
     <meta charset="utf-8">
@@ -10,7 +10,7 @@
 
     <link rel="manifest" href="site.webmanifest">
     <link rel="apple-touch-icon" href="icon.png">
-    <!--Place favicon.ovp in the root directory-->
+    <!-- Place favicon.ico in the root directory -->
 
     <link rel="stylesheet" href="css/styles.css?v=1.0">
 
@@ -21,52 +21,46 @@
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser.
         Please <a href="https://browsehappy.com/">upgrade your browser</a>
         to improve your experience and security.</p>
-    <[endif]-->
+    <![endif]-->
 
-    <!--Add your site application content here -->
     <div id="header">
-        <div id="crumb"> </div>
+        <div id="crumbs"></div>
         <div id="centerhead">
             <div id="title">The Scriptures, Mapped</div>
             <div id="subtitle">By Jorge Luis Sanchez-Lozano</div>
         </div>
     </div>
-
     <div id="content">
         <div id="scriptures"></div>
         <div id="map"></div>
     </div>
-
     <script type="text/javascript">
+        let map;
 
-	    let map;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: 31.777444, lng: 35.234935},
+                zoom: 8
+            });
+        }
 
-	    function initMap () {
-		    map = new google.maps.Map(document.getElementById('map'), {
-			    center: {lat: 31.777444, lng: 35.234935},
-			    zoom: 8
-		    });
-        };
-
-        function ready(eventHandeler) {
+        function ready(eventHandler) {
             "use strict";
+
             if (document.attachEvent
-                ? document.readyState === "complete"
-                : document.readyState !== "loading"){
-                eventHandeler();
+                    ? document.readyState === "complete"
+                    : document.readyState !== "loading") {
+                eventHandler();
             } else {
-                document.addEventListener("DOMContentLoaded", eventHandeler);
+                document.addEventListener("DOMContentLoaded", eventHandler);
             }
         }
 
-        ready(function(){
-            //Scriptures.init(function () {console.log("Initialized");});
-            //window.addEventListener("hashchange", Scriptures.onHashChanged);
+        ready(function () {
             Scriptures.init(function () {
-	            window.addEventListener("hashchange", Scriptures.onHashChanged);
-	            Scriptures.onHashChanged();
+                window.addEventListener("hashchange", Scriptures.onHashChanged);
+                Scriptures.onHashChanged();
             });
-
         });
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcmgeT4l8ii_57DoU9gKcJ4MPoRRcmC7E&callback=initMap"
