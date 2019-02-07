@@ -31,7 +31,8 @@
         </div>
     </div>
     <div id="content">
-        <div id="scriptures"></div>
+        <div id="scriptures">
+        </div>
         <div id="map"></div>
     </div>
     <script type="text/javascript">
@@ -40,7 +41,7 @@
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
                 center: {lat: 31.777444, lng: 35.234935},
-                zoom: 8
+                zoom: 6
             });
         }
 
@@ -54,6 +55,18 @@
             } else {
                 document.addEventListener("DOMContentLoaded", eventHandler);
             }
+        }
+
+        function showLocation(geotagId, placename, latitude, longitude, viewLatitude, viewLongitude, viewTilt, viewRoll, viewAltitude, viewHeading) {
+
+	        let center = new google.maps.LatLng(latitude, longitude);
+	        // Zoom Calculated at https://groups.google.com/forum/#!msg/google-earth-browser-plugin/eSL9GlAkWBk/T4mdToJz_FgJ
+	        let zoom = Math.round(Math.log(35200000 / viewAltitude) / Math.log(2));
+
+	        // using global variable:
+	        map.panTo(center);
+	        map.setZoom(zoom);
+
         }
 
         ready(function () {

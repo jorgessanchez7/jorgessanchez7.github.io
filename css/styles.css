@@ -114,8 +114,27 @@ div.books {
     margin: 0;
 }
 
+div.chapters {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 .3em;
+    margin: 0;
+}
+
 div.books a {
     flex: 0 0 7em;
+    font-weight: normal;
+    margin: .4em;
+    padding-left: .5em;
+    padding-right: .5em;
+    background-color: #fff;
+    color: #222;
+}
+
+div.chapters a {
+    flex: 0 0 2em;
     font-weight: normal;
     margin: .4em;
     padding-left: .5em;
@@ -150,6 +169,34 @@ div.books a.chapter {
     text-shadow: 2px 0px 2px rgb(255, 255, 255);
     background-color: rgb(255, 255, 255);
     border: solid 5px;
+}
+
+.chapters li {
+    flex: 0 0 5.4em;
+    align-content: center;
+    list-style: none;
+    height: 24px;
+    min-width: 5em;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    padding: .5em .5em 0 .5em;
+    margin: 0;
+    color: rgb(0, 0, 0);
+    font-size: 11pt;
+    font-weight: normal;
+    text-shadow: 2px 0px 2px rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
+    border: solid 5px;
+}
+
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    text-decoration: none;
+    color: initial;
 }
 
 #crumb ul {
