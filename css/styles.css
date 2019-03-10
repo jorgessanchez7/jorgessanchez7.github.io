@@ -89,6 +89,19 @@ img {
     position: relative;
 }
 
+#scriptures2 {
+    display: none;
+    font-family: Arial, Helvetica, sans-serif;
+    min-width: 220px;
+    max-width: 100%;
+    flex: 1 1 30%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-right: 1px solid #aaa;
+    position: relative;
+}
+
 #scripnav {
     position: absolute;
     max-height: 100%;
@@ -230,6 +243,16 @@ div.navheading {
     font-size: 13pt
 }
 
+#scriptures2 ul.versesblock {
+    margin: 0;
+    /*line-height: auto;*/
+    list-style: none;
+    padding: 1em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    font-size: 13pt
+}
+
 ul.versesblock li {
     position: relative;
     display: block;
@@ -337,6 +360,11 @@ li.match {
         flex: 1 1 70%;
     }
     #content > #scriptures {
+        order: 2;
+        flex: 1 1 30%;
+    }
+
+    #content > #scriptures2 {
         order: 2;
         flex: 1 1 30%;
     }

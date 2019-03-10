@@ -33,6 +33,7 @@ const Scriptures = (function () {
     const DIV_BREADCRUMBS = "crumbs";
     const DIV_SCRIPTURES_NAVIGATOR = "scripnav";
     const DIV_SCRIPTURES = "scriptures";
+    const DIV_SCRIPTURES2 = "scriptures2";
     const INDEX_PLACENAME = 2;
     const INDEX_LATITUDE = 3;
     const INDEX_LONGITUDE = 4;
@@ -288,11 +289,24 @@ const Scriptures = (function () {
     };
 
     getScriptureCallback = function (chapterHtml) {
-        document.getElementById(DIV_SCRIPTURES).innerHTML = chapterHtml;
+        //document.getElementById(DIV_SCRIPTURES).innerHTML = chapterHtml;
+        $(`#${DIV_SCRIPTURES}`).fadeOut(100, function(){
+            document.getElementById(DIV_SCRIPTURES).innerHTML = chapterHtml;
+            document.querySelectorAll(".navheading").forEach(function (element) {
+                element.appendChild(parseHtml(`<div class="nextprev">${requestedNextPrevious}</div>`)[0]);
+            });
+            $(`#${DIV_SCRIPTURES}`).fadeIn(200);
+        });
+        /*
         document.querySelectorAll(".navheading").forEach(function (element) {
             element.appendChild(parseHtml(`<div class="nextprev">${requestedNextPrevious}</div>`)[0]);
         });
-        document.getElementById(DIV_BREADCRUMBS).innerHTML = requestedBreadcrumbs;
+        */
+        //document.getElementById(DIV_BREADCRUMBS).innerHTML = requestedBreadcrumbs;
+        $(`#${DIV_BREADCRUMBS}`).fadeOut(100, function(){
+            document.getElementById(DIV_BREADCRUMBS).innerHTML = requestedBreadcrumbs;
+            $(`#${DIV_BREADCRUMBS}`).fadeIn(200);
+        });
         setupMarkers();
     };
 
@@ -436,6 +450,7 @@ const Scriptures = (function () {
 
             transitionScriptures(navContents);
             transitionBreadcrumbs(breadcrumbs(volume, book));
+
         }
     };
 
@@ -465,12 +480,26 @@ const Scriptures = (function () {
     };
 
     navigateHome = function (volumeId) {
+        /*
         document.getElementById(DIV_SCRIPTURES).innerHTML = htmlDiv({
             id: DIV_SCRIPTURES_NAVIGATOR,
             content: volumesGridContent(volumeId)
         });
+        */
 
-        document.getElementById(DIV_BREADCRUMBS).innerHTML = breadcrumbs(volumeForId(volumeId));
+        $(`#${DIV_SCRIPTURES}`).fadeOut(100, function(){
+            document.getElementById(DIV_SCRIPTURES).innerHTML = htmlDiv({
+                id: DIV_SCRIPTURES_NAVIGATOR,
+                content: volumesGridContent(volumeId)
+            });
+            $(`#${DIV_SCRIPTURES}`).fadeIn(200);
+        });
+
+        //document.getElementById(DIV_BREADCRUMBS).innerHTML = breadcrumbs(volumeForId(volumeId));
+        $(`#${DIV_BREADCRUMBS}`).fadeOut(100, function(){
+            document.getElementById(DIV_BREADCRUMBS).innerHTML = breadcrumbs(volumeForId(volumeId));
+            $(`#${DIV_BREADCRUMBS}`).fadeIn(200);
+        });
     };
 
     // Book ID and chapter must be integers
@@ -651,11 +680,19 @@ const Scriptures = (function () {
     };
 
     transitionBreadcrumbs = function (newCrumbs) {
-        document.getElementById(DIV_BREADCRUMBS).innerHTML = newCrumbs;
+        //document.getElementById(DIV_BREADCRUMBS).innerHTML = newCrumbs;
+        $(`#${DIV_BREADCRUMBS}`).fadeOut(100, function(){
+            document.getElementById(DIV_BREADCRUMBS).innerHTML = newCrumbs;
+            $(`#${DIV_BREADCRUMBS}`).fadeIn(200);
+        });
     };
 
     transitionScriptures = function (newContent) {
-        document.getElementById(DIV_SCRIPTURES).innerHTML = htmlDiv({content: newContent});
+        //document.getElementById(DIV_SCRIPTURES).innerHTML = htmlDiv({content: newContent});
+        $(`#${DIV_SCRIPTURES}`).fadeOut(100, function(){
+            document.getElementById(DIV_SCRIPTURES).innerHTML = htmlDiv({content: newContent});
+            $(`#${DIV_SCRIPTURES}`).fadeIn(200);
+        });
         setupMarkers(newContent);
     };
 
