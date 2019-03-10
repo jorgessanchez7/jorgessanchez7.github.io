@@ -10,6 +10,7 @@
 
     <link rel="manifest" href="site.webmanifest">
     <link rel="apple-touch-icon" href="icon.png">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Place favicon.ico in the root directory -->
 
     <link rel="stylesheet" href="css/styles.css?v=1.0">
@@ -17,66 +18,59 @@
     <script src="js/scriptures.js" type="text/javascript"></script>
 </head>
 <body>
-    <!--[if lte IE 9]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser.
-        Please <a href="https://browsehappy.com/">upgrade your browser</a>
-        to improve your experience and security.</p>
-    <![endif]-->
+<!--[if lte IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser.
+    Please <a href="https://browsehappy.com/">upgrade your browser</a>
+    to improve your experience and security.</p>
+<![endif]-->
 
-    <div id="header">
-        <div id="crumbs"></div>
-        <div id="centerhead">
-            <div id="title">The Scriptures, Mapped</div>
-            <div id="subtitle">By Jorge Luis Sanchez-Lozano</div>
-        </div>
+<div id="header">
+    <div id="crumbs"></div>
+    <div id="centerhead">
+        <div id="title">The Scriptures, Mapped</div>
+        <div id="subtitle">By Jorge Luis Sanchez-Lozano</div>
     </div>
-    <div id="content">
-        <div id="scriptures">
-        </div>
-        <div id="map"></div>
-    </div>
-    <script type="text/javascript">
-        let map;
+</div>
+<div id="content">
+    <div id="scriptures"></div>
+    <div id="map"></div>
+</div>
+<script type="text/javascript">
+	let map;
 
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: 31.777444, lng: 35.234935},
-                zoom: 6
-            });
-        }
+	function initMap() {
+		map = new google.maps.Map(document.getElementById('map'), {
+			center: {lat: 31.777444, lng: 35.234935},
+			zoom: 8
+		});
+	}
 
-        function ready(eventHandler) {
-            "use strict";
+	function ready(eventHandler) {
+		"use strict";
 
-            if (document.attachEvent
-                    ? document.readyState === "complete"
-                    : document.readyState !== "loading") {
-                eventHandler();
-            } else {
-                document.addEventListener("DOMContentLoaded", eventHandler);
-            }
-        }
+		if (document.attachEvent
+			? document.readyState === "complete"
+			: document.readyState !== "loading") {
+			eventHandler();
+		} else {
+			document.addEventListener("DOMContentLoaded", eventHandler);
+		}
+	}
 
-        function showLocation(geotagId, placename, latitude, longitude, viewLatitude, viewLongitude, viewTilt, viewRoll, viewAltitude, viewHeading) {
+	function showLocation() {
+		Scriptures.showLocation(...arguments);
+	};
 
-	        let center = new google.maps.LatLng(latitude, longitude);
-	        // Zoom Calculated at https://groups.google.com/forum/#!msg/google-earth-browser-plugin/eSL9GlAkWBk/T4mdToJz_FgJ
-	        let zoom = Math.round(Math.log(35200000 / viewAltitude) / Math.log(2));
-
-	        // using global variable:
-	        map.panTo(center);
-	        map.setZoom(zoom);
-
-        }
-
-        ready(function () {
-            Scriptures.init(function () {
-                window.addEventListener("hashchange", Scriptures.onHashChanged);
-                Scriptures.onHashChanged();
-            });
-        });
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcmgeT4l8ii_57DoU9gKcJ4MPoRRcmC7E&callback=initMap"
-            async defer></script>
+	ready(function () {
+		Scriptures.init(function () {
+			MapLabelInit();
+			window.addEventListener("hashchange", Scriptures.onHashChanged);
+			Scriptures.onHashChanged();
+		});
+	});
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAN66MFaVRg5gwIXoBS5Ggxjb-6IwlcZgY&callback=initMap"
+        async defer></script>
+<script src="js/maplabel.js" defer></script>
 </body>
 </html>

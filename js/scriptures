@@ -1,0 +1,27 @@
+let currencies = [
+    "usd", "gbp", "euro",
+];
+
+let rates = {
+    "usd-euro": .87,
+    "euro-usd": 1.14,
+    "usd-gbp": .78,
+    "gbp-usd": 1.28,
+    "euro-gbp": .9,
+    "gbp-euro": 1.11,
+};
+
+function convert(from, to, amount) {
+    if (!currencies.includes(from)) {
+        return NaN;
+    }
+    if (!currencies.includes(to)) {
+        return NaN;
+    }
+    return rates[from + "-" + to] * amount;
+}
+
+console.log("$5 = €" + convert("usd", "euro", 5));
+console.log("£5 = €" + convert("gbp", "euro", 5));
+console.log("£5 = $" + convert("gbp", "usd", 5));
+console.log("$5 = ¥" + convert("usd", "yen", 5));
