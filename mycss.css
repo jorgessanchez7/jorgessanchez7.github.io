@@ -1,0 +1,17 @@
+h1{
+    text-align: center;
+    color: white;
+}
+html, body,#viewDiv {
+  padding: 2px;
+  margin: 0px;
+  height: 90%;
+
+}
+.lima{
+   background-repeat: no-repeat;
+   background-size: cover;
+}
+graph{
+
+}
