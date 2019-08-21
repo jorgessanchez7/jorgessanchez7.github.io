@@ -36,7 +36,7 @@ require([
     };
 
      function firstriver() {
-        var comid = "150492";
+        var comid = "166150";
         getstreamflow(comid);
     };
 
@@ -66,10 +66,10 @@ require([
         var comid = "185439";
         getstreamflow(comid);
     };
-      function eightthriver() {
-        var comid = "166150";
-        getstreamflow(comid);
-    };
+//      function eightthriver() {
+//        var comid = "148750";
+//        getstreamflow(comid);
+//    };
 
 
 
@@ -294,39 +294,36 @@ require([
 
 
 	let lat_list = [
-		-5.713343,
+		-14.115203,
 		-23.599377,
 		0.234906,
 		-23.428544,
 		-8.846648,
 		-21.855075,
 		-32.501466,
-		-14.115203
+//	    -5.052363
 	];
-
 	let lon_list = [
-		-78.675835,
+	    -67.512691,
 		-54.030787,
 	    -75.965563,
 	    -63.587962,
 	    -49.636322,
 	    -69.515510,
 	    -55.663173,
-	    -67.512691
+//	    -75.989515
 	];
-
 	let name_list = [
-		"Río Marañón ",
+
+		"Río Beni",
 		"Río Paraná",
 		"Río Putumayo",
 	    "Río Bermejo",
 	    "Río Araguaia",
 	    "Río Loa",
 	    "Río Negro",
-	    "Río Beni"
-
+//	    "Río Marañón"
 	];
-
 	let content_list = [
 		firstriver,
 		secondriver,
@@ -335,7 +332,7 @@ require([
 		fifthriver,
 		sixthriver,
 		seventhriver,
-		eightthriver
+//		eightthriver
 	];
 
 	for(let i = 0; i < lon_list.length; i++){
