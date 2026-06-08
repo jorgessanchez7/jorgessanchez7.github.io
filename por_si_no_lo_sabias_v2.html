@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Por si no lo sabías — v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --amarillo:#FFD100;
+    --amarillo-deep:#F2B705;
+    --azul:#00318B;
+    --azul-deep:#001A40;
+    --rojo:#E0001B;
+    --rojo-deep:#A8001A;
+    --crema:#F7F0DC;
+    --crema-2:#EFE6CC;
+    --tinta:#10203F;
+    --verde:#1E8A4C;
+    --verde-deep:#136636;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:#0a1428;
+    font-family:'Barlow',sans-serif;
+    color:var(--tinta);
+    display:flex;
+    justify-content:center;
+    padding:28px 14px;
+  }
+  .poster{
+    width:100%;
+    max-width:1040px;
+    background:
+      radial-gradient(1200px 500px at 100% -5%, rgba(255,209,0,.20), transparent 55%),
+      radial-gradient(900px 600px at -10% 110%, rgba(224,0,27,.16), transparent 55%),
+      linear-gradient(180deg,#0d1a36 0%, #0a1530 60%, #0a1226 100%);
+    position:relative;
+    overflow:hidden;
+    border:2px solid rgba(255,209,0,.25);
+    box-shadow:0 40px 120px rgba(0,0,0,.6);
+  }
+  /* grain */
+  .poster::after{
+    content:"";position:absolute;inset:0;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  /* flag corner */
+  .flag{position:absolute;top:0;left:0;width:120px;height:100%;opacity:.16;z-index:0;}
+  .flag i{display:block;width:100%;}
+  .flag .y{height:50%;background:var(--amarillo);}
+  .flag .b{height:25%;background:var(--azul);}
+  .flag .r{height:25%;background:var(--rojo);}
+
+  .inner{position:relative;z-index:2;padding:44px 40px 36px;}
+
+  /* HEADER */
+  header{text-align:center;margin-bottom:8px;position:relative;}
+  .kicker{
+    font-family:'Barlow Condensed';font-weight:700;letter-spacing:.32em;
+    color:var(--amarillo);font-size:15px;text-transform:uppercase;margin-bottom:2px;
+  }
+  h1{
+    font-family:'Anton';font-size:clamp(48px,9vw,92px);line-height:.86;
+    color:#fff;text-transform:uppercase;letter-spacing:.5px;
+    text-shadow:0 4px 0 rgba(0,0,0,.35);
+  }
+  h1 .sab{color:var(--rojo);display:block;
+    text-shadow:0 4px 0 rgba(0,0,0,.35), 0 0 26px rgba(224,0,27,.4);}
+  .thesis{
+    margin:22px auto 6px;max-width:760px;
+    font-family:'Barlow Condensed';font-weight:600;font-size:clamp(19px,3vw,25px);
+    line-height:1.18;color:#eaf0ff;text-transform:uppercase;letter-spacing:.01em;
+  }
+  .thesis b{color:var(--amarillo);}
+  .thesis .never{color:var(--rojo);font-family:'Anton';font-weight:400;letter-spacing:.5px;}
+
+  .rule{height:4px;width:100%;margin:26px 0 18px;
+    background:linear-gradient(90deg,var(--amarillo) 0 50%,var(--azul) 50% 75%,var(--rojo) 75% 100%);}
+
+  /* SECTION LABEL */
+  .sec{
+    display:flex;align-items:center;gap:14px;margin:6px 0 16px;
+  }
+  .sec .tag{
+    font-family:'Anton';font-size:clamp(22px,4vw,32px);text-transform:uppercase;
+    color:var(--tinta);background:var(--amarillo);padding:4px 16px 2px;letter-spacing:.5px;
+    transform:skewX(-7deg);box-shadow:4px 4px 0 rgba(0,0,0,.4);
+  }
+  .sec.no .tag{background:var(--rojo);color:#fff;}
+  .sec p{font-family:'Barlow Condensed';font-weight:600;color:#c6d2ee;font-size:16px;
+    text-transform:uppercase;letter-spacing:.06em;line-height:1.1;}
+
+  /* ROWS */
+  .row{
+    display:grid;grid-template-columns:108px 1fr auto;align-items:center;gap:0;
+    background:var(--crema);
+    border-radius:6px;margin-bottom:9px;overflow:hidden;
+    box-shadow:0 6px 18px rgba(0,0,0,.28);
+    border-left:7px solid var(--verde);
+  }
+  .row.bad{border-left-color:var(--rojo);}
+  .yearblock{
+    background:var(--azul-deep);color:#fff;align-self:stretch;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
+    padding:14px 6px;text-align:center;position:relative;
+  }
+  .yearblock svg{width:20px;height:20px;opacity:.85;margin-bottom:3px;}
+  .yearblock .yr{font-family:'Anton';font-size:30px;line-height:.9;}
+  .row.bad .yearblock .yr{color:#ffd9dd;}
+  .yearblock .host{font-family:'Barlow Condensed';font-weight:600;font-size:10.5px;
+    text-transform:uppercase;letter-spacing:.08em;color:var(--amarillo);margin-top:3px;}
+  .row.bad .yearblock .host{color:#ffb3bb;}
+
+  .person{padding:11px 18px;}
+  .person .party{font-family:'Barlow Condensed';font-weight:600;font-size:13px;
+    text-transform:uppercase;letter-spacing:.05em;color:#5a6680;line-height:1;}
+  .person .name{font-family:'Barlow';font-weight:800;font-size:clamp(18px,3.2vw,23px);
+    color:var(--tinta);line-height:1.02;margin-top:2px;}
+  .person .party b{color:var(--azul);}
+  .row.bad .person .party b{color:var(--rojo-deep);}
+
+  .stamp{padding:0 16px 0 8px;text-align:center;}
+  .stamp .badge{
+    display:inline-flex;flex-direction:column;align-items:center;justify-content:center;
+    border:2.5px solid var(--verde);color:var(--verde-deep);border-radius:7px;
+    padding:6px 12px;transform:rotate(-4deg);background:rgba(30,138,76,.07);
+  }
+  .stamp .badge .chk{font-family:'Anton';font-size:22px;line-height:.9;}
+  .stamp .badge .lbl{font-family:'Barlow Condensed';font-weight:700;font-size:10.5px;
+    text-transform:uppercase;letter-spacing:.04em;line-height:1.02;margin-top:2px;}
+  .row.bad .stamp .badge{border-color:var(--rojo);color:var(--rojo-deep);background:rgba(224,0,27,.06);}
+
+  /* annotation under Santos 2014 */
+  .annot{
+    background:linear-gradient(90deg,rgba(255,209,0,.16),rgba(255,209,0,.04));
+    border-left:7px solid var(--amarillo-deep);
+    border-radius:6px;margin:-4px 0 11px;padding:11px 18px 12px;
+    box-shadow:0 5px 14px rgba(0,0,0,.22);
+  }
+  .annot .h{font-family:'Barlow Condensed';font-weight:700;color:var(--amarillo);
+    text-transform:uppercase;letter-spacing:.08em;font-size:13px;margin-bottom:3px;
+    display:flex;align-items:center;gap:7px;}
+  .annot .h .star{color:var(--amarillo);font-size:15px;}
+  .annot p{color:#e7edfb;font-size:14.5px;line-height:1.38;font-weight:500;}
+  .annot p b{color:#fff;}
+
+  .subsec{font-family:'Barlow Condensed';font-weight:700;color:#9fb0d6;
+    text-transform:uppercase;letter-spacing:.14em;font-size:12.5px;margin:14px 0 8px;
+    display:flex;align-items:center;gap:10px;}
+  .subsec::after{content:"";flex:1;height:1px;background:rgba(159,176,214,.25);}
+
+  /* honest note */
+  .note{
+    margin-top:18px;background:rgba(0,0,0,.28);border:1px dashed rgba(255,209,0,.4);
+    border-radius:8px;padding:16px 18px;
+  }
+  .note .nh{font-family:'Barlow Condensed';font-weight:700;color:var(--amarillo);
+    text-transform:uppercase;letter-spacing:.1em;font-size:13px;margin-bottom:5px;}
+  .note p{color:#dbe3f5;font-size:14.5px;line-height:1.45;font-weight:500;}
+  .note p b{color:#fff;}
+  .note .score{color:var(--rojo);font-family:'Anton';font-weight:400;}
+
+  /* footer */
+  footer{margin-top:26px;text-align:center;}
+  .tagline{font-family:'Anton';color:#fff;text-transform:uppercase;
+    font-size:clamp(22px,4.4vw,34px);line-height:.95;letter-spacing:.5px;}
+  .tagline span{color:var(--amarillo);}
+  .chip{display:inline-flex;align-items:center;gap:9px;margin-top:16px;
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,209,0,.35);
+    border-radius:30px;padding:8px 18px;}
+  .chip .dot{width:9px;height:9px;border-radius:50%;background:var(--amarillo);
+    box-shadow:0 0 10px var(--amarillo);}
+  .chip span{font-family:'Barlow Condensed';font-weight:600;color:#cfd9f0;
+    text-transform:uppercase;letter-spacing:.1em;font-size:12.5px;}
+  .chip span b{color:#fff;}
+
+  @media(max-width:560px){
+    .inner{padding:30px 18px 26px;}
+    .row{grid-template-columns:84px 1fr auto;}
+    .yearblock .yr{font-size:24px;}
+    .person{padding:9px 12px;}
+    .stamp{padding:0 10px 0 4px;}
+    .stamp .badge{padding:5px 8px;}
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+  <div class="flag"><i class="y"></i><i class="b"></i><i class="r"></i></div>
+  <div class="inner">
+
+    <header>
+      <div class="kicker">Federación · Fútbol · Historia</div>
+      <h1>Por si no lo<span class="sab">sabías</span></h1>
+      <p class="thesis">
+        La Selección Colombia <span class="never">NUNCA</span> se ha clasificado a un Mundial
+        bajo un gobierno <b>conservador</b> ni <b>uribista</b>.
+      </p>
+    </header>
+
+    <div class="rule"></div>
+
+    <!-- SÍ -->
+    <div class="sec">
+      <span class="tag">Las que sí</span>
+      <p>Las 7 clasificaciones de la historia.<br>Todas, sin excepción, bajo gobiernos NI conservadores NI uribistas.</p>
+    </div>
+
+    <!-- 1962 -->
+    <div class="row">
+      <div class="yearblock">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 3h12v2h3v3a4 4 0 0 1-4 4h-.4A6 6 0 0 1 13 16.9V19h3v2H8v-2h3v-2.1A6 6 0 0 1 7.4 12H7a4 4 0 0 1-4-4V5h3V3Zm0 4H5v1a2 2 0 0 0 1 1.7V7Zm12 0v2.7A2 2 0 0 0 19 8V7h-1Z"/></svg>
+        <span class="yr">1962</span><span class="host">Chile</span>
+      </div>
+      <div class="person"><div class="party">Gobierno del <b>Partido Liberal</b></div><div class="name">Alberto Lleras Camargo</div></div>
+      <div class="stamp"><div class="badge"><span class="chk">✓</span><span class="lbl">Ni conservador<br>ni uribista</span></div></div>
+    </div>
+
+    <!-- 1990 -->
+    <div class="row">
+      <div class="yearblock">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 3h12v2h3v3a4 4 0 0 1-4 4h-.4A6 6 0 0 1 13 16.9V19h3v2H8v-2h3v-2.1A6 6 0 0 1 7.4 12H7a4 4 0 0 1-4-4V5h3V3Zm0 4H5v1a2 2 0 0 0 1 1.7V7Zm12 0v2.7A2 2 0 0 0 19 8V7h-1Z"/></svg>
+        <span class="yr">1990</span><span class="host">Italia</span>
+      </div>
+      <div class="person"><div class="party">Gobierno del <b>Partido Liberal</b></div><div class="name">Virgilio Barco Vargas</div></div>
+      <div class="stamp"><div class="badge"><span class="chk">✓</span><span class="lbl">Ni conservador<br>ni uribista</span></div></div>
+    </div>
+
+    <!-- 1994 -->
+    <div class="row">
+      <div class="yearblock">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 3h12v2h3v3a4 4 0 0 1-4 4h-.4A6 6 0 0 1 13 16.9V19h3v2H8v-2h3v-2.1A6 6 0 0 1 7.4 12H7a4 4 0 0 1-4-4V5h3V3Zm0 4H5v1a2 2 0 0 0 1 1.7V7Zm12 0v2.7A2 2 0 0 0 19 8V7h-1Z"/></svg>
+        <span class="yr">1994</span><span class="host">EE. UU.</span>
+      </div>
+      <div class="person"><div class="party">Gobierno del <b>Partido Liberal</b></div><div class="name">César Gaviria Trujillo</div></div>
+      <div class="stamp"><div class="badge"><span class="chk">✓</span><span class="lbl">Ni conservador<br>ni uribista</span></div></div>
+    </div>
+
+    <!-- 1998 -->
+    <div class="row">
+      <div class="yearblock">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 3h12v2h3v3a4 4 0 0 1-4 4h-.4A6 6 0 0 1 13 16.9V19h3v2H8v-2h3v-2.1A6 6 0 0 1 7.4 12H7a4 4 0 0 1-4-4V5h3V3Zm0 4H5v1a2 2 0 0 0 1 1.7V7Zm12 0v2.7A2 2 0 0 0 19 8V7h-1Z"/></svg>
+        <span class="yr">1998</span><span class="host">Francia</span>
+      </div>
+      <div class="person"><div class="party">Gobierno del <b>Partido Liberal</b></div><div class="name">Ernesto Samper Pizano</div></div>
+      <div class="stamp"><div class="badge"><span class="chk">✓</span><span class="lbl">Ni conservador<br>ni uribista</span></div></div>
+    </div>
+
+    <!-- 2014 -->
+    <div class="row">
+      <div class="yearblock">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 3h12v2h3v3a4 4 0 0 1-4 4h-.4A6 6 0 0 1 13 16.9V19h3v2H8v-2h3v-2.1A6 6 0 0 1 7.4 12H7a4 4 0 0 1-4-4V5h3V3Zm0 4H5v1a2 2 0 0 0 1 1.7V7Zm12 0v2.7A2 2 0 0 0 19 8V7h-1Z"/></svg>
+        <span class="yr">2014</span><span class="host">Brasil</span>
+      </div>
+      <div class="person"><div class="party">Gobierno de la <b>Unidad Nacional</b> ★</div><div class="name">Juan Manuel Santos</div></div>
+      <div class="stamp"><div class="badge"><span class="chk">✓</span><span class="lbl">Ni conservador<br>ni uribista</span></div></div>
+    </div>
+    <div class="annot">
+      <div class="h"><span class="star">★</span> El caso Santos: ya en ruptura con el uribismo</div>
+      <p>Santos llegó en 2010 con apoyo uribista, pero para el cierre de esta eliminatoria (<b>octubre de 2013</b>) la ruptura ya era total: ese mismo año Uribe fundó el <b>Centro Democrático</b> como oposición frontal. Al clasificar, el uribismo ya estaba enfrente, no en el poder.</p>
+    </div>
+
+    <!-- 2018 -->
+    <div class="row">
+      <div class="yearblock">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 3h12v2h3v3a4 4 0 0 1-4 4h-.4A6 6 0 0 1 13 16.9V19h3v2H8v-2h3v-2.1A6 6 0 0 1 7.4 12H7a4 4 0 0 1-4-4V5h3V3Zm0 4H5v1a2 2 0 0 0 1 1.7V7Zm12 0v2.7A2 2 0 0 0 19 8V7h-1Z"/></svg>
+        <span class="yr">2018</span><span class="host">Rusia</span>
+      </div>
+      <div class="person"><div class="party">Gobierno de la <b>Unidad Nacional</b></div><div class="name">Juan Manuel Santos</div></div>
+      <div class="stamp"><div class="badge"><span class="chk">✓</span><span class="lbl">Ni conservador<br>ni uribista</span></div></div>
+    </div>
+
+    <!-- 2026 -->
+    <div class="row">
+      <div class="yearblock">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 3h12v2h3v3a4 4 0 0 1-4 4h-.4A6 6 0 0 1 13 16.9V19h3v2H8v-2h3v-2.1A6 6 0 0 1 7.4 12H7a4 4 0 0 1-4-4V5h3V3Zm0 4H5v1a2 2 0 0 0 1 1.7V7Zm12 0v2.7A2 2 0 0 0 19 8V7h-1Z"/></svg>
+        <span class="yr">2026</span><span class="host">EE. UU. · Méx · Can</span>
+      </div>
+      <div class="person"><div class="party">Gobierno del <b>Pacto Histórico</b></div><div class="name">Gustavo Petro Urrego</div></div>
+      <div class="stamp"><div class="badge"><span class="chk">✓</span><span class="lbl">Ni conservador<br>ni uribista</span></div></div>
+    </div>
+
+    <div class="rule"></div>
+
+    <!-- NO -->
+    <div class="sec no">
+      <span class="tag">Las que no</span>
+      <p>Y cada vez que NO clasificó en eliminatoria reciente o antigua…<br>siempre había un conservador o un uribista en la Casa de Nariño.</p>
+    </div>
+
+    <div class="subsec">Historia reciente</div>
+
+    <div class="row bad">
+      <div class="yearblock"><span class="yr">2002</span><span class="host">Corea / Japón</span></div>
+      <div class="person"><div class="party"><b>Partido Conservador</b></div><div class="name">Andrés Pastrana Arango</div></div>
+      <div class="stamp"><div class="badge"><span class="chk">✗</span><span class="lbl">No<br>clasificó</span></div></div>
+    </div>
+    <div class="row bad">
+      <div class="yearblock"><span class="yr">2006</span><span class="host">Alemania</span></div>
+      <div class="person"><div class="party">Uribismo · <b>Primero Colombia</b></div><div class="name">Álvaro Uribe Vélez</div></div>
+      <div class="stamp"><div class="badge"><span class="chk">✗</span><span class="lbl">No<br>clasificó</span></div></div>
+    </div>
+    <div class="row bad">
+      <div class="yearblock"><span class="yr">2010</span><span class="host">Sudáfrica</span></div>
+      <div class="person"><div class="party">Uribismo · <b>Primero Colombia</b></div><div class="name">Álvaro Uribe Vélez</div></div>
+      <div class="stamp"><div class="badge"><span class="chk">✗</span><span class="lbl">No<br>clasificó</span></div></div>
+    </div>
+    <div class="row bad">
+      <div class="yearblock"><span class="yr">2022</span><span class="host">Catar</span></div>
+      <div class="person"><div class="party">Uribismo · <b>Centro Democrático</b></div><div class="name">Iván Duque Márquez</div></div>
+      <div class="stamp"><div class="badge"><span class="chk">✗</span><span class="lbl">No<br>clasificó</span></div></div>
+    </div>
+
+    <div class="subsec">Y más atrás… los conservadores del Frente Nacional y después</div>
+
+    <div class="row bad">
+      <div class="yearblock"><span class="yr">1966</span><span class="host">Inglaterra</span></div>
+      <div class="person"><div class="party"><b>Partido Conservador</b></div><div class="name">Guillermo León Valencia</div></div>
+      <div class="stamp"><div class="badge"><span class="chk">✗</span><span class="lbl">No<br>clasificó</span></div></div>
+    </div>
+    <div class="row bad">
+      <div class="yearblock"><span class="yr">1974</span><span class="host">Alemania</span></div>
+      <div class="person"><div class="party"><b>Partido Conservador</b></div><div class="name">Misael Pastrana Borrero</div></div>
+      <div class="stamp"><div class="badge"><span class="chk">✗</span><span class="lbl">No<br>clasificó</span></div></div>
+    </div>
+    <div class="row bad">
+      <div class="yearblock"><span class="yr">1986</span><span class="host">México</span></div>
+      <div class="person"><div class="party"><b>Partido Conservador</b></div><div class="name">Belisario Betancur</div></div>
+      <div class="stamp"><div class="badge"><span class="chk">✗</span><span class="lbl">No<br>clasificó</span></div></div>
+    </div>
+
+    <div class="note">
+      <div class="nh">Seamos justos (y por eso el dato es más fuerte)</div>
+      <p>En esas sequías viejas también hubo presidentes <b>liberales</b> sin Mundial (Carlos Lleras Restrepo, López Michelsen, Turbay). El punto no es que el liberalismo siempre clasifique — es que <b>conservadores y uribistas no lo han logrado jamás</b>. Marcador de los conservadores y/o uribistas: <span class="score">0</span>.</p>
+    </div>
+
+    <footer>
+      <div class="tagline">El fútbol nos une.<br><span>La historia también.</span></div>
+      <div class="chip"><span class="dot"></span><span><b>Dato histórico:</b> la correlación no implica causalidad</span></div>
+    </footer>
+
+  </div>
+</div>
+</body>
+</html>
