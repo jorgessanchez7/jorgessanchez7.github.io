@@ -541,7 +541,7 @@ const App = (() => {
     function populateDateFilter() {
         const sel = document.getElementById("filter-date");
         const allMatches = getAllMatches();
-        const dates = [...new Set(allMatches.map(m => m.date))].sort();
+        const dates = [...new Set(allMatches.map(m => matchLocalDate(m)))].sort();
         dates.forEach(d => {
             const opt = document.createElement("option");
             opt.value = d;
@@ -569,7 +569,7 @@ const App = (() => {
     function populateAdminDateSelect() {
         const sel = document.getElementById("admin-wa-date");
         const allMatches = getAllMatches();
-        const dates = [...new Set(allMatches.map(m => m.date))].sort();
+        const dates = [...new Set(allMatches.map(m => matchLocalDate(m)))].sort();
         dates.forEach(d => {
             const opt = document.createElement("option");
             opt.value = d;
@@ -611,7 +611,7 @@ const App = (() => {
             } else if (groupFilter !== "all") {
                 if (m.group !== groupFilter) return false;
             }
-            if (dateFilter !== "all" && m.date !== dateFilter) return false;
+            if (dateFilter !== "all" && matchLocalDate(m) !== dateFilter) return false;
             return true;
         });
 
@@ -619,21 +619,25 @@ const App = (() => {
 
         let html = "";
         let lastDate = "";
+        const now = new Date();
 
         filtered.forEach(m => {
             const home = TEAMS[m.home];
             const away = TEAMS[m.away];
             if (!home || !away) return;
 
-            if (m.date !== lastDate) {
-                lastDate = m.date;
-                html += `<div class="match-date-header">${formatDateLong(m.date)}</div>`;
+            const localDate = matchLocalDate(m);
+            if (localDate !== lastDate) {
+                lastDate = localDate;
+                html += `<div class="match-date-header">${formatDateLong(localDate)}</div>`;
             }
 
             const result = results[m.id];
             const pred = predictions[m.id];
             const localTime = utcToLocal(m.date, m.utc);
             const played = !!result;
+            const kickoff = new Date(m.date + "T" + m.utc + ":00Z");
+            const started = now >= kickoff;
             const hasPred = !!pred;
             const isKnockout = m.phase !== "group";
             const phaseTag = isKnockout ? getPhaseLabel(m.phase) : "Grupo " + m.group;
@@ -653,7 +657,7 @@ const App = (() => {
                 predBadge = `<span class="match-prediction-badge">Tu: ${pred.homeScore}-${pred.awayScore}${extra}</span>`;
             }
 
-            const viewAllBtn = played
+            const viewAllBtn = started
                 ? `<button class="btn-view-all" onclick="event.stopPropagation(); App.showMatchPredictions('${m.id}')">Ver pronosticos</button>`
                 : "";
 
@@ -1424,7 +1428,7 @@ const App = (() => {
         if (!date) return;
 
         const allM = getAllMatches();
-        const dayMatches = allM.filter(m => m.date === date);
+        const dayMatches = allM.filter(m => matchLocalDate(m) === date);
         if (!dayMatches.length) {
             document.getElementById("wa-message-box").textContent = "No hay partidos en esta fecha.";
             return;
@@ -1492,6 +1496,14 @@ const App = (() => {
     function formatDateLong(dateStr) {
         const d = new Date(dateStr + "T12:00:00");
         return d.toLocaleDateString("es", { weekday: "long", month: "long", day: "numeric" });
+    }
+
+    function matchLocalDate(m) {
+        const d = new Date(m.date + "T" + m.utc + ":00Z");
+        const y = d.getFullYear();
+        const mo = String(d.getMonth() + 1).padStart(2, "0");
+        const da = String(d.getDate()).padStart(2, "0");
+        return `${y}-${mo}-${da}`;
     }
 
     function utcToLocal(dateStr, utcTime) {
