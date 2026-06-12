@@ -71,7 +71,7 @@ const App = (() => {
     const MATCHES = [
         // Matchday 1
         { id: 1,  home: "MEX", away: "RSA", group: "A", date: "2026-06-11", utc: "19:00", phase: "group" },
-        { id: 2,  home: "KOR", away: "CZE", group: "A", date: "2026-06-11", utc: "02:00", phase: "group" },
+        { id: 2,  home: "KOR", away: "CZE", group: "A", date: "2026-06-12", utc: "02:00", phase: "group" },
         { id: 3,  home: "CAN", away: "BIH", group: "B", date: "2026-06-12", utc: "19:00", phase: "group" },
         { id: 4,  home: "USA", away: "PAR", group: "D", date: "2026-06-13", utc: "01:00", phase: "group" },
         { id: 5,  home: "QAT", away: "SUI", group: "B", date: "2026-06-13", utc: "19:00", phase: "group" },
@@ -327,11 +327,22 @@ const App = (() => {
             const today = new Date().toISOString().substring(0, 10);
             const pastDates = dates.filter(d => d <= today);
 
+            // Collect ESPN dates to query: for each match date, also check previous day
+            // (ESPN groups by US Eastern time, so early-UTC matches appear under the prior day)
+            const espnDatesSet = new Set();
             for (const date of pastDates) {
-                // Skip dates where all matches already have results
-                const dateMatches = allM.filter(m => m.date === date);
-                const allHaveResults = dateMatches.every(m => results[m.id]);
-                if (allHaveResults) continue;
+                espnDatesSet.add(date);
+                const prev = new Date(date + "T12:00:00");
+                prev.setDate(prev.getDate() - 1);
+                espnDatesSet.add(prev.toISOString().substring(0, 10));
+            }
+            const espnDates = [...espnDatesSet].sort();
+
+            // All matches without results yet
+            const pendingMatches = allM.filter(m => !results[m.id]);
+
+            for (const date of espnDates) {
+                if (pendingMatches.length === 0) break;
 
                 const espnDate = date.replace(/-/g, "");
                 const res = await fetch(`${ESPN_API_URL}?dates=${espnDate}`);
@@ -361,8 +372,8 @@ const App = (() => {
                     const homeCode = espnAbbrToCode(homeAbbr);
                     const awayCode = espnAbbrToCode(awayAbbr);
 
-                    // Find matching match
-                    const match = dateMatches.find(m =>
+                    // Find matching match across ALL pending matches (not just same-date)
+                    const match = pendingMatches.find(m =>
                         (m.home === homeCode && m.away === awayCode) ||
                         (m.home === awayCode && m.away === homeCode)
                     );
@@ -642,6 +653,10 @@ const App = (() => {
                 predBadge = `<span class="match-prediction-badge">Tu: ${pred.homeScore}-${pred.awayScore}${extra}</span>`;
             }
 
+            const viewAllBtn = played
+                ? `<button class="btn-view-all" onclick="event.stopPropagation(); App.showMatchPredictions('${m.id}')">Ver pronosticos</button>`
+                : "";
+
             html += `
                 <div class="match-card ${played ? 'played' : ''} ${hasPred ? 'has-prediction' : ''}"
                      onclick="${played ? '' : `App.openPrediction('${m.id}')`}">
@@ -660,6 +675,7 @@ const App = (() => {
                     <span class="match-group">${phaseTag}</span>
                     <span class="match-time">${localTime}</span>
                     ${predBadge}
+                    ${viewAllBtn}
                 </div>`;
         });
 
@@ -952,6 +968,82 @@ const App = (() => {
         closePrediction();
         renderMatches();
         showToast("Pronostico guardado");
+    }
+
+    // ----------------------------------------------------------
+    // MATCH PREDICTIONS VIEW (all players for a match)
+    // ----------------------------------------------------------
+    function showMatchPredictions(matchId) {
+        const allM = getAllMatches();
+        const match = allM.find(m => String(m.id) === String(matchId));
+        if (!match) return;
+
+        const home = TEAMS[match.home];
+        const away = TEAMS[match.away];
+        const result = results[matchId];
+        const mode = document.getElementById("scoring-mode")?.value || "jorge";
+
+        let html = `<div class="modal-content" style="max-width:600px">`;
+        html += `<button class="modal-close" onclick="document.getElementById('match-preds-modal').style.display='none'">&times;</button>`;
+        html += `<h2>${home.flag} ${home.name} vs ${away.flag} ${away.name}</h2>`;
+
+        if (result) {
+            html += `<p class="result-line">Resultado: <strong>${result.homeScore} - ${result.awayScore}</strong>`;
+            if (result.scorers && result.scorers.length) {
+                html += ` | Goles: ${result.scorers.join(", ")}`;
+            }
+            html += `</p>`;
+        }
+
+        html += `<table class="ranking-table" style="margin-top:10px"><thead><tr>
+            <th>Jugador</th><th>Pronostico</th><th>Goleador(es)</th><th>Pts</th>
+        </tr></thead><tbody>`;
+
+        const rows = [];
+        Object.keys(allPredictions).forEach(username => {
+            const playerData = allPredictions[username];
+            const pred = (playerData.predictions || {})[matchId];
+            if (!pred) return;
+
+            const scorerNames = (pred.scorers || []).map(s =>
+                typeof s === "string" ? s : (s.player + (s.ownGoal ? " (AG)" : ""))
+            );
+
+            let pts = "-";
+            if (result) {
+                pts = calculatePoints(pred, result, match, mode);
+            }
+
+            rows.push({ username, flag: playerData.countryFlag || "", pred, scorerNames, pts });
+        });
+
+        rows.sort((a, b) => (typeof b.pts === "number" ? b.pts : -1) - (typeof a.pts === "number" ? a.pts : -1));
+
+        if (rows.length === 0) {
+            html += `<tr><td colspan="4" style="text-align:center;color:#666;padding:15px;">Nadie hizo pronostico para este partido</td></tr>`;
+        }
+
+        rows.forEach(r => {
+            html += `<tr>
+                <td>${r.flag} ${r.username}</td>
+                <td>${r.pred.homeScore} - ${r.pred.awayScore}</td>
+                <td>${r.scorerNames.length ? r.scorerNames.join(", ") : "-"}</td>
+                <td><strong>${r.pts}</strong></td>
+            </tr>`;
+        });
+
+        html += `</tbody></table></div>`;
+
+        let modal = document.getElementById("match-preds-modal");
+        if (!modal) {
+            modal = document.createElement("div");
+            modal.id = "match-preds-modal";
+            modal.className = "modal";
+            modal.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
+            document.body.appendChild(modal);
+        }
+        modal.innerHTML = html;
+        modal.style.display = "flex";
     }
 
     // ----------------------------------------------------------
@@ -1440,7 +1532,8 @@ const App = (() => {
         copyWhatsApp,
         addKnockoutMatch,
         fetchResultsFromAPI,
-        updateScorerOptions
+        updateScorerOptions,
+        showMatchPredictions
     };
 })();
 

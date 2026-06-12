@@ -231,6 +231,27 @@ select:focus, input:focus {
     margin-left: 8px;
 }
 
+.btn-view-all {
+    background: #2d1b69;
+    color: #c4a635;
+    border: 1px solid #c4a635;
+    border-radius: 4px;
+    padding: 3px 10px;
+    font-size: 0.7em;
+    cursor: pointer;
+    margin-top: 4px;
+}
+
+.btn-view-all:hover {
+    background: #c4a635;
+    color: #0a0e27;
+}
+
+.result-line {
+    color: #c4a635;
+    margin-bottom: 8px;
+}
+
 /* Modal */
 .modal {
     position: fixed;
