@@ -71,7 +71,7 @@ const App = (() => {
     const MATCHES = [
         // Matchday 1
         { id: 1,  home: "MEX", away: "RSA", group: "A", date: "2026-06-11", utc: "19:00", phase: "group" },
-        { id: 2,  home: "KOR", away: "CZE", group: "A", date: "2026-06-12", utc: "02:00", phase: "group" },
+        { id: 2,  home: "KOR", away: "CZE", group: "A", date: "2026-06-11", utc: "02:00", phase: "group" },
         { id: 3,  home: "CAN", away: "BIH", group: "B", date: "2026-06-12", utc: "19:00", phase: "group" },
         { id: 4,  home: "USA", away: "PAR", group: "D", date: "2026-06-13", utc: "01:00", phase: "group" },
         { id: 5,  home: "QAT", away: "SUI", group: "B", date: "2026-06-13", utc: "19:00", phase: "group" },
@@ -1058,24 +1058,27 @@ const App = (() => {
         if (predHome === resHome && predAway === resAway) points += 1;
 
         // 3. Scorer point
+        const normName = s => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
         const predScorers = (prediction.scorers || []).map(s =>
-            typeof s === "string" ? s.toLowerCase().trim() : s.player.toLowerCase().trim()
+            normName(typeof s === "string" ? s : s.player)
         );
-        const resScorers = (result.scorers || []).map(s => s.toLowerCase().trim());
+        const resScorers = (result.scorers || []).map(s => normName(s));
+
+        const scorerMatch = (ps, rs) => rs.includes(ps) || ps.includes(rs);
 
         if (mode === "jorge") {
             if (predScorers.length === 0) {
                 if (resScorers.length === 0) points += 1;
             } else {
                 const allMatch = predScorers.every(ps =>
-                    resScorers.some(rs => rs.includes(ps))
+                    resScorers.some(rs => scorerMatch(ps, rs))
                 );
                 if (allMatch) points += 1;
             }
         } else {
             if (predScorers.length > 0) {
                 const allMatch = predScorers.every(ps =>
-                    resScorers.some(rs => rs.includes(ps))
+                    resScorers.some(rs => scorerMatch(ps, rs))
                 );
                 if (allMatch) points += 1;
             }
