@@ -208,6 +208,19 @@ const App = (() => {
         // Listen for score changes in prediction to update scorer dropdowns
         document.getElementById("pred-home-score").addEventListener("change", updateScorerOptions);
         document.getElementById("pred-away-score").addEventListener("change", updateScorerOptions);
+
+        // Load all predictions from Sheets, then fix current user's data
+        await loadFromSheets();
+        if (currentUser && Object.keys(predictions).length > 0) {
+            allPredictions[currentUser.username] = {
+                country: currentUser.country,
+                countryFlag: currentUser.countryFlag,
+                predictions: { ...predictions }
+            };
+            localStorage.setItem("mundial_all_predictions", JSON.stringify(allPredictions));
+            // Re-sync to fix corrupted scorer data in Sheets
+            syncToSheets();
+        }
     }
 
     // ----------------------------------------------------------
@@ -310,6 +323,22 @@ const App = (() => {
         }
     }
 
+    function cleanScorerData(preds) {
+        // Remove "[object Object]" entries from corrupted Sheets data
+        Object.keys(preds).forEach(username => {
+            const userPreds = preds[username].predictions || {};
+            Object.keys(userPreds).forEach(matchId => {
+                const p = userPreds[matchId];
+                if (p.scorers) {
+                    p.scorers = p.scorers.filter(s => {
+                        const name = typeof s === "string" ? s : (s.player || "");
+                        return name && !name.includes("[object");
+                    });
+                }
+            });
+        });
+    }
+
     async function loadFromSheets() {
         if (!SHEETS_API_URL) return;
         try {
@@ -317,6 +346,7 @@ const App = (() => {
             const data = await res.json();
             if (data && data.predictions) {
                 allPredictions = data.predictions;
+                cleanScorerData(allPredictions);
                 localStorage.setItem("mundial_all_predictions", JSON.stringify(allPredictions));
             }
             if (data && data.results) {
@@ -1022,7 +1052,10 @@ const App = (() => {
         const rows = [];
         Object.keys(allPredictions).forEach(username => {
             const playerData = allPredictions[username];
-            const pred = (playerData.predictions || {})[matchId];
+            // Use local predictions for current user (has correct scorer data)
+            const pred = (currentUser && username === currentUser.username)
+                ? predictions[matchId]
+                : (playerData.predictions || {})[matchId];
             if (!pred) return;
 
             const scorerNames = (pred.scorers || []).map(s =>
@@ -1225,12 +1258,16 @@ const App = (() => {
             const playerData = allPredictions[username];
             let totalPts = 0, gamesPlayed = 0, winnerPts = 0, scorePts = 0, scorerPts = 0;
 
+            // Use local predictions for current user (correct scorer data)
+            const userPreds = (currentUser && username === currentUser.username)
+                ? predictions : (playerData.predictions || {});
+
             Object.keys(playerData.predictions || {}).forEach(matchId => {
                 const result = results[matchId];
                 if (!result) return;
 
                 gamesPlayed++;
-                const pred = playerData.predictions[matchId];
+                const pred = userPreds[matchId] || playerData.predictions[matchId];
                 const match = allM.find(m => String(m.id) === String(matchId));
                 const pts = calculatePoints(pred, result, match, mode);
                 totalPts += pts;
