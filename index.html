@@ -161,8 +161,12 @@
                     <label>Quien clasifico?</label>
                     <select id="admin-advances"></select>
                 </div>
-                <label>Goleadores reales (separados por coma):</label>
-                <input type="text" id="admin-scorers" placeholder="ej: Messi, Alvarez">
+                <label>Goleadores reales:</label>
+                <div id="admin-scorer-inputs"></div>
+                <div class="scorer-buttons">
+                    <button type="button" class="btn-secondary" onclick="App.addAdminScorer()">+ Agregar goleador</button>
+                    <button type="button" class="btn-link" onclick="App.removeAdminScorer()">- Quitar ultimo</button>
+                </div>
                 <button class="btn-primary" onclick="App.saveResult()">Guardar Resultado</button>
             </div>
         </div>

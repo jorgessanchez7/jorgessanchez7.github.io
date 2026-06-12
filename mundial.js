@@ -354,12 +354,7 @@ const App = (() => {
             }
             const espnDates = [...espnDatesSet].sort();
 
-            // All matches without results yet
-            const pendingMatches = allM.filter(m => !results[m.id]);
-
             for (const date of espnDates) {
-                if (pendingMatches.length === 0) break;
-
                 const espnDate = date.replace(/-/g, "");
                 const res = await fetch(`${ESPN_API_URL}?dates=${espnDate}`);
                 const data = await res.json();
@@ -388,13 +383,13 @@ const App = (() => {
                     const homeCode = espnAbbrToCode(homeAbbr);
                     const awayCode = espnAbbrToCode(awayAbbr);
 
-                    // Find matching match across ALL pending matches (not just same-date)
-                    const match = pendingMatches.find(m =>
+                    // Find matching match across ALL matches
+                    const match = allM.find(m =>
                         (m.home === homeCode && m.away === awayCode) ||
                         (m.home === awayCode && m.away === homeCode)
                     );
 
-                    if (!match || results[match.id]) continue;
+                    if (!match) continue;
 
                     // Get scorers from details
                     const scorers = [];
@@ -416,13 +411,18 @@ const App = (() => {
                         advances = homeWon ? match.home : match.away;
                     }
 
-                    // Flip scores if ESPN has teams in different order than ours
-                    if (match.home === homeCode) {
-                        results[match.id] = { homeScore, awayScore, scorers, advances };
-                    } else {
-                        results[match.id] = { homeScore: awayScore, awayScore: homeScore, scorers, advances };
+                    // Build new result
+                    const newResult = match.home === homeCode
+                        ? { homeScore, awayScore, scorers, advances }
+                        : { homeScore: awayScore, awayScore: homeScore, scorers, advances };
+
+                    // Check if result changed
+                    const old = results[match.id];
+                    if (!old || old.homeScore !== newResult.homeScore || old.awayScore !== newResult.awayScore ||
+                        JSON.stringify(old.scorers) !== JSON.stringify(newResult.scorers)) {
+                        updated++;
                     }
-                    updated++;
+                    results[match.id] = newResult;
                 }
 
                 // Small delay between date requests
@@ -1351,26 +1351,98 @@ const App = (() => {
         const result = results[matchId];
         document.getElementById("admin-home-score").value = result ? result.homeScore : "";
         document.getElementById("admin-away-score").value = result ? result.awayScore : "";
-        document.getElementById("admin-scorers").value = result ? result.scorers.join(", ") : "";
         if (result && result.advances && match.phase !== "group") {
             document.getElementById("admin-advances").value = result.advances;
         }
 
+        // Populate admin scorer dropdowns
+        const scorerContainer = document.getElementById("admin-scorer-inputs");
+        scorerContainer.innerHTML = "";
+        currentAdminMatch = match;
+        if (result && result.scorers && result.scorers.length > 0) {
+            result.scorers.forEach(s => {
+                const name = typeof s === "string" ? s : (s.player || String(s));
+                addAdminScorerWithValue(name);
+            });
+        }
+
         document.getElementById("admin-result-form").style.display = "block";
+    }
+
+    let currentAdminMatch = null;
+
+    function addAdminScorer() {
+        addAdminScorerWithValue("");
+    }
+
+    function addAdminScorerWithValue(value) {
+        if (!currentAdminMatch) return;
+        const container = document.getElementById("admin-scorer-inputs");
+        const div = document.createElement("div");
+        div.className = "scorer-row";
+
+        const select = document.createElement("select");
+        select.className = "admin-scorer-name";
+        select.innerHTML = '<option value="">Seleccionar goleador...</option>';
+
+        [currentAdminMatch.home, currentAdminMatch.away].forEach(tc => {
+            const team = TEAMS[tc];
+            const squad = squads[tc] || [];
+            if (squad.length > 0) {
+                const optgroup = document.createElement("optgroup");
+                optgroup.label = team.flag + " " + team.name;
+                const posOrder = { Attacker: 0, Midfielder: 1, Defender: 2, Goalkeeper: 3 };
+                const sorted = [...squad].sort((a, b) =>
+                    (posOrder[a.position] ?? 4) - (posOrder[b.position] ?? 4)
+                );
+                sorted.forEach(p => {
+                    const opt = document.createElement("option");
+                    opt.value = p.name;
+                    const posLabel = { Attacker: "DEL", Midfielder: "MED", Defender: "DEF", Goalkeeper: "POR" };
+                    opt.textContent = p.name + " (" + (posLabel[p.position] || p.position) + ")";
+                    if (p.name === value) opt.selected = true;
+                    optgroup.appendChild(opt);
+                });
+                select.appendChild(optgroup);
+            }
+        });
+
+        // If value wasn't found in squads, add it as a manual option
+        if (value && !select.value) {
+            const opt = document.createElement("option");
+            opt.value = value;
+            opt.textContent = value + " (manual)";
+            opt.selected = true;
+            select.appendChild(opt);
+        }
+
+        div.appendChild(select);
+        container.appendChild(div);
+    }
+
+    function removeAdminScorer() {
+        const container = document.getElementById("admin-scorer-inputs");
+        if (container.children.length > 0) {
+            container.removeChild(container.lastChild);
+        }
     }
 
     function saveResult() {
         const matchId = document.getElementById("admin-match-select").value;
         const homeScore = parseInt(document.getElementById("admin-home-score").value);
         const awayScore = parseInt(document.getElementById("admin-away-score").value);
-        const scorersRaw = document.getElementById("admin-scorers").value;
 
         if (isNaN(homeScore) || isNaN(awayScore)) {
             showToast("Ingresa un marcador valido", true);
             return;
         }
 
-        const scorers = scorersRaw ? scorersRaw.split(",").map(s => s.trim()).filter(s => s) : [];
+        const scorerSelects = document.querySelectorAll(".admin-scorer-name");
+        const scorers = [];
+        scorerSelects.forEach(sel => {
+            const val = sel.value.trim();
+            if (val) scorers.push(val);
+        });
 
         const allM = getAllMatches();
         const match = allM.find(m => String(m.id) === String(matchId));
@@ -1561,7 +1633,9 @@ const App = (() => {
         addKnockoutMatch,
         fetchResultsFromAPI,
         updateScorerOptions,
-        showMatchPredictions
+        showMatchPredictions,
+        addAdminScorer,
+        removeAdminScorer
     };
 })();
 
