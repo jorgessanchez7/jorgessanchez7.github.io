@@ -274,6 +274,22 @@ const App = (() => {
         syncToSheets();
     }
 
+    function serializePredictions(preds) {
+        const copy = {};
+        Object.keys(preds).forEach(matchId => {
+            const p = preds[matchId];
+            copy[matchId] = {
+                homeScore: p.homeScore,
+                awayScore: p.awayScore,
+                advances: p.advances || null,
+                scorers: (p.scorers || []).map(s =>
+                    typeof s === "string" ? s : (s.player + (s.ownGoal ? " (AG)" : ""))
+                )
+            };
+        });
+        return copy;
+    }
+
     async function syncToSheets() {
         if (!SHEETS_API_URL || !currentUser) return;
         try {
@@ -286,7 +302,7 @@ const App = (() => {
                     username: currentUser.username,
                     country: currentUser.country,
                     countryFlag: currentUser.countryFlag,
-                    predictions: predictions
+                    predictions: serializePredictions(predictions)
                 })
             });
         } catch (e) {
@@ -561,7 +577,7 @@ const App = (() => {
             const phaseLabel = m.phase !== "group" ? ` [${getPhaseLabel(m.phase)}]` : "";
             opt.textContent = home.flag + " " + home.name +
                 " vs " + away.flag + " " + away.name +
-                " (" + formatDateShort(m.date) + ")" + phaseLabel;
+                " (" + formatDateShort(matchLocalDate(m)) + ")" + phaseLabel;
             sel.appendChild(opt);
         });
     }
@@ -733,7 +749,7 @@ const App = (() => {
 
         const phaseLabel = isKnockout ? getPhaseLabel(match.phase) : "Grupo " + match.group;
         document.getElementById("pred-match-info").textContent =
-            phaseLabel + " | " + formatDateLong(match.date);
+            phaseLabel + " | " + formatDateLong(matchLocalDate(match));
         document.getElementById("pred-home-name").textContent = home.flag + " " + home.name;
         document.getElementById("pred-away-name").textContent = away.flag + " " + away.name;
 
