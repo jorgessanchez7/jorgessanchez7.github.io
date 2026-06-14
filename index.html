@@ -133,9 +133,14 @@
         <h2>Panel de Administracion</h2>
 
         <div class="admin-section">
-            <h3>Generar mensaje WhatsApp</h3>
-            <label>Seleccionar fecha:</label>
+            <h3>Mensajes WhatsApp</h3>
+            <label>Partidos por fecha:</label>
             <select id="admin-wa-date" onchange="App.generateWhatsAppMessage()"></select>
+            <div class="scorer-buttons" style="margin-top:8px">
+                <button class="btn-secondary" onclick="App.generateWhatsAppMessage()">Partidos del dia</button>
+                <button class="btn-secondary" onclick="App.generateWhatsAppIndividual()">Tabla individual</button>
+                <button class="btn-secondary" onclick="App.generateWhatsAppCountry()">Tabla por pais</button>
+            </div>
             <div id="wa-message-box" class="message-box"></div>
             <button class="btn-primary" onclick="App.copyWhatsApp()">Copiar mensaje</button>
         </div>

@@ -426,7 +426,10 @@ const App = (() => {
                     const details = comp.details || [];
                     details.forEach(det => {
                         const typeText = (det.type?.text || "").toLowerCase();
-                        if (typeText.includes("goal") && !typeText.includes("missed")) {
+                        // Match: Goal, Own Goal, Penalty - Scored, etc.
+                        const isGoal = typeText.includes("goal") ||
+                            (typeText.includes("penalty") && !typeText.includes("miss") && !typeText.includes("saved"));
+                        if (isGoal) {
                             const athletes = det.athletesInvolved || [];
                             athletes.forEach(a => {
                                 if (a.displayName) scorers.push(a.displayName);
@@ -1575,6 +1578,92 @@ const App = (() => {
         document.getElementById("wa-message-box").textContent = msg;
     }
 
+    function generateWhatsAppIndividual() {
+        const mode = document.getElementById("scoring-mode")?.value || "jorge";
+        const allM = getAllMatches();
+        const players = [];
+
+        Object.keys(allPredictions).forEach(username => {
+            const playerData = allPredictions[username];
+            let totalPts = 0, gamesPlayed = 0;
+            const userPreds = (currentUser && username === currentUser.username)
+                ? predictions : (playerData.predictions || {});
+
+            Object.keys(playerData.predictions || {}).forEach(matchId => {
+                const result = results[matchId];
+                if (!result) return;
+                gamesPlayed++;
+                const pred = userPreds[matchId] || playerData.predictions[matchId];
+                const match = allM.find(m => String(m.id) === String(matchId));
+                totalPts += calculatePoints(pred, result, match, mode);
+            });
+
+            players.push({ username, flag: playerData.countryFlag || "", totalPts, gamesPlayed });
+        });
+
+        players.sort((a, b) => b.totalPts - a.totalPts || b.gamesPlayed - a.gamesPlayed);
+
+        const medals = ["🥇", "🥈", "🥉"];
+        let msg = "⚽ *TABLA INDIVIDUAL* ⚽\n";
+        msg += "━━━━━━━━━━━━━━━━━━━━\n";
+
+        players.forEach((p, i) => {
+            const medal = i < 3 ? medals[i] + " " : "      ";
+            const pos = String(i + 1).padStart(2, " ");
+            const pts = String(p.totalPts).padStart(2, " ");
+            msg += `${medal}${pos}. ${p.flag} ${p.username} - *${pts} pts* (${p.gamesPlayed} PJ)\n`;
+        });
+
+        msg += "━━━━━━━━━━━━━━━━━━━━\n";
+        msg += `Criterio: ${mode === "jorge" ? "Jorge" : "Lean"}`;
+
+        document.getElementById("wa-message-box").textContent = msg;
+    }
+
+    function generateWhatsAppCountry() {
+        const mode = document.getElementById("scoring-mode")?.value || "jorge";
+        const allM = getAllMatches();
+        const countries = {};
+
+        Object.keys(allPredictions).forEach(username => {
+            const playerData = allPredictions[username];
+            const key = playerData.country || "Desconocido";
+
+            if (!countries[key]) {
+                countries[key] = { flag: playerData.countryFlag || "", totalPts: 0, playerCount: 0 };
+            }
+            countries[key].playerCount++;
+
+            Object.keys(playerData.predictions || {}).forEach(matchId => {
+                const result = results[matchId];
+                if (!result) return;
+                const pred = playerData.predictions[matchId];
+                const match = allM.find(m => String(m.id) === String(matchId));
+                countries[key].totalPts += calculatePoints(pred, result, match, mode);
+            });
+        });
+
+        const sorted = Object.entries(countries)
+            .map(([name, data]) => ({ name, ...data, avg: data.playerCount ? (data.totalPts / data.playerCount).toFixed(1) : 0 }))
+            .sort((a, b) => b.totalPts - a.totalPts);
+
+        const medals = ["🥇", "🥈", "🥉"];
+        let msg = "🌍 *TABLA POR PAIS* 🌍\n";
+        msg += "━━━━━━━━━━━━━━━━━━━━━━━\n";
+
+        sorted.forEach((c, i) => {
+            const medal = i < 3 ? medals[i] + " " : "      ";
+            const pos = String(i + 1).padStart(2, " ");
+            const pts = String(c.totalPts).padStart(2, " ");
+            msg += `${medal}${pos}. ${c.flag} ${c.name} - *${pts} pts* (${c.playerCount} jug, prom ${c.avg})\n`;
+        });
+
+        msg += "━━━━━━━━━━━━━━━━━━━━━━━\n";
+        msg += `Criterio: ${mode === "jorge" ? "Jorge" : "Lean"}`;
+
+        document.getElementById("wa-message-box").textContent = msg;
+    }
+
     function copyWhatsApp() {
         const msg = document.getElementById("wa-message-box").textContent;
         if (!msg) return;
@@ -1666,6 +1755,8 @@ const App = (() => {
         loadAdminMatch,
         saveResult,
         generateWhatsAppMessage,
+        generateWhatsAppIndividual,
+        generateWhatsAppCountry,
         copyWhatsApp,
         addKnockoutMatch,
         fetchResultsFromAPI,
