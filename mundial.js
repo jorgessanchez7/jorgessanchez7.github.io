@@ -1216,7 +1216,7 @@ const App = (() => {
 
         if (mode === "jorge") {
             if (predScorers.length === 0) {
-                if (resScorers.length === 0) points += 1;
+                if (resScorers.length === 0 && predHome + predAway === 0) points += 1;
             } else {
                 const allMatch = predScorers.every(ps =>
                     resScorers.some(rs => scorerMatch(ps, rs))
