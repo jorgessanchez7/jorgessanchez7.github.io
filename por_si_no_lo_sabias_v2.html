@@ -177,6 +177,20 @@
     text-transform:uppercase;letter-spacing:.1em;font-size:12.5px;}
   .chip span b{color:#fff;}
 
+  /* 2030 open question */
+  .next{display:flex;gap:18px;align-items:center;margin-top:16px;
+    background:linear-gradient(135deg,rgba(255,209,0,.18),rgba(224,0,27,.07));
+    border:2px dashed var(--amarillo);border-radius:10px;padding:16px 18px;}
+  .next .qmark{font-family:'Anton';font-size:clamp(50px,10vw,76px);color:var(--amarillo);
+    line-height:.8;flex-shrink:0;text-shadow:0 3px 0 rgba(0,0,0,.3);}
+  .next .qh{font-family:'Barlow Condensed';font-weight:700;color:var(--amarillo);
+    text-transform:uppercase;letter-spacing:.1em;font-size:13px;margin-bottom:4px;}
+  .next p{color:#e7edfb;font-size:14px;line-height:1.42;font-weight:500;margin-bottom:9px;}
+  .next p b{color:#fff;}
+  .next .qbig{font-family:'Anton';color:#fff;text-transform:uppercase;
+    font-size:clamp(16px,2.8vw,22px);line-height:1.04;letter-spacing:.3px;}
+  .next .qbig em{color:var(--amarillo);font-style:normal;}
+
   @media(max-width:560px){
     .inner{padding:30px 18px 26px;}
     .row{grid-template-columns:84px 1fr auto;}
@@ -335,6 +349,15 @@
     <div class="note">
       <div class="nh">Seamos justos (y por eso el dato es más fuerte)</div>
       <p>En esas sequías viejas también hubo presidentes <b>liberales</b> sin Mundial (Carlos Lleras Restrepo, Alfonso López Michelsen, Julio César Turbay Ayala). El punto no es que el liberalismo siempre clasifique — es que <b>conservadores y uribistas no lo han logrado jamás</b>. Marcador de los conservadores y/o uribistas: <span class="score">0</span>.</p>
+    </div>
+
+    <div class="next">
+      <div class="qmark">?</div>
+      <div class="qbody">
+        <div class="qh">El próximo capítulo · Mundial 2030</div>
+        <p>Las eliminatorias se jugarán bajo el gobierno de <b>De la Espriella (uribista, según el preconteo)</b>.</p>
+        <div class="qbig">¿Se romperá la maldición… <em>o Colombia volverá a quedar por fuera de un Mundial?</em></div>
+      </div>
     </div>
 
     <footer>
