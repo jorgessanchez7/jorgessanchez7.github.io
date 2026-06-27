@@ -1524,6 +1524,17 @@ const App = (() => {
             return;
         }
 
+        // Check for duplicates (same teams in same phase)
+        const isDuplicate = knockoutMatches.some(m =>
+            m.phase === phase &&
+            ((m.home === homeCode && m.away === awayCode) ||
+             (m.home === awayCode && m.away === homeCode))
+        );
+        if (isDuplicate) {
+            showToast("Ya existe un partido con estos equipos en esta fase. Elimina el anterior primero.", true);
+            return;
+        }
+
         const newId = "ko_" + Date.now();
         knockoutMatches.push({
             id: newId,
@@ -1546,6 +1557,194 @@ const App = (() => {
         const sel = document.getElementById("admin-match-select");
         sel.innerHTML = '<option value="">Seleccionar partido...</option>';
         populateAdminMatchSelect();
+        populateEspnSingleSelect();
+        renderKnockoutList();
+    }
+
+    // Render list of knockout matches with delete buttons
+    function renderKnockoutList() {
+        const container = document.getElementById("ko-matches-list");
+        if (!container) return;
+
+        if (knockoutMatches.length === 0) {
+            container.innerHTML = '<p style="color:#666;font-size:0.9em;">No hay partidos de eliminatoria agregados.</p>';
+            return;
+        }
+
+        let html = '<table class="ranking-table" style="font-size:0.85em;"><thead><tr><th>Fase</th><th>Partido</th><th>Fecha</th><th>Hora (UTC)</th><th></th></tr></thead><tbody>';
+        knockoutMatches.forEach(m => {
+            const home = TEAMS[m.home];
+            const away = TEAMS[m.away];
+            if (!home || !away) return;
+            html += `<tr>
+                <td>${getPhaseLabel(m.phase)}</td>
+                <td>${home.flag} ${home.name} vs ${away.flag} ${away.name}</td>
+                <td>${m.date}</td>
+                <td>${m.utc}</td>
+                <td><button class="btn-link" style="color:red;" onclick="App.deleteKnockoutMatch('${m.id}')">Eliminar</button></td>
+            </tr>`;
+        });
+        html += '</tbody></table>';
+        container.innerHTML = html;
+    }
+
+    function deleteKnockoutMatch(matchId) {
+        const match = knockoutMatches.find(m => String(m.id) === String(matchId));
+        if (!match) return;
+
+        const home = TEAMS[match.home];
+        const away = TEAMS[match.away];
+        if (!confirm(`Eliminar ${home.name} vs ${away.name} (${getPhaseLabel(match.phase)})?`)) return;
+
+        knockoutMatches = knockoutMatches.filter(m => String(m.id) !== String(matchId));
+        localStorage.setItem("mundial_knockout", JSON.stringify(knockoutMatches));
+
+        // Also remove any results for this match
+        delete results[matchId];
+        localStorage.setItem("mundial_results", JSON.stringify(results));
+
+        renderMatches();
+        refreshAdminSelects();
+        showToast("Partido eliminado");
+    }
+
+    // Populate ESPN single match select
+    function populateEspnSingleSelect() {
+        const sel = document.getElementById("espn-single-match");
+        if (!sel) return;
+        sel.innerHTML = '<option value="">Seleccionar partido...</option>';
+        getAllMatches().forEach(m => {
+            const home = TEAMS[m.home];
+            const away = TEAMS[m.away];
+            if (!home || !away) return;
+            const opt = document.createElement("option");
+            opt.value = m.id;
+            const phaseLabel = m.phase !== "group" ? ` [${getPhaseLabel(m.phase)}]` : "";
+            opt.textContent = home.flag + " " + home.name + " vs " + away.flag + " " + away.name +
+                " (" + formatDateShort(matchLocalDate(m)) + ")" + phaseLabel;
+            sel.appendChild(opt);
+        });
+    }
+
+    // Fetch a single match result from ESPN
+    async function fetchSingleMatchFromAPI() {
+        const matchId = document.getElementById("espn-single-match").value;
+        if (!matchId) {
+            showToast("Selecciona un partido", true);
+            return;
+        }
+
+        const allM = getAllMatches();
+        const match = allM.find(m => String(m.id) === String(matchId));
+        if (!match) return;
+
+        showToast("Consultando ESPN...");
+
+        try {
+            // Check the match date and also the day before (ESPN timezone offset)
+            const datesToCheck = new Set();
+            datesToCheck.add(match.date);
+            const prev = new Date(match.date + "T12:00:00");
+            prev.setDate(prev.getDate() - 1);
+            datesToCheck.add(prev.toISOString().substring(0, 10));
+            const next = new Date(match.date + "T12:00:00");
+            next.setDate(next.getDate() + 1);
+            datesToCheck.add(next.toISOString().substring(0, 10));
+
+            let found = false;
+
+            for (const date of datesToCheck) {
+                const espnDate = date.replace(/-/g, "");
+                const res = await fetch(`${ESPN_API_URL}?dates=${espnDate}`);
+                const data = await res.json();
+                const events = data.events || [];
+
+                for (const event of events) {
+                    const comp = event.competitions[0];
+                    const competitors = comp.competitors || [];
+                    if (competitors.length < 2) continue;
+
+                    const espnHome = competitors.find(c => c.homeAway === "home") || competitors[0];
+                    const espnAway = competitors.find(c => c.homeAway === "away") || competitors[1];
+
+                    const homeCode = espnAbbrToCode(espnHome.team.abbreviation.toUpperCase());
+                    const awayCode = espnAbbrToCode(espnAway.team.abbreviation.toUpperCase());
+
+                    // Check if this ESPN event matches our match
+                    if (!((match.home === homeCode && match.away === awayCode) ||
+                          (match.home === awayCode && match.away === homeCode))) continue;
+
+                    const status = comp.status?.type?.name || "";
+                    if (status !== "STATUS_FULL_TIME" && status !== "STATUS_FINAL") {
+                        showToast("Partido encontrado pero aun no ha terminado (" + (comp.status?.type?.description || status) + ")", true);
+                        found = true;
+                        break;
+                    }
+
+                    const homeScore = parseInt(espnHome.score);
+                    const awayScore = parseInt(espnAway.score);
+
+                    // Get scorers
+                    const scorers = [];
+                    const details = comp.details || [];
+                    details.forEach(det => {
+                        const typeText = (det.type?.text || "").toLowerCase();
+                        const isGoal = typeText.includes("goal") ||
+                            (typeText.includes("penalty") && !typeText.includes("miss") && !typeText.includes("saved"));
+                        if (isGoal) {
+                            (det.athletesInvolved || []).forEach(a => {
+                                if (a.displayName) scorers.push(a.displayName);
+                            });
+                        }
+                    });
+
+                    // Determine who advanced (knockout)
+                    let advances = null;
+                    if (match.phase !== "group") {
+                        const homeWon = espnHome.winner;
+                        advances = homeWon ? match.home : match.away;
+                    }
+
+                    // Build result adjusting for home/away
+                    results[match.id] = match.home === homeCode
+                        ? { homeScore, awayScore, scorers, advances }
+                        : { homeScore: awayScore, awayScore: homeScore, scorers, advances };
+
+                    localStorage.setItem("mundial_results", JSON.stringify(results));
+                    renderMatches();
+
+                    // Sync to sheets
+                    if (SHEETS_API_URL) {
+                        const r = results[match.id];
+                        fetch(SHEETS_API_URL, {
+                            method: "POST",
+                            mode: "no-cors",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                action: "saveResult",
+                                matchId: match.id, homeScore: r.homeScore,
+                                awayScore: r.awayScore, scorers: r.scorers, advances: r.advances
+                            })
+                        }).catch(() => {});
+                    }
+
+                    const homeTeam = TEAMS[match.home];
+                    const awayTeam = TEAMS[match.away];
+                    showToast(`Resultado cargado: ${homeTeam.name} ${results[match.id].homeScore} - ${results[match.id].awayScore} ${awayTeam.name}`);
+                    found = true;
+                    break;
+                }
+                if (found) break;
+                await new Promise(r => setTimeout(r, 300));
+            }
+
+            if (!found) {
+                showToast("No se encontro el partido en ESPN. Verifica que la fecha sea correcta.", true);
+            }
+        } catch (e) {
+            showToast("Error consultando ESPN: " + e.message, true);
+            console.error(e);
+        }
     }
 
     // ----------------------------------------------------------
@@ -1696,7 +1895,11 @@ const App = (() => {
             loadFromSheets();
             refreshRankings();
         }
-        if (viewName === "admin") generateWhatsAppMessage();
+        if (viewName === "admin") {
+            generateWhatsAppMessage();
+            renderKnockoutList();
+            populateEspnSingleSelect();
+        }
     }
 
     // ----------------------------------------------------------
@@ -1759,7 +1962,9 @@ const App = (() => {
         generateWhatsAppCountry,
         copyWhatsApp,
         addKnockoutMatch,
+        deleteKnockoutMatch,
         fetchResultsFromAPI,
+        fetchSingleMatchFromAPI,
         updateScorerOptions,
         showMatchPredictions,
         addAdminScorer,

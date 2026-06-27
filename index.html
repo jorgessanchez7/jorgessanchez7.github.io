@@ -202,11 +202,23 @@
         </div>
 
         <div class="admin-section">
+            <h3>Partidos de eliminatoria agregados</h3>
+            <div id="ko-matches-list"></div>
+        </div>
+
+        <div class="admin-section">
             <h3>Resultados automaticos (ESPN)</h3>
             <p style="color:#8888aa;font-size:0.85em;margin-bottom:10px;">
                 Consulta resultados y goleadores de partidos terminados. Gratis, sin limite, sin API key.
             </p>
-            <button class="btn-primary" onclick="App.fetchResultsFromAPI()">Traer resultados</button>
+            <button class="btn-primary" onclick="App.fetchResultsFromAPI()">Traer todos los resultados</button>
+            <div style="margin-top:10px;">
+                <label>O traer resultado de un partido especifico:</label>
+                <select id="espn-single-match" style="margin-top:4px;">
+                    <option value="">Seleccionar partido...</option>
+                </select>
+                <button class="btn-secondary" style="margin-top:4px;" onclick="App.fetchSingleMatchFromAPI()">Traer de ESPN</button>
+            </div>
         </div>
     </section>
 </main>
