@@ -8,7 +8,7 @@ const App = (() => {
     // ----------------------------------------------------------
     // CONFIG
     // ----------------------------------------------------------
-    const SHEETS_API_URL = "https://script.google.com/macros/s/AKfycbwS6nLiN2elj_j9OOuYC_TUlYYaFwkwo5sh2vHKiV78lg7C4DiMxJKM2Iyt1auTndo5Fg/exec";
+    const SHEETS_API_URL = "https://script.google.com/macros/s/AKfycbxzPd-p18rFcUToxCtXAn61sMY5PgOq11zmyS2z5tw-ne8lkq3KVQFdfiF1zRNDqMu1tg/exec";
     const ESPN_API_URL = "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard";
 
     // ----------------------------------------------------------
