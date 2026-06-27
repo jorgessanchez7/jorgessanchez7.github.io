@@ -1552,6 +1552,110 @@ const App = (() => {
         showToast("Partido de eliminatoria agregado");
     }
 
+    // ESPN phase slug to our phase code
+    function espnSlugToPhase(slug) {
+        const map = {
+            "round-of-32": "round32",
+            "round-of-16": "round16",
+            "quarterfinals": "quarter",
+            "quarterfinal": "quarter",
+            "semifinals": "semi",
+            "semifinal": "semi",
+            "third-place": "third",
+            "third-place-game": "third",
+            "final": "final",
+            "finals": "final"
+        };
+        return map[slug] || null;
+    }
+
+    // Fetch knockout matches from ESPN and add them automatically
+    async function fetchKnockoutMatchesFromESPN() {
+        showToast("Buscando partidos de eliminatoria en ESPN...");
+
+        try {
+            // Search from end of group stage onwards (June 28 - July 19)
+            const startDate = new Date("2026-06-28");
+            const endDate = new Date("2026-07-20");
+            let added = 0;
+            let skipped = 0;
+
+            const dateCursor = new Date(startDate);
+            while (dateCursor <= endDate) {
+                const espnDate = dateCursor.toISOString().substring(0, 10).replace(/-/g, "");
+                const res = await fetch(`${ESPN_API_URL}?dates=${espnDate}`);
+                const data = await res.json();
+                const events = data.events || [];
+
+                for (const event of events) {
+                    const slug = event.season?.slug || "";
+                    const phase = espnSlugToPhase(slug);
+
+                    // Skip group stage or unknown phases
+                    if (!phase) continue;
+
+                    const comp = event.competitions[0];
+                    const competitors = comp.competitors || [];
+                    if (competitors.length < 2) continue;
+
+                    const espnHome = competitors.find(c => c.homeAway === "home") || competitors[0];
+                    const espnAway = competitors.find(c => c.homeAway === "away") || competitors[1];
+
+                    const homeCode = espnAbbrToCode(espnHome.team.abbreviation.toUpperCase());
+                    const awayCode = espnAbbrToCode(espnAway.team.abbreviation.toUpperCase());
+
+                    // Skip if teams are not in our system
+                    if (!TEAMS[homeCode] || !TEAMS[awayCode]) continue;
+
+                    // Check if this match already exists (same teams, same phase)
+                    const allM = getAllMatches();
+                    const exists = allM.some(m =>
+                        m.phase === phase &&
+                        ((m.home === homeCode && m.away === awayCode) ||
+                         (m.home === awayCode && m.away === homeCode))
+                    );
+                    if (exists) {
+                        skipped++;
+                        continue;
+                    }
+
+                    // Extract date and UTC time from ESPN
+                    const eventDate = new Date(event.date || comp.date);
+                    const matchDate = eventDate.toISOString().substring(0, 10);
+                    const matchTime = eventDate.toISOString().substring(11, 16);
+
+                    knockoutMatches.push({
+                        id: "ko_" + Date.now() + "_" + added,
+                        home: homeCode,
+                        away: awayCode,
+                        group: null,
+                        date: matchDate,
+                        utc: matchTime,
+                        phase: phase
+                    });
+                    added++;
+                }
+
+                dateCursor.setDate(dateCursor.getDate() + 1);
+                await new Promise(r => setTimeout(r, 300));
+            }
+
+            if (added > 0) {
+                localStorage.setItem("mundial_knockout", JSON.stringify(knockoutMatches));
+                renderMatches();
+                refreshAdminSelects();
+                showToast(`${added} partido(s) importado(s) de ESPN` + (skipped ? `, ${skipped} ya existian` : ""));
+            } else if (skipped > 0) {
+                showToast(`Todos los partidos ya estaban agregados (${skipped})`);
+            } else {
+                showToast("No se encontraron partidos de eliminatoria en ESPN aun");
+            }
+        } catch (e) {
+            showToast("Error consultando ESPN: " + e.message, true);
+            console.error(e);
+        }
+    }
+
     function refreshAdminSelects() {
         // Refresh admin match select
         const sel = document.getElementById("admin-match-select");
@@ -1963,6 +2067,7 @@ const App = (() => {
         copyWhatsApp,
         addKnockoutMatch,
         deleteKnockoutMatch,
+        fetchKnockoutMatchesFromESPN,
         fetchResultsFromAPI,
         fetchSingleMatchFromAPI,
         updateScorerOptions,
