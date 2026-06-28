@@ -209,8 +209,10 @@ const App = (() => {
         document.getElementById("pred-home-score").addEventListener("change", updateScorerOptions);
         document.getElementById("pred-away-score").addEventListener("change", updateScorerOptions);
 
-        // Load all predictions from Sheets, then fix current user's data
+        // Load all data from Sheets (predictions, results, knockout matches)
         await loadFromSheets();
+        // Re-render after loading knockout matches from Sheets
+        renderMatches();
         if (currentUser && Object.keys(predictions).length > 0) {
             allPredictions[currentUser.username] = {
                 country: currentUser.country,
@@ -353,9 +355,26 @@ const App = (() => {
                 results = data.results;
                 localStorage.setItem("mundial_results", JSON.stringify(results));
             }
+            if (data && data.knockoutMatches && data.knockoutMatches.length > 0) {
+                knockoutMatches = data.knockoutMatches;
+                localStorage.setItem("mundial_knockout", JSON.stringify(knockoutMatches));
+            }
         } catch (e) {
             console.warn("No se pudo cargar desde Google Sheets:", e);
         }
+    }
+
+    function syncKnockoutToSheets() {
+        if (!SHEETS_API_URL) return;
+        fetch(SHEETS_API_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                action: "saveKnockout",
+                matches: knockoutMatches
+            })
+        }).catch(() => {});
     }
 
     // ----------------------------------------------------------
@@ -1547,6 +1566,7 @@ const App = (() => {
         });
 
         localStorage.setItem("mundial_knockout", JSON.stringify(knockoutMatches));
+        syncKnockoutToSheets();
         renderMatches();
         refreshAdminSelects();
         showToast("Partido de eliminatoria agregado");
@@ -1642,6 +1662,7 @@ const App = (() => {
 
             if (added > 0) {
                 localStorage.setItem("mundial_knockout", JSON.stringify(knockoutMatches));
+                syncKnockoutToSheets();
                 renderMatches();
                 refreshAdminSelects();
                 showToast(`${added} partido(s) importado(s) de ESPN` + (skipped ? `, ${skipped} ya existian` : ""));
@@ -1702,6 +1723,7 @@ const App = (() => {
 
         knockoutMatches = knockoutMatches.filter(m => String(m.id) !== String(matchId));
         localStorage.setItem("mundial_knockout", JSON.stringify(knockoutMatches));
+        syncKnockoutToSheets();
 
         // Also remove any results for this match
         delete results[matchId];
