@@ -8,7 +8,7 @@ const App = (() => {
     // ----------------------------------------------------------
     // CONFIG
     // ----------------------------------------------------------
-    const SHEETS_API_URL = "https://script.google.com/macros/s/AKfycbxzPd-p18rFcUToxCtXAn61sMY5PgOq11zmyS2z5tw-ne8lkq3KVQFdfiF1zRNDqMu1tg/exec";
+    const SHEETS_API_URL = "https://script.google.com/macros/s/AKfycbxKHqhMmZ0psXz_y3bVd4dn6f60tFz40vjN2lVEYw7zPm0mx5Bb_H0Ljm3lt8kCQCEUWw/exec
     const ESPN_API_URL = "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard";
 
     // ----------------------------------------------------------
@@ -364,17 +364,22 @@ const App = (() => {
         }
     }
 
-    function syncKnockoutToSheets() {
+    async function syncKnockoutToSheets() {
         if (!SHEETS_API_URL) return;
-        fetch(SHEETS_API_URL, {
-            method: "POST",
-            mode: "no-cors",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                action: "saveKnockout",
-                matches: knockoutMatches
-            })
-        }).catch(() => {});
+        try {
+            const res = await fetch(SHEETS_API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "text/plain" },
+                body: JSON.stringify({
+                    action: "saveKnockout",
+                    matches: knockoutMatches
+                })
+            });
+            const text = await res.text();
+            console.log("syncKnockout response:", text);
+        } catch (e) {
+            console.warn("Error sincronizando knockout a Sheets:", e);
+        }
     }
 
     // ----------------------------------------------------------
