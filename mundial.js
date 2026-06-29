@@ -314,8 +314,7 @@ const App = (() => {
         try {
             await fetch(SHEETS_API_URL, {
                 method: "POST",
-                mode: "no-cors",
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "text/plain" },
                 body: JSON.stringify({
                     action: "savePrediction",
                     username: currentUser.username,
@@ -1531,8 +1530,7 @@ const App = (() => {
         if (SHEETS_API_URL) {
             fetch(SHEETS_API_URL, {
                 method: "POST",
-                mode: "no-cors",
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "text/plain" },
                 body: JSON.stringify({ action: "saveResult", matchId, homeScore, awayScore, scorers, advances })
             }).catch(() => {});
         }
