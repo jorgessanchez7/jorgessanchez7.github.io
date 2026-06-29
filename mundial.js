@@ -2057,29 +2057,45 @@ const App = (() => {
         return parts[0].padStart(2, "0") + ":" + (parts[1] || "00");
     }
 
-    // Normalize date from Sheets (could be "2026-06-28", "2026-06-28T00:00:00.000Z", etc.)
+    // Normalize date from Sheets (could be "2026-06-28", "6/29/2026", "2026-06-28T00:00:00.000Z", etc.)
     function normalizeDate(d) {
         if (!d) return "";
         const s = String(d);
-        // If it looks like an ISO datetime, extract just the date part
-        const match = s.match(/(\d{4})-(\d{2})-(\d{2})/);
-        if (match) return match[0];
-        // Try parsing as Date object
+        // Already ISO format: "2026-06-28" or "2026-06-28T..."
+        const isoMatch = s.match(/(\d{4})-(\d{2})-(\d{2})/);
+        if (isoMatch) return isoMatch[0];
+        // US format from Sheets: "6/29/2026" or "06/29/2026"
+        const usMatch = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+        if (usMatch) return usMatch[3] + "-" + usMatch[1].padStart(2, "0") + "-" + usMatch[2].padStart(2, "0");
+        // European format: "29/06/2026"
+        const euMatch = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+        // Fallback: parse but use LOCAL date components (not UTC, to avoid day shift)
         const parsed = new Date(s);
         if (!isNaN(parsed)) {
-            return parsed.toISOString().substring(0, 10);
+            const y = parsed.getFullYear();
+            const mo = String(parsed.getMonth() + 1).padStart(2, "0");
+            const da = String(parsed.getDate()).padStart(2, "0");
+            return `${y}-${mo}-${da}`;
         }
         return s;
     }
 
-    // Normalize UTC time from Sheets (could be "19:00", "1:00", "1899-12-30T19:00:00.000Z", etc.)
+    // Normalize UTC time from Sheets (could be "19:00", "1:00", "7:00:00 PM", "1899-12-30T19:00:00.000Z", etc.)
     function normalizeUtc(t) {
         if (!t) return "00:00";
         const s = String(t);
-        // If it's already HH:MM or H:MM
-        const timeMatch = s.match(/^(\d{1,2}):(\d{2})$/);
+        // Already HH:MM or H:MM
+        const timeMatch = s.match(/^(\d{1,2}):(\d{2})(?::\d{2})?$/);
         if (timeMatch) return timeMatch[1].padStart(2, "0") + ":" + timeMatch[2];
-        // If Sheets returned a datetime string, extract the time
+        // 12-hour format from Sheets: "7:00:00 PM" or "1:00:00 AM"
+        const ampmMatch = s.match(/(\d{1,2}):(\d{2})(?::\d{2})?\s*(AM|PM)/i);
+        if (ampmMatch) {
+            let h = parseInt(ampmMatch[1]);
+            if (ampmMatch[3].toUpperCase() === "PM" && h < 12) h += 12;
+            if (ampmMatch[3].toUpperCase() === "AM" && h === 12) h = 0;
+            return String(h).padStart(2, "0") + ":" + ampmMatch[2];
+        }
+        // ISO datetime: extract time part
         const isoMatch = s.match(/T(\d{2}):(\d{2})/);
         if (isoMatch) return isoMatch[1] + ":" + isoMatch[2];
         return s;
