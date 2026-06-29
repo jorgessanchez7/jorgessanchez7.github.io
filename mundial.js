@@ -213,15 +213,19 @@ const App = (() => {
         await loadFromSheets();
         // Re-render after loading knockout matches from Sheets
         renderMatches();
-        if (currentUser && Object.keys(predictions).length > 0) {
+        if (currentUser) {
+            // Merge: Sheets predictions are the source of truth,
+            // but overlay local predictions for scorer object format
+            const sheetsPreds = (allPredictions[currentUser.username] || {}).predictions || {};
+            // Start from Sheets, then overlay local (local has correct scorer objects)
+            predictions = { ...sheetsPreds, ...predictions };
+            localStorage.setItem("mundial_predictions", JSON.stringify(predictions));
             allPredictions[currentUser.username] = {
                 country: currentUser.country,
                 countryFlag: currentUser.countryFlag,
                 predictions: { ...predictions }
             };
             localStorage.setItem("mundial_all_predictions", JSON.stringify(allPredictions));
-            // Re-sync to fix corrupted scorer data in Sheets
-            syncToSheets();
         }
     }
 
