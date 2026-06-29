@@ -709,7 +709,7 @@ const App = (() => {
             const pred = predictions[m.id];
             const localTime = utcToLocal(m.date, m.utc);
             const played = !!result;
-            const kickoff = new Date(m.date + "T" + m.utc + ":00Z");
+            const kickoff = new Date(m.date + "T" + padUtcTime(m.utc) + ":00Z");
             const started = now >= kickoff;
             const hasPred = !!pred;
             const isKnockout = m.phase !== "group";
@@ -784,7 +784,7 @@ const App = (() => {
         const isKnockout = match.phase !== "group";
 
         // Check deadline
-        const kickoff = new Date(match.date + "T" + match.utc + ":00Z");
+        const kickoff = new Date(match.date + "T" + padUtcTime(match.utc) + ":00Z");
         const deadline = new Date(kickoff.getTime() - 5 * 60 * 1000);
         const now = new Date();
 
@@ -985,7 +985,7 @@ const App = (() => {
         const match = allM.find(m => String(m.id) === String(matchId));
 
         // Validate deadline
-        const kickoff = new Date(match.date + "T" + match.utc + ":00Z");
+        const kickoff = new Date(match.date + "T" + padUtcTime(match.utc) + ":00Z");
         const deadline = new Date(kickoff.getTime() - 5 * 60 * 1000);
         if (new Date() >= deadline) {
             showToast("Pronostico cerrado para este partido", true);
@@ -2046,8 +2046,14 @@ const App = (() => {
         return d.toLocaleDateString("es", { weekday: "long", month: "long", day: "numeric" });
     }
 
+    function padUtcTime(utc) {
+        // "1:00" -> "01:00", "3:00" -> "03:00"
+        const parts = utc.split(":");
+        return parts[0].padStart(2, "0") + ":" + parts[1];
+    }
+
     function matchLocalDate(m) {
-        const d = new Date(m.date + "T" + m.utc + ":00Z");
+        const d = new Date(m.date + "T" + padUtcTime(m.utc) + ":00Z");
         const y = d.getFullYear();
         const mo = String(d.getMonth() + 1).padStart(2, "0");
         const da = String(d.getDate()).padStart(2, "0");
@@ -2055,7 +2061,7 @@ const App = (() => {
     }
 
     function utcToLocal(dateStr, utcTime) {
-        const d = new Date(dateStr + "T" + utcTime + ":00Z");
+        const d = new Date(dateStr + "T" + padUtcTime(utcTime) + ":00Z");
         return d.toLocaleTimeString("es", { hour: "2-digit", minute: "2-digit" });
     }
 
