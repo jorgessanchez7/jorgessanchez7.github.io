@@ -356,7 +356,11 @@ const App = (() => {
                 localStorage.setItem("mundial_results", JSON.stringify(results));
             }
             if (data && data.knockoutMatches && data.knockoutMatches.length > 0) {
-                knockoutMatches = data.knockoutMatches;
+                knockoutMatches = data.knockoutMatches.map(m => ({
+                    ...m,
+                    date: normalizeDate(m.date),
+                    utc: normalizeUtc(m.utc)
+                }));
                 localStorage.setItem("mundial_knockout", JSON.stringify(knockoutMatches));
             }
         } catch (e) {
@@ -2048,8 +2052,37 @@ const App = (() => {
 
     function padUtcTime(utc) {
         // "1:00" -> "01:00", "3:00" -> "03:00"
-        const parts = utc.split(":");
-        return parts[0].padStart(2, "0") + ":" + parts[1];
+        if (!utc) return "00:00";
+        const parts = String(utc).split(":");
+        return parts[0].padStart(2, "0") + ":" + (parts[1] || "00");
+    }
+
+    // Normalize date from Sheets (could be "2026-06-28", "2026-06-28T00:00:00.000Z", etc.)
+    function normalizeDate(d) {
+        if (!d) return "";
+        const s = String(d);
+        // If it looks like an ISO datetime, extract just the date part
+        const match = s.match(/(\d{4})-(\d{2})-(\d{2})/);
+        if (match) return match[0];
+        // Try parsing as Date object
+        const parsed = new Date(s);
+        if (!isNaN(parsed)) {
+            return parsed.toISOString().substring(0, 10);
+        }
+        return s;
+    }
+
+    // Normalize UTC time from Sheets (could be "19:00", "1:00", "1899-12-30T19:00:00.000Z", etc.)
+    function normalizeUtc(t) {
+        if (!t) return "00:00";
+        const s = String(t);
+        // If it's already HH:MM or H:MM
+        const timeMatch = s.match(/^(\d{1,2}):(\d{2})$/);
+        if (timeMatch) return timeMatch[1].padStart(2, "0") + ":" + timeMatch[2];
+        // If Sheets returned a datetime string, extract the time
+        const isoMatch = s.match(/T(\d{2}):(\d{2})/);
+        if (isoMatch) return isoMatch[1] + ":" + isoMatch[2];
+        return s;
     }
 
     function matchLocalDate(m) {
