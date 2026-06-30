@@ -426,7 +426,7 @@ const App = (() => {
                     const status = comp.status?.type?.name || "";
 
                     // Only process finished matches
-                    if (status !== "STATUS_FULL_TIME" && status !== "STATUS_FINAL") continue;
+                    if (status !== "STATUS_FULL_TIME" && status !== "STATUS_FINAL" && status !== "STATUS_FINAL_PEN" && status !== "STATUS_FINAL_AET") continue;
 
                     const competitors = comp.competitors || [];
                     if (competitors.length < 2) continue;
@@ -1812,7 +1812,7 @@ const App = (() => {
                           (match.home === awayCode && match.away === homeCode))) continue;
 
                     const status = comp.status?.type?.name || "";
-                    if (status !== "STATUS_FULL_TIME" && status !== "STATUS_FINAL") {
+                    if (status !== "STATUS_FULL_TIME" && status !== "STATUS_FINAL" && status !== "STATUS_FINAL_PEN" && status !== "STATUS_FINAL_AET") {
                         showToast("Partido encontrado pero aun no ha terminado (" + (comp.status?.type?.description || status) + ")", true);
                         found = true;
                         break;
