@@ -1,0 +1,133 @@
+/* ============================================================
+   lectura.css - página principal del plan de lectura
+   ============================================================ */
+:root {
+  --crema: #fdf6ea;
+  --tinta: #3a3330;
+  --suave: #7d7268;
+  --acento: #e2725b;
+  --verde: #4f9d5d;
+  --azul: #3f7fa6;
+  --tarjeta: #ffffff;
+  --sombra: 0 10px 28px rgba(58, 51, 48, .12);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--crema);
+  color: var(--tinta);
+  font-family: "Quicksand", "Trebuchet MS", system-ui, sans-serif;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+h1, h2, h3 { font-family: "Baloo 2", "Trebuchet MS", sans-serif; font-weight: 700; line-height: 1.15; }
+
+.envoltura { max-width: 1060px; margin: 0 auto; padding: 0 20px; }
+
+/* ---------- encabezado ---------- */
+.hero {
+  background: linear-gradient(160deg, #ffe9c9 0%, #ffd9b0 55%, #ffcfa2 100%);
+  padding: 46px 0 40px;
+  border-bottom: 4px solid #f3c592;
+}
+.hero .eyebrow {
+  margin: 0 0 6px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-size: .78rem;
+  color: #b9713f;
+}
+.hero h1 { margin: 0; font-size: clamp(2rem, 5vw, 3rem); color: #7a4a32; }
+.hero .lead { margin: 12px 0 0; max-width: 46ch; color: #8a6449; font-size: 1.05rem; }
+
+.btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 18px;
+  font: inherit;
+  font-weight: 700;
+  color: #fff;
+  background: var(--acento);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform .12s ease, filter .2s ease;
+}
+.btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
+.btn:active { transform: translateY(1px); }
+.btn.suave { background: #fff; color: #7a4a32; box-shadow: inset 0 0 0 2px #f0d3ae; }
+.btn.hecho { background: var(--verde); }
+
+/* ---------- biblioteca ---------- */
+section { padding: 44px 0; }
+section h2 { font-size: 1.7rem; margin: 0 0 6px; color: #7a4a32; }
+section .sub { margin: 0 0 24px; color: var(--suave); }
+
+.rejilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(214px, 1fr));
+  gap: 22px;
+}
+.libro {
+  background: var(--tarjeta);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--sombra);
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  transition: transform .16s ease, box-shadow .16s ease;
+  border-top: 6px solid var(--c, #f6a5bb);
+}
+.libro:hover { transform: translateY(-5px); box-shadow: 0 18px 34px rgba(58, 51, 48, .2); }
+.libro .mini {
+  aspect-ratio: 4 / 3;
+  background: #eef5f9;
+  display: block;
+  overflow: hidden;
+}
+.libro .mini svg,
+.libro .mini img { width: 100%; height: 100%; display: block; object-fit: cover; }
+.libro .datos { padding: 14px 16px 18px; display: flex; flex-direction: column; gap: 5px; flex: 1; }
+.libro h3 { margin: 0; font-size: 1.12rem; }
+.libro .resumen { margin: 0; font-size: .88rem; color: var(--suave); font-weight: 500; flex: 1; }
+.libro .meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+  font-size: .76rem;
+  color: #8a7f74;
+  font-weight: 700;
+}
+.libro .meta span { background: #f6efe2; border-radius: 999px; padding: 3px 10px; }
+.libro .meta span.act { background: #e6f2e7; color: #3f7a4a; }
+
+/* ---------- rutina ---------- */
+.rutina { background: #fff; border-top: 1px solid #f0e6d5; border-bottom: 1px solid #f0e6d5; }
+.pasos { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 20px; }
+.paso { background: var(--crema); border-radius: 16px; padding: 18px 20px; }
+.paso .num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--acento); color: #fff; font-weight: 700; margin-bottom: 8px;
+}
+.paso h3 { margin: 0 0 4px; font-size: 1.05rem; }
+.paso p { margin: 0; font-size: .92rem; color: var(--suave); font-weight: 500; }
+
+/* ---------- pie ---------- */
+footer { padding: 30px 0 46px; color: var(--suave); font-size: .9rem; }
+footer nav { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-bottom: 12px; }
+footer a { color: var(--azul); text-decoration: none; font-weight: 700; }
+footer a:hover { text-decoration: underline; }
+
+@media (max-width: 560px) {
+  .hero { padding: 32px 0 28px; }
+  .rejilla { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+}

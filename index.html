@@ -1,268 +1,76 @@
 <!doctype html>
 <html lang="es">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Mundial 2026 - Juego de Pronosticos</title>
-    <link rel="stylesheet" href="mundial.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plan de lectura en casa · Jorge Sánchez</title>
+<meta name="description" content="Libros animados para leer 15 minutos al día con los niños.">
+<link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="lectura.css">
 </head>
 <body>
 
-<header>
-    <h1>Mundial 2026</h1>
-    <p class="subtitle">Juego de Pronosticos</p>
-    <div id="user-bar">
-        <span id="user-display"></span>
-        <button id="btn-logout" onclick="App.logout()" style="display:none">Salir</button>
-    </div>
+<header class="hero">
+  <div class="envoltura">
+    <p class="eyebrow">15 minutos al día</p>
+    <h1>Plan de lectura en casa</h1>
+    <p class="lead">Libros animados para leer en voz alta con los niños. Escogen ellos, y a leer.</p>
+  </div>
 </header>
 
-<nav>
-    <button class="nav-btn active" data-view="matches" onclick="App.showView('matches')">Partidos</button>
-    <button class="nav-btn" data-view="my-predictions" onclick="App.showView('my-predictions')">Mis Pronosticos</button>
-    <button class="nav-btn" data-view="rankings" onclick="App.showView('rankings')">Rankings</button>
-    <button class="nav-btn" data-view="admin" onclick="App.showView('admin')">Admin</button>
-</nav>
-
 <main>
-    <!-- Login Modal -->
-    <div id="login-modal" class="modal">
-        <div class="modal-content">
-            <h2>Ingresa tu usuario</h2>
-            <form onsubmit="App.login(event)">
-                <label>Nombre de usuario</label>
-                <input type="text" id="login-username" placeholder="ej: jsanchez_01" required>
-                <label>Pais de origen</label>
-                <select id="login-country" required>
-                    <option value="">Selecciona tu pais...</option>
-                </select>
-                <button type="submit" class="btn-primary">Entrar</button>
-            </form>
-        </div>
+
+<section>
+  <div class="envoltura">
+    <h2>Biblioteca</h2>
+    <p class="sub">Toca la portada para abrir el libro. Se pasan las páginas con las flechas, el teclado o deslizando el dedo.</p>
+    <div class="rejilla" id="rejilla"></div>
+  </div>
+</section>
+
+<section class="rutina">
+  <div class="envoltura">
+    <h2>Cómo usamos los 15 minutos</h2>
+    <p class="sub">Una rutina corta y siempre igual: lo importante es que se repita todos los días.</p>
+    <div class="pasos">
+      <div class="paso">
+        <span class="num">1</span>
+        <h3>Escoger juntos</h3>
+        <p>Ellos eligen el libro del menú. Que decidan da la mitad de las ganas de leer.</p>
+      </div>
+      <div class="paso">
+        <span class="num">2</span>
+        <h3>Leer en voz alta</h3>
+        <p>Diez minutos leyendo despacio, con voces distintas y señalando las palabras con el dedo.</p>
+      </div>
+      <div class="paso">
+        <span class="num">3</span>
+        <h3>Preguntar</h3>
+        <p>Tres minutos de "¿qué crees que va a pasar?" y "¿qué te gustó más?". Hablar del cuento es parte de leerlo.</p>
+      </div>
     </div>
+  </div>
+</section>
 
-    <!-- Matches View -->
-    <section id="view-matches" class="view active">
-        <div class="filters">
-            <label>Filtrar por:</label>
-            <select id="filter-group" onchange="App.filterMatches()">
-                <option value="all">Todos los grupos</option>
-            </select>
-            <select id="filter-date" onchange="App.filterMatches()">
-                <option value="all">Todas las fechas</option>
-            </select>
-        </div>
-        <div id="matches-list"></div>
-    </section>
-
-    <!-- Prediction Modal -->
-    <div id="prediction-modal" class="modal" style="display:none">
-        <div class="modal-content">
-            <button class="modal-close" onclick="App.closePrediction()">&times;</button>
-            <h2 id="pred-match-title"></h2>
-            <p id="pred-match-info"></p>
-            <p id="pred-deadline" class="deadline-text"></p>
-            <form onsubmit="App.submitPrediction(event)">
-                <input type="hidden" id="pred-match-id">
-                <div class="score-input">
-                    <div class="team-score">
-                        <span id="pred-home-name"></span>
-                        <input type="number" id="pred-home-score" min="0" max="20" required>
-                    </div>
-                    <span class="vs-label">vs</span>
-                    <div class="team-score">
-                        <span id="pred-away-name"></span>
-                        <input type="number" id="pred-away-score" min="0" max="20" required>
-                    </div>
-                </div>
-
-                <!-- Knockout: who advances -->
-                <div id="advances-section" style="display:none">
-                    <label>Quien clasifica?</label>
-                    <select id="pred-advances"></select>
-                </div>
-
-                <div id="scorer-section">
-                    <label>Goleador(es) - <small>Con 1 solo basta; si pones mas, debes acertarlos todos. Marca AG para autogol.</small></label>
-                    <div id="scorer-inputs"></div>
-                    <div class="scorer-buttons">
-                        <button type="button" class="btn-secondary" onclick="App.addScorerInput()">+ Agregar goleador</button>
-                        <button type="button" class="btn-link" onclick="App.removeScorerInput()">- Quitar ultimo</button>
-                    </div>
-                </div>
-                <button type="submit" class="btn-primary">Guardar Pronostico</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- My Predictions View -->
-    <section id="view-my-predictions" class="view">
-        <h2>Mis Pronosticos</h2>
-        <div id="my-predictions-list"></div>
-    </section>
-
-    <!-- Rankings View -->
-    <section id="view-rankings" class="view">
-        <div class="ranking-tabs">
-            <button class="rank-tab active" onclick="App.showRanking('individual')">Individual</button>
-            <button class="rank-tab" onclick="App.showRanking('country')">Por Pais</button>
-        </div>
-        <div class="scoring-toggle">
-            <label>Criterio de puntuacion:</label>
-            <select id="scoring-mode" onchange="App.refreshRankings()">
-                <option value="jorge">Criterio Jorge (0-0 = 3 pts)</option>
-                <option value="lean">Criterio Lean (0-0 = 2 pts)</option>
-            </select>
-        </div>
-        <div id="ranking-individual" class="ranking-content active">
-            <table id="table-individual" class="ranking-table">
-                <thead><tr><th>#</th><th>Jugador</th><th>Pais</th><th>Pts</th><th>PJ</th><th>Gan</th><th>Marc</th><th>Gol</th></tr></thead>
-                <tbody></tbody>
-            </table>
-        </div>
-        <div id="ranking-country" class="ranking-content">
-            <table id="table-country" class="ranking-table">
-                <thead><tr><th>#</th><th>Pais</th><th>Jugadores</th><th>Pts</th><th>Promedio</th></tr></thead>
-                <tbody></tbody>
-            </table>
-        </div>
-    </section>
-
-    <!-- Admin View -->
-    <section id="view-admin" class="view">
-        <h2>Panel de Administracion</h2>
-
-        <div class="admin-section">
-            <h3>Mensajes WhatsApp</h3>
-            <label>Partidos por fecha:</label>
-            <select id="admin-wa-date" onchange="App.generateWhatsAppMessage()"></select>
-            <div class="scorer-buttons" style="margin-top:8px">
-                <button class="btn-secondary" onclick="App.generateWhatsAppMessage()">Partidos del dia</button>
-                <button class="btn-secondary" onclick="App.generateWhatsAppIndividual()">Tabla individual</button>
-                <button class="btn-secondary" onclick="App.generateWhatsAppCountry()">Tabla por pais</button>
-            </div>
-            <div id="wa-message-box" class="message-box"></div>
-            <button class="btn-primary" onclick="App.copyWhatsApp()">Copiar mensaje</button>
-        </div>
-
-        <div class="admin-section">
-            <h3>Cargar resultados</h3>
-            <select id="admin-match-select" onchange="App.loadAdminMatch()">
-                <option value="">Seleccionar partido...</option>
-            </select>
-            <div id="admin-result-form" style="display:none">
-                <div class="score-input">
-                    <div class="team-score">
-                        <span id="admin-home-name"></span>
-                        <input type="number" id="admin-home-score" min="0" max="20">
-                    </div>
-                    <span class="vs-label">vs</span>
-                    <div class="team-score">
-                        <span id="admin-away-name"></span>
-                        <input type="number" id="admin-away-score" min="0" max="20">
-                    </div>
-                </div>
-                <div id="admin-advances-section" style="display:none">
-                    <label>Quien clasifico?</label>
-                    <select id="admin-advances"></select>
-                </div>
-                <label>Goleadores reales:</label>
-                <div id="admin-scorer-inputs"></div>
-                <div class="scorer-buttons">
-                    <button type="button" class="btn-secondary" onclick="App.addAdminScorer()">+ Agregar goleador</button>
-                    <button type="button" class="btn-link" onclick="App.removeAdminScorer()">- Quitar ultimo</button>
-                </div>
-                <button class="btn-primary" onclick="App.saveResult()">Guardar Resultado</button>
-            </div>
-        </div>
-
-        <div class="admin-section">
-            <h3>Agregar partido de eliminatoria</h3>
-            <div class="ko-form">
-                <select id="ko-phase">
-                    <option value="">Fase...</option>
-                    <option value="round32">32avos</option>
-                    <option value="round16">Octavos</option>
-                    <option value="quarter">Cuartos</option>
-                    <option value="semi">Semifinal</option>
-                    <option value="third">3er Puesto</option>
-                    <option value="final">Final</option>
-                </select>
-                <select id="ko-home">
-                    <option value="">Local...</option>
-                </select>
-                <span class="vs-label">vs</span>
-                <select id="ko-away">
-                    <option value="">Visitante...</option>
-                </select>
-                <input type="date" id="ko-date">
-                <input type="time" id="ko-time" value="18:00">
-            </div>
-            <button class="btn-primary" onclick="App.addKnockoutMatch()">Agregar Partido Manualmente</button>
-            <br><br>
-            <button class="btn-primary" onclick="App.fetchKnockoutMatchesFromESPN()" style="background:#2ecc71;">Importar partidos de ESPN</button>
-        </div>
-
-        <div class="admin-section">
-            <h3>Partidos de eliminatoria agregados</h3>
-            <div id="ko-matches-list"></div>
-        </div>
-
-        <div class="admin-section">
-            <h3>Resultados automaticos (ESPN)</h3>
-            <p style="color:#8888aa;font-size:0.85em;margin-bottom:10px;">
-                Consulta resultados y goleadores de partidos terminados. Gratis, sin limite, sin API key.
-            </p>
-            <button class="btn-primary" onclick="App.fetchResultsFromAPI()">Traer todos los resultados</button>
-            <div style="margin-top:10px;">
-                <label>O traer resultado de un partido especifico:</label>
-                <select id="espn-single-match" style="margin-top:4px;">
-                    <option value="">Seleccionar partido...</option>
-                </select>
-                <button class="btn-secondary" style="margin-top:4px;" onclick="App.fetchSingleMatchFromAPI()">Traer de ESPN</button>
-            </div>
-        </div>
-    </section>
 </main>
 
 <footer>
-    <p>Mundial 2026 - Juego de Pronosticos | Hecho con amistad y rivalidad</p>
+  <div class="envoltura">
+    <nav>
+      <a href="mundial.html">Mundial 2026 · Juego de pronósticos</a>
+      <a href="scriptures_project.html">Scriptures</a>
+      <a href="por_si_no_lo_sabias_v2.html">Por si no lo sabías</a>
+      <a href="unitconvertor.html">Conversor de unidades</a>
+      <a href="https://github.com/jorgessanchez7">GitHub</a>
+    </nav>
+    <p>Hecho en casa, para leer en casa.</p>
+  </div>
 </footer>
 
-<script src="mundial.js"></script>
-<script>
-    // Populate knockout team selects after app loads
-    document.addEventListener("DOMContentLoaded", function() {
-        const selects = [document.getElementById("ko-home"), document.getElementById("ko-away")];
-        const teams = document.querySelectorAll ? null : null; // placeholder
-        // We'll populate from the TEAMS object via a small inline script
-        const teamCodes = ["MEX","RSA","KOR","CZE","CAN","BIH","QAT","SUI","BRA","MAR","HAI","SCO",
-            "USA","PAR","AUS","TUR","GER","CUR","CIV","ECU","NED","JPN","SWE","TUN",
-            "BEL","EGY","IRN","NZL","ESP","CPV","KSA","URU","FRA","SEN","IRQ","NOR",
-            "ARG","ALG","AUT","JOR","POR","COD","UZB","COL","ENG","CRO","GHA","PAN"];
-        const teamNames = {
-            MEX:"Mexico",RSA:"Sudafrica",KOR:"Corea del Sur",CZE:"Chequia",
-            CAN:"Canada",BIH:"Bosnia",QAT:"Qatar",SUI:"Suiza",
-            BRA:"Brasil",MAR:"Marruecos",HAI:"Haiti",SCO:"Escocia",
-            USA:"Estados Unidos",PAR:"Paraguay",AUS:"Australia",TUR:"Turquia",
-            GER:"Alemania",CUR:"Curazao",CIV:"Costa de Marfil",ECU:"Ecuador",
-            NED:"Paises Bajos",JPN:"Japon",SWE:"Suecia",TUN:"Tunez",
-            BEL:"Belgica",EGY:"Egipto",IRN:"Iran",NZL:"Nueva Zelanda",
-            ESP:"Espana",CPV:"Cabo Verde",KSA:"Arabia Saudita",URU:"Uruguay",
-            FRA:"Francia",SEN:"Senegal",IRQ:"Irak",NOR:"Noruega",
-            ARG:"Argentina",ALG:"Argelia",AUT:"Austria",JOR:"Jordania",
-            POR:"Portugal",COD:"RD Congo",UZB:"Uzbekistan",COL:"Colombia",
-            ENG:"Inglaterra",CRO:"Croacia",GHA:"Ghana",PAN:"Panama"
-        };
-        selects.forEach(sel => {
-            teamCodes.forEach(code => {
-                const opt = document.createElement("option");
-                opt.value = code;
-                opt.textContent = teamNames[code];
-                sel.appendChild(opt);
-            });
-        });
-    });
-</script>
+<script src="libros/biblioteca.js"></script>
+<script src="lectura.js"></script>
 </body>
 </html>

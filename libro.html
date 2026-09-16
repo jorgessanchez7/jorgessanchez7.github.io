@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Libro · Plan de lectura</title>
+<link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="libro.css">
+</head>
+<body class="lector">
+
+<div class="barra">
+  <a class="btn" href="index.html">&#8592; Biblioteca</a>
+  <span class="titulo" id="titulo"></span>
+  <button class="btn" id="btn-act" title="Ir a las actividades">&#9998; Actividades</button>
+  <button class="btn" id="btn-voz" title="Leer en voz alta">&#128266; Leer</button>
+  <button class="btn icono" id="btn-full" title="Pantalla completa">&#9974;</button>
+</div>
+
+<div class="visor" id="visor">
+  <button class="flecha izq" id="btn-prev" aria-label="Página anterior">&#8249;</button>
+  <div class="stage" id="stage">
+    <div class="book" id="book"></div>
+  </div>
+  <button class="flecha der" id="btn-next" aria-label="Página siguiente">&#8250;</button>
+</div>
+
+<div class="pie">
+  <input type="range" id="slider" min="0" max="1" value="0" step="1" aria-label="Avance del libro">
+  <span class="contador" id="contador"></span>
+</div>
+
+<script src="libros/biblioteca.js"></script>
+<script src="actividades.js"></script>
+<script src="libro.js"></script>
+</body>
+</html>
