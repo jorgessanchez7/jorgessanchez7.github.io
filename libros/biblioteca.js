@@ -433,58 +433,87 @@
 
   /* ============================================================
      LIBRO 3 - El león y el ratón
+     Texto propio. Ilustraciones de la carpeta del padre.
      ============================================================ */
+  var LR  = "img/leon-raton/";
+  var LRP = "img/leon-raton/piezas/";
+
   var leonRaton = {
     id: "leon-y-raton",
     titulo: "El león y el ratón",
     autor: "Fábula de Esopo",
-    edad: "3 a 7 años",
+    edad: "3 a 8 años",
     resumen: "Los amigos pequeños también hacen cosas grandes.",
     color: "#e8b45a",
-    portada: svg(fondo("#ffe3b8", "#c9a86a") + sol(60, 50) + arbusto(330, 244, 1.1) +
-                 leon(200, 190, 1.05) + raton(330, 212, 1.1)),
+    portadaImagen: LR + "00.jpg",
+    actividades: [
+      {
+        tipo: "preguntas",
+        consigna: "Completa la frase.",
+        despuesDePagina: 2,
+        preguntas: [
+          { texto: "Al principio del cuento, el león estaba…", cortas: true,
+            opciones: [ { texto: "cazando" }, { texto: "durmiendo", ok: true }, { texto: "comiendo" } ] },
+          { texto: "Cuando despertó, el león se puso…", cortas: true,
+            opciones: [ { texto: "contento" }, { texto: "asustado" }, { texto: "furioso", ok: true } ] }
+        ]
+      },
+      {
+        tipo: "preguntas",
+        consigna: "Toca la respuesta.",
+        preguntas: [
+          { texto: "¿Quién estaba durmiendo al principio?",
+            opciones: [
+              { texto: "El león", img: LRP + "leon.jpg", ok: true },
+              { texto: "El ratón", img: LRP + "raton.jpg" }
+            ] },
+          { texto: "¿Quién rompió la red?",
+            opciones: [
+              { texto: "El león", img: LRP + "leon.jpg" },
+              { texto: "El ratón", img: LRP + "raton.jpg", ok: true }
+            ] }
+        ]
+      },
+      {
+        tipo: "preguntas",
+        consigna: "Completa la frase.",
+        preguntas: [
+          { texto: "El ratón le prometió al león que algún día lo…", cortas: true,
+            opciones: [ { texto: "visitaría" }, { texto: "ayudaría", ok: true }, { texto: "invitaría" } ] },
+          { texto: "El león quedó atrapado en…", cortas: true,
+            opciones: [ { texto: "un hueco" }, { texto: "una jaula" }, { texto: "una red", ok: true } ] },
+          { texto: "El ratón rompió las cuerdas con sus…", cortas: true,
+            opciones: [ { texto: "patas" }, { texto: "uñas" }, { texto: "dientes", ok: true } ] }
+        ]
+      },
+      {
+        tipo: "ordenar",
+        consigna: "Toca las escenas en el orden del cuento.",
+        escenas: [
+          { n: 1, img: LR + "01.jpg" }, { n: 2, img: LR + "02.jpg" },
+          { n: 3, img: LR + "03.jpg" }, { n: 4, img: LR + "04.jpg" },
+          { n: 5, img: LR + "05.jpg" }, { n: 6, img: LR + "06.jpg" }
+        ]
+      }
+    ],
     paginas: [
-      { texto: "Un león enorme dormía la siesta bajo el sol de la tarde.",
-        svg: svg(fondo("#ffe3b8", "#c9a86a") + sol(330, 54) + arbol(50, 226, .8) +
-                 leon(210, 192, 1.1) +
-                 '<g fill="#7a6aa8" opacity=".75"><circle cx="270" cy="140" r="5"/><circle cx="288" cy="120" r="7"/><circle cx="310" cy="98" r="9"/></g>') },
+      { imagen: LR + "01.jpg",
+        texto: "Después de un largo día de caza, un león se echó a dormir bajo un árbol. Un ratoncito jugaba encima de él, subiendo y bajando por su lomo." },
 
-      { texto: "Un ratoncito pasó corriendo y, sin querer, le subió por la nariz. El león despertó y lo atrapó con una zarpa.",
-        svg: svg(fondo("#ffe3b8", "#c9a86a") + sol(60, 50) +
-                 leon(190, 192, 1.1) + raton(268, 168, 1) + arbusto(330, 248, 1)) },
+      { imagen: LR + "02.jpg",
+        texto: "El león despertó de un salto y lo atrapó con la zarpa. —¡Perdóneme! —chilló el ratón—. Si algún día usted necesita ayuda, yo le ayudaré. El león se rió tanto de la idea que lo dejó ir." },
 
-      { texto: "—Perdóname —chilló el ratón—. Algún día yo te ayudaré a ti. El león se rió tanto que lo dejó ir.",
-        svg: svg(fondo("#ffe3b8", "#c9a86a") + sol(340, 50) + arbusto(30, 246, 1) +
-                 leon(180, 192, 1.05) + raton(320, 212, 1.2)) },
+      { imagen: LR + "03.jpg",
+        texto: "Pasaron los días. Unos cazadores tendieron una red en el bosque, y el león cayó adentro. Por más que empujaba, no lograba salir." },
 
-      { texto: "Pasaron los días. Unos cazadores atraparon al león con una red muy gruesa.",
-        svg: svg(fondo("#cfe2f2", "#7aa85e") + nube(60, 48, .8) + arbol(350, 226, .8) +
-                 leon(180, 192, 1.05) +
-                 '<g stroke="#6b5a3f" stroke-width="3" fill="none" opacity=".95">' +
-                 '<path d="M90,110 L300,110 L300,230 L90,230 Z"/>' +
-                 '<path d="M125,110 L125,230 M160,110 L160,230 M195,110 L195,230 M230,110 L230,230 M265,110 L265,230"/>' +
-                 '<path d="M90,140 L300,140 M90,170 L300,170 M90,200 L300,200"/></g>') },
+      { imagen: LR + "04.jpg",
+        texto: "El león rugió tan fuerte que se oyó en todo el bosque. El ratoncito reconoció ese rugido y corrió a buscarlo." },
 
-      { texto: "El león rugió tan fuerte que el rugido se escuchó en todo el bosque.",
-        svg: svg(fondo("#cfe2f2", "#7aa85e") + nube(300, 50, .7) +
-                 leon(160, 192, 1.1) +
-                 '<g stroke="#e8934f" stroke-width="5" fill="none" stroke-linecap="round" opacity=".8">' +
-                 '<path d="M250,120 q30,30 0,60"/><path d="M280,104 q46,46 0,92"/><path d="M310,88 q62,62 0,124"/></g>') },
+      { imagen: LR + "05.jpg",
+        texto: "Con sus dientes pequeñitos, el ratón mordió las cuerdas una y otra vez. Mordió y mordió hasta que la red se rompió." },
 
-      { texto: "El ratoncito reconoció ese rugido y corrió a buscarlo entre los árboles.",
-        svg: svg(fondo("#cfe2f2", "#7aa85e") + arbol(70, 228, .9) + arbol(330, 222, .75) +
-                 raton(200, 206, 1.5) + viento(60, 190, .6)) },
-
-      { texto: "Con sus dientes pequeñitos, el ratón mordió la red una y otra vez hasta romperla. El león quedó libre.",
-        svg: svg(fondo("#cfe2f2", "#7aa85e") + nube(50, 46, .8) +
-                 '<g stroke="#6b5a3f" stroke-width="3" fill="none" opacity=".9">' +
-                 '<path d="M80,120 L150,120 M250,120 L320,120 M80,120 L80,220 M320,120 L320,220"/>' +
-                 '<path d="M100,150 q20,20 -6,40 M300,150 q-20,20 6,40"/></g>' +
-                 leon(190, 192, 1.05) + raton(310, 216, 1.1)) },
-
-      { texto: "—Ya ves —dijo el ratón—. Los amigos pequeños también hacen cosas grandes.",
-        svg: svg(fondo(CIELO, "#8fc06a") + sol() + nube(60, 50, .9) + arbusto(340, 246, 1) +
-                 leon(170, 192, 1.05) + raton(310, 212, 1.2) + flor(70, 260, "#ff8fab")) }
+      { imagen: LR + "06.jpg",
+        texto: "El león quedó libre. —Ya ves —dijo el ratón—. Los amigos pequeños también hacen cosas grandes. Y desde ese día fueron muy buenos amigos." }
     ]
   };
 
@@ -571,7 +600,159 @@
   /* ============================================================
      Catálogo final (el orden es el que se ve en el menú)
      ============================================================ */
-  window.BIBLIOTECA = [tresCerditos, liebreTortuga, leonRaton, gotita];
+  /* ============================================================
+     LIBRO 5 - El renacuajo paseador (Rin Rin Renacuajo)
+     Texto de Rafael Pombo (1833-1912), dominio publico.
+     Tomado del PDF de la carpeta; solo se normalizo la puntuacion.
+     Ilustraciones: vinetas de trazo de la carpeta del padre.
+     ============================================================ */
+  var RR  = "img/rinrin/";
+  var RRP = "img/rinrin/piezas/";
+
+  var rinRin = {
+    id: "rin-rin-renacuajo",
+    titulo: "El renacuajo paseador",
+    autor: "Rafael Pombo",
+    edad: "Para leer en voz alta",
+    resumen: "Rin Rin sale de fiesta sin permiso de su mamá.",
+    color: "#6aa84f",
+    portadaImagen: RR + "00.jpg",
+    actividades: [
+      {
+        tipo: "preguntas",
+        consigna: "El poema rima. ¿Cuál suena parecido?",
+        despuesDePagina: 2,
+        preguntas: [
+          { texto: "¿Cuál rima con renacuajo?", cortas: true,
+            opciones: [ { texto: "rana" }, { texto: "majo", ok: true }, { texto: "sombrero" } ] },
+          { texto: "¿Cuál rima con moda?", cortas: true,
+            opciones: [ { texto: "boda", ok: true }, { texto: "mano" }, { texto: "corbata" } ] }
+        ]
+      },
+      {
+        tipo: "preguntas",
+        consigna: "Toca la respuesta.",
+        preguntas: [
+          { texto: "¿Quién salió a pasear muy elegante?",
+            opciones: [
+              { texto: "El renacuajo", img: RRP + "renacuajo.jpg", ok: true },
+              { texto: "El ratón", img: RRP + "raton.jpg" },
+              { texto: "El gato", img: RRP + "gato.jpg" }
+            ] },
+          { texto: "¿Quién llegó a dañar la fiesta?",
+            opciones: [
+              { texto: "El renacuajo", img: RRP + "renacuajo.jpg" },
+              { texto: "El ratón", img: RRP + "raton.jpg" },
+              { texto: "El gato", img: RRP + "gato.jpg", ok: true }
+            ] }
+        ]
+      },
+      {
+        tipo: "preguntas",
+        consigna: "Palabras de antes. ¿Qué querrán decir?",
+        preguntas: [
+          { texto: "Una chupa es…", cortas: true,
+            opciones: [ { texto: "una chaqueta", ok: true }, { texto: "un sombrero" }, { texto: "un zapato" } ] },
+          { texto: "Estar orondo es estar…", cortas: true,
+            opciones: [ { texto: "muy triste" }, { texto: "muy orgulloso", ok: true }, { texto: "muy cansado" } ] },
+          { texto: "El aldabón sirve para…", cortas: true,
+            opciones: [ { texto: "tocar la puerta", ok: true }, { texto: "abrir la ventana" }, { texto: "colgar la ropa" } ] },
+          { texto: "El gaznate es…", cortas: true,
+            opciones: [ { texto: "la mano" }, { texto: "el sombrero" }, { texto: "la garganta", ok: true } ] }
+        ]
+      },
+      {
+        tipo: "ordenar",
+        consigna: "Toca las escenas en el orden del poema.",
+        escenas: [
+          { n: 1, img: RR + "01.jpg" }, { n: 2, img: RR + "02.jpg" },
+          { n: 3, img: RR + "03.jpg" }, { n: 4, img: RR + "07.jpg" },
+          { n: 5, img: RR + "08.jpg" }, { n: 6, img: RR + "09.jpg" }
+        ]
+      }
+    ],
+    paginas: [
+      { imagen: RR + "01.jpg", verso: [
+        "El hijo de rana, Rinrín renacuajo",
+        "salió esta mañana muy tieso y muy majo",
+        "con pantalón corto, corbata a la moda,",
+        "sombrero encintado y chupa de boda.",
+        "",
+        "—¡Muchacho, no salgas! —le grita mamá,",
+        "pero él hace un gesto y orondo se va." ] },
+
+      { imagen: RR + "02.jpg", verso: [
+        "Halló en el camino a un ratón vecino,",
+        "y le dijo: —¡Amigo! Venga usted conmigo,",
+        "visitemos juntos a doña Ratona,",
+        "y habrá francachela y habrá comilona." ] },
+
+      { imagen: RR + "03.jpg", verso: [
+        "A poco llegaron, y avanza Ratón,",
+        "estírase el cuello, coge el aldabón,",
+        "da dos o tres golpes, preguntan: —¿Quién es?",
+        "—Yo, doña Ratona, beso a usted los pies." ] },
+
+      { imagen: RR + "04.jpg", verso: [
+        "—¿Está usted en casa? —Sí, señor, sí estoy,",
+        "y celebro mucho ver a ustedes hoy;",
+        "estaba en mi oficio, hilando algodón,",
+        "pero eso no importa; bienvenidos son." ] },
+
+      { imagen: RR + "05.jpg", verso: [
+        "Se hicieron la venia, se dieron la mano,",
+        "y dice Ratico, que es más veterano:",
+        "—Mi amigo el de verde rabia de calor,",
+        "démele cerveza, hágame el favor." ] },
+
+      { imagen: RR + "06.jpg", verso: [
+        "Y en tanto que el pillo consume la jarra,",
+        "mandó la señora traer la guitarra",
+        "y a Renacuajo le pide que cante",
+        "versitos alegres, tonada elegante." ] },
+
+      { imagen: RR + "07.jpg", verso: [
+        "—¡Ay! De mil amores lo hiciera, señora,",
+        "pero es imposible darle gusto ahora,",
+        "que tengo el gaznate más seco que estopa",
+        "y me aprieta mucho esta nueva ropa.",
+        "",
+        "—Lo siento infinito —responde tía Rata—,",
+        "aflójese un poco chaleco y corbata,",
+        "y yo, mientras tanto, les voy a cantar",
+        "una cancioncita muy particular." ] },
+
+      { imagen: RR + "08.jpg", verso: [
+        "Mas estando en esta brillante función",
+        "de baile y cerveza, guitarra y canción,",
+        "la Gata y sus Gatos salvan el umbral,",
+        "y vuélvese aquello el juicio final.",
+        "",
+        "Doña Gata vieja trinchó por la oreja",
+        "al niño Ratico, maullándole: —¡Hola!",
+        "Y los niños Gatos a la vieja Rata,",
+        "uno por la pata y otro por la cola." ] },
+
+      { imagen: RR + "09.jpg", verso: [
+        "Don Renacuajito, mirando este asalto,",
+        "tomó su sombrero, dio un tremendo salto,",
+        "y abriendo la puerta con mano y narices,",
+        "se fue dando a todos «noches muy felices».",
+        "",
+        "Y siguió saltando tan alto y aprisa,",
+        "que perdió el sombrero, rasgó la camisa,",
+        "se coló en la boca de un pato tragón",
+        "y éste se lo embucha de un solo estirón." ] },
+
+      { imagen: RR + "10.jpg", verso: [
+        "Y así concluyeron, uno, dos y tres,",
+        "Ratón y Ratona, y el Rana después;",
+        "los Gatos comieron y el Pato cenó,",
+        "¡y mamá Ranita solita quedó!" ] }
+    ]
+  };
+
+  window.BIBLIOTECA = [tresCerditos, liebreTortuga, leonRaton, rinRin, gotita];
 
   // Los ayudantes de dibujo quedan disponibles para las actividades
   window.DIBUJO = {

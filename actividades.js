@@ -72,7 +72,7 @@
              var conFoto = pr.opciones.some(function (o) { return o.img; });
              return '<div class="preg" data-q="' + qi + '">' +
                '<p class="enunciado">' + esc(pr.texto) + '</p>' +
-               '<div class="opcs' + (conFoto ? ' fotos' : '') + '">' +
+               '<div class="opcs' + (conFoto ? ' fotos' : '') + (pr.cortas ? ' breves' : '') + '">' +
                  pr.opciones.map(function (o, oi) {
                    return '<button type="button" class="opc" data-oi="' + oi + '" data-ok="' + (o.ok ? 1 : 0) + '">' +
                      (o.img ? foto(o) : '') +

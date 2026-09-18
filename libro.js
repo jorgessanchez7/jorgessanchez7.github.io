@@ -99,7 +99,12 @@
       ? '<img src="' + item.pg.imagen + '" alt="" loading="lazy">'
       : item.pg.svg;
     var cuerpo;
-    if (item.pg.estribillo) {
+    if (item.pg.verso) {
+      cuerpo = '<div class="estrofas">' +
+        item.pg.verso.map(function (l) {
+          return l ? '<span class="v">' + l + '</span>' : '<span class="hueco"></span>';
+        }).join("") + '</div>';
+    } else if (item.pg.estribillo) {
       cuerpo = '<div class="lineas">' +
         item.pg.estribillo.map(function (l, k) {
           return '<b class="l' + Math.min(k + 1, 4) + '">' + l + '</b>';
@@ -107,7 +112,8 @@
     } else {
       cuerpo = '<p class="texto">' + item.pg.texto + '</p>';
     }
-    return '<div class="pagina' + (item.pg.estribillo ? ' estribillo' : '') + '">' +
+    return '<div class="pagina' + (item.pg.estribillo ? ' estribillo' : '') +
+      (item.pg.verso ? ' verso' : '') + '">' +
       '<div class="ilustracion">' + ilus + '</div>' + cuerpo +
       '<span class="folio">' + item.n + '</span>' +
       '</div>';
@@ -272,7 +278,11 @@
     window.speechSynthesis.cancel();
     var textos = [];
     paginasVisibles().forEach(function (p) {
-      if (p && p.t === "pagina") textos.push(p.pg.estribillo ? p.pg.estribillo.join(" ") : p.pg.texto);
+      if (p && p.t === "pagina") {
+        if (p.pg.verso) textos.push(p.pg.verso.join(", "));
+        else if (p.pg.estribillo) textos.push(p.pg.estribillo.join(" "));
+        else textos.push(p.pg.texto);
+      }
       if (p && p.t === "portada") textos.push(libro.titulo);
     });
     if (!textos.length) return;

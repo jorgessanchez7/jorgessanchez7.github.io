@@ -518,6 +518,17 @@ body.lector {
 .opc.mal  { border-color: #c9553c; background: #fdeeea; }
 .preg.resuelta .opc:not(.bien) { opacity: .4; }
 
+/* opciones de una palabra: en fila, como en el cuadernillo */
+.opcs.breves { flex-direction: row; gap: 8px; }
+.opcs.breves .opc {
+  flex: 1 1 0;
+  justify-content: center;
+  text-align: center;
+  padding: 11px 6px;
+  font-size: .95rem;
+  font-weight: 700;
+}
+
 /* opciones con foto: en fila, grandes para tocar */
 .opcs.fotos { flex-direction: row; gap: 10px; justify-content: center; }
 .opcs.fotos .opc {
@@ -585,3 +596,28 @@ body.lector {
 .escena.puesta { border-color: #4f9d5d; opacity: .62; cursor: default; }
 .escena.puesta .orden { opacity: 1; }
 .escena.mal { border-color: #c9553c; }
+
+/* --- páginas en verso --- */
+.pagina.verso .ilustracion { max-height: 46%; background: #ffffff; padding: 4px; }
+/* el trazo se muestra completo, sin recortar el marco de la viñeta */
+.pagina.verso .ilustracion img { object-fit: contain; }
+.pagina.verso .estrofas {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12px;
+  overflow: hidden;
+}
+.pagina.verso .v {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 1.02rem;
+  line-height: 1.42;
+  font-weight: 600;
+  color: var(--tinta);
+}
+.pagina.verso .hueco { display: block; height: .62em; }
