@@ -430,3 +430,158 @@ body.lector {
   color: #26303c;
   cursor: pointer;
 }
+
+/* --- verdadero o falso --- */
+.vof {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+.vof .af {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid #c9d8e6;
+  border-radius: 12px;
+  background: #fff;
+  padding: 10px 10px 10px 14px;
+  transition: border-color .15s ease, background .15s ease;
+}
+.vof .af.resuelta { border-color: #4f9d5d; background: #f2faf3; }
+.vof .frase {
+  flex: 1 1 auto;
+  font-size: .96rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #3a3330;
+}
+.vof .botones { flex: 0 0 auto; display: flex; gap: 7px; }
+.vof .vf {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #c9d8e6;
+  background: #fbf6ea;
+  font: inherit;
+  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #7d7268;
+  cursor: pointer;
+  line-height: 1;
+}
+.vof .vf:hover { border-color: #a9bed1; }
+.vof .vf.bien { background: #4f9d5d; border-color: #4f9d5d; color: #fff; }
+.vof .vf.mal  { background: #c9553c; border-color: #c9553c; color: #fff; }
+.vof .af.resuelta .vf { cursor: default; }
+.vof .af.resuelta .vf:not(.bien) { opacity: .35; }
+
+/* --- preguntas de opción (texto o imagen) --- */
+.preguntas {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+.preg .enunciado {
+  margin: 0 0 8px;
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: #3a3330;
+  text-align: center;
+  line-height: 1.3;
+}
+.opcs { display: flex; flex-direction: column; gap: 7px; }
+.opc {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 2px solid #c9d8e6;
+  border-radius: 10px;
+  background: #fff;
+  padding: 10px 12px;
+  font: inherit;
+  font-size: .94rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #3a3330;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color .15s ease, background .15s ease;
+}
+.opc.bien { border-color: #4f9d5d; background: #eff8f0; }
+.opc.mal  { border-color: #c9553c; background: #fdeeea; }
+.preg.resuelta .opc:not(.bien) { opacity: .4; }
+
+/* opciones con foto: en fila, grandes para tocar */
+.opcs.fotos { flex-direction: row; gap: 10px; justify-content: center; }
+.opcs.fotos .opc {
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+  text-align: center;
+}
+.opcs.fotos .foto {
+  width: 100%;
+  height: 120px;
+  background: #eef5f9;
+  overflow: hidden;
+  padding: 4px;
+}
+.opcs.fotos .foto img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.opcs.fotos .rotulo {
+  width: 100%;
+  background: #fbf6ea;
+  padding: 7px 4px;
+  font-size: .92rem;
+  font-weight: 700;
+}
+
+/* --- ordenar las escenas --- */
+.escenas {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 9px;
+  align-content: center;
+}
+.escena {
+  position: relative;
+  border: 2px solid #c9d8e6;
+  border-radius: 10px;
+  background: #eef5f9;
+  overflow: hidden;
+  padding: 0;
+  cursor: pointer;
+  min-height: 0;
+  transition: border-color .15s ease, opacity .2s ease;
+}
+.escena img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.escena .orden {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  min-width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4f9d5d;
+  color: #fff;
+  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 25px;
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+.escena.puesta { border-color: #4f9d5d; opacity: .62; cursor: default; }
+.escena.puesta .orden { opacity: 1; }
+.escena.mal { border-color: #c9553c; }

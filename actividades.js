@@ -22,6 +22,17 @@
     } catch (e) { /* sin voz, no pasa nada */ }
   }
 
+  function baraja(lista) {
+    var a = lista.slice(), i, j, t;
+    for (i = a.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    // que no salga ya ordenada
+    var igual = a.every(function (x, k) { return x === lista[k]; });
+    return (igual && a.length > 1) ? baraja(lista) : a;
+  }
+
   function foto(item) {
     return item.svg
       ? '<span class="foto">' + item.svg + '</span>'
@@ -55,6 +66,40 @@
                '<span class="caja"></span>' + esc(o.texto) + '</button>';
            }).join("") + '</div>';
 
+    } else if (act.tipo === "preguntas") {
+      s += '<div class="preguntas">' +
+           act.preguntas.map(function (pr, qi) {
+             var conFoto = pr.opciones.some(function (o) { return o.img; });
+             return '<div class="preg" data-q="' + qi + '">' +
+               '<p class="enunciado">' + esc(pr.texto) + '</p>' +
+               '<div class="opcs' + (conFoto ? ' fotos' : '') + '">' +
+                 pr.opciones.map(function (o, oi) {
+                   return '<button type="button" class="opc" data-oi="' + oi + '" data-ok="' + (o.ok ? 1 : 0) + '">' +
+                     (o.img ? foto(o) : '') +
+                     '<span class="rotulo">' + esc(o.texto) + '</span></button>';
+                 }).join("") +
+               '</div></div>';
+           }).join("") + '</div>';
+
+    } else if (act.tipo === "ordenar") {
+      s += '<div class="escenas">' +
+           baraja(act.escenas).map(function (e) {
+             return '<button type="button" class="escena" data-n="' + e.n + '">' +
+               '<img src="' + e.img + '" alt="" loading="lazy">' +
+               '<span class="orden"></span></button>';
+           }).join("") + '</div>';
+
+    } else if (act.tipo === "vof") {
+      s += '<div class="vof">' +
+           act.afirmaciones.map(function (af, i) {
+             return '<div class="af" data-i="' + i + '" data-ok="' + (af.ok ? 1 : 0) + '">' +
+               '<span class="frase">' + esc(af.texto) + '</span>' +
+               '<span class="botones">' +
+                 '<button type="button" class="vf v" data-valor="1">V</button>' +
+                 '<button type="button" class="vf f" data-valor="0">F</button>' +
+               '</span></div>';
+           }).join("") + '</div>';
+
     } else if (act.tipo === "palabras") {
       s += '<div class="cajita">' +
            act.tarjetas.map(function (t) {
@@ -81,6 +126,9 @@
       if (act.tipo === "unir") unir(nodo, act);
       if (act.tipo === "marcar") marcar(nodo, act);
       if (act.tipo === "palabras") palabras(nodo, act);
+      if (act.tipo === "vof") vof(nodo, act);
+      if (act.tipo === "preguntas") preguntas(nodo, act);
+      if (act.tipo === "ordenar") ordenar(nodo, act);
     });
   }
 
@@ -197,6 +245,116 @@
         op.classList.add("mal");
         aviso(nodo, "Ese no estaba en el cuento.", "mal");
         window.setTimeout(function () { op.classList.remove("mal"); }, 900);
+      }
+    });
+  }
+
+  /* ---------------- preguntas de opcion ---------------- */
+  function preguntas(nodo, act) {
+    var total = act.preguntas.length;
+
+    function cuenta() {
+      var n = nodo.querySelectorAll(".preg.resuelta").length;
+      if (n < total) aviso(nodo, "", "");
+      else aviso(nodo, total === 1 ? "¡Esa es!" : "¡Las " + total + "! Muy bien.", "bien");
+    }
+
+    nodo.addEventListener("click", function (e) {
+      if (e.target.closest(".btn-otra")) {
+        Array.prototype.forEach.call(nodo.querySelectorAll(".preg"), function (q) {
+          q.classList.remove("resuelta");
+          Array.prototype.forEach.call(q.querySelectorAll(".opc"), function (b) {
+            b.classList.remove("bien", "mal");
+          });
+        });
+        aviso(nodo, "", "");
+        return;
+      }
+      var b = e.target.closest(".opc");
+      if (!b) return;
+      var q = b.closest(".preg");
+      if (q.classList.contains("resuelta")) return;
+
+      if (b.dataset.ok === "1") {
+        b.classList.add("bien");
+        q.classList.add("resuelta");
+        cuenta();
+      } else {
+        b.classList.add("mal");
+        aviso(nodo, "Esa no. Vuelve a mirar el cuento.", "mal");
+        window.setTimeout(function () { b.classList.remove("mal"); }, 900);
+      }
+    });
+  }
+
+  /* ---------------- ordenar las escenas ---------------- */
+  function ordenar(nodo, act) {
+    var total = act.escenas.length, siguiente = 1;
+
+    function limpia() {
+      siguiente = 1;
+      Array.prototype.forEach.call(nodo.querySelectorAll(".escena"), function (b) {
+        b.classList.remove("puesta", "mal");
+        b.querySelector(".orden").textContent = "";
+      });
+      aviso(nodo, "Toca la primera escena del cuento.", "neutro");
+    }
+
+    nodo.addEventListener("click", function (e) {
+      if (e.target.closest(".btn-otra")) { limpia(); return; }
+      var b = e.target.closest(".escena");
+      if (!b || b.classList.contains("puesta")) return;
+
+      if (+b.dataset.n === siguiente) {
+        b.classList.add("puesta");
+        b.querySelector(".orden").textContent = siguiente;
+        siguiente++;
+        if (siguiente > total) aviso(nodo, "¡Todas en orden! Muy bien.", "bien");
+        else aviso(nodo, "Vas bien. Ahora la que sigue.", "neutro");
+      } else {
+        b.classList.add("mal");
+        aviso(nodo, "Esa todavía no. ¿Qué pasó antes?", "mal");
+        window.setTimeout(function () { b.classList.remove("mal"); }, 900);
+      }
+    });
+
+    aviso(nodo, "Toca la primera escena del cuento.", "neutro");
+  }
+
+  /* ---------------- verdadero o falso ---------------- */
+  function vof(nodo, act) {
+    var total = act.afirmaciones.length;
+
+    function cuenta() {
+      var n = nodo.querySelectorAll(".af.resuelta").length;
+      aviso(nodo, n === total ? "¡Las " + total + "! Muy bien." : "Llevas " + n + " de " + total + ".",
+            n === total ? "bien" : "neutro");
+    }
+
+    nodo.addEventListener("click", function (e) {
+      if (e.target.closest(".btn-otra")) {
+        Array.prototype.forEach.call(nodo.querySelectorAll(".af"), function (af) {
+          af.classList.remove("resuelta");
+          Array.prototype.forEach.call(af.querySelectorAll(".vf"), function (b) {
+            b.classList.remove("bien", "mal");
+          });
+        });
+        aviso(nodo, "", "");
+        return;
+      }
+      var b = e.target.closest(".vf");
+      if (!b) return;
+      var af = b.closest(".af");
+      if (af.classList.contains("resuelta")) return;
+
+      if (b.dataset.valor === af.dataset.ok) {
+        b.classList.add("bien");
+        af.classList.add("resuelta");
+        cuenta();
+      } else {
+        b.classList.add("mal");
+        aviso(nodo, "Esa no. Vuelve a mirar el cuento.", "mal");
+        window.setTimeout(function () { b.classList.remove("mal"); }, 900);
       }
     });
   }

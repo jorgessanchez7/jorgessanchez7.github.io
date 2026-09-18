@@ -339,50 +339,95 @@
 
   /* ============================================================
      LIBRO 2 - La liebre y la tortuga
+     Texto propio. Ilustraciones de la carpeta del padre.
      ============================================================ */
+  var LT  = "img/liebre-tortuga/";
+  var LTP = "img/liebre-tortuga/piezas/";
+
   var liebreTortuga = {
     id: "liebre-y-tortuga",
     titulo: "La liebre y la tortuga",
     autor: "Fábula de Esopo",
-    edad: "3 a 7 años",
+    edad: "3 a 8 años",
     resumen: "Una carrera que no gana el más rápido.",
     color: "#7fbf5a",
-    portada: svg(fondo(CIELO, PASTO) + sol(52, 48) + nube(250, 54, .9) + arbol(360, 224, .75) +
-                 liebre(120, 190, .95) + tortuga(270, 200, .95)),
+    portadaImagen: LT + "00.jpg",
+    actividades: [
+      {
+        tipo: "preguntas",
+        consigna: "Una pregunta de lo que acabamos de leer.",
+        despuesDePagina: 2,
+        preguntas: [
+          { texto: "¿Por qué la tortuga retó a la liebre?",
+            opciones: [
+              { texto: "Porque se cansó de que se burlara de ella.", ok: true },
+              { texto: "Porque quería ganarse un premio." },
+              { texto: "Porque la liebre estaba dormida." }
+            ] }
+        ]
+      },
+      {
+        tipo: "preguntas",
+        consigna: "Toca la respuesta.",
+        preguntas: [
+          { texto: "¿Quién ganó la carrera?",
+            opciones: [
+              { texto: "La liebre", img: LTP + "liebre.jpg" },
+              { texto: "La tortuga", img: LTP + "tortuga.jpg", ok: true }
+            ] },
+          { texto: "¿Quién se durmió en el camino?",
+            opciones: [
+              { texto: "La liebre", img: LTP + "liebre.jpg", ok: true },
+              { texto: "La tortuga", img: LTP + "tortuga.jpg" }
+            ] }
+        ]
+      },
+      {
+        tipo: "preguntas",
+        consigna: "Ahora dos preguntas del final.",
+        preguntas: [
+          { texto: "¿Por qué la liebre se puso a dormir?",
+            opciones: [
+              { texto: "Porque iba tan adelante que se confió.", ok: true },
+              { texto: "Porque estaba enferma." },
+              { texto: "Porque la tortuga se lo pidió." }
+            ] },
+          { texto: "¿Por qué ganó la tortuga?",
+            opciones: [
+              { texto: "Porque corrió más rápido que la liebre." },
+              { texto: "Porque siguió caminando sin parar.", ok: true },
+              { texto: "Porque la liebre se perdió en el bosque." }
+            ] }
+        ]
+      },
+      {
+        tipo: "ordenar",
+        consigna: "Toca las escenas en el orden del cuento.",
+        escenas: [
+          { n: 1, img: LT + "01.jpg" }, { n: 2, img: LT + "02.jpg" },
+          { n: 3, img: LT + "03.jpg" }, { n: 4, img: LT + "04.jpg" },
+          { n: 5, img: LT + "05.jpg" }, { n: 6, img: LT + "06.jpg" }
+        ]
+      }
+    ],
     paginas: [
-      { texto: "En el bosque vivía una liebre muy veloz. Todos los días presumía: —¡Nadie corre más rápido que yo!",
-        svg: svg(fondo(CIELO, PASTO) + sol() + nube(60, 50, .9) + arbol(350, 228, .8) + arbusto(30, 246, 1) +
-                 liebre(180, 186, 1.15) + flor(90, 258, "#ff8fab")) },
+      { imagen: LT + "01.jpg",
+        texto: "Había una vez una liebre muy orgullosa. Se paraba delante de todos los animales del bosque a presumir: —¡Soy la más rápida de todas!" },
 
-      { texto: "La tortuga, que caminaba despacito, se acercó y le dijo: —Te reto a una carrera.",
-        svg: svg(fondo(CIELO, PASTO) + sol() + nube(300, 52, .8) + arbusto(320, 242, 1) +
-                 liebre(120, 188, 1) + tortuga(280, 198, 1)) },
+      { imagen: LT + "02.jpg",
+        texto: "La tortuga se cansó de tantas burlas y se le plantó enfrente. —Te reto a una carrera —le dijo. La liebre se rió tanto que aceptó." },
 
-      { texto: "Todos los animales del bosque llegaron a mirar. —¡Preparados, listos, YA!",
-        svg: svg(fondo("#d9eef8", PASTO) + sol() + nube(70, 46, .8) + bandera(40, 214, 1) +
-                 liebre(150, 188, .95) + tortuga(250, 198, .95) + raton(330, 210, .9) + arbusto(360, 250, .8)) },
+      { imagen: LT + "03.jpg",
+        texto: "Empezó la carrera. La liebre salió disparada por el camino. La tortuga dio su primer pasito, despacio, sin afanarse." },
 
-      { texto: "La liebre salió disparada como una flecha. La tortuga dio su primer pasito.",
-        svg: svg(fondo(CIELO, PASTO) + sol() + nube(120, 44, .8) + viento(40, 170, .9) +
-                 liebre(230, 186, 1) + tortuga(80, 202, .8) + flor(320, 262, "#ffd34d")) },
+      { imagen: LT + "04.jpg",
+        texto: "La liebre iba tan adelante que pensó: —Me sobra tiempo para una siesta. Se acostó bajo un árbol y se quedó dormida." },
 
-      { texto: "La liebre iba tan adelante que pensó: —Me da tiempo de dormir una siesta. Y se acostó bajo un árbol.",
-        svg: svg(fondo("#ffe8bf", "#8fc06a") + sol(330, 60) + arbol(200, 214, 1.15) +
-                 '<g transform="translate(196,214)">' + liebre(0, -6, .9) + '</g>' +
-                 '<g fill="#7a6aa8" opacity=".8"><circle cx="250" cy="160" r="5"/><circle cx="266" cy="140" r="7"/><circle cx="286" cy="118" r="9"/></g>' +
-                 tortuga(50, 210, .6)) },
+      { imagen: LT + "05.jpg",
+        texto: "La tortuga siguió caminando. Paso a paso, sin parar. Pasó al lado de la liebre dormida y no se detuvo." },
 
-      { texto: "La tortuga siguió caminando. Paso a paso. Sin parar. Sin mirar atrás.",
-        svg: svg(fondo(CIELO, PASTO) + sol() + nube(80, 50, .9) + piedra(320, 254, .9) +
-                 tortuga(190, 196, 1.15) + flor(60, 258, "#ff8fab") + flor(350, 264, "#ffd34d")) },
-
-      { texto: "Cuando la liebre despertó, corrió con todas sus fuerzas... pero la tortuga ya cruzaba la meta.",
-        svg: svg(fondo("#ffdca8", "#8fc06a") + sol(60, 54) + bandera(300, 214, 1) +
-                 tortuga(250, 200, .95) + liebre(90, 190, .95) + viento(10, 160, .7)) },
-
-      { texto: "—Despacio y sin rendirse también se llega —dijo la tortuga. Y la liebre nunca más volvió a presumir.",
-        svg: svg(fondo(CIELO, PASTO) + sol() + nube(60, 50, .9) + bandera(350, 212, .9) +
-                 tortuga(170, 198, 1.1) + liebre(70, 192, .85) + flor(280, 260, "#ff8fab")) }
+      { imagen: LT + "06.jpg",
+        texto: "La liebre despertó con el ruido de la fiesta. Corrió con todas sus fuerzas, pero ya era tarde: la tortuga había cruzado la meta." }
     ]
   };
 

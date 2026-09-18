@@ -44,8 +44,17 @@
   function armarLista(m) {
     var l = [{ t: "portada" }];
     if (m === "doble") l.push({ t: "blanca" });
-    libro.paginas.forEach(function (pg, idx) { l.push({ t: "pagina", pg: pg, n: idx + 1 }); });
-    (libro.actividades || []).forEach(function (a, idx) { l.push({ t: "actividad", i: idx }); });
+    var acts = libro.actividades || [];
+    libro.paginas.forEach(function (pg, idx) {
+      l.push({ t: "pagina", pg: pg, n: idx + 1 });
+      // una actividad puede pedir salir justo despues de cierta pagina
+      acts.forEach(function (a, k) {
+        if (a.despuesDePagina === idx + 1) l.push({ t: "actividad", i: k });
+      });
+    });
+    acts.forEach(function (a, k) {
+      if (!a.despuesDePagina) l.push({ t: "actividad", i: k });
+    });
     // en doble pagina, "Fin" debe caer en una cara frontal para que se vea
     // junto a la ultima pagina del cuento
     if (m === "doble") { while (l.length % 2) l.push({ t: "blanca" }); }
