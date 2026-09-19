@@ -108,6 +108,7 @@
 
     /* las sílabas */
     if (L.notaSilabas) document.getElementById("nota-silabas").textContent = L.notaSilabas;
+    if (L.notaFrases)  document.getElementById("nota-frases").textContent  = L.notaFrases;
     var cajaS = document.getElementById("silabas");
     L.silabas.forEach(function (s) {
       cajaS.appendChild(boton("silabon", pintar(s, L.letra), s));

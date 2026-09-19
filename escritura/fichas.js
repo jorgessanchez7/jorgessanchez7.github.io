@@ -229,7 +229,7 @@ window.FICHAS = [
     lineas: ["papá mapa pipa", "mi papá me ama."],
     trazos: [] },
 
-  { id: "letra-s", grupo: "letras", orden: 7, letra: "s", palabra: "sopa",
+  { id: "letra-s", grupo: "letras", orden: 7, letra: "s", palabra: "sapo",
     titulo: "La s",
     pista: "Arranca arriba a la derecha, da la vuelta por encima hacia la izquierda, baja en diagonal y cierra la panza de abajo.",
     banda: "#e3f3e2", tinta: "#3f7a4a",
@@ -239,11 +239,20 @@ window.FICHAS = [
     ] },
 
   { id: "silabas-s", grupo: "letras", orden: 8,
-    titulo: "so, sa, se, su, si",
-    pista: "En desorden a propósito: es para leerlas, no para recitarlas.",
+    titulo: "sa, si, su, se, so",
+    pista: "En el orden de la cartilla, que no es a-e-i-o-u: es para leerlas, no para recitarlas.",
     banda: "#e3f3e2", tinta: "#3f7a4a",
     celda: [230, 150], repeticiones: 4, guia: true, tamano: 100,
-    lineas: ["so", "sa", "se", "su", "si"],
+    lineas: ["sa", "si", "su", "se", "so"],
+    trazos: [] },
+
+  { id: "frases-s", grupo: "letras", orden: 9,
+    titulo: "sapo mesa oso",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#e3f3e2", tinta: "#3f7a4a",
+    celda: [900, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["sapo mesa oso", "mi oso se asoma."],
     trazos: [] },
 
   /* ---------- sin modelo, sin nada que acertar ---------- */

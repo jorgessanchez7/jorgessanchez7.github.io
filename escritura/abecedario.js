@@ -62,7 +62,44 @@ window.ABECEDARIO = [
       { texto: "mimo a mamá.", foto: "img/lecciones/p/mimo-mama.jpg", ancha: true, rel: "3 / 2" },
       { texto: "amo a papá.", foto: "img/lecciones/p/amo-papa.jpg", ancha: true, rel: "3 / 2" }
     ],
-    hojas: ["letra-p", "silabas-p", "frases-p"] }
+    hojas: ["letra-p", "silabas-p", "frases-p"] },
 
-  /* Siguen: l, s, n. Cada una con sus propias fotos de la casa. */
+  /* La s va de tercera porque asi la pone la cartilla. Con ella ya se
+     puede leer casi todo lo de la casa: mesa, sopa, oso, masa, piso. */
+  { id: "s", letra: "s", mayuscula: "S", orden: 3,
+    banda: "#e3f3e2", tinta: "#3f7a4a",
+    comoSuena: "Es el silbido de la culebra: sssss. Se estira todo lo que uno quiera.",
+    aviso: [
+      "El nombre de la letra es «ese», pero eso no se dice al leer. Si uno dice «ese-a» le sale " +
+      "«esea». Se hace el silbido y se estira hasta la vocal, sin soltarlo: ssssa. Esta es de las " +
+      "fáciles, al revés de la p.",
+      "Ojo con «si» y «sí». Con tilde es el de responder que sí; sin tilde es el de «si quieres». " +
+      "En la frase de la mesa va con tilde, y vale la pena señalarla con el dedo."
+    ],
+    palabra: "sapo",
+    foto: "img/lecciones/s/sapo.jpg",
+    notaSilabas: "Van en el orden de la cartilla: sa, si, su, se, so. En desorden a propósito.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa: la s no tiene palabra de la familia. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["sa", "si", "su", "se", "so"],
+    palabras: ["sapo", "mesa", "oso", "sopa", "misa", "suma", "masa", "pesa", "piso"],
+    tarjetas: [
+      { palabra: "suma", foto: "img/lecciones/s/suma.jpg" },
+      { palabra: "oso", foto: "img/lecciones/s/oso.jpg" },
+      { palabra: "mesa", foto: "img/lecciones/s/mesa.jpg" }
+    ],
+    /* Las seis frases son las de la cartilla. Las imágenes las generó el
+       padre con ChatGPT y Gemini; el sapo y el oso son fotos reales. A la
+       del amasado se le recortó el lado izquierdo, que traía un tablero
+       escrito y un bulto de harina con letras. */
+    frases: [
+      { texto: "mi oso se asoma.", foto: "img/lecciones/s/oso-asoma.jpg", completa: true, rel: "5 / 2" },
+      { texto: "esa mesa sí pesa.", foto: "img/lecciones/s/mesa-pesa.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "ese oso pisa mi masa.", foto: "img/lecciones/s/oso-masa.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "mi mamá asa esa masa.", foto: "img/lecciones/s/mama-masa.jpg" },
+      { texto: "mamá puso mi sopa.", foto: "img/lecciones/s/mama-sopa.jpg" },
+      { texto: "papá pasa mi mesa paso a paso.", foto: "img/lecciones/s/papa-mesa.jpg" }
+    ],
+    hojas: ["letra-s", "silabas-s", "frases-s"] }
+
+  /* Siguen: l, n. Cada una con sus propias imágenes. */
 ];
