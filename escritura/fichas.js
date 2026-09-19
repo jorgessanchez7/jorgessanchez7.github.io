@@ -229,6 +229,23 @@ window.FICHAS = [
     lineas: ["papá mapa pipa", "mi papá me ama."],
     trazos: [] },
 
+  { id: "letra-s", grupo: "letras", orden: 7, letra: "s", palabra: "sopa",
+    titulo: "La s",
+    pista: "Arranca arriba a la derecha, da la vuelta por encima hacia la izquierda, baja en diagonal y cierra la panza de abajo.",
+    banda: "#e3f3e2", tinta: "#3f7a4a",
+    celda: [96, 130], repeticiones: 7, renglones: 2, guia: true,
+    trazos: [
+      { d: "M70 72 C66 55 30 52 30 69 C30 83 66 84 66 96 C66 113 28 111 26 95", ini: [70, 72], ang: 257 }
+    ] },
+
+  { id: "silabas-s", grupo: "letras", orden: 8,
+    titulo: "so, sa, se, su, si",
+    pista: "En desorden a propósito: es para leerlas, no para recitarlas.",
+    banda: "#e3f3e2", tinta: "#3f7a4a",
+    celda: [230, 150], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["so", "sa", "se", "su", "si"],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,
