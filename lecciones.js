@@ -10,6 +10,7 @@
 
   /* miniatura: dos repeticiones, la primera como modelo */
   function mini(f) {
+    if (f.lineas) return "";      /* las hojas de texto no van en rejilla */
     var n = Math.min(2, f.repeticiones);
     var W = f.celda[0] * n, H = f.celda[1];
     var s = '<svg viewBox="0 0 ' + W + " " + H + '" preserveAspectRatio="xMidYMid slice" ' +

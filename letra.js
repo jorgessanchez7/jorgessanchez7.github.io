@@ -9,9 +9,8 @@
   var LETRAS = window.ABECEDARIO || [];
 
   var DESTINOS = {
-    antonio: { href: "antonio.html", texto: "Antonio" },
-    chepe:   { href: "chepe.html",   texto: "Chepe" },
-    jorge:   { href: "jorge.html",   texto: "Jorge Nelson" }
+    global:   { href: "global.html",   texto: "Método global" },
+    silabico: { href: "silabico.html", texto: "Método silábico" }
   };
 
   function param(n) {
@@ -125,9 +124,18 @@
       cajaF.appendChild(div);
     });
 
-    /* la hoja para trazarla */
-    var hoja = document.getElementById("ir-hoja");
-    hoja.href = "trazos.html?hoja=" + L.hoja + "&de=" + encodeURIComponent(param("de"));
+    /* las hojas para escribirla */
+    var cajaH = document.getElementById("hojas");
+    var cola = "&de=" + encodeURIComponent(param("de"));
+    (L.hojas || []).forEach(function (id) {
+      var f = null, F = window.FICHAS || [];
+      for (var i = 0; i < F.length; i++) if (F[i].id === id) f = F[i];
+      var a = document.createElement("a");
+      a.className = "btn grande";
+      a.href = "trazos.html?hoja=" + id + cola;
+      a.textContent = (f ? f.titulo : id) + " \u2192";
+      cajaH.appendChild(a);
+    });
   }
 
   if (document.readyState === "loading") {

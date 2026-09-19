@@ -360,3 +360,6 @@
   line-height: 1;
 }
 .letra-ficha h3 em { font-style: normal; color: var(--suave); font-weight: 600; }
+
+.botonera { display: flex; flex-wrap: wrap; gap: 12px; }
+.botonera .btn.grande { text-decoration: none; }

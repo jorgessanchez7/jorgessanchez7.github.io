@@ -23,9 +23,8 @@
   ];
 
   var DESTINOS = {
-    antonio: { href: "antonio.html", texto: "Antonio" },
-    chepe:   { href: "chepe.html",   texto: "Chepe" },
-    jorge:   { href: "jorge.html",   texto: "Jorge Nelson" }
+    global:   { href: "global.html",   texto: "Método global" },
+    silabico: { href: "silabico.html", texto: "Método silábico" }
   };
 
   function param(n) {
@@ -73,6 +72,24 @@
       ' Z" fill="#d1495b" opacity=".85"/>';
   }
 
+  function escapar(t) {
+    return t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  /* Las hojas de sílabas y de frases no se dibujan con caminos: son
+     texto, con la misma letra de la pantalla. Así no hay que dibujar
+     a mano cada palabra, y el modelo y la copia punteada salen
+     exactamente iguales. */
+  function celdaTexto(f, modelo, linea) {
+    var base = '<text x="' + (f.celda[0] / 2) + '" y="' + (f.linea || 110) +
+      '" text-anchor="middle" font-family="Baloo 2, Trebuchet MS, sans-serif" ' +
+      'font-size="' + (f.tamano || 96) + '" font-weight="700" ';
+    return base + (modelo
+      ? 'fill="' + f.tinta + '"'
+      : 'fill="none" stroke="#c4b096" stroke-width="3" stroke-linejoin="round" ' +
+        'stroke-dasharray="9 10"') + ">" + escapar(linea) + "</text>";
+  }
+
   function celda(f, modelo, marcar) {
     var out = "";
     var varios = f.trazos.length > 1;
@@ -98,19 +115,22 @@
     return out;
   }
 
-  function guias(f, W, H, reps) {
+  function guias(f, W, H, reps, linea) {
     var s = '<svg class="guias" viewBox="0 0 ' + W + " " + H +
       '" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">';
     if (f.guia) {
       s += '<g fill="none" stroke="#e3d4bd" stroke-width="1.6">' +
-        '<path d="M0 55 H' + W + '" stroke-dasharray="8 8"/>' +
-        '<path d="M0 110 H' + W + '"/></g>';
+        '<path d="M0 ' + (f.cuerpo || 55) + " H" + W + '" stroke-dasharray="8 8"/>' +
+        '<path d="M0 ' + (f.linea || 110) + " H" + W + '"/></g>';
     }
     for (var i = 0; i < reps; i++) {
       /* en los trazos encadenados (zigzag, olas, bucles) la marca de
          salida va solo al principio: el camino es uno solo */
       var marcar = f.continuo ? i === 0 : true;
-      s += '<g transform="translate(' + i * f.celda[0] + ',0)">' + celda(f, i === 0, marcar) + "</g>";
+      var dentro = linea != null
+        ? celdaTexto(f, i === 0 && !f.sinModelo, linea)
+        : celda(f, i === 0, marcar);
+      s += '<g transform="translate(' + i * f.celda[0] + ',0)">' + dentro + "</g>";
     }
     return s + "</svg>";
   }
@@ -287,13 +307,15 @@
       caja.appendChild(b);
     });
 
-    /* los renglones */
+    /* los renglones. En las hojas de texto cada renglón es una
+       sílaba o una frase distinta; en las demás, todos iguales. */
     var hoja = document.getElementById("hoja");
-    for (var r = 0; r < f.renglones; r++) {
+    var filas = f.lineas ? f.lineas.length : f.renglones;
+    for (var r = 0; r < filas; r++) {
       var div = document.createElement("div");
       div.className = "renglon";
       div.style.background = f.banda;
-      div.innerHTML = guias(f, W, H, reps) +
+      div.innerHTML = guias(f, W, H, reps, f.lineas ? f.lineas[r] : null) +
         '<canvas class="lienzo"></canvas>' +
         '<button type="button" class="goma" aria-label="Borrar este renglón">' +
         '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 17 L13 6 a3 3 0 0 1 5 3 L12 19 Z" ' +

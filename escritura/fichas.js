@@ -178,6 +178,27 @@ window.FICHAS = [
         ini: [22, 55], ang: 90 }
     ] },
 
+  /* Sílabas y frases: no se dibujan con caminos, se escriben con
+     la misma letra de la pantalla. El modelo y la copia punteada
+     salen exactamente iguales y no hay que dibujar nada a mano. */
+
+  { id: "silabas-m", grupo: "letras", orden: 2,
+    titulo: "ma, me, mi, mo, mu",
+    pista: "El primero de cada renglón está pintado. Los demás se repasan encima.",
+    banda: "#fde6ea", tinta: "#c1516a",
+    celda: [230, 130], repeticiones: 4, renglones: 5, guia: true, tamano: 100,
+    lineas: ["ma", "me", "mi", "mo", "mu"],
+    trazos: [] },
+
+  { id: "frases-m", grupo: "letras", orden: 3,
+    titulo: "mi mamá me ama",
+    pista: "Repasa la frase entera, sin levantar el dedo entre letra y letra de la misma palabra.",
+    banda: "#fde6ea", tinta: "#c1516a",
+    celda: [1080, 150], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["mi mamá me ama.", "mi mamá me mima."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,

@@ -22,9 +22,9 @@ window.ABECEDARIO = [
     frases: [
       { texto: "mi mamá me ama.", foto: "img/lecciones/m/me-ama.jpg" },
       { texto: "amo a mi mamá.", foto: "img/lecciones/m/amo.jpg" },
-      { texto: "mamá me mima.", foto: "img/lecciones/m/me-mima.jpg" }
+      { texto: "mimo a mi mamá.", foto: "img/lecciones/m/mimo.jpg" }
     ],
-    hoja: "letra-m" }
+    hojas: ["letra-m", "silabas-m", "frases-m"] }
 
   /* Siguen: l, s, n, p. Cada una con sus propias fotos de la casa. */
 ];
