@@ -44,7 +44,7 @@ window.ABECEDARIO = [
        así toca leerlas y no recitarlas de memoria */
     notaSilabas: "Van en desorden a propósito: así toca leerlas y no recitar a-e-i-o-u de memoria.",
     silabas: ["pa", "pu", "pi", "po", "pe"],
-    palabras: ["papá", "mapa", "pipa", "puma", "pomo", "papa"],
+    palabras: ["papá", "mapa", "pipa", "puma", "pomo", "papa", "papo", "pepe"],
     tarjetas: [
       { palabra: "pipa", foto: "img/lecciones/p/pipa.jpg" },
       { palabra: "puma", foto: "img/lecciones/p/puma.jpg" },
