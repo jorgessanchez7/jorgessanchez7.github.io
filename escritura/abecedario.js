@@ -132,7 +132,8 @@ window.ABECEDARIO = [
       { texto: "mi mula pasa la loma.", foto: "img/lecciones/l/mula-loma.jpg", completa: true, rel: "5 / 2" },
       { texto: "mi mamá sale a la pila.", foto: "img/lecciones/l/mama-pila.jpg" },
       { texto: "esa lima sí pule.", foto: "img/lecciones/l/lima-pule.jpg" },
-      { texto: "papá pela ese palo.", foto: "img/lecciones/l/papa-palo.jpg" }
+      { texto: "papá pela ese palo.", foto: "img/lecciones/l/papa-palo.jpg" },
+      { texto: "mi paloma sale sola a la loma.", foto: "img/lecciones/l/paloma-loma.jpg", completa: true, rel: "5 / 2" }
     ],
     hojas: ["letra-l", "silabas-l", "frases-l"] }
 
