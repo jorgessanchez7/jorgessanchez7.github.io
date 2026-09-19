@@ -22,7 +22,8 @@ window.ABECEDARIO = [
     frases: [
       { texto: "mi mamá me ama.", foto: "img/lecciones/m/me-ama.jpg" },
       { texto: "amo a mi mamá.", foto: "img/lecciones/m/amo.jpg" },
-      { texto: "mimo a mi mamá.", foto: "img/lecciones/m/mimo.jpg" }
+      { texto: "mimo a mi mamá.", foto: "img/lecciones/m/mimo.jpg" },
+      { texto: "mi mamá me mima.", foto: "img/lecciones/m/me-mima.jpg" }
     ],
     hojas: ["letra-m", "silabas-m", "frases-m"] }
 

@@ -302,7 +302,7 @@
 .palabrota:hover { transform: translateY(-3px); }
 
 /* ---------- frases con foto ---------- */
-.frases { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+.frases { display: grid; grid-template-columns: repeat(auto-fit, minmax(212px, 1fr)); gap: 18px; }
 .frase {
   background: var(--crema);
   border-radius: 18px;
@@ -311,7 +311,9 @@
   display: flex;
   flex-direction: column;
 }
-.frase img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+/* cuadradas: las fotos de la casa vienen unas apaisadas y otras
+   de pie, y el cuadrado es el que menos cara recorta */
+.frase img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; }
 .renglon-frase {
   font-family: "Baloo 2", "Trebuchet MS", sans-serif;
   font-size: clamp(1.1rem, 2.6vw, 1.45rem);
