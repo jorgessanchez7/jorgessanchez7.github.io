@@ -82,7 +82,7 @@
      exactamente iguales. */
   function celdaTexto(f, modelo, linea) {
     var base = '<text x="' + (f.celda[0] / 2) + '" y="' + (f.linea || 110) +
-      '" text-anchor="middle" font-family="Baloo 2, Trebuchet MS, sans-serif" ' +
+      '" text-anchor="middle" font-family="Quicksand, Trebuchet MS, sans-serif" ' +
       'font-size="' + (f.tamano || 96) + '" font-weight="700" ';
     return base + (modelo
       ? 'fill="' + f.tinta + '"'

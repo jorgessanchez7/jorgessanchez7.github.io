@@ -3,6 +3,12 @@
    Se carga después de lectura.css.
    ============================================================ */
 
+/* Toda la tipografía de estas páginas es Quicksand, no Baloo 2.
+   La «a» de Baloo lleva una colita; la de Quicksand es el círculo
+   con el palito al lado, que es la que les están enseñando en casa.
+   Que el niño vea dos «a» distintas es justo lo que no queremos. */
+h1, h2, h3, .hero h1 { font-family: "Quicksand", "Trebuchet MS", sans-serif; font-weight: 700; }
+
 /* ---------- encabezados de cada niño ---------- */
 .hero.antonio { background: linear-gradient(160deg, #dff0f6 0%, #c9e4f2 55%, #b9dcef 100%); border-bottom-color: #9fcde5; }
 .hero.chepe   { background: linear-gradient(160deg, #e4f3e0 0%, #cfe9c8 55%, #c1e2b8 100%); border-bottom-color: #a5d29a; }
@@ -92,7 +98,7 @@
 }
 .muestra[hidden] { display: none; }
 .glifo-grande {
-  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
+  font-family: "Quicksand", "Trebuchet MS", sans-serif;
   font-size: 4.6rem;
   font-weight: 700;
   line-height: 1;
@@ -110,7 +116,7 @@
   font-weight: 700;
   color: #7a4a32;
   cursor: pointer;
-  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
+  font-family: "Quicksand", "Trebuchet MS", sans-serif;
 }
 .muestra .palabra b { color: #d4742f; }
 
@@ -171,7 +177,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
+  font-family: "Quicksand", "Trebuchet MS", sans-serif;
   font-size: 3rem;
   font-weight: 700;
   color: #fff;
@@ -224,9 +230,10 @@
 .hero-letra .lead, .hero-letra .eyebrow, .hero-letra .volver { color: #6b5b55; }
 
 /* ---------- la palabra clave con su foto ---------- */
+/* la foto no puede comerse la letra: el texto manda */
 .clave {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
   gap: 26px;
   align-items: center;
   background: #fff;
@@ -243,8 +250,8 @@
 }
 .clave-texto { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
 .glifo-letra {
-  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
-  font-size: 6rem;
+  font-family: "Quicksand", "Trebuchet MS", sans-serif;
+  font-size: clamp(5rem, 11vw, 8.5rem);
   line-height: 1;
   font-weight: 700;
   color: var(--letra);
@@ -255,8 +262,8 @@
   transition: transform .14s ease;
 }
 .palabra-clave {
-  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
-  font-size: 3.2rem;
+  font-family: "Quicksand", "Trebuchet MS", sans-serif;
+  font-size: clamp(2.6rem, 6vw, 4.6rem);
   line-height: 1.1;
   font-weight: 700;
   color: #4a4038;
@@ -270,9 +277,10 @@
 
 /* ---------- sílabas ---------- */
 .silabario { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.silabon { padding: 26px 4px; }
 .silabon {
-  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
-  font-size: clamp(1.4rem, 4.5vw, 2.4rem);
+  font-family: "Quicksand", "Trebuchet MS", sans-serif;
+  font-size: clamp(2rem, 6vw, 3.4rem);
   font-weight: 700;
   color: #4a4038;
   background: var(--letra-suave);
@@ -287,14 +295,14 @@
 /* ---------- palabras ---------- */
 .palabrero { display: flex; flex-wrap: wrap; gap: 12px; }
 .palabrota {
-  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
-  font-size: clamp(1.3rem, 3.5vw, 1.9rem);
+  font-family: "Quicksand", "Trebuchet MS", sans-serif;
+  font-size: clamp(1.8rem, 4.6vw, 2.7rem);
   font-weight: 700;
   color: #4a4038;
   background: #fff;
   border: 0;
   border-radius: 999px;
-  padding: 12px 26px;
+  padding: 14px 30px;
   box-shadow: var(--sombra);
   cursor: pointer;
   transition: transform .14s ease;
@@ -320,13 +328,13 @@
    de pie, y el cuadrado es el que menos cara recorta */
 .frase img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; }
 .renglon-frase {
-  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
-  font-size: clamp(1.1rem, 2.6vw, 1.45rem);
+  font-family: "Quicksand", "Trebuchet MS", sans-serif;
+  font-size: clamp(1.45rem, 3.2vw, 2.1rem);
   font-weight: 700;
   color: #4a4038;
   background: none;
   border: 0;
-  padding: 14px 16px 18px;
+  padding: 16px 18px 20px;
   cursor: pointer;
   text-align: left;
   flex: 1;
@@ -362,8 +370,7 @@
 
 @media (max-width: 700px) {
   .clave { grid-template-columns: 1fr; gap: 14px; }
-  .glifo-letra { font-size: 4.4rem; }
-  .palabra-clave { font-size: 2.4rem; }
+  .clave img { order: 2; }
   .silabario { grid-template-columns: repeat(5, 1fr); gap: 6px; }
   .silabon { padding: 14px 2px; border-radius: 12px; }
 }
@@ -371,8 +378,8 @@
 /* tarjeta de una lección de letra */
 .letra-ficha .vista { display: flex; align-items: center; justify-content: center; }
 .glifo-mini {
-  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
-  font-size: 3.4rem;
+  font-family: "Quicksand", "Trebuchet MS", sans-serif;
+  font-size: 4.2rem;
   font-weight: 700;
   line-height: 1;
 }
