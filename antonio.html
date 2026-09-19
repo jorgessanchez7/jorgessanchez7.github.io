@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Antonio · Lecciones de lectura</title>
+<meta name="description" content="Modelado sin exigencia: nada que producir y nada que acertar.">
+<link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="lectura.css">
+<link rel="stylesheet" href="escritura.css">
+</head>
+<body>
+
+<header class="hero antonio">
+  <div class="envoltura">
+    <a class="volver" href="lecciones.html">&#8592; Lecciones</a>
+    <p class="eyebrow">Modelado sin exigencia</p>
+    <h1>Antonio</h1>
+    <p class="lead">Aquí no hay nada que producir y nada que acertar. El adulto usa el material
+       delante de él; si mira, ya pasó lo que tenía que pasar.</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="envoltura">
+    <h2>La pizarra libre</h2>
+    <p class="sub">Sin modelo, sin camino, sin punto rojo. Se raya con el dedo y se borra.</p>
+    <div class="hojas" id="libre"></div>
+  </div>
+</section>
+
+<section class="rutina">
+  <div class="envoltura">
+    <div class="nota">
+      <h3>Las hojas de trazos también sirven, pero al revés</h3>
+      <p>Las de Chepe se pueden abrir aquí. La diferencia es quién traza: <strong>usted pasa
+         el dedo y él mira</strong>. Si estira la mano, bienvenido; si no, la hoja se pasó igual
+         y no faltó nada.</p>
+      <p>Lo que no se hace es pedirle que lo repita ni corregirle el trazo.</p>
+    </div>
+    <div class="hojas" id="trazos" style="margin-top:20px"></div>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <div class="nota">
+      <h3>Lo que falta construir, y por qué va a ser distinto</h3>
+      <p>La cartilla de Chepe arranca pidiendo que el niño repita el sonido. Esa puerta está
+         cerrada desde la primera página para un niño que no habla, así que Antonio no va por
+         ahí: va por el <strong>método global</strong>, donde la palabra entera se reconoce de un
+         golpe y se empareja con su foto, sin tener que pronunciar nada.</p>
+      <p>El material existe, es en español y es reutilizable: los cuadernillos de
+         lectoescritura global de <strong>ARASAAC</strong> (Gobierno de Aragón), con licencia
+         Creative Commons. Hay uno hecho justo con las consonantes del plan de la casa.</p>
+      <p>Falta el paso difícil, que no lo resuelve ningún libro: <em>cómo responde</em>. Mientras
+         no tenga una forma confiable de señalar o escoger, lo que haga en una pantalla no dice
+         qué sabe — ni aquí ni en el colegio. Por eso esta página, por ahora, no le pregunta nada.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="envoltura">
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="lecciones.html">Lecciones de lectura</a>
+      <a href="lecturas.html">Las lecturas</a>
+    </nav>
+    <p>Hecho en casa, para leer en casa.</p>
+  </div>
+</footer>
+
+<script src="escritura/fichas.js"></script>
+<script src="lecciones.js"></script>
+<script>
+  LECCIONES.rejilla("libre", "libre", "antonio");
+  LECCIONES.rejilla("trazos", "trazos", "antonio");
+</script>
+</body>
+</html>

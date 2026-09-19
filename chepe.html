@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chepe · Lecciones de lectura</title>
+<meta name="description" content="Los trazos y las vocales, al modo de Nacho lee.">
+<link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="lectura.css">
+<link rel="stylesheet" href="escritura.css">
+</head>
+<body>
+
+<header class="hero chepe">
+  <div class="envoltura">
+    <a class="volver" href="lecciones.html">&#8592; Lecciones</a>
+    <p class="eyebrow">Cinco minutos</p>
+    <h1>Chepe</h1>
+    <p class="lead">El orden de la cartilla: primero la mano suelta, después las vocales,
+       y solo entonces juntar letras.</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="envoltura">
+    <h2>Los trazos</h2>
+    <p class="sub">Antes de escribir una letra hay que poder hacer una raya derecha, una curva
+       y una rueda. Esto es eso, y no es perder el tiempo.</p>
+    <div class="hojas" id="trazos"></div>
+  </div>
+</section>
+
+<section class="rutina">
+  <div class="envoltura">
+    <h2>Las vocales</h2>
+    <p class="sub">Una por semana. Se traza, se dice el sonido y se busca la palabra del dibujo.
+       Toque la letra grande de la hoja para oírla.</p>
+    <div class="hojas" id="vocales"></div>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <h2>Los sonidos</h2>
+    <p class="sub">Para oír cómo suena cada letra y cómo se pega a la vocal.</p>
+    <div class="hojas">
+      <a class="ficha" href="letras.html">
+        <span class="vista">
+          <svg viewBox="0 0 180 92" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="180" height="92" fill="#e3f3e2"/>
+            <text x="90" y="62" text-anchor="middle" font-family="Baloo 2, sans-serif"
+                  font-size="38" font-weight="700" fill="#3f7a4a">ma me mi</text>
+          </svg>
+        </span>
+        <h3>Cómo suena cada letra</h3>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="rutina">
+  <div class="envoltura">
+    <div class="nota verde">
+      <h3>Por qué en este orden y no en el del abecedario</h3>
+      <p>La cartilla empieza por <strong>m, p, s, l, n</strong>. En casa vamos por
+         <strong>m, l, s, n, p</strong>: son las que se pueden estirar con la voz
+         (<em>mmm</em>, <em>lll</em>, <em>sss</em>, <em>nnn</em>), y eso hace mucho más fácil
+         pegarlas a la vocal sin que quede un «me» de sobra en la mitad.</p>
+      <p>La <strong>p</strong> se va al final porque es un golpe seco: no se puede sostener.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="envoltura">
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="lecciones.html">Lecciones de lectura</a>
+      <a href="lecturas.html">Las lecturas</a>
+    </nav>
+    <p>Hecho en casa, para leer en casa.</p>
+  </div>
+</footer>
+
+<script src="escritura/fichas.js"></script>
+<script src="lecciones.js"></script>
+<script>
+  LECCIONES.rejilla("trazos", "trazos", "chepe");
+  LECCIONES.rejilla("vocales", "vocales", "chepe");
+</script>
+</body>
+</html>

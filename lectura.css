@@ -131,3 +131,131 @@ footer a:hover { text-decoration: underline; }
   .hero { padding: 32px 0 28px; }
   .rejilla { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
 }
+
+/* ============================================================
+   Inicio con dos puertas
+   ============================================================ */
+.hero .volver {
+  display: inline-block;
+  margin-bottom: 14px;
+  color: #b9713f;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: .92rem;
+}
+.hero .volver:hover { text-decoration: underline; }
+
+.puertas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 22px;
+}
+.puerta {
+  display: flex;
+  flex-direction: column;
+  background: var(--tarjeta);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--sombra);
+  text-decoration: none;
+  color: inherit;
+  border-top: 7px solid var(--c, var(--acento));
+  transition: transform .16s ease, box-shadow .16s ease;
+}
+.puerta:hover { transform: translateY(-5px); box-shadow: 0 18px 34px rgba(58, 51, 48, .2); }
+.puerta .icono {
+  display: block;
+  background: #fbf6ea;
+  padding: 18px 10px 6px;
+}
+.puerta .icono svg { width: 100%; max-height: 160px; display: block; }
+.puerta .datos { padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.puerta h2 { margin: 0; font-size: 1.5rem; color: #7a4a32; }
+.puerta p { margin: 0; color: var(--suave); font-weight: 500; flex: 1; }
+.puerta .entrar {
+  align-self: flex-start;
+  margin-top: 6px;
+  background: var(--c, var(--acento));
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-weight: 700;
+  font-size: .92rem;
+}
+
+/* ============================================================
+   Las letras
+   ============================================================ */
+.letras {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px;
+}
+.letras.silabarios { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+
+.letra {
+  background: var(--tarjeta);
+  border: 0;
+  border-radius: 18px;
+  box-shadow: var(--sombra);
+  padding: 18px 12px;
+  font: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transition: transform .14s ease;
+}
+.letra.vocal { cursor: pointer; }
+.letra.vocal:hover { transform: translateY(-4px); }
+.glifo {
+  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
+  font-size: 2.9rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #7a4a32;
+  letter-spacing: .02em;
+}
+.glifo-boton {
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  transition: transform .14s ease;
+}
+.glifo-boton:hover { transform: scale(1.06); }
+.letra .pista { font-size: .84rem; color: var(--suave); font-weight: 600; text-align: center; }
+/* las cinco en una sola fila: así se lee ma-me-mi-mo-mu de corrido */
+.silabas { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; width: 100%; }
+.silaba {
+  border: 2px solid #f0d3ae;
+  background: #fffdf6;
+  border-radius: 999px;
+  padding: 8px 4px;
+  font: inherit;
+  font-weight: 700;
+  font-size: .98rem;
+  color: #7a4a32;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease;
+}
+.silaba:hover { background: #fdf0d8; }
+.sonando, .silaba.sonando { background: var(--acento) !important; border-color: var(--acento); color: #fff; }
+.letra.vocal.sonando .glifo, .glifo-boton.sonando .glifo { color: #fff; }
+
+.aviso-ingles {
+  background: #fff;
+  border-left: 6px solid var(--azul);
+  border-radius: 14px;
+  padding: 20px 24px;
+  box-shadow: var(--sombra);
+}
+.aviso-ingles h3 { margin: 0 0 8px; font-size: 1.15rem; color: #7a4a32; }
+.aviso-ingles p { margin: 0; color: var(--suave); font-weight: 500; }
+
+@media (max-width: 560px) {
+  .puerta .icono svg { max-height: 120px; }
+  .letras { grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: 12px; }
+  .glifo { font-size: 2.3rem; }
+}

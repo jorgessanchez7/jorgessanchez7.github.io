@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jorge Nelson · Lecciones de lectura</title>
+<meta name="description" content="Los mismos trazos, sin apuro y sin llegar a ninguna parte.">
+<link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="lectura.css">
+<link rel="stylesheet" href="escritura.css">
+</head>
+<body>
+
+<header class="hero jorge">
+  <div class="envoltura">
+    <a class="volver" href="lecciones.html">&#8592; Lecciones</a>
+    <p class="eyebrow">Lo que dure, y ya</p>
+    <h1>Jorge Nelson</h1>
+    <p class="lead">Las mismas hojas que Chepe, pero aquí el objetivo no es que le queden bien.
+       Es que agarre el gusto de rayar donde hay algo dibujado.</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="envoltura">
+    <h2>Los trazos</h2>
+    <p class="sub">Empiece por las ruedas y las montañas, que son las más divertidas.
+       Las rayas derechas son las más difíciles, aunque parezcan las más fáciles.</p>
+    <div class="hojas" id="trazos"></div>
+  </div>
+</section>
+
+<section class="rutina">
+  <div class="envoltura">
+    <h2>Si quiere probar las vocales</h2>
+    <p class="sub">Sin insistir. Si se sale del camino, está bien: la hoja no corrige.</p>
+    <div class="hojas" id="vocales"></div>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <div class="nota">
+      <h3>Qué esperar a esta edad</h3>
+      <p>Que no siga el camino. Que raye por encima. Que quiera cambiar de color cada
+         dos segundos. Todo eso <em>es</em> el ejercicio: el control de la mano se construye
+         rayando, no acertando.</p>
+      <p>La señal de que hay que parar no es que le quede mal. Es que se aburra.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="envoltura">
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="lecciones.html">Lecciones de lectura</a>
+      <a href="lecturas.html">Las lecturas</a>
+    </nav>
+    <p>Hecho en casa, para leer en casa.</p>
+  </div>
+</footer>
+
+<script src="escritura/fichas.js"></script>
+<script src="lecciones.js"></script>
+<script>
+  LECCIONES.rejilla("trazos", "trazos", "jorge");
+  LECCIONES.rejilla("vocales", "vocales", "jorge");
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Hoja de trazos · Lecciones de lectura</title>
+<meta name="description" content="Hojas para trazar con el dedo o con el mouse.">
+<link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="lectura.css">
+<link rel="stylesheet" href="escritura.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="envoltura">
+    <a class="volver" id="volver" href="lecciones.html">&#8592; Lecciones</a>
+    <p class="eyebrow">Se traza con el dedo o con el mouse</p>
+    <h1 id="titulo">Hoja de trazos</h1>
+    <p class="lead" id="pista"></p>
+  </div>
+</header>
+
+<div class="barra">
+  <div class="envoltura">
+    <div id="crayones"></div>
+    <button type="button" class="btn suave" id="borrar-todo">Borrar la hoja</button>
+  </div>
+</div>
+
+<main>
+  <section>
+    <div class="envoltura">
+      <div class="muestra" id="muestra" hidden></div>
+      <div id="hoja"></div>
+      <nav id="saltos"></nav>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="envoltura">
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="lecciones.html">Lecciones de lectura</a>
+      <a href="lecturas.html">Las lecturas</a>
+    </nav>
+    <p>No hay respuesta correcta en esta hoja. Se traza, se borra y se vuelve a empezar.</p>
+  </div>
+</footer>
+
+<script src="escritura/fichas.js"></script>
+<script src="trazos.js"></script>
+</body>
+</html>

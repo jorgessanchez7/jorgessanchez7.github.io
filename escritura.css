@@ -1,0 +1,212 @@
+/* ============================================================
+   escritura.css - hojas de trazado y páginas de los tres niños
+   Se carga después de lectura.css.
+   ============================================================ */
+
+/* ---------- encabezados de cada niño ---------- */
+.hero.antonio { background: linear-gradient(160deg, #dff0f6 0%, #c9e4f2 55%, #b9dcef 100%); border-bottom-color: #9fcde5; }
+.hero.chepe   { background: linear-gradient(160deg, #e4f3e0 0%, #cfe9c8 55%, #c1e2b8 100%); border-bottom-color: #a5d29a; }
+.hero.jorge   { background: linear-gradient(160deg, #fdeedd 0%, #fbdcc0 55%, #f9d2ac 100%); border-bottom-color: #efbb8a; }
+.hero.antonio h1, .hero.chepe h1, .hero.jorge h1 { color: #3c4a52; }
+.hero.antonio .lead, .hero.chepe .lead, .hero.jorge .lead { color: #5a6a72; }
+.hero.antonio .eyebrow, .hero.chepe .eyebrow, .hero.jorge .eyebrow { color: #5d7a88; }
+.hero.antonio .volver, .hero.chepe .volver, .hero.jorge .volver { color: #4c6b7a; }
+
+/* ---------- la hoja ---------- */
+.barra {
+  position: sticky;
+  top: 0;
+  z-index: 8;
+  background: rgba(253, 246, 234, .94);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid #f0e2cc;
+  padding: 10px 0;
+}
+.barra .envoltura {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+#crayones { display: flex; gap: 8px; }
+.crayon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 6px rgba(58, 51, 48, .25);
+  cursor: pointer;
+  padding: 0;
+  transition: transform .12s ease;
+}
+.crayon:hover { transform: scale(1.08); }
+.crayon.puesto { transform: scale(1.18); box-shadow: 0 0 0 3px #3a3330; }
+.barra .btn { padding: 8px 16px; font-size: .92rem; }
+
+#hoja { display: flex; flex-direction: column; gap: 16px; }
+
+.renglon {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 2px rgba(58, 51, 48, .07);
+}
+.renglon .guias { display: block; width: 100%; height: auto; }
+.renglon .lienzo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none;          /* sin esto el dedo arrastra la página */
+  cursor: crosshair;
+}
+.renglon .goma {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 34px;
+  height: 34px;
+  padding: 5px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .82);
+  color: #8a7f74;
+  cursor: pointer;
+  opacity: .5;
+  transition: opacity .15s ease;
+}
+.renglon:hover .goma { opacity: 1; }
+.renglon .goma svg { width: 100%; height: 100%; display: block; }
+
+/* ---------- la muestra grande de la vocal ---------- */
+.muestra {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+  background: #fff;
+  border-radius: 18px;
+  padding: 16px 24px;
+  box-shadow: var(--sombra);
+  margin-bottom: 20px;
+}
+.muestra[hidden] { display: none; }
+.glifo-grande {
+  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
+  font-size: 4.6rem;
+  font-weight: 700;
+  line-height: 1;
+  border: 0;
+  background: none;
+  padding: 0 6px;
+  cursor: pointer;
+  transition: transform .14s ease;
+}
+.glifo-grande:hover { transform: scale(1.08); }
+.muestra .dibujo { width: 84px; height: 84px; }
+.muestra .dibujo svg { width: 100%; height: 100%; display: block; }
+.muestra .palabra {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #7a4a32;
+  cursor: pointer;
+  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
+}
+.muestra .palabra b { color: #d4742f; }
+
+/* ---------- anterior / siguiente ---------- */
+#saltos {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 26px;
+}
+.salto {
+  background: #fff;
+  border-radius: 999px;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #7a4a32;
+  font-weight: 700;
+  box-shadow: var(--sombra);
+}
+.salto:hover { filter: brightness(.97); }
+.salto.der { margin-left: auto; }
+
+/* ---------- la rejilla de hojas en la página de cada niño ---------- */
+.hojas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+  gap: 16px;
+}
+.ficha {
+  background: var(--tarjeta);
+  border-radius: 16px;
+  box-shadow: var(--sombra);
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform .16s ease, box-shadow .16s ease;
+}
+.ficha:hover { transform: translateY(-4px); box-shadow: 0 16px 30px rgba(58, 51, 48, .2); }
+.ficha .vista { display: block; height: 92px; overflow: hidden; }
+.ficha .vista svg { width: 100%; height: 100%; display: block; }
+.ficha h3 { margin: 0; padding: 12px 14px 14px; font-size: 1rem; }
+
+/* ---------- las tres puertas de los niños ---------- */
+.puerta .retrato {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fbf6ea;
+  padding: 20px 10px 8px;
+}
+.puerta .retrato .inicial {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--c, var(--acento));
+}
+.puerta .como {
+  margin: 0;
+  font-size: .82rem;
+  font-weight: 700;
+  color: #8a7f74;
+  background: #f6efe2;
+  border-radius: 999px;
+  padding: 4px 12px;
+  align-self: flex-start;
+}
+
+/* ---------- nota del método ---------- */
+.nota {
+  background: #fff;
+  border-left: 6px solid var(--azul);
+  border-radius: 14px;
+  padding: 20px 24px;
+  box-shadow: var(--sombra);
+}
+.nota h3 { margin: 0 0 8px; font-size: 1.15rem; color: #7a4a32; }
+.nota p { margin: 0 0 10px; color: var(--suave); font-weight: 500; }
+.nota p:last-child { margin-bottom: 0; }
+.nota.verde { border-left-color: var(--verde); }
+
+@media (max-width: 560px) {
+  .glifo-grande { font-size: 3.4rem; }
+  .muestra { gap: 14px; padding: 12px 16px; }
+  .muestra .dibujo { width: 62px; height: 62px; }
+  .muestra .palabra { font-size: 1.35rem; }
+  .crayon { width: 30px; height: 30px; }
+  .hojas { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+  .renglon .goma { opacity: 1; }
+}
