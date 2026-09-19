@@ -44,27 +44,28 @@ window.ABECEDARIO = [
        así toca leerlas y no recitarlas de memoria */
     notaSilabas: "Van en desorden a propósito: así toca leerlas y no recitar a-e-i-o-u de memoria.",
     silabas: ["pa", "pu", "pi", "po", "pe"],
-    palabras: ["papá", "mapa", "pipa", "puma", "papa"],
+    palabras: ["papá", "mapa", "pipa", "puma", "pomo", "papa"],
     tarjetas: [
       { palabra: "pipa", foto: "img/lecciones/p/pipa.jpg" },
       { palabra: "puma", foto: "img/lecciones/p/puma.jpg" },
       { palabra: "mapa", dibujo:
-        '<g stroke-linejoin="round">' +
-        '<path d="M8 24 L36 15 L64 25 L92 16 L92 78 L64 87 L36 77 L8 86 Z" fill="#fff6e3" stroke="#a08a6a" stroke-width="3"/>' +
-        '<path d="M36 15 L36 77 M64 25 L64 87" fill="none" stroke="#dcc9a6" stroke-width="2.5"/>' +
-        '<path d="M16 68 C30 60 26 46 42 42 C56 38 54 56 68 52" fill="none" stroke="#3f7fa6" ' +
-        'stroke-width="3.5" stroke-linecap="round" stroke-dasharray="7 6"/>' +
-        '<circle cx="72" cy="40" r="11" fill="#e2725b"/>' +
-        '<path d="M72 58 L79 46 L65 46 Z" fill="#e2725b"/>' +
-        '<circle cx="72" cy="40" r="4" fill="#fff"/>' +
-        '<path d="M15 32 h13 M15 40 h19" fill="none" stroke="#dcc9a6" stroke-width="2.5" stroke-linecap="round"/>' +
-        "</g>" }
+        /* Colombia, dibujada con sus coordenadas de verdad.
+           El mapa de la cartilla es dibujo de Nacho y no se copia. */
+        '<rect width="100" height="100" fill="none"/>' +
+        '<path d="M57.1 5 L60.6 8.8 L53 13.1 L55.3 22.8 L61.2 34.6 L79.5 38.4 L82.5 39 ' +
+        'L80.1 57.3 L83 61.6 L68.3 66.4 L70.7 76.1 L67.1 85.8 L66.5 95 L49.4 84.8 ' +
+        'L35.8 70.2 L21.7 68.1 L15.2 64.8 L22.9 50.8 L23.4 40 L20.5 33.6 L24.6 26 ' +
+        'L26.4 26 L34.1 21.7 L42.3 12.5 L52.4 9.9 Z" ' +
+        'fill="#8fbf4a" stroke="#4f7a2a" stroke-width="2.5" stroke-linejoin="round"/>' +
+        '<circle cx="43" cy="48" r="3.4" fill="#e2725b" stroke="#a83f2e" stroke-width="1.6"/>' }
     ],
     frases: [
-      { texto: "mi papá me ama.", foto: "img/lecciones/p/me-ama.jpg" },
-      { texto: "mimo a mi papá.", foto: "img/lecciones/p/mimo.jpg" },
+      { texto: "mi papá me ama.", foto: "img/lecciones/p/todos.jpg", completa: true, rel: "5 / 2" },
       { texto: "mi papá me mima.", foto: "img/lecciones/p/me-mima.jpg" },
-      { texto: "amo a mi papá.", foto: "img/lecciones/p/amo.jpg" }
+      { texto: "amo a mi papá.", foto: "img/lecciones/p/me-ama.jpg" },
+      { texto: "mimo a mi papá.", foto: "img/lecciones/p/mimo.jpg" },
+      { texto: "mimo a mamá.", foto: "img/lecciones/p/mimo-mama.jpg", ancha: true, rel: "3 / 2" },
+      { texto: "amo a papá.", foto: "img/lecciones/p/amo-papa.jpg", ancha: true, rel: "3 / 2" }
     ],
     hojas: ["letra-p", "silabas-p", "frases-p"] }
 

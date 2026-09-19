@@ -302,7 +302,12 @@
 .palabrota:hover { transform: translateY(-3px); }
 
 /* ---------- frases con foto ---------- */
-.frases { display: grid; grid-template-columns: repeat(auto-fit, minmax(212px, 1fr)); gap: 18px; }
+/* seis columnas: una tarjeta normal ocupa dos, una ancha ocupa tres.
+   Así caben tres cuadradas por fila o dos anchas, sin huecos. */
+.frases { display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; }
+.frase { grid-column: span 2; }
+.frase.ancha { grid-column: span 3; }
+.frase.completa { grid-column: 1 / -1; }
 .frase {
   background: var(--crema);
   border-radius: 18px;
@@ -344,6 +349,16 @@
 .renglon-frase.sonando b, .palabra-clave.sonando b { color: #fff; }
 
 .btn.grande { font-size: 1.15rem; padding: 14px 28px; background: var(--letra); }
+
+@media (max-width: 860px) {
+  .frases { grid-template-columns: repeat(2, 1fr); }
+  .frase, .frase.ancha { grid-column: span 1; }
+  .frase.completa { grid-column: 1 / -1; }
+  .frase.ancha img { aspect-ratio: 3 / 2 !important; }
+}
+@media (max-width: 520px) {
+  .frases { grid-template-columns: 1fr; }
+}
 
 @media (max-width: 700px) {
   .clave { grid-template-columns: 1fr; gap: 14px; }

@@ -151,11 +151,14 @@
     var cajaF = document.getElementById("frases");
     L.frases.forEach(function (f) {
       var div = document.createElement("div");
-      div.className = "frase";
+      /* algunas fotos de familia no caben en un cuadrado sin dejar
+         a alguien por fuera: esas van anchas y con su propia forma */
+      div.className = "frase" + (f.ancha ? " ancha" : "") + (f.completa ? " completa" : "");
       var img = document.createElement("img");
       img.src = f.foto;
       img.alt = f.texto;
       img.loading = "lazy";
+      if (f.rel) img.style.aspectRatio = f.rel;
       div.appendChild(img);
       div.appendChild(boton("renglon-frase", pintar(f.texto, L.letra), f.texto));
       cajaF.appendChild(div);
