@@ -199,6 +199,36 @@ window.FICHAS = [
     lineas: ["mi mamá me ama.", "mi mamá me mima."],
     trazos: [] },
 
+  /* ---------- la p ----------
+     Va de un solo trazo, como la m: baja el palito hasta el rabito,
+     vuelve a subir por encima de lo mismo y cierra la barriga. */
+
+  { id: "letra-p", grupo: "letras", orden: 4, letra: "p", palabra: "papá",
+    titulo: "La p",
+    pista: "Baja el palito largo, sube por encima de lo mismo y haz la barriga hacia la derecha.",
+    banda: "#dcecf8", tinta: "#2f6690",
+    celda: [96, 150], repeticiones: 7, renglones: 2, guia: true,
+    trazos: [
+      { d: "M24 55 L24 128 L24 56 A21 26 0 1 1 24 108", ini: [24, 55], ang: 90 }
+    ] },
+
+  { id: "silabas-p", grupo: "letras", orden: 5,
+    titulo: "pa, pu, pi, po, pe",
+    pista: "En este orden, no en el de siempre: es para leerlas, no para recitarlas.",
+    banda: "#dcecf8", tinta: "#2f6690",
+    celda: [230, 150], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["pa", "pu", "pi", "po", "pe"],
+    trazos: [] },
+
+  { id: "frases-p", grupo: "letras", orden: 6,
+    titulo: "papá mapa pipa",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#dcecf8", tinta: "#2f6690",
+    celda: [900, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["papá mapa pipa", "mi papá me ama."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,

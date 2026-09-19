@@ -81,7 +81,15 @@
 
     document.getElementById("titulo").textContent = "La " + L.letra;
     document.getElementById("como-suena").textContent = L.comoSuena;
-    document.getElementById("aviso").textContent = L.aviso;
+
+    /* el aviso puede ser una línea o varias */
+    var cajaA = document.getElementById("aviso");
+    var avisos = [].concat(L.aviso || []);
+    avisos.forEach(function (t) {
+      var pp = document.createElement("p");
+      pp.textContent = t;
+      cajaA.appendChild(pp);
+    });
 
     /* la palabra grande, con su foto */
     var foto = document.getElementById("foto-clave");
@@ -99,6 +107,7 @@
     });
 
     /* las sílabas */
+    if (L.notaSilabas) document.getElementById("nota-silabas").textContent = L.notaSilabas;
     var cajaS = document.getElementById("silabas");
     L.silabas.forEach(function (s) {
       cajaS.appendChild(boton("silabon", pintar(s, L.letra), s));
@@ -109,6 +118,34 @@
     L.palabras.forEach(function (p) {
       cajaP.appendChild(boton("palabrota", pintar(p, L.letra), p));
     });
+
+    /* las tarjetas de palabra con dibujo, como la fila de la cartilla.
+       Solo salen desde la p: antes no hay palabras que mostrar. */
+    var secT = document.getElementById("sec-tarjetas");
+    if (L.tarjetas && L.tarjetas.length) {
+      var cajaT = document.getElementById("tarjetas");
+      L.tarjetas.forEach(function (t) {
+        var div = document.createElement("div");
+        div.className = "tarjeta";
+        if (t.foto) {
+          var img = document.createElement("img");
+          img.src = t.foto;
+          img.alt = t.palabra;
+          img.loading = "lazy";
+          div.appendChild(img);
+        } else {
+          var caja = document.createElement("span");
+          caja.className = "dibujado";
+          caja.innerHTML = '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">' +
+            t.dibujo + "</svg>";
+          div.appendChild(caja);
+        }
+        div.appendChild(boton("renglon-frase", pintar(t.palabra, L.letra), t.palabra));
+        cajaT.appendChild(div);
+      });
+    } else {
+      secT.hidden = true;
+    }
 
     /* las frases, cada una con su foto */
     var cajaF = document.getElementById("frases");

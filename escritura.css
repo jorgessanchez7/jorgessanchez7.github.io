@@ -365,3 +365,24 @@
 
 .botonera { display: flex; flex-wrap: wrap; gap: 12px; }
 .botonera .btn.grande { text-decoration: none; }
+
+/* ---------- tarjetas de palabra con dibujo (desde la p) ---------- */
+#sec-tarjetas[hidden] { display: none; }
+.tarjetas { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 18px; }
+.tarjeta {
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--sombra);
+  display: flex;
+  flex-direction: column;
+}
+.tarjeta img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+.tarjeta .dibujado {
+  display: block;
+  aspect-ratio: 4 / 3;
+  background: var(--letra-suave);
+  padding: 10px;
+}
+.tarjeta .dibujado svg { width: 100%; height: 100%; display: block; }
+.tarjeta .renglon-frase { text-align: center; }

@@ -41,7 +41,7 @@
 <section class="rutina">
   <div class="envoltura">
     <h2>Pegada a cada vocal</h2>
-    <p class="sub">Son las cinco de siempre. Tócalas en orden, y después salteadas.</p>
+    <p class="sub" id="nota-silabas">Son las cinco de siempre. Tócalas como están, y después salteadas.</p>
     <div class="silabario" id="silabas"></div>
   </div>
 </section>
@@ -49,8 +49,16 @@
 <section>
   <div class="envoltura">
     <h2>Palabras que ya se pueden leer</h2>
-    <p class="sub">Solo con esta letra y las vocales. Nada más.</p>
+    <p class="sub">Solo con lo que ya vio: esta letra, las anteriores y las vocales.</p>
     <div class="palabrero" id="palabras"></div>
+  </div>
+</section>
+
+<section id="sec-tarjetas">
+  <div class="envoltura">
+    <h2>Palabras nuevas</h2>
+    <p class="sub">Se leen solas, juntando lo que ya sabe. Toca la palabra para oírla.</p>
+    <div class="tarjetas" id="tarjetas"></div>
   </div>
 </section>
 
@@ -67,9 +75,8 @@
     <h2>Ahora a escribirla</h2>
     <p class="sub">Tres hojas: la letra sola, las sílabas y las frases. Se trazan con el dedo.</p>
     <div class="botonera" id="hojas"></div>
-    <div class="nota" style="margin-top:24px">
+    <div class="nota" style="margin-top:24px" id="aviso">
       <h3>Una cosa que conviene decir en voz alta</h3>
-      <p id="aviso"></p>
     </div>
   </div>
 </section>
