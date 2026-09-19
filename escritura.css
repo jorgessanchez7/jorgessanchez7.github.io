@@ -390,7 +390,9 @@ h1, h2, h3, .hero h1 { font-family: "Quicksand", "Trebuchet MS", sans-serif; fon
 
 /* ---------- tarjetas de palabra con dibujo (desde la p) ---------- */
 #sec-tarjetas[hidden] { display: none; }
-.tarjetas { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 18px; }
+/* 280px hace que quepan tres por fila en 1020 de ancho util y no cuatro:
+   con seis tarjetas (la l) quedan dos filas parejas en vez de 4+2 con hueco. */
+.tarjetas { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 18px; }
 .tarjeta {
   background: #fff;
   border-radius: 18px;

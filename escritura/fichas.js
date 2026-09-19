@@ -255,6 +255,32 @@ window.FICHAS = [
     lineas: ["sapo mesa oso", "mi oso se asoma."],
     trazos: [] },
 
+  { id: "letra-l", grupo: "letras", orden: 10, letra: "l", palabra: "loma",
+    titulo: "La l",
+    pista: "Una sola raya derecha, de arriba abajo. Es la más alta de todas: empieza por encima del renglón punteado.",
+    banda: "#f3e8f6", tinta: "#8a4f9e",
+    celda: [96, 130], repeticiones: 7, renglones: 2, guia: true,
+    trazos: [
+      { d: "M48 36 L48 110", ini: [48, 36], ang: 90 }
+    ] },
+
+  { id: "silabas-l", grupo: "letras", orden: 11,
+    titulo: "lo, le, li, lu, la",
+    pista: "En el orden de la cartilla, que no es a-e-i-o-u: es para leerlas, no para recitarlas.",
+    banda: "#f3e8f6", tinta: "#8a4f9e",
+    celda: [230, 150], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["lo", "le", "li", "lu", "la"],
+    trazos: [] },
+
+  { id: "frases-l", grupo: "letras", orden: 12,
+    titulo: "loma lima mula",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#f3e8f6", tinta: "#8a4f9e",
+    celda: [900, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["loma lima mula", "mi mula sale sola."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,

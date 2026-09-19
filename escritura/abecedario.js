@@ -99,7 +99,42 @@ window.ABECEDARIO = [
       { texto: "mamá puso mi sopa.", foto: "img/lecciones/s/mama-sopa.jpg" },
       { texto: "papá pasa mi mesa paso a paso.", foto: "img/lecciones/s/papa-mesa.jpg" }
     ],
-    hojas: ["letra-s", "silabas-s", "frases-s"] }
+    hojas: ["letra-s", "silabas-s", "frases-s"] },
 
-  /* Siguen: l, n. Cada una con sus propias imágenes. */
+  /* Con la l por fin entran «la» y «el», así que desde aquí las frases
+     ya suenan como se habla de verdad y no como telegrama. */
+  { id: "l", letra: "l", mayuscula: "L", orden: 4,
+    banda: "#f3e8f6", tinta: "#8a4f9e",
+    comoSuena: "La lengua toca el techo de la boca y el aire sale por los lados: lll. Se estira como la m.",
+    aviso: [
+      "El nombre de la letra es «ele», pero eso no se dice al leer: «ele-a» no da «la». " +
+      "Se hace el sonido largo y se cae en la vocal: lllla. De las fáciles, como la m y la s.",
+      "Fíjese en lo que acaba de pasar: con la l aparecen «la» y «el». Hasta ahora las frases " +
+      "eran de telegrama («mamá puso mi sopa»); de aquí en adelante suenan como se habla. " +
+      "Vale la pena decírselo, porque es la primera vez que lee algo que suena normal."
+    ],
+    palabra: "loma",
+    foto: "img/lecciones/l/loma.jpg",
+    notaSilabas: "Van en el orden de la cartilla: lo, le, li, lu, la. En desorden a propósito.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["lo", "le", "li", "lu", "la"],
+    palabras: ["loma", "sala", "paloma", "lima", "lupa", "mula",
+               "palo", "pule", "lomo", "pala", "ala", "alelí"],
+    tarjetas: [
+      { palabra: "lima", foto: "img/lecciones/l/lima.jpg" },
+      { palabra: "lupa", foto: "img/lecciones/l/lupa.jpg" },
+      { palabra: "mula", foto: "img/lecciones/l/mula.jpg" },
+      { palabra: "paloma", foto: "img/lecciones/l/paloma.jpg" },
+      { palabra: "sala", foto: "img/lecciones/l/sala.jpg" },
+      { palabra: "pila", foto: "img/lecciones/l/pila.jpg" }
+    ],
+    frases: [
+      { texto: "mi mula pasa la loma.", foto: "img/lecciones/l/mula-loma.jpg", completa: true, rel: "5 / 2" },
+      { texto: "mi mamá sale a la pila.", foto: "img/lecciones/l/mama-pila.jpg" },
+      { texto: "esa lima sí pule.", foto: "img/lecciones/l/lima-pule.jpg" },
+      { texto: "papá pela ese palo.", foto: "img/lecciones/l/papa-palo.jpg" }
+    ],
+    hojas: ["letra-l", "silabas-l", "frases-l"] }
+
+  /* Sigue: la n. */
 ];
