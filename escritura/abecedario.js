@@ -48,16 +48,11 @@ window.ABECEDARIO = [
     tarjetas: [
       { palabra: "pipa", foto: "img/lecciones/p/pipa.jpg" },
       { palabra: "puma", foto: "img/lecciones/p/puma.jpg" },
-      { palabra: "mapa", dibujo:
-        /* Colombia, dibujada con sus coordenadas de verdad.
-           El mapa de la cartilla es dibujo de Nacho y no se copia. */
-        '<rect width="100" height="100" fill="none"/>' +
-        '<path d="M57.1 5 L60.6 8.8 L53 13.1 L55.3 22.8 L61.2 34.6 L79.5 38.4 L82.5 39 ' +
-        'L80.1 57.3 L83 61.6 L68.3 66.4 L70.7 76.1 L67.1 85.8 L66.5 95 L49.4 84.8 ' +
-        'L35.8 70.2 L21.7 68.1 L15.2 64.8 L22.9 50.8 L23.4 40 L20.5 33.6 L24.6 26 ' +
-        'L26.4 26 L34.1 21.7 L42.3 12.5 L52.4 9.9 Z" ' +
-        'fill="#8fbf4a" stroke="#4f7a2a" stroke-width="2.5" stroke-linejoin="round"/>' +
-        '<circle cx="43" cy="48" r="3.4" fill="#e2725b" stroke="#a83f2e" stroke-width="1.6"/>' }
+      /* El mapa lo mandó el padre: relieve de los Andes colombianos.
+         Venía casi blanco; se le subió el contraste y se coloreó como
+         mapa de papel. Antes había una silueta de Colombia dibujada,
+         y la cambió por esta. */
+      { palabra: "mapa", foto: "img/lecciones/p/mapa.jpg" }
     ],
     frases: [
       { texto: "mi papá me ama.", foto: "img/lecciones/p/todos.jpg", completa: true, rel: "5 / 2" },
