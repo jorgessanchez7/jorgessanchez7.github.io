@@ -1,0 +1,110 @@
+/* Banco de palabras de Antonio.
+ *
+ * La tarjeta manda: imagen grande arriba, palabra enorme abajo. Nada más en
+ * pantalla. Los tamaños siguen la misma regla que las lecciones — si hay que
+ * elegir entre que quepa la imagen o que la palabra se lea, gana la palabra.
+ */
+
+/* El atributo hidden lo anula cualquier display explicito del autor, asi que
+   hay que apagarlo a mano. Ya nos habia pasado con .muestra en las hojas. */
+#sola[hidden], #todas[hidden] { display: none; }
+
+#sola { display: flex; flex-direction: column; align-items: center; gap: 22px; }
+
+.carta {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: none;
+  border-radius: 24px;
+  box-shadow: var(--sombra);
+  overflow: hidden;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+  /* se toca, no se arrastra */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.carta .marco {
+  display: block;
+  width: 100%;
+  background: #f3efe9;
+}
+
+.carta img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* un pictograma no se recorta nunca: va entero, sobre blanco */
+.carta.pictograma .marco { background: #fff; }
+.carta.pictograma img { object-fit: contain; }
+
+.carta .palabra {
+  display: block;
+  padding: 18px 24px 24px;
+  text-align: center;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--tinta, #3a3330);
+}
+
+/* ---------- la grande: la que ve el niño ---------- */
+
+.carta.grande { width: min(560px, 100%); }
+.carta.grande .marco { aspect-ratio: 4 / 3; }
+.carta.grande.pictograma .marco { aspect-ratio: 1 / 1; padding: 18px; box-sizing: border-box; }
+.carta.grande .palabra { font-size: clamp(2.8rem, 9vw, 4.6rem); }
+.carta.grande:active { transform: scale(.985); }
+
+.pasos { display: flex; align-items: center; gap: 20px; }
+
+.btn.redondo {
+  width: 62px; height: 62px;
+  border-radius: 50%;
+  font-size: 1.7rem;
+  line-height: 1;
+  display: grid; place-items: center;
+}
+.btn.redondo:disabled { opacity: .3; cursor: default; }
+
+.cuenta { font-size: .95rem; color: #8a7f76; min-width: 78px; text-align: center; }
+
+.nota-adulto {
+  max-width: 560px;
+  margin: 0;
+  text-align: center;
+  font-size: .95rem;
+  line-height: 1.5;
+  color: #8a7f76;
+  font-style: italic;
+}
+
+/* ---------- todas: para el adulto, no para el niño ---------- */
+
+#todas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
+  gap: 18px;
+}
+
+.carta.chica .marco { aspect-ratio: 4 / 3; }
+.carta.chica.pictograma .marco { padding: 12px; box-sizing: border-box; }
+.carta.chica .palabra { font-size: clamp(1.5rem, 4vw, 2rem); padding: 12px 14px 16px; }
+
+.vacio { color: #8a7f76; font-size: 1rem; }
+.vacio code { background: #f3efe9; padding: 2px 7px; border-radius: 6px; }
+
+#campos { display: flex; flex-wrap: wrap; gap: 10px; }
+#campos .btn.puesto { background: var(--tinta, #3f7fa6); color: #fff; }
+
+#como { margin-top: 40px; }
+
+@media (max-width: 520px) {
+  .pasos { gap: 14px; }
+  .btn.redondo { width: 56px; height: 56px; }
+}

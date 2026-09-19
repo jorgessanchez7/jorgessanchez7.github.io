@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, noimageindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Banco de palabras · Método global</title>
+<meta name="description" content="Una palabra entera con su imagen. No hay nada que acertar.">
+<link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="lectura.css">
+<link rel="stylesheet" href="escritura.css">
+<link rel="stylesheet" href="tarjetas.css">
+</head>
+<body>
+
+<header class="hero antonio">
+  <div class="envoltura">
+    <a class="volver" href="global.html">&#8592; Método global</a>
+    <p class="eyebrow" id="eyebrow">Una palabra a la vez</p>
+    <h1 id="titulo">Banco de palabras</h1>
+    <p class="lead" id="sub"></p>
+  </div>
+</header>
+
+<div class="barra">
+  <div class="envoltura">
+    <div id="campos"></div>
+    <button type="button" class="btn suave" id="modo">Ver todas</button>
+  </div>
+</div>
+
+<main>
+  <section>
+    <div class="envoltura">
+
+      <!-- una a la vez: lo que se usa en los cinco minutos -->
+      <div id="sola">
+        <button type="button" class="carta grande" id="carta">
+          <span class="marco"><img id="carta-img" alt=""></span>
+          <span class="palabra" id="carta-palabra"></span>
+        </button>
+        <div class="pasos">
+          <button type="button" class="btn redondo" id="antes" aria-label="La anterior">&#8592;</button>
+          <span class="cuenta" id="cuenta"></span>
+          <button type="button" class="btn redondo" id="sigue" aria-label="La siguiente">&#8594;</button>
+        </div>
+        <p class="nota-adulto" id="nota"></p>
+      </div>
+
+      <!-- todas: para que el adulto escoja, no para ponérselas al niño -->
+      <div id="todas" hidden></div>
+
+      <div class="nota" id="como">
+        <h3>Cómo se usa</h3>
+        <p>Usted toca la tarjeta, suena la palabra, y señala a la persona o la cosa.
+           Otra vez. Y otra. <strong>Él mira: eso ya es la lección.</strong> No se le pide que
+           repita, no se le pregunta cuál es, y no hay respuesta correcta que dar.</p>
+        <p>Dos o tres tarjetas por sesión, las mismas durante semanas. La repetición es el método;
+           la variedad no sirve de nada aquí.</p>
+        <p><strong>Y lo que más cuenta no pasa en esta pantalla.</strong> Pasa cuando la palabra
+           está pegada en la nevera debajo de la foto y él la ve cuarenta veces al día sin que
+           nadie le pregunte nada.</p>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="envoltura">
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="lecciones.html">Lecciones de lectura</a>
+      <a href="global.html">Método global</a>
+    </nav>
+    <p id="credito" hidden>Autor pictogramas: Sergio Palao. Procedencia:
+       <a href="http://arasaac.org">ARASAAC</a>. Licencia: CC (BY-NC-SA).</p>
+    <p>Hecho en casa, para leer en casa.</p>
+  </div>
+</footer>
+
+<script src="escritura/banco.js"></script>
+<script src="tarjetas.js"></script>
+</body>
+</html>
