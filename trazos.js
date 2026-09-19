@@ -246,18 +246,25 @@
     /* la muestra grande, solo en las vocales */
     var muestra = document.getElementById("muestra");
     if (f.letra) {
-      muestra.innerHTML =
-        '<button type="button" class="glifo-grande" style="color:' + f.tinta + '">' +
-        f.letra + '</button>' +
-        '<span class="dibujo"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">' +
-        f.dibujo + '</svg></span>' +
-        '<span class="palabra"><b>' + f.letra + '</b>' + f.palabra.slice(1) + '</span>';
+      var html = '<button type="button" class="glifo-grande" style="color:' + f.tinta + '">' +
+        f.letra + "</button>";
+      if (f.dibujo) {
+        html += '<span class="dibujo"><svg viewBox="0 0 100 100" ' +
+          'xmlns="http://www.w3.org/2000/svg">' + f.dibujo + "</svg></span>";
+      }
+      if (f.palabra) {
+        html += '<span class="palabra"><b>' + f.letra + "</b>" + f.palabra.slice(1) + "</span>";
+      }
+      muestra.innerHTML = html;
       muestra.querySelector(".glifo-grande").addEventListener("click", function () {
-        decir(f.letra);
+        /* en las consonantes el nombre de la letra no sirve: se repite el sonido */
+        decir(f.grupo === "letras" ? f.letra + f.letra + f.letra : f.letra);
       });
-      muestra.querySelector(".palabra").addEventListener("click", function () {
-        decir(f.palabra);
-      });
+      if (f.palabra) {
+        muestra.querySelector(".palabra").addEventListener("click", function () {
+          decir(f.palabra);
+        });
+      }
       muestra.hidden = false;
     } else {
       muestra.hidden = true;

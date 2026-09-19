@@ -45,6 +45,15 @@
 
 <section>
   <div class="envoltura">
+    <h2>Las letras</h2>
+    <p class="sub">Aquí lo que sirve es oír y mirar. Toque usted las sílabas y las frases;
+       si él quiere tocar, que toque.</p>
+    <div class="hojas" id="letras"></div>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
     <div class="nota">
       <h3>Qué esperar a esta edad</h3>
       <p>Que no siga el camino. Que raye por encima. Que quiera cambiar de color cada
@@ -69,10 +78,12 @@
 </footer>
 
 <script src="escritura/fichas.js"></script>
+<script src="escritura/abecedario.js"></script>
 <script src="lecciones.js"></script>
 <script>
   LECCIONES.rejilla("trazos", "trazos", "jorge");
   LECCIONES.rejilla("vocales", "vocales", "jorge");
+  LECCIONES.letras("letras", "jorge");
 </script>
 </body>
 </html>

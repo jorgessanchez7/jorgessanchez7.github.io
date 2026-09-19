@@ -53,5 +53,23 @@
     });
   }
 
-  window.LECCIONES = { rejilla: rejilla };
+  /* las lecciones de letras: una tarjeta por letra, con su palabra */
+  function letras(id, de) {
+    var caja = document.getElementById(id);
+    if (!caja || !window.ABECEDARIO) return;
+    window.ABECEDARIO.slice()
+      .sort(function (a, b) { return (a.orden || 0) - (b.orden || 0); })
+      .forEach(function (L) {
+        var a = document.createElement("a");
+        a.className = "ficha letra-ficha";
+        a.href = "letra.html?letra=" + L.id + "&de=" + encodeURIComponent(de);
+        a.innerHTML =
+          '<span class="vista" style="background:' + L.banda + '">' +
+          '<span class="glifo-mini" style="color:' + L.tinta + '">' + L.letra + "</span></span>" +
+          "<h3>La " + L.letra + " <em>" + L.palabra + "</em></h3>";
+        caja.appendChild(a);
+      });
+  }
+
+  window.LECCIONES = { rejilla: rejilla, letras: letras };
 })();

@@ -46,20 +46,10 @@
 
 <section>
   <div class="envoltura">
-    <h2>Los sonidos</h2>
-    <p class="sub">Para oír cómo suena cada letra y cómo se pega a la vocal.</p>
-    <div class="hojas">
-      <a class="ficha" href="letras.html">
-        <span class="vista">
-          <svg viewBox="0 0 180 92" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect width="180" height="92" fill="#e3f3e2"/>
-            <text x="90" y="62" text-anchor="middle" font-family="Baloo 2, sans-serif"
-                  font-size="38" font-weight="700" fill="#3f7a4a">ma me mi</text>
-          </svg>
-        </span>
-        <h3>Cómo suena cada letra</h3>
-      </a>
-    </div>
+    <h2>Las letras</h2>
+    <p class="sub">Una por semana. Cómo suena, cómo se pega a las vocales, qué palabras salen
+       y cómo se escribe. Todo lo que tiene letras se puede tocar para oírlo.</p>
+    <div class="hojas" id="letras"></div>
   </div>
 </section>
 
@@ -90,10 +80,12 @@
 </footer>
 
 <script src="escritura/fichas.js"></script>
+<script src="escritura/abecedario.js"></script>
 <script src="lecciones.js"></script>
 <script>
   LECCIONES.rejilla("trazos", "trazos", "chepe");
   LECCIONES.rejilla("vocales", "vocales", "chepe");
+  LECCIONES.letras("letras", "chepe");
 </script>
 </body>
 </html>

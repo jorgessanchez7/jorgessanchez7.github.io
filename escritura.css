@@ -210,3 +210,153 @@
   .hojas { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
   .renglon .goma { opacity: 1; }
 }
+
+/* ============================================================
+   La lección de una letra
+   ============================================================ */
+:root { --letra: #c1516a; --letra-suave: #fde6ea; }
+
+.hero-letra {
+  background: linear-gradient(160deg, #fff 0%, var(--letra-suave) 55%, var(--letra-suave) 100%);
+  border-bottom-color: var(--letra);
+}
+.hero-letra h1 { color: var(--letra); }
+.hero-letra .lead, .hero-letra .eyebrow, .hero-letra .volver { color: #6b5b55; }
+
+/* ---------- la palabra clave con su foto ---------- */
+.clave {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 26px;
+  align-items: center;
+  background: #fff;
+  border-radius: 22px;
+  padding: 18px;
+  box-shadow: var(--sombra);
+}
+.clave img {
+  width: 100%;
+  border-radius: 16px;
+  display: block;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.clave-texto { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+.glifo-letra {
+  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
+  font-size: 6rem;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--letra);
+  border: 0;
+  background: none;
+  padding: 0 4px;
+  cursor: pointer;
+  transition: transform .14s ease;
+}
+.palabra-clave {
+  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
+  font-size: 3.2rem;
+  line-height: 1.1;
+  font-weight: 700;
+  color: #4a4038;
+  border: 0;
+  background: none;
+  padding: 0 4px;
+  cursor: pointer;
+  transition: transform .14s ease;
+}
+.clave .tocar { margin: 8px 0 0; font-size: .86rem; color: var(--suave); font-weight: 500; }
+
+/* ---------- sílabas ---------- */
+.silabario { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.silabon {
+  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
+  font-size: clamp(1.4rem, 4.5vw, 2.4rem);
+  font-weight: 700;
+  color: #4a4038;
+  background: var(--letra-suave);
+  border: 3px solid transparent;
+  border-radius: 16px;
+  padding: 18px 4px;
+  cursor: pointer;
+  transition: transform .14s ease, border-color .14s ease;
+}
+.silabon:hover { transform: translateY(-3px); border-color: var(--letra); }
+
+/* ---------- palabras ---------- */
+.palabrero { display: flex; flex-wrap: wrap; gap: 12px; }
+.palabrota {
+  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
+  font-size: clamp(1.3rem, 3.5vw, 1.9rem);
+  font-weight: 700;
+  color: #4a4038;
+  background: #fff;
+  border: 0;
+  border-radius: 999px;
+  padding: 12px 26px;
+  box-shadow: var(--sombra);
+  cursor: pointer;
+  transition: transform .14s ease;
+}
+.palabrota:hover { transform: translateY(-3px); }
+
+/* ---------- frases con foto ---------- */
+.frases { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+.frase {
+  background: var(--crema);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--sombra);
+  display: flex;
+  flex-direction: column;
+}
+.frase img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+.renglon-frase {
+  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
+  font-size: clamp(1.1rem, 2.6vw, 1.45rem);
+  font-weight: 700;
+  color: #4a4038;
+  background: none;
+  border: 0;
+  padding: 14px 16px 18px;
+  cursor: pointer;
+  text-align: left;
+  flex: 1;
+  transition: background .14s ease;
+}
+.renglon-frase:hover { background: var(--letra-suave); }
+
+/* la letra de la semana, en color, en todas partes */
+.palabra-clave b, .silabon b, .palabrota b, .renglon-frase b { color: var(--letra); }
+
+/* mientras habla */
+.glifo-letra.sonando, .palabra-clave.sonando,
+.silabon.sonando, .palabrota.sonando, .renglon-frase.sonando {
+  background: var(--letra);
+  color: #fff;
+  border-color: var(--letra);
+}
+.glifo-letra.sonando, .palabra-clave.sonando { border-radius: 14px; }
+.silabon.sonando b, .palabrota.sonando b,
+.renglon-frase.sonando b, .palabra-clave.sonando b { color: #fff; }
+
+.btn.grande { font-size: 1.15rem; padding: 14px 28px; background: var(--letra); }
+
+@media (max-width: 700px) {
+  .clave { grid-template-columns: 1fr; gap: 14px; }
+  .glifo-letra { font-size: 4.4rem; }
+  .palabra-clave { font-size: 2.4rem; }
+  .silabario { grid-template-columns: repeat(5, 1fr); gap: 6px; }
+  .silabon { padding: 14px 2px; border-radius: 12px; }
+}
+
+/* tarjeta de una lección de letra */
+.letra-ficha .vista { display: flex; align-items: center; justify-content: center; }
+.glifo-mini {
+  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
+  font-size: 3.4rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.letra-ficha h3 em { font-style: normal; color: var(--suave); font-weight: 600; }

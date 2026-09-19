@@ -164,6 +164,20 @@ window.FICHAS = [
       { d: "M64 55 L64 110", ini: [64, 55], ang: 90 }
     ] },
 
+  /* ---------- las consonantes ----------
+     La m va de un solo trazo, retrazando el palito hacia arriba:
+     asi es como se escribe de verdad y asi la traza el dedo. */
+
+  { id: "letra-m", grupo: "letras", orden: 1, letra: "m", palabra: "mamá",
+    titulo: "La m",
+    pista: "El palito, subes por encima de lo mismo, y haces los dos puentes. Sin levantar el dedo.",
+    banda: "#fde6ea", tinta: "#c1516a",
+    celda: [108, 130], repeticiones: 6, renglones: 2, guia: true,
+    trazos: [
+      { d: "M22 55 L22 110 L22 75 A16 20 0 0 1 54 75 L54 110 L54 75 A16 20 0 0 1 86 75 L86 110",
+        ini: [22, 55], ang: 90 }
+    ] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,

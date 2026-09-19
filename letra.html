@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La letra · Lecciones de lectura</title>
+<meta name="description" content="Una letra por semana: cómo suena, cómo se junta y cómo se escribe.">
+<link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="lectura.css">
+<link rel="stylesheet" href="escritura.css">
+</head>
+<body>
+
+<header class="hero hero-letra">
+  <div class="envoltura">
+    <a class="volver" id="volver" href="lecciones.html">&#8592; Lecciones</a>
+    <p class="eyebrow">Una letra por semana</p>
+    <h1 id="titulo">La letra</h1>
+    <p class="lead" id="como-suena"></p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="envoltura">
+    <div class="clave">
+      <img id="foto-clave" alt="">
+      <div class="clave-texto">
+        <button type="button" class="glifo-letra" id="glifo">m</button>
+        <button type="button" class="palabra-clave" id="palabra-clave"></button>
+        <p class="tocar">Toca la letra o la palabra para oírla.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rutina">
+  <div class="envoltura">
+    <h2>Pegada a cada vocal</h2>
+    <p class="sub">Son las cinco de siempre. Tócalas en orden, y después salteadas.</p>
+    <div class="silabario" id="silabas"></div>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <h2>Palabras que ya se pueden leer</h2>
+    <p class="sub">Solo con esta letra y las vocales. Nada más.</p>
+    <div class="palabrero" id="palabras"></div>
+  </div>
+</section>
+
+<section class="rutina">
+  <div class="envoltura">
+    <h2>Frases de la casa</h2>
+    <p class="sub">Las fotos son de ustedes. Léalas señalando con el dedo, palabra por palabra.</p>
+    <div class="frases" id="frases"></div>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <a class="btn grande" id="ir-hoja" href="trazos.html">Ahora a escribirla &#8594;</a>
+    <div class="nota" style="margin-top:24px">
+      <h3>Una cosa que conviene decir en voz alta</h3>
+      <p id="aviso"></p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="envoltura">
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="lecciones.html">Lecciones de lectura</a>
+      <a href="lecturas.html">Las lecturas</a>
+    </nav>
+    <p>Hecho en casa, para leer en casa.</p>
+  </div>
+</footer>
+
+<script src="escritura/abecedario.js"></script>
+<script src="letra.js"></script>
+</body>
+</html>
