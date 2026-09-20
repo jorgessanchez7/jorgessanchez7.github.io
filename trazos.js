@@ -19,7 +19,8 @@
     { nombre: "rojo",    color: "#c1516a" },
     { nombre: "verde",   color: "#3f7a4a" },
     { nombre: "morado",  color: "#8a4f9e" },
-    { nombre: "naranja", color: "#d4742f" }
+    { nombre: "naranja", color: "#d4742f" },
+    { nombre: "negro",   color: "#2b2622" }
   ];
 
   var DESTINOS = {
@@ -76,22 +77,31 @@
       ' Z" fill="#d1495b" opacity=".85"/>';
   }
 
-  function escapar(t) {
-    return t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  /* ---------- dibujar un trazo, de modelo o para repasar ---------- */
+
+  function camino(d, f, modelo) {
+    return modelo
+      ? '<path d="' + d + '" fill="none" stroke="' + f.tinta +
+        '" stroke-width="' + GROSOR + '" stroke-linecap="round" stroke-linejoin="round"/>'
+      : '<path d="' + d + '" fill="none" stroke="#c9b79d" stroke-width="3" ' +
+        'stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 9"/>';
   }
 
-  /* Las hojas de sílabas y de frases no se dibujan con caminos: son
-     texto, con la misma letra de la pantalla. Así no hay que dibujar
-     a mano cada palabra, y el modelo y la copia punteada salen
-     exactamente iguales. */
-  function celdaTexto(f, modelo, linea) {
-    var base = '<text x="' + (f.celda[0] / 2) + '" y="' + (f.linea || 110) +
-      '" text-anchor="middle" font-family="Quicksand, Trebuchet MS, sans-serif" ' +
-      'font-size="' + (f.tamano || 96) + '" font-weight="700" ';
-    return base + (modelo
-      ? 'fill="' + f.tinta + '"'
-      : 'fill="none" stroke="#c4b096" stroke-width="3" stroke-linejoin="round" ' +
-        'stroke-dasharray="9 10"') + ">" + escapar(linea) + "</text>";
+  function puntico(x, y, f, modelo) {
+    return modelo
+      ? '<circle cx="' + x + '" cy="' + y + '" r="5" fill="' + f.tinta + '"/>'
+      : '<circle cx="' + x + '" cy="' + y + '" r="4.5" fill="none" stroke="#c9b79d" ' +
+        'stroke-width="2.5" stroke-dasharray="4 5"/>';
+  }
+
+  /* Los trazos de una letra, sin las marcas de salida. */
+  function pluma(trazos, f, modelo) {
+    var out = "";
+    for (var i = 0; i < trazos.length; i++) {
+      var t = trazos[i];
+      out += t.punto ? puntico(t.punto[0], t.punto[1], f, modelo) : camino(t.d, f, modelo);
+    }
+    return out;
   }
 
   function celda(f, modelo, marcar) {
@@ -102,21 +112,131 @@
       var t = f.trazos[i];
       var num = varios ? i + 1 : 0;
       if (t.punto) {
-        out += modelo
-          ? '<circle cx="' + t.punto[0] + '" cy="' + t.punto[1] + '" r="5" fill="' + f.tinta + '"/>'
-          : '<circle cx="' + t.punto[0] + '" cy="' + t.punto[1] +
-            '" r="4.5" fill="none" stroke="#c9b79d" stroke-width="2.5" stroke-dasharray="4 5"/>';
+        out += puntico(t.punto[0], t.punto[1], f, modelo);
         if (marcar && num) out += bolita(t.punto[0] + 15, t.punto[1], num);
         continue;
       }
-      out += modelo
-        ? '<path d="' + t.d + '" fill="none" stroke="' + f.tinta +
-          '" stroke-width="' + GROSOR + '" stroke-linecap="round" stroke-linejoin="round"/>'
-        : '<path d="' + t.d + '" fill="none" stroke="#c9b79d" stroke-width="3" ' +
-          'stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 9"/>';
+      out += camino(t.d, f, modelo);
       if (marcar) out += punta(t.ini[0], t.ini[1], t.ang, num, cx, cy, t.insignia);
     }
     return out;
+  }
+
+  /* ---------- las sílabas y las frases, letra por letra ----------
+
+     Antes se escribían con <text> y se punteaba el CONTORNO de la
+     letra rellena: cada letra salían dos líneas punteadas con un área
+     en medio, que no es lo que el niño tiene que repasar. Ahora se
+     arman con los mismos trazos de una sola línea de las vocales y
+     las consonantes: lo que se traza en la hoja de la letra es
+     exactamente lo que se traza en la de las sílabas.
+
+     El dibujo es nuestro; el espaciado es de Quicksand, medido a
+     tamaño 100, para que la palabra escrita ocupe lo mismo que la
+     palabra leída. Una letra nueva entra sola: basta que su ficha
+     tenga `letra` y su avance esté en esta tabla. */
+
+  var AVANCE = {
+    a: 63, e: 59, i: 24, o: 62, u: 59,
+    "á": 63, "é": 59, "í": 24, "ó": 62, "ú": 59,
+    m: 92, p: 63, s: 48, l: 27, n: 60, t: 41, d: 63,
+    " ": 28, ".": 25
+  };
+
+  var CON_TILDE = "áéíóú", SIN_TILDE = "aeiou";
+
+  /* la tilde, medida desde el centro de la vocal: sube hacia la
+     derecha y queda por encima del cuerpo (55) sin llegar al alto (36) */
+  var TILDE = "M-6 46 L6 31";
+
+  var ALFABETO = null, CAJAS = null;
+
+  function alfabeto() {
+    if (ALFABETO) return ALFABETO;
+    ALFABETO = {};
+    for (var i = 0; i < FICHAS.length; i++) {
+      var f = FICHAS[i];
+      if (!f.letra || !f.trazos || !f.trazos.length) continue;
+      if (f.grupo !== "vocales" && f.grupo !== "letras") continue;
+      if (!ALFABETO[f.letra]) ALFABETO[f.letra] = f.trazos;
+    }
+    return ALFABETO;
+  }
+
+  /* Cuánto ocupa de ancho el dibujo de cada letra. Se mide con
+     getBBox en vez de calcularlo a mano: los arcos abultan y un
+     cálculo a ojo deja las letras descentradas. */
+  function cajas() {
+    if (CAJAS) return CAJAS;
+    CAJAS = {};
+    var ns = "http://www.w3.org/2000/svg";
+    var svg = document.createElementNS(ns, "svg");
+    svg.setAttribute("width", "0");
+    svg.setAttribute("height", "0");
+    svg.style.position = "absolute";
+    svg.style.visibility = "hidden";
+    document.body.appendChild(svg);
+    var A = alfabeto();
+    for (var k in A) {
+      var g = document.createElementNS(ns, "g");
+      for (var i = 0; i < A[k].length; i++) {
+        var t = A[k][i], el;
+        if (t.punto) {
+          el = document.createElementNS(ns, "circle");
+          el.setAttribute("cx", t.punto[0]);
+          el.setAttribute("cy", t.punto[1]);
+          el.setAttribute("r", 4.5);
+        } else {
+          el = document.createElementNS(ns, "path");
+          el.setAttribute("d", t.d);
+          el.setAttribute("fill", "none");
+        }
+        g.appendChild(el);
+      }
+      svg.appendChild(g);
+      var b = g.getBBox();
+      CAJAS[k] = b.x + b.width / 2;
+      svg.removeChild(g);
+    }
+    document.body.removeChild(svg);
+    return CAJAS;
+  }
+
+  function ancho(texto) {
+    var w = 0;
+    for (var i = 0; i < texto.length; i++) w += AVANCE[texto.charAt(i)] || AVANCE[" "];
+    return w;
+  }
+
+  function celdaTexto(f, modelo, linea) {
+    var A = alfabeto(), C = cajas();
+    var w = ancho(linea);
+    var k = (f.tamano || 96) / 100;
+    /* si la frase no cabe en la celda, se achica antes de salirse */
+    if (w * k > f.celda[0] - 24) k = (f.celda[0] - 24) / w;
+    var piso = f.linea || 110;
+    var out = '<g transform="translate(' + ((f.celda[0] - w * k) / 2).toFixed(1) + "," +
+      (piso - 110 * k).toFixed(1) + ") scale(" + k.toFixed(4) + ')">';
+    var pen = 0;
+    for (var i = 0; i < linea.length; i++) {
+      var ch = linea.charAt(i);
+      var av = AVANCE[ch] || AVANCE[" "];
+      var j = CON_TILDE.indexOf(ch);
+      var base = j < 0 ? ch : SIN_TILDE.charAt(j);
+      var eje = pen + av / 2;
+      if (A[base]) {
+        out += '<g transform="translate(' + (eje - C[base]).toFixed(1) + ',0)">' +
+          pluma(A[base], f, modelo) + "</g>";
+        if (j >= 0) {
+          out += '<g transform="translate(' + eje.toFixed(1) + ',0)">' +
+            camino(TILDE, f, modelo) + "</g>";
+        }
+      } else if (ch === ".") {
+        out += puntico(eje.toFixed(1), 105, f, modelo);
+      }
+      pen += av;
+    }
+    return out + "</g>";
   }
 
   function guias(f, W, H, reps, linea) {
@@ -212,6 +332,15 @@
 
   function borrar(p) {
     p.trazos.length = 0;
+    p.actual = null;
+    pintar(p);
+  }
+
+  /* Quita UN trazo, el último. Borrar el renglón entero por un toque
+     castiga el error: el niño arregla la panza de la a y pierde las
+     seis letras que ya le habían quedado bien. */
+  function deshacer(p) {
+    p.trazos.pop();
     p.actual = null;
     pintar(p);
   }
@@ -316,23 +445,39 @@
     var hoja = document.getElementById("hoja");
     var filas = f.lineas ? f.lineas.length : f.renglones;
     for (var r = 0; r < filas; r++) {
+      /* el botón va POR FUERA del renglón. Adentro, en la esquina de
+         arriba a la derecha, caía justo encima del punto de salida de
+         la última repetición en las rayas paradas y en las verticales:
+         el niño ponía el dedo donde se le dice y se le borraba todo. */
+      var fila = document.createElement("div");
+      fila.className = "fila";
+
       var div = document.createElement("div");
       div.className = "renglon";
       div.style.background = f.banda;
       div.innerHTML = guias(f, W, H, reps, f.lineas ? f.lineas[r] : null) +
-        '<canvas class="lienzo"></canvas>' +
-        '<button type="button" class="goma" aria-label="Borrar este renglón">' +
-        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 17 L13 6 a3 3 0 0 1 5 3 L12 19 Z" ' +
-        'fill="#fff" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>' +
-        '<path d="M5 20 H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' +
-        '</button>';
-      hoja.appendChild(div);
+        '<canvas class="lienzo"></canvas>';
+
+      var atras = document.createElement("button");
+      atras.type = "button";
+      atras.className = "deshacer";
+      atras.title = "Quitar el último trazo";
+      atras.setAttribute("aria-label", "Quitar el último trazo de este renglón");
+      atras.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true">' +
+        '<path d="M8 8 H15 a5 5 0 0 1 0 10 H8" fill="none" stroke="currentColor" ' +
+        'stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '<path d="M11 4 L7 8 L11 12" fill="none" stroke="currentColor" ' +
+        'stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+      fila.appendChild(div);
+      fila.appendChild(atras);
+      hoja.appendChild(fila);
 
       var p = { lienzo: div.querySelector(".lienzo"), W: W, H: H, trazos: [], actual: null };
       pizarras.push(p);
       conectar(p);
       (function (pp) {
-        div.querySelector(".goma").addEventListener("click", function () { borrar(pp); });
+        atras.addEventListener("click", function () { deshacer(pp); });
       })(p);
     }
 

@@ -212,6 +212,10 @@ window.ABECEDARIO = [
       { palabra: "maleta", foto: "img/lecciones/t/maleta.jpg" },
       { palabra: "tela", foto: "img/lecciones/t/tela.jpg" },
       { palabra: "lata", foto: "img/lecciones/t/lata.jpg" },
+      /* La moto entra con sus letreros y todo. Es la única imagen del
+         sitio con texto adentro: la foto es libre y la decisión es del
+         padre. No se pudo recortar sin partir la moto. */
+      { palabra: "moto", foto: "img/lecciones/t/moto.jpg" },
       /* Con la t, «Antonio» ya se lee entero: a, n, t, o, n, i, o.
          Lo cazó el padre. Va de última, como Nelson en la n. */
       { palabra: "Antonio", foto: "img/lecciones/t/antonio.jpg" }

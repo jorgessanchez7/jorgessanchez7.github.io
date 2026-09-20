@@ -50,15 +50,58 @@
     } catch (x) {}
   }
 
-  /* La m de la palabra va en color: es la letra de la semana y
-     tiene que saltar a la vista sin que nadie la señale. */
-  function pintar(texto, letra) {
-    var out = "";
-    for (var i = 0; i < texto.length; i++) {
-      var c = texto.charAt(i);
-      out += c.toLowerCase() === letra ? "<b>" + c + "</b>" : c;
+  /* Lo que va en color es LA SÍLABA, no la letra suelta: la consonante
+     con su vocal, que es como se lee. Marcar solo la m invita a
+     despegarla de la a, que es justo el error que los avisos pelean.
+
+     Dos reglas más, que salieron de mirarlo en pantalla:
+     - si la letra no tiene vocal detrás (la l de «animal»), va sola;
+     - si toda la palabra resulta ser de la letra («dado», «mamá»),
+       se pinta solo la primera sílaba. Pintarla entera no señala nada. */
+
+  var VOCALES = "aeiouáéíóú";
+  var LETRA = /[a-záéíóúñ]/;
+
+  function silabar(palabra, letra) {
+    var marcas = [], i;
+    for (i = 0; i < palabra.length; i++) {
+      if (palabra.charAt(i).toLowerCase() !== letra) continue;
+      /* ojo: charAt fuera de rango devuelve "" y indexOf("") da 0,
+         así que hay que preguntar primero si de verdad hay letra */
+      var sig = palabra.charAt(i + 1).toLowerCase();
+      var largo = sig && VOCALES.indexOf(sig) >= 0 ? 2 : 1;
+      marcas.push([i, largo]);
+      i += largo - 1;
+    }
+    /* ¿quedó marcada la palabra entera? entonces con la primera basta */
+    var letras = 0, marcadas = 0;
+    for (i = 0; i < palabra.length; i++) if (LETRA.test(palabra.charAt(i).toLowerCase())) letras++;
+    for (i = 0; i < marcas.length; i++) marcadas += marcas[i][1];
+    if (letras && marcadas === letras && marcas.length > 1) marcas = [marcas[0]];
+    return marcas;
+  }
+
+  function pintarPalabra(palabra, letra) {
+    var marcas = silabar(palabra, letra), out = "", i = 0, m = 0;
+    while (i < palabra.length) {
+      if (m < marcas.length && marcas[m][0] === i) {
+        out += "<b>" + palabra.substr(i, marcas[m][1]) + "</b>";
+        i += marcas[m][1];
+        m++;
+      } else {
+        out += palabra.charAt(i);
+        i++;
+      }
     }
     return out;
+  }
+
+  /* Las frases se parten en palabras: la regla de «toda la palabra es
+     de la letra» se decide palabra por palabra, no frase por frase. */
+  function pintar(texto, letra) {
+    return texto.split(" ").map(function (p) {
+      return pintarPalabra(p, letra);
+    }).join(" ");
   }
 
   function boton(clase, html, dicho) {
