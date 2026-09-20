@@ -189,7 +189,11 @@ window.ABECEDARIO = [
       "Ojo con la t y la p juntas: las dos son golpe seco y las dos se confunden al oído. " +
       "«tapa» y «papa» se diferencian en una sola letra, y las dos están en esta página.",
       "La t es la primera letra con dos trazos desde la i: primero el palito con su gancho, " +
-      "después la rayita que lo cruza. El orden importa, y la hoja lo marca con el 1 y el 2."
+      "después la rayita que lo cruza. El orden importa, y la hoja lo marca con el 1 y el 2.",
+      "Y hay premio: con la t, «Antonio» ya se lee entero — a, n, t, o, n, i, o. Con la n se " +
+      "pudo leer «Nelson». Al de Chepe todavía le falta la ch, pero «Pepe» ya está en la " +
+      "lección de la p. Vale la pena señalarlo: leer el nombre de un hermano pesa más que " +
+      "cualquier palabra de la lista."
     ],
     palabra: "tomate",
     foto: "img/lecciones/t/tomate.jpg",
@@ -202,7 +206,10 @@ window.ABECEDARIO = [
       { palabra: "mata", foto: "img/lecciones/t/mata.jpg" },
       { palabra: "pato", foto: "img/lecciones/t/pato.jpg" },
       { palabra: "maleta", foto: "img/lecciones/t/maleta.jpg" },
-      { palabra: "tela", foto: "img/lecciones/t/tela.jpg" }
+      { palabra: "tela", foto: "img/lecciones/t/tela.jpg" },
+      /* Con la t, «Antonio» ya se lee entero: a, n, t, o, n, i, o.
+         Lo cazó el padre. Va de última, como Nelson en la n. */
+      { palabra: "Antonio", foto: "img/lecciones/t/antonio.jpg" }
     ],
     frases: [
       { texto: "mi nene toma su sopa.", foto: "img/lecciones/t/nene-sopa.jpg", completa: true, rel: "5 / 2" },
