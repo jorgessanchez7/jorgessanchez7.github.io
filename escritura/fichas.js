@@ -334,6 +334,33 @@ window.FICHAS = [
     lineas: ["tomate moto pelota", "mi nene toma sopa."],
     trazos: [] },
 
+  { id: "letra-d", grupo: "letras", orden: 19, letra: "d", palabra: "dado",
+    titulo: "La d",
+    pista: "Es la a con el palito largo: primero la rueda desde arriba hacia la izquierda, y después el palito, que sube más alto.",
+    banda: "#fbe4dd", tinta: "#b5563a",
+    celda: [96, 130], repeticiones: 7, renglones: 2, guia: true,
+    trazos: [
+      { d: "M44 55 A22 27 0 0 0 44 109 A22 27 0 0 0 44 55", ini: [44, 55], ang: 180 },
+      { d: "M66 36 L66 110", ini: [66, 36], ang: 90 }
+    ] },
+
+  { id: "silabas-d", grupo: "letras", orden: 20,
+    titulo: "da, di, do, du, de",
+    pista: "En el orden de la cartilla, que no es a-e-i-o-u: es para leerlas, no para recitarlas.",
+    banda: "#fbe4dd", tinta: "#b5563a",
+    celda: [230, 150], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["da", "di", "do", "du", "de"],
+    trazos: [] },
+
+  { id: "frases-d", grupo: "letras", orden: 21,
+    titulo: "dado dedo nido",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#fbe4dd", tinta: "#b5563a",
+    celda: [900, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["dado dedo nido", "la dama me anima."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,

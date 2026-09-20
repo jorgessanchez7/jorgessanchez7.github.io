@@ -226,6 +226,44 @@ window.ABECEDARIO = [
          «Mooom!»: máscara pegada a las letras e inpaint de OpenCV. */
       { texto: "mamita, mamita, ese pato me pisa la tela.", foto: "img/lecciones/t/mamita-tela.jpg", completa: true, rel: "5 / 2" }
     ],
-    hojas: ["letra-t", "silabas-t", "frases-t"] }
+    hojas: ["letra-t", "silabas-t", "frases-t"] },
+
+  /* La d es la a con el palito largo: misma panza, mismo giro. Por eso
+     su ficha reusa el trazo de la vocal a y solo le estira el palito. */
+  { id: "d", letra: "d", mayuscula: "D", orden: 7,
+    banda: "#fbe4dd", tinta: "#b5563a",
+    comoSuena: "La lengua toca los dientes de arriba y suelta la voz: d. Es la t, pero con la voz puesta.",
+    aviso: [
+      "El nombre de la letra es «de», pero al leer no se dice: «de-a» no da «da». Es un golpecito " +
+      "corto, como la p y la t, y de una se cae en la vocal.",
+      "Diga «nada» y «nata» seguidas, despacio. La lengua va al mismo sitio en las dos; lo único " +
+      "que cambia es que en la d suena la voz y en la t no. Las dos palabras están en estas " +
+      "páginas: «nata» en la lección de la t y «nada» acá.",
+      "Mire la forma: la d es la a con el palito largo. Misma rueda, mismo giro, " +
+      "y el palito sube hasta donde sube el de la l. Vale la pena escribir «a» y «d» una al lado " +
+      "de la otra para que lo vea."
+    ],
+    palabra: "dado",
+    foto: "img/lecciones/d/dado.jpg",
+    notaSilabas: "Van en el orden de la cartilla: da, di, do, du, de. En desorden a propósito.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["da", "di", "do", "du", "de"],
+    palabras: ["dama", "seda", "todo", "nada", "duda", "mudo",
+               "pomada", "soda", "dime", "lado", "moneda", "pide"],
+    tarjetas: [
+      { palabra: "dedo", foto: "img/lecciones/d/dedo.jpg" },
+      { palabra: "nudo", foto: "img/lecciones/d/nudo.jpg" },
+      { palabra: "nido", foto: "img/lecciones/d/nido.jpg" }
+    ],
+    frases: [
+      { texto: "mi papá pide su soda.", foto: "img/lecciones/d/papa-soda.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "mi papá pone la pomada.", foto: "img/lecciones/d/papa-pomada.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "tu pato nada de lado.", foto: "img/lecciones/d/pato-lado.jpg", completa: true, rel: "5 / 2" },
+      { texto: "la paloma tapa su nido.", foto: "img/lecciones/d/paloma-nido.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "esa dama me saluda.", foto: "img/lecciones/d/dama-saluda.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "mi papá toma las monedas de la mesa.", foto: "img/lecciones/d/papa-monedas.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "mi papá suda si usa su pala toda la semana.", foto: "img/lecciones/d/papa-suda.jpg", ancha: true, rel: "16 / 9" }
+    ],
+    hojas: ["letra-d", "silabas-d", "frases-d"] }
 
 ];
