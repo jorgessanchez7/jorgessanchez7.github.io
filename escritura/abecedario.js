@@ -204,9 +204,14 @@ window.ABECEDARIO = [
                "tina", "pito", "maleta", "tapa", "nata", "tuna", "lata"],
     tarjetas: [
       { palabra: "mata", foto: "img/lecciones/t/mata.jpg" },
+      /* La pelota y la lata salvadas a punta de recorte: la foto del balón
+         dice «Tango / River Plate» abajo a la izquierda y la de la lata trae
+         etiqueta, pero en las dos hay un lado sin una sola letra impresa. */
+      { palabra: "pelota", foto: "img/lecciones/t/pelota.jpg" },
       { palabra: "pato", foto: "img/lecciones/t/pato.jpg" },
       { palabra: "maleta", foto: "img/lecciones/t/maleta.jpg" },
       { palabra: "tela", foto: "img/lecciones/t/tela.jpg" },
+      { palabra: "lata", foto: "img/lecciones/t/lata.jpg" },
       /* Con la t, «Antonio» ya se lee entero: a, n, t, o, n, i, o.
          Lo cazó el padre. Va de última, como Nelson en la n. */
       { palabra: "Antonio", foto: "img/lecciones/t/antonio.jpg" }
