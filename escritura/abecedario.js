@@ -44,7 +44,7 @@ window.ABECEDARIO = [
        así toca leerlas y no recitarlas de memoria */
     notaSilabas: "Van en desorden a propósito: así toca leerlas y no recitar a-e-i-o-u de memoria.",
     silabas: ["pa", "pu", "pi", "po", "pe"],
-    palabras: ["papá", "mapa", "pipa", "puma", "pomo", "papa", "papo", "pepe"],
+    palabras: ["papá", "mapa", "pipa", "puma", "pomo", "papa", "papo", "pepe", "pipí", "popó"],
     tarjetas: [
       { palabra: "pipa", foto: "img/lecciones/p/pipa.jpg" },
       { palabra: "puma", foto: "img/lecciones/p/puma.jpg" },
@@ -52,7 +52,11 @@ window.ABECEDARIO = [
          Venía casi blanco; se le subió el contraste y se coloreó como
          mapa de papel. Antes había una silueta de Colombia dibujada,
          y la cambió por esta. */
-      { palabra: "mapa", foto: "img/lecciones/p/mapa.jpg" }
+      { palabra: "mapa", foto: "img/lecciones/p/mapa.jpg" },
+      /* pipí y popó son dibujos de línea, no fotos: no hay manera decente
+         de fotografiar esto y el dibujo se entiende de una. */
+      { palabra: "pipí", foto: "img/lecciones/p/pipi.jpg" },
+      { palabra: "popó", foto: "img/lecciones/p/popo.jpg" }
     ],
     frases: [
       { texto: "mi papá me ama.", foto: "img/lecciones/p/todos.jpg", completa: true, rel: "5 / 2" },
@@ -175,7 +179,7 @@ window.ABECEDARIO = [
     hojas: ["letra-n", "silabas-n", "frases-n"] },
 
   /* La t abre la segunda serie de la cartilla. Faltan tres tarjetas
-     (pelota, moto y lata): las fotos que llegaron tenian texto adentro. */
+     (pelota, moto y lata): las fotos que llegaron traían texto adentro. */
   { id: "t", letra: "t", mayuscula: "T", orden: 6,
     banda: "#dff1f4", tinta: "#2f7f8c",
     comoSuena: "La lengua pega en los dientes de arriba y suelta un golpecito: t. No se puede estirar.",
@@ -205,7 +209,10 @@ window.ABECEDARIO = [
       { texto: "tu nena tapa la tina.", foto: "img/lecciones/t/nena-tina.jpg", ancha: true, rel: "16 / 9" },
       { texto: "mi pato no teme a ese mono.", foto: "img/lecciones/t/pato-mono.jpg", ancha: true, rel: "16 / 9" },
       { texto: "su moto sí pita.", foto: "img/lecciones/t/moto-pita.jpg", ancha: true, rel: "16 / 9" },
-      { texto: "mamita, mamita, ese pato me toma el tomate.", foto: "img/lecciones/t/mamita-tomate.jpg", ancha: true, rel: "16 / 9" }
+      { texto: "mamita, mamita, ese pato me toma el tomate.", foto: "img/lecciones/t/mamita-tomate.jpg", ancha: true, rel: "16 / 9" },
+      /* la de la cartilla. A la imagen se le borró un globo que decía
+         «Mooom!»: máscara pegada a las letras e inpaint de OpenCV. */
+      { texto: "mamita, mamita, ese pato me pisa la tela.", foto: "img/lecciones/t/mamita-tela.jpg", completa: true, rel: "5 / 2" }
     ],
     hojas: ["letra-t", "silabas-t", "frases-t"] }
 
