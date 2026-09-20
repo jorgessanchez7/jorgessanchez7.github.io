@@ -307,6 +307,33 @@ window.FICHAS = [
     lineas: ["nene luna mono", "la nena me ama."],
     trazos: [] },
 
+  { id: "letra-t", grupo: "letras", orden: 16, letra: "t", palabra: "tomate",
+    titulo: "La t",
+    pista: "Baja el palito y al final dóblalo hacia la derecha, como un bastón. Después la rayita que lo cruza.",
+    banda: "#dff1f4", tinta: "#2f7f8c",
+    celda: [96, 130], repeticiones: 7, renglones: 2, guia: true,
+    trazos: [
+      { d: "M44 45 L44 98 Q44 110 60 109", ini: [44, 45], ang: 90, insignia: [0, -14] },
+      { d: "M36 55 L64 55", ini: [36, 55], ang: 0 }
+    ] },
+
+  { id: "silabas-t", grupo: "letras", orden: 17,
+    titulo: "to, ti, ta, te, tu",
+    pista: "En el orden de la cartilla, que no es a-e-i-o-u: es para leerlas, no para recitarlas.",
+    banda: "#dff1f4", tinta: "#2f7f8c",
+    celda: [230, 150], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["to", "ti", "ta", "te", "tu"],
+    trazos: [] },
+
+  { id: "frases-t", grupo: "letras", orden: 18,
+    titulo: "tomate moto pelota",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#dff1f4", tinta: "#2f7f8c",
+    celda: [900, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["tomate moto pelota", "mi nene toma sopa."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,

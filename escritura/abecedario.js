@@ -172,7 +172,41 @@ window.ABECEDARIO = [
       { texto: "mi papá no se apena.", foto: "img/lecciones/n/papa-apena.jpg" },
       { texto: "ese enano malo no me anima, ni sana mi mano.", foto: "img/lecciones/n/enano.jpg" }
     ],
-    hojas: ["letra-n", "silabas-n", "frases-n"] }
+    hojas: ["letra-n", "silabas-n", "frases-n"] },
 
-  /* Con esto se cierra m, p, s, l, n. Lo que siga lo dice la cartilla. */
+  /* La t abre la segunda serie de la cartilla. Faltan tres tarjetas
+     (pelota, moto y lata): las fotos que llegaron tenian texto adentro. */
+  { id: "t", letra: "t", mayuscula: "T", orden: 6,
+    banda: "#dff1f4", tinta: "#2f7f8c",
+    comoSuena: "La lengua pega en los dientes de arriba y suelta un golpecito: t. No se puede estirar.",
+    aviso: [
+      "Esta es como la p: un golpe seco, no se sostiene. Si intenta alargarla le sale «te», y ese " +
+      "«e» de sobra le estorba para juntar. Un golpecito y de una a la vocal.",
+      "Ojo con la t y la p juntas: las dos son golpe seco y las dos se confunden al oído. " +
+      "«tapa» y «papa» se diferencian en una sola letra, y las dos están en esta página.",
+      "La t es la primera letra con dos trazos desde la i: primero el palito con su gancho, " +
+      "después la rayita que lo cruza. El orden importa, y la hoja lo marca con el 1 y el 2."
+    ],
+    palabra: "tomate",
+    foto: "img/lecciones/t/tomate.jpg",
+    notaSilabas: "Van en el orden de la cartilla: to, ti, ta, te, tu. En desorden a propósito.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["to", "ti", "ta", "te", "tu"],
+    palabras: ["tomate", "moto", "pelota", "tela", "mata", "pato",
+               "tina", "pito", "maleta", "tapa", "nata", "tuna", "lata"],
+    tarjetas: [
+      { palabra: "mata", foto: "img/lecciones/t/mata.jpg" },
+      { palabra: "pato", foto: "img/lecciones/t/pato.jpg" },
+      { palabra: "maleta", foto: "img/lecciones/t/maleta.jpg" },
+      { palabra: "tela", foto: "img/lecciones/t/tela.jpg" }
+    ],
+    frases: [
+      { texto: "mi nene toma su sopa.", foto: "img/lecciones/t/nene-sopa.jpg", completa: true, rel: "5 / 2" },
+      { texto: "tu nena tapa la tina.", foto: "img/lecciones/t/nena-tina.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "mi pato no teme a ese mono.", foto: "img/lecciones/t/pato-mono.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "su moto sí pita.", foto: "img/lecciones/t/moto-pita.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "mamita, mamita, ese pato me toma el tomate.", foto: "img/lecciones/t/mamita-tomate.jpg", ancha: true, rel: "16 / 9" }
+    ],
+    hojas: ["letra-t", "silabas-t", "frases-t"] }
+
 ];

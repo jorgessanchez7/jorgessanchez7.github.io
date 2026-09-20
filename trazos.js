@@ -54,7 +54,10 @@
     return s;
   }
 
-  function punta(x, y, ang, num, cx, cy) {
+  /* `corre` mueve SOLO la insignia del numero, no el punto de salida ni la
+     flecha. Hace falta en letras de dos trazos cuyos inicios quedan muy
+     cerca (la t): sin eso, los dos numeros se montan y tapan el modelo. */
+  function punta(x, y, ang, num, cx, cy, corre) {
     var a = (ang * Math.PI) / 180;
     var dx = Math.cos(a), dy = Math.sin(a);
     var px = -dy, py = dx;
@@ -65,7 +68,8 @@
     var ox = x + px * 12, oy = y + py * 12;
     var tx = ox + dx * 22, ty = oy + dy * 22;
     var bx = ox + dx * 11, by = oy + dy * 11;
-    return bolita(x, y, num) +
+    var ix = x + (corre ? corre[0] : 0), iy = y + (corre ? corre[1] : 0);
+    return bolita(x, y, 0) + (num ? bolita(ix, iy, num) : "") +
       '<path d="M' + tx.toFixed(1) + " " + ty.toFixed(1) +
       " L" + (bx + px * 5.5).toFixed(1) + " " + (by + py * 5.5).toFixed(1) +
       " L" + (bx - px * 5.5).toFixed(1) + " " + (by - py * 5.5).toFixed(1) +
@@ -110,7 +114,7 @@
           '" stroke-width="' + GROSOR + '" stroke-linecap="round" stroke-linejoin="round"/>'
         : '<path d="' + t.d + '" fill="none" stroke="#c9b79d" stroke-width="3" ' +
           'stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 9"/>';
-      if (marcar) out += punta(t.ini[0], t.ini[1], t.ang, num, cx, cy);
+      if (marcar) out += punta(t.ini[0], t.ini[1], t.ang, num, cx, cy, t.insignia);
     }
     return out;
   }
