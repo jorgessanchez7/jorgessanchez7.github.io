@@ -135,7 +135,44 @@ window.ABECEDARIO = [
       { texto: "papá pela ese palo.", foto: "img/lecciones/l/papa-palo.jpg" },
       { texto: "mi paloma sale sola a la loma.", foto: "img/lecciones/l/paloma-loma.jpg", completa: true, rel: "5 / 2" }
     ],
-    hojas: ["letra-l", "silabas-l", "frases-l"] }
+    hojas: ["letra-l", "silabas-l", "frases-l"] },
 
-  /* Sigue: la n. */
+  /* La n cierra la primera serie de la cartilla: m, p, s, l, n. Y trae un
+     regalo: con ella el nombre de Nelson ya se puede leer entero. */
+  { id: "n", letra: "n", mayuscula: "N", orden: 5,
+    banda: "#fdeedd", tinta: "#c06a33",
+    comoSuena: "El aire sale por la nariz con la lengua pegada arriba: nnn. Se estira como la m.",
+    aviso: [
+      "El nombre de la letra es «ene», pero al leer no se dice: «ene-a» no da «na». Se hace el " +
+      "sonido largo y se cae en la vocal: nnnna. De las fáciles, como la m, la s y la l.",
+      "Ojo con la m y la n, que se confunden por partida doble: suenan parecido (las dos salen " +
+      "por la nariz) y se escriben parecido — la n es la m con un puente menos. Vale la pena " +
+      "ponerlas juntas y decir «mano» y «mamo» para que oiga la diferencia.",
+      "Entre las palabras nuevas está «Nelson». Es la primera vez que aparece una mayúscula en " +
+      "todo el sitio, y es a propósito: los nombres de las personas se escriben así. Vale más " +
+      "explicarlo con el nombre del hermano que con una regla."
+    ],
+    palabra: "nene",
+    foto: "img/lecciones/n/nene.jpg",
+    notaSilabas: "Van en el orden de la cartilla: ne, ni, na, nu, no. En desorden a propósito.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["ne", "ni", "na", "nu", "no"],
+    palabras: ["nena", "pino", "maní", "nulo", "mano", "pepino",
+               "pena", "mina", "enano", "luna", "molino", "lana"],
+    tarjetas: [
+      { palabra: "mono", foto: "img/lecciones/n/mono.jpg" },
+      { palabra: "luna", foto: "img/lecciones/n/luna.jpg" },
+      { palabra: "pino", foto: "img/lecciones/n/pino.jpg" },
+      { palabra: "Nelson", foto: "img/lecciones/n/nelson.jpg" }
+    ],
+    frases: [
+      { texto: "esa nena me anima.", foto: "img/lecciones/n/nena-anima.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "la mona lame mi mano.", foto: "img/lecciones/n/mona-mano.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "mi mamá mima a su nene.", foto: "img/lecciones/n/mama-nene.jpg" },
+      { texto: "mi papá no se apena.", foto: "img/lecciones/n/papa-apena.jpg" },
+      { texto: "ese enano malo no me anima, ni sana mi mano.", foto: "img/lecciones/n/enano.jpg" }
+    ],
+    hojas: ["letra-n", "silabas-n", "frases-n"] }
+
+  /* Con esto se cierra m, p, s, l, n. Lo que siga lo dice la cartilla. */
 ];

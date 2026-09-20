@@ -125,6 +125,9 @@
     var secT = document.getElementById("sec-tarjetas");
     if (L.tarjetas && L.tarjetas.length) {
       var cajaT = document.getElementById("tarjetas");
+      /* cuantas son decide el ancho de la fila: con cuatro, cuatro columnas,
+         para que no quede una sola colgando debajo de tres */
+      cajaT.dataset.cuantas = L.tarjetas.length;
       L.tarjetas.forEach(function (t) {
         var div = document.createElement("div");
         div.className = "tarjeta";

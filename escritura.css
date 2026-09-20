@@ -393,6 +393,8 @@ h1, h2, h3, .hero h1 { font-family: "Quicksand", "Trebuchet MS", sans-serif; fon
 /* 280px hace que quepan tres por fila en 1020 de ancho util y no cuatro:
    con seis tarjetas (la l) quedan dos filas parejas en vez de 4+2 con hueco. */
 .tarjetas { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 18px; }
+/* con exactamente cuatro, cuatro en fila: tres y una sola colgando se ve mal */
+@media (min-width: 920px) { .tarjetas[data-cuantas="4"] { grid-template-columns: repeat(4, 1fr); } }
 .tarjeta {
   background: #fff;
   border-radius: 18px;

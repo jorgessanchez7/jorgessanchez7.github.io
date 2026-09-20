@@ -281,6 +281,32 @@ window.FICHAS = [
     lineas: ["loma lima mula", "mi mula sale sola."],
     trazos: [] },
 
+  { id: "letra-n", grupo: "letras", orden: 13, letra: "n", palabra: "nene",
+    titulo: "La n",
+    pista: "Baja el palito, sube por encima de lo mismo y haz un solo puente. Es la m con un puente menos.",
+    banda: "#fdeedd", tinta: "#c06a33",
+    celda: [96, 130], repeticiones: 7, renglones: 2, guia: true,
+    trazos: [
+      { d: "M28 55 L28 110 L28 75 A20 20 0 0 1 68 75 L68 110", ini: [28, 55], ang: 90 }
+    ] },
+
+  { id: "silabas-n", grupo: "letras", orden: 14,
+    titulo: "ne, ni, na, nu, no",
+    pista: "En el orden de la cartilla, que no es a-e-i-o-u: es para leerlas, no para recitarlas.",
+    banda: "#fdeedd", tinta: "#c06a33",
+    celda: [230, 150], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["ne", "ni", "na", "nu", "no"],
+    trazos: [] },
+
+  { id: "frases-n", grupo: "letras", orden: 15,
+    titulo: "nene luna mono",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#fdeedd", tinta: "#c06a33",
+    celda: [900, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["nene luna mono", "la nena me ama."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,
