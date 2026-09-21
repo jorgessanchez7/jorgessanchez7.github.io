@@ -139,7 +139,7 @@
   var AVANCE = {
     a: 63, e: 59, i: 24, o: 62, u: 59,
     "á": 63, "é": 59, "í": 24, "ó": 62, "ú": 59,
-    m: 92, p: 63, s: 48, l: 27, n: 60, t: 41, d: 63,
+    m: 92, p: 63, s: 48, l: 27, n: 60, t: 41, d: 63, r: 43,
     " ": 28, ".": 25
   };
 
@@ -406,7 +406,12 @@
           'xmlns="http://www.w3.org/2000/svg">' + f.dibujo + "</svg></span>";
       }
       if (f.palabra) {
-        html += '<span class="palabra"><b>' + f.letra + "</b>" + f.palabra.slice(1) + "</span>";
+        /* cuántas letras van en color: normalmente una, pero la hoja de la
+           rr dice «rr» y su palabra es «rosa», que empieza con una sola.
+           Se pinta lo que de verdad calce al principio de la palabra. */
+        var n = f.palabra.toLowerCase().indexOf(f.letra.toLowerCase()) === 0 ? f.letra.length : 1;
+        html += '<span class="palabra"><b>' + f.palabra.slice(0, n) + "</b>" +
+          f.palabra.slice(n) + "</span>";
       }
       muestra.innerHTML = html;
       muestra.querySelector(".glifo-grande").addEventListener("click", function () {

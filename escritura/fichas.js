@@ -361,6 +361,66 @@ window.FICHAS = [
     lineas: ["dado dedo nido", "la dama me anima."],
     trazos: [] },
 
+  /* La r y la rr son hermanas: la misma letra con dos sonidos. Por eso
+     llevan el mismo color, uno claro y el otro fuerte. Se ve de lejos
+     que son dos caras de lo mismo y no dos letras distintas. */
+
+  { id: "letra-r", grupo: "letras", orden: 22, letra: "r", palabra: "toro",
+    titulo: "La r",
+    pista: "El palito, subes por encima de lo mismo y sales con la curvita hacia la derecha. Sin levantar el dedo.",
+    banda: "#fdf1d8", tinta: "#b5832a",
+    celda: [96, 130], repeticiones: 7, renglones: 2, guia: true,
+    trazos: [
+      { d: "M28 55 L28 110 L28 75 A20 20 0 0 1 57 62", ini: [28, 55], ang: 90 }
+    ] },
+
+  { id: "silabas-r", grupo: "letras", orden: 23,
+    titulo: "ro, re, ra, ru, ri",
+    pista: "En el orden de la cartilla. Acá la r suena suavecita, como en «toro».",
+    banda: "#fdf1d8", tinta: "#b5832a",
+    celda: [230, 130], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["ro", "re", "ra", "ru", "ri"],
+    trazos: [] },
+
+  { id: "frases-r", grupo: "letras", orden: 24,
+    titulo: "toro pera loro",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#fdf1d8", tinta: "#b5832a",
+    celda: [900, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["toro pera loro", "ese toro me mira."],
+    trazos: [] },
+
+  /* La rr son dos r pegadas y nada más: el mismo trazo, dos veces.
+     Lo nuevo para la mano es que quepan juntas sin montarse. */
+
+  { id: "letra-rr", grupo: "letras", orden: 25, letra: "rr", palabra: "rosa",
+    titulo: "La rr",
+    pista: "Son dos r seguidas, la misma de siempre. Primero una, después la otra, bien pegaditas.",
+    banda: "#f6e2bc", tinta: "#8a5a12",
+    celda: [150, 130], repeticiones: 5, renglones: 2, guia: true,
+    trazos: [
+      { d: "M35 55 L35 110 L35 75 A20 20 0 0 1 64 62", ini: [35, 55], ang: 90 },
+      { d: "M78 55 L78 110 L78 75 A20 20 0 0 1 107 62", ini: [78, 55], ang: 90 }
+    ] },
+
+  { id: "silabas-rr", grupo: "letras", orden: 26,
+    titulo: "rra, rre, rri, rro, rru",
+    pista: "Acá la r suena fuerte, como en «perro». Son dos, y se escriben las dos.",
+    banda: "#f6e2bc", tinta: "#8a5a12",
+    celda: [300, 130], repeticiones: 3, guia: true, tamano: 100,
+    lineas: ["rra", "rre", "rri", "rro", "rru"],
+    trazos: [] },
+
+  { id: "frases-rr", grupo: "letras", orden: 27,
+    titulo: "rosa perro torre",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#f6e2bc", tinta: "#8a5a12",
+    celda: [960, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["rosa perro torre", "me da risa esa rana."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,

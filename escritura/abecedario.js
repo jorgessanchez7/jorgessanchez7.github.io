@@ -268,6 +268,90 @@ window.ABECEDARIO = [
       { texto: "mi papá toma las monedas de la mesa.", foto: "img/lecciones/d/papa-monedas.jpg", ancha: true, rel: "16 / 9" },
       { texto: "mi papá suda si usa su pala toda la semana.", foto: "img/lecciones/d/papa-suda.jpg", ancha: true, rel: "16 / 9" }
     ],
-    hojas: ["letra-d", "silabas-d", "frases-d"] }
+    hojas: ["letra-d", "silabas-d", "frases-d"] },
+
+  /* La r va en dos lecciones, como en la cartilla, porque son dos sonidos
+     distintos con la misma letra. Esta es la suave, la de «toro». Llevan
+     el mismo color, uno claro y el otro fuerte: son hermanas. */
+
+  { id: "r", letra: "r", mayuscula: "R", orden: 8,
+    banda: "#fdf1d8", tinta: "#b5832a",
+    comoSuena: "La punta de la lengua da un solo golpecito arribita de los dientes: r. Un toque, no un temblor.",
+    aviso: [
+      "Esta letra tiene dos sonidos, y esta lección es el suave: el de «toro», «pera», «arena». " +
+      "Suena así cuando la r queda en la mitad de la palabra, entre dos vocales. El fuerte —el de " +
+      "«rosa» y «perro»— es la lección que sigue.",
+
+      "Una advertencia práctica, y es la más importante de esta página: «ro» dicha sola siempre " +
+      "suena fuerte. No hay manera de decirla suave por aparte. Por eso esta letra se aprende " +
+      "dentro de la palabra: apóyese en la lista de palabras y en las frases, no en el silabario. " +
+      "Si el niño toca una sílaba y suena fuerte, no está mal: es que suelta no puede sonar de otra forma.",
+
+      "Para escribirla: es la n empezada y dejada a medias. Baja el palito, sube por encima de lo " +
+      "mismo y en vez de bajar otra vez, se queda en la curvita. Vale la pena escribir «n» y «r» " +
+      "una al lado de la otra para que lo vea."
+    ],
+    palabra: "toro", foto: "img/lecciones/r/toro.jpg",
+    notaSilabas: "Van en el orden de la cartilla: ro, re, ra, ru, ri. Acuérdese de lo del aviso: sueltas suenan fuertes.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["ro", "re", "ra", "ru", "ri"],
+    palabras: ["toro","salero","mora","muro","mariposa","torero","arena","madera","pera","loro","arete","marino"],
+    tarjetas: [
+      { palabra: "aro", foto: "img/lecciones/r/aro.jpg" },
+      { palabra: "tetero", foto: "img/lecciones/r/tetero.jpg" },
+      { palabra: "loro", foto: "img/lecciones/r/loro.jpg" }
+    ],
+    frases: [
+      { texto: "ese toro me mira.", foto: "img/lecciones/r/toro-mira.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "mi nena toma tetero.", foto: "img/lecciones/r/nena-tetero.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "dame una pera madura.", foto: "img/lecciones/r/pera-madura.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "la mesa era de madera dura.", foto: "img/lecciones/r/mesa-madera.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "ese loro tiene una pera madura.", foto: "img/lecciones/r/loro-pera.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "mi torito sale a la arena, no teme a ese torero.", foto: "img/lecciones/r/torito-arena.jpg", ancha: true, rel: "16 / 9" }
+    ],
+    hojas: ["letra-r", "silabas-r", "frases-r"] },
+
+  /* La r fuerte. `marca` le dice a la lección que la letra de la semana se
+     escribe de dos formas: «rr» en la mitad y «r» al principio. Así «perro»
+     colorea «rro» entero y no «r» + «ro». */
+
+  { id: "rr", letra: "rr", mayuscula: "RR", orden: 9,
+    marca: ["rr", "r"],
+    banda: "#f6e2bc", tinta: "#8a5a12",
+    comoSuena: "La punta de la lengua tiembla contra el paladar: rrr. Mismo sitio que la r suave, pero en vez de un golpecito son varios seguidos.",
+    aviso: [
+      "Es la misma letra de la semana pasada con el otro sonido. Lo que decide cuál suena es " +
+      "dónde está parada: al principio de la palabra, una sola r ya suena fuerte («rosa», «rana», " +
+      "«ropa»). En la mitad, entre dos vocales, hay que escribir dos («perro», «torre»), porque con " +
+      "una sola sonaría suave.",
+
+      "Diga «pero» y «perro» seguidas, despacio. Es la misma boca, en el mismo sitio; lo único que " +
+      "cambia es que en una la lengua da un golpe y en la otra tiembla. Y cambia la palabra entera: " +
+      "es de las pocas veces en que una letra de más o de menos dice otra cosa.",
+
+      "Para la mano no hay nada nuevo: son dos r iguales, pegaditas. Lo único que hay que cuidar es " +
+      "que no se monten la una sobre la otra."
+    ],
+    palabra: "rosa", foto: "img/lecciones/rr/rosa.jpg",
+    notaSilabas: "Son las mismas cinco de la semana pasada, y es a propósito: se escriben igual y suenan distinto. Acá van en el orden de la cartilla: ro, ri, re, ru, ra.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["ro", "ri", "re", "ru", "ra"],
+    palabras: ["rosa","rata","perro","rana","roto","torre","remo","ruleta","risa","ropa","rama","perrera"],
+    tarjetas: [
+      { palabra: "rana", foto: "img/lecciones/rr/rana.jpg" },
+      { palabra: "perro", foto: "img/lecciones/rr/perro.jpg" },
+      { palabra: "rata", foto: "img/lecciones/rr/rata.jpg" },
+      { palabra: "torre", foto: "img/lecciones/rr/torre.jpg" },
+      { palabra: "remo", foto: "img/lecciones/rr/remo.jpg" },
+      { palabra: "ropa", foto: "img/lecciones/rr/ropa.jpg" }
+    ],
+    frases: [
+      { texto: "ese perro sale de su perrera.", foto: "img/lecciones/rr/perro-perrera.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "me da risa esa rana.", foto: "img/lecciones/rr/rana-risa.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "dale ese remo a mamá.", foto: "img/lecciones/rr/remo-mama.jpg" },
+      { texto: "mi papá rema rápido.", foto: "img/lecciones/rr/papa-rema.jpg" },
+      { texto: "ese perrito saluda a su amo.", foto: "img/lecciones/rr/perro-amo.jpg" }
+    ],
+    hojas: ["letra-rr", "silabas-rr", "frases-rr"] }
 
 ];

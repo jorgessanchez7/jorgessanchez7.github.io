@@ -62,27 +62,40 @@
   var VOCALES = "aeiouáéíóú";
   var LETRA = /[a-záéíóúñ]/;
 
-  function silabar(palabra, letra) {
-    var marcas = [], i;
-    for (i = 0; i < palabra.length; i++) {
-      if (palabra.charAt(i).toLowerCase() !== letra) continue;
+  /* La letra de la semana puede escribirse de más de una forma: la r fuerte
+     es «rr» en medio de palabra y «r» al principio. Por eso no se compara
+     carácter contra carácter sino contra una lista de grafías, la más larga
+     primero, para que «perro» marque «rro» y no «r»+«ro». Lo mismo va a
+     necesitar la ch, la ll, que/qui y gue/gui. */
+  function calza(bajo, i, grafias) {
+    for (var k = 0; k < grafias.length; k++) {
+      if (bajo.substr(i, grafias[k].length) === grafias[k]) return grafias[k];
+    }
+    return null;
+  }
+
+  function silabar(palabra, grafias) {
+    var marcas = [], bajo = palabra.toLowerCase(), i = 0;
+    while (i < bajo.length) {
+      var g = calza(bajo, i, grafias);
+      if (!g) { i++; continue; }
       /* ojo: charAt fuera de rango devuelve "" y indexOf("") da 0,
          así que hay que preguntar primero si de verdad hay letra */
-      var sig = palabra.charAt(i + 1).toLowerCase();
-      var largo = sig && VOCALES.indexOf(sig) >= 0 ? 2 : 1;
+      var sig = bajo.charAt(i + g.length);
+      var largo = g.length + (sig && VOCALES.indexOf(sig) >= 0 ? 1 : 0);
       marcas.push([i, largo]);
-      i += largo - 1;
+      i += largo;
     }
     /* ¿quedó marcada la palabra entera? entonces con la primera basta */
     var letras = 0, marcadas = 0;
-    for (i = 0; i < palabra.length; i++) if (LETRA.test(palabra.charAt(i).toLowerCase())) letras++;
+    for (i = 0; i < bajo.length; i++) if (LETRA.test(bajo.charAt(i))) letras++;
     for (i = 0; i < marcas.length; i++) marcadas += marcas[i][1];
     if (letras && marcadas === letras && marcas.length > 1) marcas = [marcas[0]];
     return marcas;
   }
 
-  function pintarPalabra(palabra, letra) {
-    var marcas = silabar(palabra, letra), out = "", i = 0, m = 0;
+  function pintarPalabra(palabra, grafias) {
+    var marcas = silabar(palabra, grafias), out = "", i = 0, m = 0;
     while (i < palabra.length) {
       if (m < marcas.length && marcas[m][0] === i) {
         out += "<b>" + palabra.substr(i, marcas[m][1]) + "</b>";
@@ -98,10 +111,18 @@
 
   /* Las frases se parten en palabras: la regla de «toda la palabra es
      de la letra» se decide palabra por palabra, no frase por frase. */
-  function pintar(texto, letra) {
+  function pintar(texto, grafias) {
     return texto.split(" ").map(function (p) {
-      return pintarPalabra(p, letra);
+      return pintarPalabra(p, grafias);
     }).join(" ");
+  }
+
+  /* Las grafías de esta lección, de la más larga a la más corta. Por
+     defecto es la letra sola; `marca` en el abecedario permite varias. */
+  function grafiasDe(L) {
+    return (L.marca || [L.letra]).slice().sort(function (a, b) {
+      return b.length - a.length;
+    });
   }
 
   function boton(clase, html, dicho) {
@@ -114,6 +135,7 @@
   }
 
   function armar() {
+    var GRAFIAS = grafiasDe(L);
     document.title = "La " + L.letra + " · Lecciones de lectura";
     document.documentElement.style.setProperty("--letra", L.tinta);
     document.documentElement.style.setProperty("--letra-suave", L.banda);
@@ -139,7 +161,7 @@
     foto.src = L.foto;
     foto.alt = L.palabra;
     var pc = document.getElementById("palabra-clave");
-    pc.innerHTML = pintar(L.palabra, L.letra);
+    pc.innerHTML = pintar(L.palabra, GRAFIAS);
     pc.addEventListener("click", function () { decir(L.palabra, pc); });
 
     /* el glifo grande: toca y suena el sonido, no el nombre */
@@ -154,13 +176,13 @@
     if (L.notaFrases)  document.getElementById("nota-frases").textContent  = L.notaFrases;
     var cajaS = document.getElementById("silabas");
     L.silabas.forEach(function (s) {
-      cajaS.appendChild(boton("silabon", pintar(s, L.letra), s));
+      cajaS.appendChild(boton("silabon", pintar(s, GRAFIAS), s));
     });
 
     /* las palabras */
     var cajaP = document.getElementById("palabras");
     L.palabras.forEach(function (p) {
-      cajaP.appendChild(boton("palabrota", pintar(p, L.letra), p));
+      cajaP.appendChild(boton("palabrota", pintar(p, GRAFIAS), p));
     });
 
     /* las tarjetas de palabra con dibujo, como la fila de la cartilla.
@@ -187,7 +209,7 @@
             t.dibujo + "</svg>";
           div.appendChild(caja);
         }
-        div.appendChild(boton("renglon-frase", pintar(t.palabra, L.letra), t.palabra));
+        div.appendChild(boton("renglon-frase", pintar(t.palabra, GRAFIAS), t.palabra));
         cajaT.appendChild(div);
       });
     } else {
@@ -207,7 +229,7 @@
       img.loading = "lazy";
       if (f.rel) img.style.aspectRatio = f.rel;
       div.appendChild(img);
-      div.appendChild(boton("renglon-frase", pintar(f.texto, L.letra), f.texto));
+      div.appendChild(boton("renglon-frase", pintar(f.texto, GRAFIAS), f.texto));
       cajaF.appendChild(div);
     });
 
