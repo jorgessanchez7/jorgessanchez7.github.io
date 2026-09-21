@@ -43,6 +43,11 @@ window.BANCO = [
       { palabra: "agua", img: "img/lecciones/antonio/agua.png", pict: true, arasaac: 2248 },
       { palabra: "jugo", img: "img/lecciones/antonio/jugo.png", pict: true, arasaac: 11461,
         nota: "En ARASAAC este pictograma se llama «zumo». Aquí se escribe jugo." },
+      /* Las dos que trajo el padre. Puede que terminen siendo las que más
+         sirvan de todo el banco: pedir el baño a tiempo cambia un día. */
+      { palabra: "pipí", img: "img/lecciones/antonio/pipi.png", pict: true,
+        nota: "Va junto a «popó» y a «el baño». Las tres son distintas: el baño es el sitio, estas dos son lo que necesita." },
+      { palabra: "popó", img: "img/lecciones/antonio/popo.png", pict: true },
       { palabra: "otra vez", img: "img/lecciones/antonio/otra-vez.png", pict: true, arasaac: 37162 },
       { palabra: "sí", img: "img/lecciones/antonio/si.png", pict: true, arasaac: 5584 },
       { palabra: "no", img: "img/lecciones/antonio/no.png", pict: true, arasaac: 5526 }
