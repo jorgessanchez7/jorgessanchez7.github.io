@@ -181,12 +181,39 @@
 
   var AIRE = 10;
 
+  /* El corredor: dos rayas finas de lado a lado, a la altura a la que
+     llega el trazo. Las hojas de letras ya traen su renglón, pero las
+     de trazos sueltos no tenían ninguno, y entonces el renglón se veía
+     terminar donde terminaba el dibujo — a dos tercios de la hoja — en
+     vez de llegar al margen.
+
+     Hace dos cosas a la vez: dice hasta dónde hay que seguir, y dice
+     hasta dónde sube y baja el trazo, que es justo lo que se está
+     practicando. Cuando el trazo es acostado (la raya de un lado al
+     otro) no hay dos alturas que marcar: va una sola raya, debajo.
+
+     Se dibuja DESPUÉS de medir, y entre las alturas ya medidas, para
+     que no cambie el recorte. */
+  function corredor(svg, b, W) {
+    var alto = b.height;
+    var abajo = b.y + alto - 1.5;
+    var d = "M0 " + abajo.toFixed(1) + " H" + W;
+    if (alto >= 45) d += " M0 " + (b.y + 1.5).toFixed(1) + " H" + W;
+    var g = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    g.setAttribute("d", d);
+    g.setAttribute("fill", "none");
+    g.setAttribute("stroke", NEGRO.guia);
+    g.setAttribute("stroke-width", "1.6");
+    svg.insertBefore(g, svg.firstChild);
+  }
+
   function recortar(caja) {
     [].forEach.call(caja.querySelectorAll(".renglon svg"), function (svg) {
       var vb = svg.getAttribute("viewBox").split(/\s+/).map(Number);
       var b;
       try { b = svg.getBBox(); } catch (x) { return; }
       if (!b || !b.height) return;
+      if (svg.getAttribute("data-corredor") === "si") corredor(svg, b, vb[2]);
       var y = Math.max(0, b.y - AIRE);
       var alto = Math.min(vb[3] - y, b.y + b.height + AIRE - y);
       svg.setAttribute("viewBox", "0 " + y.toFixed(1) + " " + vb[2] + " " + alto.toFixed(1));
@@ -211,16 +238,33 @@
     });
   }
 
+  /* En las hojas de trazos sueltos el punto de salida y la flecha van
+     en TODAS las repeticiones, incluidas las que quedan en blanco.
+     Antes iban solo en el primer renglón, pensando que repetidos eran
+     ruido; con la hoja impresa en la mano resultó al revés: ahí no hay
+     renglón ni letra que oriente, y sin marca el niño arranca por donde
+     le parece — que es justo el hábito que la plana tiene que evitar.
+     Y las repeticiones en blanco, que antes no dibujaban nada, ahora se
+     leen como lo que son: espacio para escribir, con su punto de
+     salida, no papel sobrante.
+
+     En las hojas de letras y sílabas no: ahí el renglón ya llega al
+     margen y las letras de dos trazos llevan números, que repetidos
+     treinta veces tapan la letra. Esas se quedan con la marca en el
+     primer renglón. */
   function dibujarFila(fila, primera) {
     var f = fila.f;
     var W = f.celda[0] * fila.reps;
     var op = {};
     for (var k in NEGRO) op[k] = NEGRO[k];
     op.celdas = fila.celdas;
-    /* El punto de salida y la flecha solo en el primer renglón: en el
-       papel, repetidos seis veces, son ruido. */
-    op.sinMarcas = !primera;
-    return '<div class="renglon">' + D.guias(f, W, f.celda[1], fila.reps, fila.linea, op) + "</div>";
+    op.sinMarcas = f.guia ? !primera : false;
+    var svg = D.guias(f, W, f.celda[1], fila.reps, fila.linea, op);
+    /* el corredor va donde no hay renglón: en las hojas de trazos */
+    if (!f.guia && fila.linea == null) {
+      svg = svg.replace('class="guias"', 'class="guias" data-corredor="si"');
+    }
+    return '<div class="renglon">' + svg + "</div>";
   }
 
   /* ---------- armar la página ---------- */

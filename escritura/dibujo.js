@@ -102,7 +102,12 @@
     return out;
   }
 
-  function celda(f, modelo, marcar, o) {
+  /* `soloMarcas` deja la celda en blanco y pone nada más el punto de
+     salida y la flecha. Es para el papel: en las repeticiones donde el
+     niño la hace solo no hay nada que repasar, pero sí tiene que saber
+     por dónde empieza — y así el renglón llega hasta el margen en vez
+     de morirse a dos tercios de la hoja. */
+  function celda(f, modelo, marcar, o, soloMarcas) {
     var out = "";
     var varios = f.trazos.length > 1;
     var cx = f.celda[0] / 2, cy = f.celda[1] / 2;
@@ -110,11 +115,11 @@
       var t = f.trazos[i];
       var num = varios ? i + 1 : 0;
       if (t.punto) {
-        out += puntico(t.punto[0], t.punto[1], f, modelo, o);
+        if (!soloMarcas) out += puntico(t.punto[0], t.punto[1], f, modelo, o);
         if (marcar && num) out += bolita(t.punto[0] + 15, t.punto[1], num, o);
         continue;
       }
-      out += camino(t.d, f, modelo, o);
+      if (!soloMarcas) out += camino(t.d, f, modelo, o);
       if (marcar) out += punta(t.ini[0], t.ini[1], t.ang, num, cx, cy, t.insignia, o);
     }
     return out;
@@ -138,6 +143,7 @@
     a: 63, e: 59, i: 24, o: 62, u: 59,
     "á": 63, "é": 59, "í": 24, "ó": 62, "ú": 59,
     m: 92, p: 63, s: 48, l: 27, n: 60, t: 41, d: 63, r: 43, c: 52,
+    "\u00f1": 60,
     " ": 28, ".": 25, ",": 25
   };
 
@@ -260,16 +266,27 @@
         '<path d="M0 ' + (f.cuerpo || 55) + " H" + W + '" stroke-dasharray="8 8"/>' +
         '<path d="M0 ' + (f.linea || 110) + " H" + W + '"/></g>';
     }
+    /* dónde empieza el tramo en blanco: ahí el niño vuelve a arrancar
+       solo, así que ahí va otra marca de salida aunque el trazo sea
+       encadenado */
+    var primerVacio = o.celdas ? o.celdas.indexOf("vacio") : -1;
+
     for (var i = 0; i < reps; i++) {
       var modo = o.celdas ? (o.celdas[i] || "punteado")
                           : (i === 0 && !f.sinModelo ? "modelo" : "punteado");
-      if (modo === "vacio") continue;
+      var vacio = modo === "vacio";
+      /* en una línea de texto no hay marcas que poner: la celda vacía
+         de verdad queda vacía */
+      if (vacio && linea != null) continue;
       /* en los trazos encadenados (zigzag, olas, bucles) la marca de
-         salida va solo al principio: el camino es uno solo */
-      var marcar = !o.sinMarcas && (f.continuo ? i === 0 : true);
+         salida va al principio del renglón y al principio del tramo
+         en blanco: en medio, el camino es uno solo */
+      var marcar = !o.sinMarcas &&
+        (f.continuo ? (i === 0 || i === primerVacio) : true);
+      if (vacio && !marcar) continue;
       var dentro = linea != null
         ? celdaTexto(f, modo === "modelo", linea, o)
-        : celda(f, modo === "modelo", marcar, o);
+        : celda(f, modo === "modelo", marcar, o, vacio);
       s += '<g transform="translate(' + i * f.celda[0] + ',0)">' + dentro + "</g>";
     }
     return s + "</svg>";
