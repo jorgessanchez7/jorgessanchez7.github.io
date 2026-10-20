@@ -519,6 +519,37 @@ window.FICHAS = [
     lineas: ["vaca uva vela", "la vela ilumina la sala."],
     trazos: [] },
 
+  /* La b, de un solo trazo: el palito de la l (asta 74, desde y=36) y la
+     rueda de la d puesta al otro lado. Medida contra Quicksand (peso 600):
+     avance 62 —el mismo de la p y la d—, ancho visible 52. El palito va en
+     x 26 y la rueda de 26 a 70 (rx 22, ry 27, como la d). */
+
+  { id: "letra-b", grupo: "letras", orden: 37, letra: "b", palabra: "burro",
+    titulo: "La b",
+    pista: "Primero el palito, de arriba abajo; después sube hasta la mitad y da la vuelta a la barriga hacia adelante.",
+    banda: "#e1dbf2", tinta: "#46357d",
+    celda: [96, 130], repeticiones: 7, renglones: 2, guia: true,
+    trazos: [
+      { d: "M26 36 L26 110 L26 82 A22 27 0 0 1 70 82 A22 27 0 0 1 26 82", ini: [26, 36], ang: 90 }
+    ] },
+
+  { id: "silabas-b", grupo: "letras", orden: 38,
+    titulo: "bu, bo, be, bi, ba",
+    pista: "En el orden de la cartilla. El palito primero, la barriga después.",
+    banda: "#e1dbf2", tinta: "#46357d",
+    celda: [230, 130], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["bu", "bo", "be", "bi", "ba"],
+    trazos: [] },
+
+  { id: "frases-b", grupo: "letras", orden: 39,
+    titulo: "beso boca burro",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#e1dbf2", tinta: "#46357d",
+    celda: [960, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["beso boca burro", "mi burro no sabe nada."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,

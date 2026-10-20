@@ -486,5 +486,50 @@ window.ABECEDARIO = [
       { texto: "uva moradita, uvita de verano, dame tu vino, anima mi vida.", foto: "img/lecciones/v/uva-vino.jpg", ancha: true, rel: "16 / 9" },
       { texto: "uva moradita, uvita de verano, dame tu jugo, anima mi vida.", foto: "img/lecciones/v/uva-jugo.jpg", ancha: true, rel: "16 / 9" }
     ],
-    hojas: ["letra-v", "silabas-v", "frases-v"] }
+    hojas: ["letra-v", "silabas-v", "frases-v"] },
+
+  /* La b. Mismo color que la v pero más fuerte, como la r y la rr: no son
+     la misma letra, pero suenan igual y conviene que se vean parientes.
+     La foto del tabaco trae «ROMEO Y JULIETA» y entra así por decisión del
+     padre (como la moto de la t). */
+
+  { id: "b", letra: "b", mayuscula: "B", orden: 13,
+    banda: "#e1dbf2", tinta: "#46357d",
+    comoSuena: "Los labios se juntan y se sueltan: b. Suena exactamente igual que la v.",
+    aviso: [
+      "La b y la v suenan igual. Dígalo así, sin rodeos: «esta suena igual que la de la vaca». Si " +
+      "el niño escribe «vurro» o «bela», no está oyendo mal — está oyendo bien, y la diferencia es " +
+      "solo de cómo se escribe cada palabra. Eso se aprende leyendo, no corrigiendo.",
+
+      "La trampa de verdad de la b es otra: es la d al revés, y la p de cabeza. Las tres son un " +
+      "palito y una barriga, y lo único que cambia es de qué lado va cada cosa. Para la b: primero " +
+      "el palito, bien alto, y la barriga va adelante, hacia la derecha. En la d es al revés: " +
+      "primero la barriga y el palito después.",
+
+      "Para escribirla: un solo trazo. Baja el palito desde arriba, sube por el mismo camino hasta " +
+      "la mitad y desde ahí da la vuelta a la barriga hacia la derecha, hasta volver al palito."
+    ],
+    palabra: "burro", foto: "img/lecciones/b/burro.jpg",
+    notaSilabas: "Van en el orden de la cartilla. Suenan igual que las de la v.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["bu", "bo", "be", "bi", "ba"],
+    palabras: ["beso","boca","bata","barro","nube","cubo","burro","lobo",
+               "bota","bate","baño","bola","tabaco"],
+    tarjetas: [
+      { palabra: "bota", foto: "img/lecciones/b/bota.jpg" },
+      { palabra: "lobo", foto: "img/lecciones/b/lobo.jpg" },
+      { palabra: "bola", foto: "img/lecciones/b/bola.jpg" },
+      { palabra: "bata", foto: "img/lecciones/b/bata.jpg" },
+      { palabra: "boca", foto: "img/lecciones/b/boca.jpg" },
+      { palabra: "tabaco", foto: "img/lecciones/b/tabaco.jpg" }
+    ],
+    frases: [
+      { texto: "mi burro no sabe nada.", foto: "img/lecciones/b/burro-nada.jpg" },
+      { texto: "una niña barre la basura.", foto: "img/lecciones/b/nina-basura.jpg" },
+      { texto: "ese bobito no come banano.", foto: "img/lecciones/b/bobito-banano.jpg" },
+      { texto: "ese lobo dañó mi bata.", foto: "img/lecciones/b/lobo-bata.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "sube, sube a esa nube. sacude tu cola de tela bonita.", foto: "img/lecciones/b/sube-nube.jpg", ancha: true, rel: "16 / 9" }
+    ],
+    hojas: ["letra-b", "silabas-b", "frases-b"] }
+
 ];
