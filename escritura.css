@@ -427,3 +427,26 @@ h1, h2, h3, .hero h1 { font-family: "Quicksand", "Trebuchet MS", sans-serif; fon
 }
 .tarjeta .dibujado svg { width: 100%; height: 100%; display: block; }
 .tarjeta .renglon-frase { text-align: center; }
+
+/* ============================================================
+   Las hojas para imprimir
+   El trazado en pantalla muestra por dónde va el trazo; la mano
+   se entrena con lápiz. El botón de papel se ve distinto al de
+   pantalla a propósito: son dos cosas distintas.
+   ============================================================ */
+
+.btn.papel {
+  background: #fff;
+  color: #5c534c;
+  border: 2px dashed #c9bfb2;
+  box-shadow: none;
+}
+.btn.papel:hover { background: #f7f3ed; border-color: #a99d8c; }
+
+h3.para-papel {
+  margin: 34px 0 2px;
+  font-size: 1.15rem;
+  color: #5c534c;
+}
+
+.barra .btn.papel { padding: 7px 15px; font-size: .88rem; }

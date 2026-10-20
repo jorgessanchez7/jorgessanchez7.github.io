@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hojas para imprimir · Lecciones de lectura</title>
+<meta name="description" content="Las planas en PDF, para hacerlas con lápiz.">
+<link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="lectura.css">
+<link rel="stylesheet" href="escritura.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="envoltura">
+    <a class="volver" href="silabico.html">&#8592; Método silábico</a>
+    <p class="eyebrow">Para hacer con lápiz</p>
+    <h1>Hojas para imprimir</h1>
+    <p class="lead">En pantalla se ve por dónde empieza cada trazo. La mano se entrena con lápiz,
+       y para eso son estas. Van en hoja carta, en blanco y negro.</p>
+  </div>
+</header>
+
+<main>
+  <section>
+    <div class="envoltura">
+      <div class="nota">
+        <h3>Cómo está armado cada renglón</h3>
+        <p>Siempre en tres pasos: <strong>el modelo</strong> al principio, <strong>la línea punteada</strong>
+           para repasar encima, y <strong>el espacio en blanco</strong> al final, que es donde la hace solo.
+           Ese último pedazo es el que de verdad cuenta.</p>
+        <p>Si se acaba la hoja, se vuelve a imprimir. Son para gastar.</p>
+      </div>
+      <div id="listas"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="envoltura">
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="lecciones.html">Lecciones de lectura</a>
+      <a href="silabico.html">Método silábico</a>
+    </nav>
+    <p>Hecho en casa, para leer en casa.</p>
+  </div>
+</footer>
+
+<script src="escritura/fichas.js"></script>
+<script src="escritura/abecedario.js"></script>
+<script src="escritura/dibujo.js"></script>
+<script src="plana.js"></script>
+<script>
+(function () {
+  "use strict";
+  var GRUPOS = [
+    { titulo: "Los trazos, antes de las letras", prueba: function (p) { return !/^vocal-|-[12]$/.test(p.id); } },
+    { titulo: "Las vocales",                     prueba: function (p) { return /^vocal-/.test(p.id); } },
+    { titulo: "Las letras",                      prueba: function (p) { return /-[12]$/.test(p.id); } }
+  ];
+  var caja = document.getElementById("listas");
+  var todas = window.PLANAS.catalogo();
+  GRUPOS.forEach(function (g) {
+    var mias = todas.filter(g.prueba);
+    if (!mias.length) return;
+    var h = document.createElement("h2");
+    h.textContent = g.titulo;
+    h.style.marginTop = "34px";
+    caja.appendChild(h);
+    var fila = document.createElement("div");
+    fila.className = "botonera";
+    mias.forEach(function (p) {
+      var a = document.createElement("a");
+      a.className = "btn papel";
+      a.href = "pdf/plana-" + p.id + ".pdf";
+      a.setAttribute("download", "");
+      a.textContent = p.titulo;
+      fila.appendChild(a);
+    });
+    caja.appendChild(fila);
+  });
+})();
+</script>
+</body>
+</html>

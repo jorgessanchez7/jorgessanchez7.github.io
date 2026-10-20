@@ -1,0 +1,119 @@
+/* ============================================================
+   plana.css - la hoja de papel.
+
+   Todo está en centímetros a propósito: esto no es una página web
+   que se adapta, es una hoja carta que tiene que salir del mismo
+   tamaño en cualquier impresora. 21,6 x 27,9 cm, margen de 1,4 a
+   los lados, y 18,8 cm de ancho útil, que es el número del que sale
+   el tamaño de la letra en plana.js.
+   ============================================================ */
+
+:root {
+  --papel: 21.6cm;
+  --alto: 27.9cm;
+  --margen: 1.4cm;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #e8e4de;
+  font-family: Quicksand, "Trebuchet MS", sans-serif;
+  color: #1f1c1a;
+}
+
+/* ---------- la barra, que no se imprime ---------- */
+
+.barra-papel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 20px;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .12);
+}
+.barra-papel a { color: #3f7fa6; text-decoration: none; font-weight: 600; }
+.barra-papel button {
+  font-family: inherit;
+  font-size: .95rem;
+  font-weight: 600;
+  padding: 9px 20px;
+  border: 0;
+  border-radius: 999px;
+  background: #3f7fa6;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* ---------- la hoja ---------- */
+
+.hoja {
+  width: var(--papel);
+  min-height: var(--alto);
+  margin: 24px auto;
+  padding: 1.1cm var(--margen) 0.9cm;
+  background: #fff;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, .18);
+  display: flex;
+  flex-direction: column;
+}
+
+.encabezado { margin-bottom: 0.45cm; }
+
+/* el renglón de nombre y fecha: dos rayas para llenar a mano */
+.quien {
+  display: flex;
+  gap: 1.2cm;
+  margin-bottom: 0.35cm;
+  font-size: 9pt;
+  color: #8a8279;
+}
+.quien span {
+  flex: 1;
+  border-bottom: 1px solid #d2d2d2;
+  padding-bottom: 0.28cm;
+}
+
+.encabezado h1 {
+  margin: 0;
+  font-size: 19pt;
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+.encabezado p {
+  margin: 0.12cm 0 0;
+  font-size: 10pt;
+  line-height: 1.35;
+  color: #6b645d;
+}
+
+/* ---------- los renglones ---------- */
+
+#renglones {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.renglon { width: 100%; }
+.renglon svg { display: block; width: 100%; height: auto; }
+
+/* ---------- al imprimir ---------- */
+
+@page { size: letter; margin: 0; }
+
+@media print {
+  body { background: #fff; }
+  .barra-papel { display: none; }
+  .hoja {
+    margin: 0;
+    width: var(--papel);
+    height: var(--alto);
+    box-shadow: none;
+    page-break-after: avoid;
+  }
+}

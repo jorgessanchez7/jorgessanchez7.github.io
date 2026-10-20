@@ -245,6 +245,21 @@
       a.textContent = (f ? f.titulo : id) + " \u2192";
       cajaH.appendChild(a);
     });
+
+    /* Y las mismas, para hacerlas con lápiz. Son dos y no tres: la letra
+       va con sus sílabas, y las frases aparte porque ocupan el ancho
+       entero de la hoja. */
+    var papel = document.getElementById("imprimibles");
+    if (papel) {
+      [["-1", "La letra y las sílabas"], ["-2", "Las frases"]].forEach(function (par) {
+        var a = document.createElement("a");
+        a.className = "btn papel";
+        a.href = "pdf/plana-" + L.id + par[0] + ".pdf";
+        a.setAttribute("download", "");
+        a.textContent = par[1] + " (PDF)";
+        papel.appendChild(a);
+      });
+    }
   }
 
   if (document.readyState === "loading") {

@@ -12,7 +12,7 @@
   "use strict";
 
   var FICHAS = window.FICHAS || [];
-  var GROSOR = 7;
+  var GROSOR = (window.DIBUJO || {}).GROSOR || 7;
 
   var CRAYONES = [
     { nombre: "azul",    color: "#2f6690" },
@@ -33,6 +33,15 @@
     return m ? decodeURIComponent(m[1].replace(/\+/g, " ")) : "";
   }
 
+  /* El PDF de una hoja. Los trazos y las vocales tienen el suyo; las
+     tres hojas de una letra se reparten en dos: letra + sílabas, y
+     frases aparte, que ocupan el ancho entero del papel. */
+  function planaDe(id) {
+    var m = /^(letra|silabas|frases)-(.+)$/.exec(id);
+    if (!m) return "pdf/plana-" + id + ".pdf";
+    return "pdf/plana-" + m[2] + (m[1] === "frases" ? "-2" : "-1") + ".pdf";
+  }
+
   function buscar(id) {
     for (var i = 0; i < FICHAS.length; i++) if (FICHAS[i].id === id) return FICHAS[i];
     return null;
@@ -43,221 +52,11 @@
   var colorActual = CRAYONES[0].color;
   var pizarras = [];
 
-  /* ---------- las guías, dibujadas en SVG ---------- */
-
-  function bolita(x, y, num) {
-    var r = num ? 7.5 : 4.5;
-    var s = '<circle cx="' + x + '" cy="' + y + '" r="' + r + '" fill="#d1495b"/>';
-    if (num) {
-      s += '<text x="' + x + '" y="' + (y + 3.6) + '" text-anchor="middle" fill="#fff" ' +
-        'font-family="Quicksand, sans-serif" font-size="10" font-weight="700">' + num + "</text>";
-    }
-    return s;
-  }
-
-  /* `corre` mueve SOLO la insignia del numero, no el punto de salida ni la
-     flecha. Hace falta en letras de dos trazos cuyos inicios quedan muy
-     cerca (la t): sin eso, los dos numeros se montan y tapan el modelo. */
-  function punta(x, y, ang, num, cx, cy, corre) {
-    var a = (ang * Math.PI) / 180;
-    var dx = Math.cos(a), dy = Math.sin(a);
-    var px = -dy, py = dx;
-    /* la flecha va al lado del camino, no encima: si lo tapa,
-       el niño no ve por dónde pasar el dedo. Y se corre hacia
-       afuera de la letra, no hacia adentro. */
-    if ((x - cx) * px + (y - cy) * py < 0) { px = -px; py = -py; }
-    var ox = x + px * 12, oy = y + py * 12;
-    var tx = ox + dx * 22, ty = oy + dy * 22;
-    var bx = ox + dx * 11, by = oy + dy * 11;
-    var ix = x + (corre ? corre[0] : 0), iy = y + (corre ? corre[1] : 0);
-    return bolita(x, y, 0) + (num ? bolita(ix, iy, num) : "") +
-      '<path d="M' + tx.toFixed(1) + " " + ty.toFixed(1) +
-      " L" + (bx + px * 5.5).toFixed(1) + " " + (by + py * 5.5).toFixed(1) +
-      " L" + (bx - px * 5.5).toFixed(1) + " " + (by - py * 5.5).toFixed(1) +
-      ' Z" fill="#d1495b" opacity=".85"/>';
-  }
-
-  /* ---------- dibujar un trazo, de modelo o para repasar ---------- */
-
-  function camino(d, f, modelo) {
-    return modelo
-      ? '<path d="' + d + '" fill="none" stroke="' + f.tinta +
-        '" stroke-width="' + GROSOR + '" stroke-linecap="round" stroke-linejoin="round"/>'
-      : '<path d="' + d + '" fill="none" stroke="#c9b79d" stroke-width="3" ' +
-        'stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 9"/>';
-  }
-
-  function puntico(x, y, f, modelo) {
-    return modelo
-      ? '<circle cx="' + x + '" cy="' + y + '" r="5" fill="' + f.tinta + '"/>'
-      : '<circle cx="' + x + '" cy="' + y + '" r="4.5" fill="none" stroke="#c9b79d" ' +
-        'stroke-width="2.5" stroke-dasharray="4 5"/>';
-  }
-
-  /* Los trazos de una letra, sin las marcas de salida. */
-  function pluma(trazos, f, modelo) {
-    var out = "";
-    for (var i = 0; i < trazos.length; i++) {
-      var t = trazos[i];
-      out += t.punto ? puntico(t.punto[0], t.punto[1], f, modelo) : camino(t.d, f, modelo);
-    }
-    return out;
-  }
-
-  function celda(f, modelo, marcar) {
-    var out = "";
-    var varios = f.trazos.length > 1;
-    var cx = f.celda[0] / 2, cy = f.celda[1] / 2;
-    for (var i = 0; i < f.trazos.length; i++) {
-      var t = f.trazos[i];
-      var num = varios ? i + 1 : 0;
-      if (t.punto) {
-        out += puntico(t.punto[0], t.punto[1], f, modelo);
-        if (marcar && num) out += bolita(t.punto[0] + 15, t.punto[1], num);
-        continue;
-      }
-      out += camino(t.d, f, modelo);
-      if (marcar) out += punta(t.ini[0], t.ini[1], t.ang, num, cx, cy, t.insignia);
-    }
-    return out;
-  }
-
-  /* ---------- las sílabas y las frases, letra por letra ----------
-
-     Antes se escribían con <text> y se punteaba el CONTORNO de la
-     letra rellena: cada letra salían dos líneas punteadas con un área
-     en medio, que no es lo que el niño tiene que repasar. Ahora se
-     arman con los mismos trazos de una sola línea de las vocales y
-     las consonantes: lo que se traza en la hoja de la letra es
-     exactamente lo que se traza en la de las sílabas.
-
-     El dibujo es nuestro; el espaciado es de Quicksand, medido a
-     tamaño 100, para que la palabra escrita ocupe lo mismo que la
-     palabra leída. Una letra nueva entra sola: basta que su ficha
-     tenga `letra` y su avance esté en esta tabla. */
-
-  var AVANCE = {
-    a: 63, e: 59, i: 24, o: 62, u: 59,
-    "á": 63, "é": 59, "í": 24, "ó": 62, "ú": 59,
-    m: 92, p: 63, s: 48, l: 27, n: 60, t: 41, d: 63, r: 43,
-    " ": 28, ".": 25
-  };
-
-  var CON_TILDE = "áéíóú", SIN_TILDE = "aeiou";
-
-  /* la tilde, medida desde el centro de la vocal: sube hacia la
-     derecha y queda por encima del cuerpo (55) sin llegar al alto (36) */
-  var TILDE = "M-6 46 L6 31";
-
-  var ALFABETO = null, CAJAS = null;
-
-  function alfabeto() {
-    if (ALFABETO) return ALFABETO;
-    ALFABETO = {};
-    for (var i = 0; i < FICHAS.length; i++) {
-      var f = FICHAS[i];
-      if (!f.letra || !f.trazos || !f.trazos.length) continue;
-      if (f.grupo !== "vocales" && f.grupo !== "letras") continue;
-      if (!ALFABETO[f.letra]) ALFABETO[f.letra] = f.trazos;
-    }
-    return ALFABETO;
-  }
-
-  /* Cuánto ocupa de ancho el dibujo de cada letra. Se mide con
-     getBBox en vez de calcularlo a mano: los arcos abultan y un
-     cálculo a ojo deja las letras descentradas. */
-  function cajas() {
-    if (CAJAS) return CAJAS;
-    CAJAS = {};
-    var ns = "http://www.w3.org/2000/svg";
-    var svg = document.createElementNS(ns, "svg");
-    svg.setAttribute("width", "0");
-    svg.setAttribute("height", "0");
-    svg.style.position = "absolute";
-    svg.style.visibility = "hidden";
-    document.body.appendChild(svg);
-    var A = alfabeto();
-    for (var k in A) {
-      var g = document.createElementNS(ns, "g");
-      for (var i = 0; i < A[k].length; i++) {
-        var t = A[k][i], el;
-        if (t.punto) {
-          el = document.createElementNS(ns, "circle");
-          el.setAttribute("cx", t.punto[0]);
-          el.setAttribute("cy", t.punto[1]);
-          el.setAttribute("r", 4.5);
-        } else {
-          el = document.createElementNS(ns, "path");
-          el.setAttribute("d", t.d);
-          el.setAttribute("fill", "none");
-        }
-        g.appendChild(el);
-      }
-      svg.appendChild(g);
-      var b = g.getBBox();
-      CAJAS[k] = b.x + b.width / 2;
-      svg.removeChild(g);
-    }
-    document.body.removeChild(svg);
-    return CAJAS;
-  }
-
-  function ancho(texto) {
-    var w = 0;
-    for (var i = 0; i < texto.length; i++) w += AVANCE[texto.charAt(i)] || AVANCE[" "];
-    return w;
-  }
-
-  function celdaTexto(f, modelo, linea) {
-    var A = alfabeto(), C = cajas();
-    var w = ancho(linea);
-    var k = (f.tamano || 96) / 100;
-    /* si la frase no cabe en la celda, se achica antes de salirse */
-    if (w * k > f.celda[0] - 24) k = (f.celda[0] - 24) / w;
-    var piso = f.linea || 110;
-    var out = '<g transform="translate(' + ((f.celda[0] - w * k) / 2).toFixed(1) + "," +
-      (piso - 110 * k).toFixed(1) + ") scale(" + k.toFixed(4) + ')">';
-    var pen = 0;
-    for (var i = 0; i < linea.length; i++) {
-      var ch = linea.charAt(i);
-      var av = AVANCE[ch] || AVANCE[" "];
-      var j = CON_TILDE.indexOf(ch);
-      var base = j < 0 ? ch : SIN_TILDE.charAt(j);
-      var eje = pen + av / 2;
-      if (A[base]) {
-        out += '<g transform="translate(' + (eje - C[base]).toFixed(1) + ',0)">' +
-          pluma(A[base], f, modelo) + "</g>";
-        if (j >= 0) {
-          out += '<g transform="translate(' + eje.toFixed(1) + ',0)">' +
-            camino(TILDE, f, modelo) + "</g>";
-        }
-      } else if (ch === ".") {
-        out += puntico(eje.toFixed(1), 105, f, modelo);
-      }
-      pen += av;
-    }
-    return out + "</g>";
-  }
-
-  function guias(f, W, H, reps, linea) {
-    var s = '<svg class="guias" viewBox="0 0 ' + W + " " + H +
-      '" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">';
-    if (f.guia) {
-      s += '<g fill="none" stroke="#e3d4bd" stroke-width="1.6">' +
-        '<path d="M0 ' + (f.cuerpo || 55) + " H" + W + '" stroke-dasharray="8 8"/>' +
-        '<path d="M0 ' + (f.linea || 110) + " H" + W + '"/></g>';
-    }
-    for (var i = 0; i < reps; i++) {
-      /* en los trazos encadenados (zigzag, olas, bucles) la marca de
-         salida va solo al principio: el camino es uno solo */
-      var marcar = f.continuo ? i === 0 : true;
-      var dentro = linea != null
-        ? celdaTexto(f, i === 0 && !f.sinModelo, linea)
-        : celda(f, i === 0, marcar);
-      s += '<g transform="translate(' + i * f.celda[0] + ',0)">' + dentro + "</g>";
-    }
-    return s + "</svg>";
-  }
+  /* Lo que dibuja letras, guías y marcas de salida vive en
+     escritura/dibujo.js, porque el papel (plana.js) tiene que dibujar
+     exactamente lo mismo. Acá queda solo lo de la pantalla: el lienzo,
+     el dedo, los crayones y el deshacer. */
+  var DIBUJO = window.DIBUJO;
 
   /* ---------- el lienzo ---------- */
 
@@ -460,7 +259,7 @@
       var div = document.createElement("div");
       div.className = "renglon";
       div.style.background = f.banda;
-      div.innerHTML = guias(f, W, H, reps, f.lineas ? f.lineas[r] : null) +
+      div.innerHTML = DIBUJO.guias(f, W, H, reps, f.lineas ? f.lineas[r] : null) +
         '<canvas class="lienzo"></canvas>';
 
       var atras = document.createElement("button");
@@ -489,6 +288,15 @@
     document.getElementById("borrar-todo").addEventListener("click", function () {
       pizarras.forEach(borrar);
     });
+
+    /* la misma hoja, pero para hacerla con lápiz. Las tres hojas de una
+       letra caben en dos PDF: la letra con sus sílabas, y las frases. */
+    var pdf = document.getElementById("imprimible");
+    if (pdf) {
+      /* la pizarra libre no tiene nada que imprimir: no hay modelo */
+      if (f.grupo === "libre") pdf.hidden = true;
+      else pdf.href = planaDe(f.id);
+    }
 
     /* anterior y siguiente dentro del mismo grupo */
     var g = hermanas();
