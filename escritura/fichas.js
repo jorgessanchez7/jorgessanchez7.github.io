@@ -489,6 +489,36 @@ window.FICHAS = [
     lineas: ["niña uña moño", "mañana comeré piña."],
     trazos: [] },
 
+  /* La v, de un solo trazo: baja, punta, sube. Medida contra Quicksand
+     (peso 600): avance 55, ancho visible 49 — la centrolínea va de x 27 a
+     69, que con los 7 del trazo da los 49. Mismo alto que la n y la u. */
+
+  { id: "letra-v", grupo: "letras", orden: 34, letra: "v", palabra: "vaca",
+    titulo: "La v",
+    pista: "Baja inclinada, hace la punta y sube del otro lado, sin levantar el dedo.",
+    banda: "#ece8f7", tinta: "#5b4a96",
+    celda: [96, 130], repeticiones: 7, renglones: 2, guia: true,
+    trazos: [
+      { d: "M27 55 L48 110 L69 55", ini: [27, 55], ang: 69 }
+    ] },
+
+  { id: "silabas-v", grupo: "letras", orden: 35,
+    titulo: "va, vu, ve, vo, vi",
+    pista: "En el orden de la cartilla. Primero la punta de la v, después la vocal.",
+    banda: "#ece8f7", tinta: "#5b4a96",
+    celda: [230, 130], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["va", "vu", "ve", "vo", "vi"],
+    trazos: [] },
+
+  { id: "frases-v", grupo: "letras", orden: 36,
+    titulo: "vaca uva vela",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#ece8f7", tinta: "#5b4a96",
+    celda: [960, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["vaca uva vela", "la vela ilumina la sala."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,

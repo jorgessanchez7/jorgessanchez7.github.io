@@ -437,6 +437,53 @@ window.ABECEDARIO = [
       { texto: "no dañe mi moño de seda.", foto: "img/lecciones/enie/mono-seda.jpg", ancha: true, rel: "16 / 9" },
       { texto: "esa señora pone un moño a mi muñeca cada mañana.", foto: "img/lecciones/enie/senora-mono.jpg", ancha: true, rel: "16 / 9" }
     ],
-    hojas: ["letra-enie", "silabas-enie", "frases-enie"] }
+    hojas: ["letra-enie", "silabas-enie", "frases-enie"] },
+
+  /* La v. Las frases son las cinco de la cartilla, la rima de la uva y dos
+     que pidió el padre: «corre, pavito, dame tu cola» y la rima con «jugo».
+     Esa última lleva j, que llega mucho después: es la única frase del sitio
+     fuera de las letras vistas, y está a propósito (decisión del padre, como
+     la moto de la t). El script de verificación la deja pasar por nombre. */
+
+  { id: "v", letra: "v", mayuscula: "V", orden: 12,
+    banda: "#ece8f7", tinta: "#5b4a96",
+    comoSuena: "Los labios se tocan apenas y la voz pasa entre ellos, suavecita: vvvv. En español suena igual que la b.",
+    aviso: [
+      "La trampa de la v no está en el sonido sino en la ortografía: en español la v y la b " +
+      "suenan exactamente igual. No hay que enseñarle a morderse el labio de abajo — eso es del " +
+      "inglés, y aquí nadie lo dice así. Cuando llegue la b, que es la siguiente, el niño va a " +
+      "preguntar cómo se sabe cuál va. La respuesta honesta es «hay que acordarse de cómo se " +
+      "escribe la palabra», y para eso sirve leer mucho.",
+
+      "Para escribirla: un solo trazo, sin levantar el dedo. Baja inclinada hacia la derecha, " +
+      "hace la punta abajo y sube igual del otro lado. Vale la pena escribir «u» y «v» una al " +
+      "lado de la otra: la u es redonda abajo y lleva palito; la v termina en punta y no lo lleva.",
+
+      "Una frase trae «jugo», y la j todavía no se ha visto. Está a propósito: cuando llegue a esa " +
+      "palabra, léasela usted sin detenerse. Es la única palabra de la página con una letra nueva."
+    ],
+    palabra: "vaca", foto: "img/lecciones/v/vaca.jpg",
+    notaSilabas: "Van en el orden de la cartilla. Suenan igual que las de la b, que viene después.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["va", "vu", "ve", "vo", "vi"],
+    palabras: ["vaca","vino","vaso","vela","pavo","nave","uva","avena",
+               "vara","venado","vida","verano"],
+    tarjetas: [
+      { palabra: "vela", foto: "img/lecciones/v/vela.jpg" },
+      { palabra: "uva", foto: "img/lecciones/v/uva.jpg" },
+      { palabra: "vino", foto: "img/lecciones/v/vino.jpg" },
+      { palabra: "vaso", foto: "img/lecciones/v/vaso.jpg" }
+    ],
+    frases: [
+      { texto: "la señorita visita mi casa.", foto: "img/lecciones/v/senorita-casa.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "mi mamá lava la ropa.", foto: "img/lecciones/v/mama-ropa.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "corre, pavito, come tu avena.", foto: "img/lecciones/v/pavito-avena.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "corre, pavito, dame tu cola.", foto: "img/lecciones/v/pavito-cola.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "ese niño no toma vino.", foto: "img/lecciones/v/nino-vino.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "la vela ilumina la sala.", foto: "img/lecciones/v/vela-sala.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "uva moradita, uvita de verano, dame tu vino, anima mi vida.", foto: "img/lecciones/v/uva-vino.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "uva moradita, uvita de verano, dame tu jugo, anima mi vida.", foto: "img/lecciones/v/uva-jugo.jpg", ancha: true, rel: "16 / 9" }
+    ],
+    hojas: ["letra-v", "silabas-v", "frases-v"] }
 
 ];
