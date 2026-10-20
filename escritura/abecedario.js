@@ -439,8 +439,9 @@ window.ABECEDARIO = [
     ],
     hojas: ["letra-enie", "silabas-enie", "frases-enie"] },
 
-  /* La v. Las frases son las cinco de la cartilla, la rima de la uva y dos
-     que pidió el padre: «corre, pavito, dame tu cola» y la rima con «jugo».
+  /* La v. Las frases son las cinco de la cartilla, la rima de la uva y tres
+     que pidió el padre: «corre, pavito, dame tu cola», «ese niño toma avena»
+     y la rima con «jugo». Nueve frases: 3+3 / 3+3 / 2+2+2 / 3+3.
      Esa última lleva j, que llega mucho después: es la única frase del sitio
      fuera de las letras vistas, y está a propósito (decisión del padre, como
      la moto de la t). El script de verificación la deja pasar por nombre. */
@@ -479,11 +480,11 @@ window.ABECEDARIO = [
       { texto: "mi mamá lava la ropa.", foto: "img/lecciones/v/mama-ropa.jpg", ancha: true, rel: "16 / 9" },
       { texto: "corre, pavito, come tu avena.", foto: "img/lecciones/v/pavito-avena.jpg", ancha: true, rel: "16 / 9" },
       { texto: "corre, pavito, dame tu cola.", foto: "img/lecciones/v/pavito-cola.jpg", ancha: true, rel: "16 / 9" },
-      { texto: "ese niño no toma vino.", foto: "img/lecciones/v/nino-vino.jpg", ancha: true, rel: "16 / 9" },
-      { texto: "la vela ilumina la sala.", foto: "img/lecciones/v/vela-sala.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "ese niño toma avena.", foto: "img/lecciones/v/nino-avena.jpg" },
+      { texto: "ese niño no toma vino.", foto: "img/lecciones/v/nino-vino.jpg" },
+      { texto: "la vela ilumina la sala.", foto: "img/lecciones/v/vela-sala.jpg" },
       { texto: "uva moradita, uvita de verano, dame tu vino, anima mi vida.", foto: "img/lecciones/v/uva-vino.jpg", ancha: true, rel: "16 / 9" },
       { texto: "uva moradita, uvita de verano, dame tu jugo, anima mi vida.", foto: "img/lecciones/v/uva-jugo.jpg", ancha: true, rel: "16 / 9" }
     ],
     hojas: ["letra-v", "silabas-v", "frases-v"] }
-
 ];
