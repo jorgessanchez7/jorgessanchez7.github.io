@@ -352,6 +352,50 @@ window.ABECEDARIO = [
       { texto: "mi papá rema rápido.", foto: "img/lecciones/rr/papa-rema.jpg" },
       { texto: "ese perrito saluda a su amo.", foto: "img/lecciones/rr/perro-amo.jpg" }
     ],
-    hojas: ["letra-rr", "silabas-rr", "frases-rr"] }
+    hojas: ["letra-rr", "silabas-rr", "frases-rr"] },
+
+  /* La c solo con a, o, u. El ce y el ci son otra lección, bastante más
+     adelante, y por eso en esta página no puede aparecer ni una palabra con
+     «ce» ni con «ci» — ni cena, ni cine, ni cocina. Verificado con script. */
+
+  { id: "c", letra: "c", mayuscula: "C", orden: 10,
+    banda: "#f5e3e7", tinta: "#8c3b55",
+    comoSuena: "La parte de atrás de la lengua toca el techo de la boca, bien atrás, y suelta el aire de golpe: c. No se estira, como la p y la t.",
+    aviso: [
+      "Acá hay una trampa que conviene ver de una: el nombre de la letra es «ce», y ese nombre " +
+      "trae justamente el sonido que esta lección NO enseña. Si uno dice «ce-a» no sale «ca». " +
+      "Con la a, la o y la u la c es un golpe seco en la garganta: ca, co, cu.",
+
+      "Y es solo eso: ca, co, cu. Con la e y la i la misma letra suena distinto, y esa es otra " +
+      "lección, bastante más adelante. Por eso en esta página no va a encontrar ni una palabra con " +
+      "«ce» ni con «ci»: ni cena, ni cine, ni cocina. Si el niño pregunta, la respuesta honesta es " +
+      "«esa todavía no la hemos visto».",
+
+      "Para escribirla: es la o sin cerrar. Misma rueda, mismo giro hacia la izquierda, pero se " +
+      "para antes de volver al punto de salida. Vale la pena escribir «c» y «o» una al lado de la " +
+      "otra para que lo vea."
+    ],
+    palabra: "casa", foto: "img/lecciones/c/casa.jpg",
+    notaSilabas: "Solo son tres, no cinco. Con la e y la i la c suena distinto, y eso viene después.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["ca", "co", "cu"],
+    palabras: ["casa","copa","pico","cono","camisa","saco","cuna","corona","loco","cara","capa","rico","cola"],
+    tarjetas: [
+      { palabra: "carro", foto: "img/lecciones/c/carro.jpg" },
+      { palabra: "copa", foto: "img/lecciones/c/copa.jpg" },
+      { palabra: "cuna", foto: "img/lecciones/c/cuna.jpg" },
+      { palabra: "cono", foto: "img/lecciones/c/cono.jpg" },
+      { palabra: "camisa", foto: "img/lecciones/c/camisa.jpg" },
+      { palabra: "carreta", foto: "img/lecciones/c/carreta.jpg" }
+    ],
+    frases: [
+      { texto: "la mula tira de la carreta.", foto: "img/lecciones/c/mula-carreta.jpg", completa: true, rel: "5 / 2" },
+      { texto: "mi mamá cose mi camisa rota.", foto: "img/lecciones/c/mama-camisa.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "tu perro corre a mi lado.", foto: "img/lecciones/c/perro-corre.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "dame ese caramelo de coco.", foto: "img/lecciones/c/caramelo-coco.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "ese médico cura mi cara.", foto: "img/lecciones/c/medico-cara.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "mi lorito me remeda, me pide rico cacao, me da su patica cada ratico.", foto: "img/lecciones/c/lorito-cacao.jpg", completa: true, rel: "5 / 2" }
+    ],
+    hojas: ["letra-c", "silabas-c", "frases-c"] }
 
 ];

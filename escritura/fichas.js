@@ -421,6 +421,36 @@ window.FICHAS = [
     lineas: ["rosa perro torre", "me da risa esa rana."],
     trazos: [] },
 
+  /* La c es la o sin cerrar, y eso es literal: misma rueda, mismo giro, pero
+     se para antes de llegar. Quicksand le da avance 52 y ancho visible 46,
+     contra los 62 y 55 de la o: es más angosta, no solo más abierta. */
+
+  { id: "letra-c", grupo: "letras", orden: 28, letra: "c", palabra: "casa",
+    titulo: "La c",
+    pista: "Es la rueda de la o, pero sin cerrarla. Empieza arriba, gira hacia la izquierda y para antes de volver.",
+    banda: "#f5e3e7", tinta: "#8c3b55",
+    celda: [96, 130], repeticiones: 7, renglones: 2, guia: true,
+    trazos: [
+      { d: "M57 57 A19.5 27 0 1 0 57 107", ini: [57, 57], ang: 209 }
+    ] },
+
+  { id: "silabas-c", grupo: "letras", orden: 29,
+    titulo: "ca, co, cu",
+    pista: "Solo son tres. Con la e y la i la c suena distinto, y eso es otra lección.",
+    banda: "#f5e3e7", tinta: "#8c3b55",
+    celda: [230, 130], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["ca", "co", "cu"],
+    trazos: [] },
+
+  { id: "frases-c", grupo: "letras", orden: 30,
+    titulo: "casa copa cuna",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#f5e3e7", tinta: "#8c3b55",
+    celda: [960, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["casa copa cuna", "cose mi camisa rota."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,

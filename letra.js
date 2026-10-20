@@ -158,6 +158,10 @@
 
     /* la palabra grande, con su foto */
     var foto = document.getElementById("foto-clave");
+    /* Si la foto no existe todavía, se esconde y la lección queda con la
+       letra y la palabra, que es lo que de verdad enseña. Antes salía el
+       ícono de imagen rota, que es peor que no tener foto. */
+    foto.onerror = function () { foto.hidden = true; };
     foto.src = L.foto;
     foto.alt = L.palabra;
     var pc = document.getElementById("palabra-clave");

@@ -72,11 +72,17 @@
     });
     LETRAS.forEach(function (L) {
       var h = L.hojas || [];
+      /* La hoja se llena hasta seis renglones. Casi todas las letras traen
+         cinco sílabas y entonces la letra sola ocupa uno; la c trae tres
+         (ca, co, cu) y entonces la letra sola se lleva los tres que sobran,
+         en vez de dejar media hoja en blanco. */
+      var sil = ficha(h[1]);
+      var cuantas = sil && sil.lineas ? sil.lineas.length : 5;
       out.push({
         id: L.id + "-1",
         titulo: "La " + L.letra + " · la letra y las sílabas",
         pista: "Primero la letra sola; después pegada a cada vocal.",
-        bloques: [{ ficha: h[0], filas: 1 }, { ficha: h[1] }]
+        bloques: [{ ficha: h[0], filas: Math.max(1, 6 - cuantas) }, { ficha: h[1] }]
       });
       out.push({
         id: L.id + "-2",
