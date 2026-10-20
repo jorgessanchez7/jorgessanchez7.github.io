@@ -451,6 +451,44 @@ window.FICHAS = [
     lineas: ["casa copa cuna", "cose mi camisa rota."],
     trazos: [] },
 
+  /* La ñ es la n con su virgulilla, y nada más: mismo avance (60 en
+     Quicksand, igual que la n) y mismo ancho visible. Lo único nuevo es el
+     gorrito, que sube hasta y=33 — la fuente lo pone a 76 sobre el renglón.
+
+     Los identificadores van sin ñ a propósito: se vuelven nombres de
+     archivo (`pdf/plana-enie-1.pdf`) y direcciones, y un nombre con ñ ahí
+     se enreda tarde o temprano. */
+
+  { id: "letra-enie", grupo: "letras", orden: 31, letra: "ñ", palabra: "niña",
+    titulo: "La ñ",
+    pista: "Primero la n de siempre, y encima el gorrito: una onda de izquierda a derecha, sin levantar el dedo.",
+    banda: "#e9eedc", tinta: "#5f7334",
+    celda: [96, 130], repeticiones: 7, renglones: 2, guia: true,
+    trazos: [
+      { d: "M28 55 L28 110 L28 75 A20 20 0 0 1 68 75 L68 110", ini: [28, 55], ang: 90 },
+      /* la insignia del gorrito se sube: su salida queda a 13 unidades de
+         la de la n y los dos números se montarían, como pasó con la t */
+      { d: "M29 42 Q38 33 48 40 Q58 47 67 38", ini: [29, 42], ang: -35,
+        insignia: [-2, -16] }
+    ] },
+
+  { id: "silabas-enie", grupo: "letras", orden: 32,
+    titulo: "ña, ñi, ñu, ñe, ño",
+    pista: "En el orden de la cartilla. El gorrito va siempre, en todas.",
+    banda: "#e9eedc", tinta: "#5f7334",
+    celda: [230, 130], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["ña", "ñi", "ñu", "ñe", "ño"],
+    trazos: [] },
+
+  { id: "frases-enie", grupo: "letras", orden: 33,
+    titulo: "niña uña moño",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#e9eedc", tinta: "#5f7334",
+    celda: [960, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["niña uña moño", "mañana comeré piña."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,

@@ -396,6 +396,47 @@ window.ABECEDARIO = [
       { texto: "ese médico cura mi cara.", foto: "img/lecciones/c/medico-cara.jpg", ancha: true, rel: "16 / 9" },
       { texto: "mi lorito me remeda, me pide rico cacao, me da su patica cada ratico.", foto: "img/lecciones/c/lorito-cacao.jpg", completa: true, rel: "5 / 2" }
     ],
-    hojas: ["letra-c", "silabas-c", "frases-c"] }
+    hojas: ["letra-c", "silabas-c", "frases-c"] },
+
+  /* La ñ. El id va sin ñ («enie») porque se vuelve nombre de archivo y
+     dirección: `pdf/plana-enie-1.pdf`, `letra.html?letra=enie`. La letra que
+     se ve en pantalla sí es ñ. */
+
+  { id: "enie", letra: "ñ", mayuscula: "Ñ", orden: 11,
+    banda: "#e9eedc", tinta: "#5f7334",
+    comoSuena: "La lengua se aplasta contra el techo de la boca y el aire sale por la nariz: ññññ. Es la n, pero con la lengua más ancha y más atrás.",
+    aviso: [
+      "Esta es fácil y conviene decir por qué: es la única letra que no tiene trampa. No cambia de " +
+      "sonido según la vocal que venga detrás, como la c o la g; no suena de dos maneras, como la r; " +
+      "y se escribe de una sola forma. Suena siempre igual: ña, ñi, ñu, ñe, ño.",
+
+      "Lo que sí vale la pena señalar es el gorrito. «Mono» y «moño» son dos palabras distintas, y " +
+      "lo único que las separa es esa onda de encima. Dígalas seguidas y señale la ñ con el dedo: " +
+      "es la primera vez que un detalle tan chiquito cambia la palabra entera. Lo mismo con «una» y " +
+      "«uña», que están las dos en estas páginas.",
+
+      "Para escribirla: es la n de siempre y encima el gorrito, que va de izquierda a derecha como " +
+      "una ola chiquita. Son dos trazos, y el gorrito es el segundo — primero se termina la letra y " +
+      "después se le pone el sombrero, nunca al revés."
+    ],
+    palabra: "niña", foto: "img/lecciones/enie/nina.jpg",
+    notaSilabas: "Van en el orden de la cartilla. Todas llevan gorrito: no hay ninguna ñ sin él.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["ña", "ñi", "ñu", "ñe", "ño"],
+    palabras: ["niña","niño","uña","año","moño","paño","leña","caña",
+               "señora","mañana","piña","muñeca"],
+    tarjetas: [
+      { palabra: "muñeca", foto: "img/lecciones/enie/muneca.jpg" },
+      { palabra: "araña", foto: "img/lecciones/enie/arana.jpg" },
+      { palabra: "puño", foto: "img/lecciones/enie/puno.jpg" }
+    ],
+    frases: [
+      { texto: "mira mi saco de paño.", foto: "img/lecciones/enie/saco-pano.jpg", completa: true, rel: "5 / 2" },
+      { texto: "la araña corre a la rama.", foto: "img/lecciones/enie/arana-rama.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "la niña adora a su muñeca.", foto: "img/lecciones/enie/nina-muneca.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "no dañe mi moño de seda.", foto: "img/lecciones/enie/mono-seda.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "esa señora pone un moño a mi muñeca cada mañana.", foto: "img/lecciones/enie/senora-mono.jpg", ancha: true, rel: "16 / 9" }
+    ],
+    hojas: ["letra-enie", "silabas-enie", "frases-enie"] }
 
 ];
