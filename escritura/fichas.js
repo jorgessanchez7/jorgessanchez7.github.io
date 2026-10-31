@@ -550,6 +550,38 @@ window.FICHAS = [
     lineas: ["beso boca burro", "mi burro no sabe nada."],
     trazos: [] },
 
+  /* La g es la a con el palito largo: la misma rueda (rx 22, ry 27) y el
+     palito, en vez de pararse en el renglón, baja y se dobla hacia atrás.
+     Medida contra Quicksand (peso 600): avance 63, ancho visible 53, el
+     gancho baja 20 debajo del renglón. Dos trazos, como la a. */
+
+  { id: "letra-g", grupo: "letras", orden: 40, letra: "g", palabra: "gato",
+    titulo: "La g",
+    pista: "Primero la rueda, como la a. Después el palito: baja por debajo del renglón y se dobla hacia atrás.",
+    banda: "#f3e9dc", tinta: "#7a5230",
+    celda: [96, 150], repeticiones: 7, renglones: 2, guia: true,
+    trazos: [
+      { d: "M44 55 A22 27 0 0 0 44 109 A22 27 0 0 0 44 55", ini: [44, 55], ang: 180 },
+      { d: "M66 55 L66 106 Q66 124 46 124 Q35 124 27 119", ini: [66, 55], ang: 90 }
+    ] },
+
+  { id: "silabas-g", grupo: "letras", orden: 41,
+    titulo: "ga, go, gu",
+    pista: "Solo tres. La rueda primero, el gancho después, y luego la vocal.",
+    banda: "#f3e9dc", tinta: "#7a5230",
+    celda: [230, 150], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["ga", "go", "gu"],
+    trazos: [] },
+
+  { id: "frases-g", grupo: "letras", orden: 42,
+    titulo: "gato goma lago",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#f3e9dc", tinta: "#7a5230",
+    celda: [960, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["gato goma lago", "esa goma sí pega."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,

@@ -536,6 +536,49 @@ window.ABECEDARIO = [
       { texto: "ese lobo dañó mi bata.", foto: "img/lecciones/b/lobo-bata.jpg", ancha: true, rel: "16 / 9" },
       { texto: "sube, sube a esa nube. sacude tu cola de tela bonita.", foto: "img/lecciones/b/sube-nube.jpg", ancha: true, rel: "16 / 9" }
     ],
-    hojas: ["letra-b", "silabas-b", "frases-b"] }
+    hojas: ["letra-b", "silabas-b", "frases-b"] },
+
+  /* La g solo con a, o, u — como la c. El ge y el gi suenan como la j y son
+     otra lección; gue y gui, otra más. Por eso en esta página no puede
+     aparecer ni una palabra con «ge» ni con «gi». Verificado con script. */
+
+  { id: "g", letra: "g", mayuscula: "G", orden: 14,
+    banda: "#f3e9dc", tinta: "#7a5230",
+    comoSuena: "La parte de atrás de la lengua toca el techo de la boca, bien atrás, como en la c, pero con voz: g. Es la c suavecita.",
+    aviso: [
+      "Es la misma trampa de la c, y conviene verla de una: el nombre de la letra es «ge», y ese " +
+      "nombre trae justamente el sonido que esta lección NO enseña. Con la a, la o y la u la g " +
+      "suena suave, en la garganta: ga, go, gu. Dígala al lado de la c — «ca, ga», «co, go» — y " +
+      "el niño va a oír que es el mismo lugar de la boca, solo que con voz.",
+
+      "Y es solo eso: ga, go, gu. Con la e y la i la misma letra suena como la j (gente, girasol), " +
+      "y esa es otra lección. Por eso en esta página no va a encontrar ni una palabra con «ge» ni " +
+      "con «gi». Si el niño pregunta, la respuesta honesta es «esa todavía no la hemos visto».",
+
+      "Para escribirla: es la a con el palito largo. La rueda es igual, y el palito, en vez de " +
+      "quedarse en el renglón, baja por debajo y se dobla hacia atrás como un anzuelo. Vale la " +
+      "pena escribir «a» y «g» una al lado de la otra para que lo vea."
+    ],
+    palabra: "gato", foto: "img/lecciones/g/gato.jpg",
+    notaSilabas: "Solo son tres, no cinco. Con la e y la i la g suena distinto, y eso viene después.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["ga", "go", "gu"],
+    palabras: ["gato","goma","gusano","garra","soga","lago","mago","pega",
+               "amigo","gotera","laguna","regalo"],
+    tarjetas: [
+      { palabra: "gusano", foto: "img/lecciones/g/gusano.jpg" },
+      { palabra: "soga", foto: "img/lecciones/g/soga.jpg" },
+      { palabra: "lago", foto: "img/lecciones/g/lago.jpg" }
+    ],
+    frases: [
+      { texto: "esa goma sí pega.", foto: "img/lecciones/g/goma-pega.jpg" },
+      { texto: "tu amigo me regala su gato.", foto: "img/lecciones/g/amigo-gato.jpg" },
+      { texto: "papá mata ese gusano malo.", foto: "img/lecciones/g/papa-gusano.jpg" },
+      { texto: "mi burrito bebe gota a gota.", foto: "img/lecciones/g/burrito-gota.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "sube, agarra esa soga.", foto: "img/lecciones/g/sube-soga.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "papá es un mago.", foto: "img/lecciones/g/papa-mago.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "la gata golosa se sube a la soga, derrama mi goma.", foto: "img/lecciones/g/gata-golosa.jpg", ancha: true, rel: "16 / 9" }
+    ],
+    hojas: ["letra-g", "silabas-g", "frases-g"] }
 
 ];
