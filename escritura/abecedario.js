@@ -417,7 +417,10 @@ window.ABECEDARIO = [
 
       "Para escribirla: es la n de siempre y encima el gorrito, que va de izquierda a derecha como " +
       "una ola chiquita. Son dos trazos, y el gorrito es el segundo — primero se termina la letra y " +
-      "después se le pone el sombrero, nunca al revés."
+      "después se le pone el sombrero, nunca al revés.",
+
+      "Y hay premio: con la ñ ya se lee «Toño», como le dicen a Antonio — t, o, ñ, o. Va con " +
+      "mayúscula porque es el nombre de una persona, igual que Nelson y Antonio."
     ],
     palabra: "niña", foto: "img/lecciones/enie/nina.jpg",
     notaSilabas: "Van en el orden de la cartilla. Todas llevan gorrito: no hay ninguna ñ sin él.",
@@ -428,7 +431,10 @@ window.ABECEDARIO = [
     tarjetas: [
       { palabra: "muñeca", foto: "img/lecciones/enie/muneca.jpg" },
       { palabra: "araña", foto: "img/lecciones/enie/arana.jpg" },
-      { palabra: "puño", foto: "img/lecciones/enie/puno.jpg" }
+      { palabra: "puño", foto: "img/lecciones/enie/puno.jpg" },
+      /* «Toño» es como le dicen a Antonio: t, o, ñ, o, todo ya visto. Va de
+         última, como Nelson en la n y Antonio en la t, y con la misma foto. */
+      { palabra: "Toño", foto: "img/lecciones/t/antonio.jpg" }
     ],
     frases: [
       { texto: "mira mi saco de paño.", foto: "img/lecciones/enie/saco-pano.jpg", completa: true, rel: "5 / 2" },
