@@ -579,6 +579,48 @@ window.ABECEDARIO = [
       { texto: "papá es un mago.", foto: "img/lecciones/g/papa-mago.jpg", ancha: true, rel: "16 / 9" },
       { texto: "la gata golosa se sube a la soga, derrama mi goma.", foto: "img/lecciones/g/gata-golosa.jpg", ancha: true, rel: "16 / 9" }
     ],
-    hojas: ["letra-g", "silabas-g", "frases-g"] }
+    hojas: ["letra-g", "silabas-g", "frases-g"] },
+
+  /* La y, solo como consonante: ya, yo, yu, ye, yi. La «y» sola (la de
+     «papá y mamá»), que suena i, no aparece en esta página. La forma es la
+     de Quicksand —la u con colita—, no la de palitos rectos de la cartilla. */
+
+  { id: "y", letra: "y", mayuscula: "Y", orden: 15,
+    banda: "#fbf3c8", tinta: "#8a6d0b",
+    comoSuena: "La lengua se pega al techo de la boca, sin cerrar del todo, y la voz pasa por los lados: yyyy. Como al empezar a decir «yo».",
+    aviso: [
+      "En Colombia «ya», «yo» y «yema» se dicen igual que si llevaran ll, y está bien: así " +
+      "habla la casa. Cuando llegue la ll, el niño va a oír que suenan igual, como la b y la v, " +
+      "y la respuesta va a ser la misma: hay que acordarse de cómo se escribe cada palabra.",
+
+      "La y sola, la de «papá y mamá», suena i. Esa no está en esta página a propósito: aquí la " +
+      "y siempre va pegada a una vocal. Si el niño la ve suelta en un libro, basta decirle " +
+      "«cuando va solita, suena i».",
+
+      "Para escribirla: es la u con colita. La primera parte es la u de siempre; el segundo " +
+      "palito, en vez de pararse en el renglón, baja por debajo y se dobla hacia atrás, como el de " +
+      "la g. Ojo: en la cartilla la y está hecha de dos palitos rectos. Acá va como la de la " +
+      "letra de la pantalla, para que la que lee y la que escribe sean la misma."
+    ],
+    palabra: "yate", foto: "img/lecciones/y/yate.jpg",
+    notaSilabas: "Van en el orden de la cartilla.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["ya", "yi", "yo", "yu", "ye"],
+    palabras: ["yate","yuca","yeso","yodo","rayo","mayo","raya","ayuno",
+               "payaso","yola","arroyo","soya"],
+    tarjetas: [
+      { palabra: "yema", foto: "img/lecciones/y/yema.jpg" },
+      { palabra: "rayo", foto: "img/lecciones/y/rayo.jpg" },
+      { palabra: "payaso", foto: "img/lecciones/y/payaso.jpg" }
+    ],
+    frases: [
+      { texto: "ya cayó ese rayo.", foto: "img/lecciones/y/cayo-rayo.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "mi yoyo ya sube.", foto: "img/lecciones/y/yoyo-sube.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "ese yate va a la laguna.", foto: "img/lecciones/y/yate-laguna.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "yo me como la yema.", foto: "img/lecciones/y/como-yema.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "tu niño no raya la mesa.", foto: "img/lecciones/y/nino-raya.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "una semana de mayo yo vi ese payaso con su cara de yeso.", foto: "img/lecciones/y/payaso-mayo.jpg", ancha: true, rel: "16 / 9" }
+    ],
+    hojas: ["letra-y", "silabas-y", "frases-y"] }
 
 ];

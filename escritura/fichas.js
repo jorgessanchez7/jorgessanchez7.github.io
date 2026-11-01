@@ -582,6 +582,38 @@ window.FICHAS = [
     lineas: ["gato goma lago", "esa goma sí pega."],
     trazos: [] },
 
+  /* La y de Quicksand es la u con colita: la taza de la u (más angosta,
+     rx 17) y el segundo palito que baja y se dobla como el de la g. Medida
+     contra la fuente (peso 600): avance 58, ancho visible 46, baja 20.
+     La cartilla la dibuja con palitos rectos; aquí manda la de la pantalla. */
+
+  { id: "letra-y", grupo: "letras", orden: 43, letra: "y", palabra: "yate",
+    titulo: "La y",
+    pista: "Primero la u: baja, da la vuelta y sube. Después el segundo palito: baja por debajo del renglón y se dobla hacia atrás.",
+    banda: "#fbf3c8", tinta: "#8a6d0b",
+    celda: [96, 150], repeticiones: 7, renglones: 2, guia: true,
+    trazos: [
+      { d: "M31 55 L31 90 A17 17 0 0 0 65 90", ini: [31, 55], ang: 90 },
+      { d: "M65 55 L65 106 Q65 124 47 124 Q37 124 30 119", ini: [65, 55], ang: 90 }
+    ] },
+
+  { id: "silabas-y", grupo: "letras", orden: 44,
+    titulo: "ya, yi, yo, yu, ye",
+    pista: "En el orden de la cartilla. La u con colita, y después la vocal.",
+    banda: "#fbf3c8", tinta: "#8a6d0b",
+    celda: [230, 150], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["ya", "yi", "yo", "yu", "ye"],
+    trazos: [] },
+
+  { id: "frases-y", grupo: "letras", orden: 45,
+    titulo: "yate rayo yema",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#fbf3c8", tinta: "#8a6d0b",
+    celda: [960, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["yate rayo yema", "ya cayó ese rayo."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,
