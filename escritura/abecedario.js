@@ -121,10 +121,12 @@ window.ABECEDARIO = [
       { texto: "mamá puso mi sopa.", foto: "img/lecciones/s/mama-sopa.jpg" },
       { texto: "papá pasa mi mesa paso a paso.", foto: "img/lecciones/s/papa-mesa.jpg" },
       /* de la otra fuente. Sisi y Susi con mayúscula: son nombres. Falta
-         «ese sapo se asoma»: la imagen que vino era otra cosa. */
+         «ese sapo se asoma»: va completa al final, la imagen entera
+         (era 4:3 y recortada a 5:2 se perdía el sapo). */
       { texto: "Sisi me pasa ese mapa.", foto: "img/lecciones/s/sisi-mapa.jpg" },
       { texto: "mimo a ese oso mimoso.", foto: "img/lecciones/s/oso-mimoso.jpg" },
-      { texto: "Susi usa mi mesa.", foto: "img/lecciones/s/susi-mesa.jpg" }
+      { texto: "Susi usa mi mesa.", foto: "img/lecciones/s/susi-mesa.jpg" },
+      { texto: "ese sapo se asoma.", foto: "img/lecciones/s/sapo-asoma.jpg", completa: true, rel: "5 / 2" }
     ],
     hojas: ["letra-s", "silabas-s", "frases-s"] },
 
@@ -146,21 +148,28 @@ window.ABECEDARIO = [
     notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
     silabas: ["lo", "le", "li", "lu", "la"],
     palabras: ["loma", "sala", "paloma", "lima", "lupa", "mula",
-               "palo", "pule", "lomo", "pala", "ala", "alelí"],
+               "palo", "pule", "lomo", "pala", "ala", "alelí",
+               "lema", "ola", "pelo"],
     tarjetas: [
       { palabra: "lima", foto: "img/lecciones/l/lima.jpg" },
       { palabra: "lupa", foto: "img/lecciones/l/lupa.jpg" },
       { palabra: "mula", foto: "img/lecciones/l/mula.jpg" },
       { palabra: "paloma", foto: "img/lecciones/l/paloma.jpg" },
       { palabra: "sala", foto: "img/lecciones/l/sala.jpg" },
-      { palabra: "pila", foto: "img/lecciones/l/pila.jpg" }
+      { palabra: "pila", foto: "img/lecciones/l/pila.jpg" },
+      { palabra: "pala", foto: "img/lecciones/l/pala.jpg" }
     ],
     frases: [
       { texto: "mi mula pasa la loma.", foto: "img/lecciones/l/mula-loma.jpg", completa: true, rel: "5 / 2" },
       { texto: "mi mamá sale a la pila.", foto: "img/lecciones/l/mama-pila.jpg" },
       { texto: "esa lima sí pule.", foto: "img/lecciones/l/lima-pule.jpg" },
       { texto: "papá pela ese palo.", foto: "img/lecciones/l/papa-palo.jpg" },
-      { texto: "mi paloma sale sola a la loma.", foto: "img/lecciones/l/paloma-loma.jpg", completa: true, rel: "5 / 2" }
+      { texto: "mi paloma sale sola a la loma.", foto: "img/lecciones/l/paloma-loma.jpg", completa: true, rel: "5 / 2" },
+      /* de la otra fuente. Lalo, Loli y Lupe con mayúscula: son nombres */
+      { texto: "Lalo usa la lupa.", foto: "img/lecciones/l/lalo-lupa.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Loli usa la pala.", foto: "img/lecciones/l/loli-pala.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "papá sale a la loma.", foto: "img/lecciones/l/papa-loma.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Lupe se asoma a la loma.", foto: "img/lecciones/l/lupe-loma.jpg", ancha: true, rel: "16 / 9" }
     ],
     hojas: ["letra-l", "silabas-l", "frases-l"] },
 
