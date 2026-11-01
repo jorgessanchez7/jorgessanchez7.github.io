@@ -29,24 +29,24 @@
     <div id="crayones"></div>
     <button type="button" class="btn suave" id="borrar-todo">Borrar la hoja</button>
     <a class="btn papel" id="imprimible" href="#" download>Hoja para imprimir (PDF)</a>
+    <a class="btn papel" id="imprimible-palabras" href="#" download hidden>Hoja de palabras (PDF)</a>
   </div>
 </div>
 
 <main>
-  <section>
-    <div class="envoltura">
-      <div class="muestra" id="muestra" hidden></div>
-      <div id="hoja"></div>
-      <nav id="saltos"></nav>
-    </div>
-  </section>
   <section id="sec-palabras-vocal" hidden>
     <div class="envoltura">
       <h2 id="titulo-palabras-vocal"></h2>
       <p class="sub">No son para leer todavía: el adulto dice la palabra y el niño mira el dibujo y
          la letra con que empieza. Toque la tarjeta para oírla.</p>
       <div class="tarjetas" id="palabras-vocal"></div>
-      <p style="margin-top:22px"><a class="btn papel" id="imprimible-palabras" href="#" download>Hoja de palabras para imprimir (PDF)</a></p>
+    </div>
+  </section>
+  <section>
+    <div class="envoltura">
+      <div class="muestra" id="muestra" hidden></div>
+      <div id="hoja"></div>
+      <nav id="saltos"></nav>
     </div>
   </section>
 </main>

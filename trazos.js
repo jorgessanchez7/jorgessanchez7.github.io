@@ -299,7 +299,9 @@
     }
 
     /* las vocales traen además sus palabras con dibujo (escritura/vocales.js):
-       tarjetas en pantalla y la hoja de completar la vocal para imprimir */
+       las tarjetas van ARRIBA de la hoja de trazar (lo pidió el padre:
+       primero ver las palabras, después escribir) y su PDF va en la barra,
+       al lado del de la hoja */
     if (f.grupo === "vocales" && window.VOCALES_PALABRAS) {
       var V = null;
       window.VOCALES_PALABRAS.forEach(function (x) { if (x.vocal === f.letra) V = x; });
@@ -310,8 +312,9 @@
         sec.style.setProperty("--letra-suave", f.banda);
         document.getElementById("titulo-palabras-vocal").textContent =
           "Palabras que empiezan con " + f.letra;
-        document.getElementById("imprimible-palabras").href =
-          "pdf/plana-vocal-" + f.letra + "-palabras.pdf";
+        var pdfP = document.getElementById("imprimible-palabras");
+        pdfP.href = "pdf/plana-vocal-" + f.letra + "-palabras.pdf";
+        pdfP.hidden = false;
         var cajaV = document.getElementById("palabras-vocal");
         cajaV.dataset.cuantas = V.palabras.length;
         V.palabras.forEach(function (w) {
