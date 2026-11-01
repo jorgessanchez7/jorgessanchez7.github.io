@@ -285,7 +285,8 @@ window.ABECEDARIO = [
     notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
     silabas: ["da", "di", "do", "du", "de"],
     palabras: ["dama", "seda", "todo", "nada", "duda", "mudo",
-               "pomada", "soda", "dime", "lado", "moneda", "pide"],
+               "pomada", "soda", "dime", "lado", "moneda", "pide",
+               "medida"],
     tarjetas: [
       { palabra: "dedo", foto: "img/lecciones/d/dedo.jpg" },
       { palabra: "nudo", foto: "img/lecciones/d/nudo.jpg" },
@@ -298,7 +299,12 @@ window.ABECEDARIO = [
       { texto: "la paloma tapa su nido.", foto: "img/lecciones/d/paloma-nido.jpg", ancha: true, rel: "16 / 9" },
       { texto: "esa dama me saluda.", foto: "img/lecciones/d/dama-saluda.jpg", ancha: true, rel: "16 / 9" },
       { texto: "mi papá toma las monedas de la mesa.", foto: "img/lecciones/d/papa-monedas.jpg", ancha: true, rel: "16 / 9" },
-      { texto: "mi papá suda si usa su pala toda la semana.", foto: "img/lecciones/d/papa-suda.jpg", ancha: true, rel: "16 / 9" }
+      { texto: "mi papá suda si usa su pala toda la semana.", foto: "img/lecciones/d/papa-suda.jpg", ancha: true, rel: "16 / 9" },
+      /* de la otra fuente. Loli y Dalila con mayúscula. Al dibujo de Loli
+         se le borraron tres «Cuentos» de los libros del estante. */
+      { texto: "Loli se puso dudosa.", foto: "img/lecciones/d/loli-dudosa.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Dalila mide la seda.", foto: "img/lecciones/d/dalila-seda.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "mamá puso pomada a mi dedo.", foto: "img/lecciones/d/pomada-dedo.jpg", completa: true, rel: "5 / 2" }
     ],
     hojas: ["letra-d", "silabas-d", "frases-d"] },
 
