@@ -102,6 +102,26 @@ body {
 .renglon { width: 100%; }
 .renglon svg { display: block; width: 100%; height: auto; }
 
+/* ---------- la hoja de palabras de una vocal ---------- */
+
+.fila-dibujo {
+  display: flex;
+  align-items: center;
+  gap: 0.45cm;
+}
+.fila-dibujo img {
+  flex: none;
+  width: var(--lado, 2.2cm);
+  height: var(--lado, 2.2cm);
+  object-fit: cover;
+  border-radius: 0.2cm;
+  border: 1px solid #cfcfcf;
+  /* la hoja es en blanco y negro: la imagen guardada es a color, para
+     que sirva también en pantalla, y aquí se pasa a gris */
+  filter: grayscale(1) contrast(1.08);
+}
+.fila-dibujo .renglon { flex: 1; min-width: 0; }
+
 /* ---------- al imprimir ---------- */
 
 @page { size: letter; margin: 0; }

@@ -70,6 +70,16 @@
         out.push({ id: f.id, titulo: f.titulo, pista: f.pista, bloques: [{ ficha: f.id }] });
       }
     });
+    /* las palabras de cada vocal: dibujo a la izquierda, la palabra al
+       frente; el niño repasa la vocal y después la escribe sola */
+    (window.VOCALES_PALABRAS || []).forEach(function (V) {
+      out.push({
+        id: "vocal-" + V.vocal + "-palabras",
+        titulo: "La " + V.vocal + " · palabras que empiezan con " + V.vocal,
+        pista: "Mira el dibujo y di la palabra. Repasa la letra punteada y después escríbela sola en el espacio.",
+        dibujos: V
+      });
+    });
     LETRAS.forEach(function (L) {
       var h = L.hojas || [];
       /* La hoja se llena hasta seis renglones. Casi todas las letras traen
@@ -267,6 +277,98 @@
     return '<div class="renglon">' + svg + "</div>";
   }
 
+  /* ---------- la hoja de palabras de una vocal ----------
+
+     Cada renglón: el dibujo, y al frente la palabra dos veces. En la
+     primera la vocal va punteada para repasar; en la segunda va el
+     hueco para escribirla sola. El resto de la palabra va en gris, como
+     texto de Quicksand: lo lee el adulto, el niño no tiene que
+     descifrarlo, y así caben letras que el motor todavía no dibuja
+     (la h de «ocho», la j de «oreja»).
+
+     Todas las filas usan el mismo ancho, para que la letra sea del
+     mismo tamaño en toda la hoja. */
+
+  var GRIS_TEXTO = "#c4c4c4";
+  /* la vocal es lo que cuenta: va más oscura y más gruesa que el
+     punteado de las otras hojas, y el resto de la palabra más claro */
+  var VOCAL = { punteado: "#3a3a3a", finura: 4.2, raya: "6 7" };
+  var ESPACIO = 80;
+
+  function medir(txt) {
+    var c = medir.c || (medir.c = document.createElement("canvas").getContext("2d"));
+    c.font = "500 100px Quicksand";
+    return c.measureText(txt).width;
+  }
+
+  function filaPalabra(p, W) {
+    var v = p.palabra.charAt(0), resto = p.palabra.slice(1);
+    var av = D.AVANCE[v] || 60, cw = av + 24;
+    var f = { celda: [cw, 150], guia: true, tamano: 100, linea: 110, cuerpo: 55, tinta: NEGRO.tinta };
+    var op = {};
+    for (var k in NEGRO) op[k] = NEGRO[k];
+    for (var q in VOCAL) op[q] = VOCAL[q];
+    op.celdas = ["punteado"];
+    var svg = D.guias(f, W, 150, 1, v, op);
+    var tw = medir(resto);
+    var x2 = 12 + av + tw + ESPACIO;
+    var texto = function (x) {
+      return '<text x="' + x.toFixed(1) + '" y="110" font-family="Quicksand, sans-serif" ' +
+        'font-size="100" font-weight="500" fill="' + GRIS_TEXTO + '">' + resto + "</text>";
+    };
+    /* el hueco donde la escribe solo: una rayita más oscura en el
+       renglón, del ancho de la letra, para que se vea dónde va */
+    var hueco = '<path d="M' + (x2 + 6).toFixed(1) + " 118 H" + (x2 + av + 2).toFixed(1) +
+      '" stroke="#6f6f6f" stroke-width="3" stroke-linecap="round"/>';
+    svg = svg.replace("</svg>", texto(12 + av) + hueco + texto(x2 + av) + "</svg>");
+    return '<div class="fila-dibujo"><img src="' + p.foto + '" alt="' + p.palabra + '">' +
+      '<div class="renglon">' + svg + "</div></div>";
+  }
+
+  /* La letra tiene que salir lo más grande que quepa. Se arranca con el
+     ancho que pide la palabra más larga de la hoja y, si la hoja se
+     desborda, se va achicando hasta que cabe. El alto disponible se
+     calcula a mano (la hoja en pantalla no tiene alto fijo, solo en la
+     impresión). */
+  var CM = 96 / 2.54;
+
+  function armarDibujos(plana, caja, listo) {
+    var lista = plana.dibujos.palabras;
+    var hecho = function () {
+      var W = 0;
+      lista.forEach(function (p) {
+        var av = D.AVANCE[p.palabra.charAt(0)] || 60;
+        W = Math.max(W, 2 * (12 + av + medir(p.palabra.slice(1))) + ESPACIO + 20);
+      });
+      caja.classList.add("con-dibujos");
+      /* con pocas palabras el dibujo crece: la hoja de la i (cinco) no
+         tiene por qué tener los dibujos del tamaño de la de la a (nueve) */
+      var lado = Math.min(3.2, 20.5 / lista.length - 0.35);
+      caja.style.setProperty("--lado", lado.toFixed(2) + "cm");
+      var enc = document.querySelector(".encabezado");
+      var disponible = 27.9 * CM - 2.0 * CM - enc.getBoundingClientRect().height - 0.6 * CM;
+      for (var vuelta = 0; vuelta < 25; vuelta++) {
+        caja.innerHTML = lista.map(function (p) { return filaPalabra(p, Math.ceil(W)); }).join("");
+        recortar(caja);
+        var total = 0;
+        [].forEach.call(caja.querySelectorAll(".fila-dibujo"), function (f) {
+          total += f.getBoundingClientRect().height;
+        });
+        if (total + 8 * lista.length <= disponible) break;
+        W *= 1.06;
+      }
+      var imgs = [].slice.call(caja.querySelectorAll("img"));
+      Promise.all(imgs.map(function (im) {
+        return im.decode ? im.decode().catch(function () {}) : Promise.resolve();
+      })).then(listo);
+    };
+    if (document.fonts && document.fonts.load) {
+      document.fonts.load("500 100px Quicksand").then(hecho, hecho);
+    } else {
+      hecho();
+    }
+  }
+
   /* ---------- armar la página ---------- */
 
   function armar() {
@@ -285,15 +387,22 @@
     document.getElementById("pista").textContent = plana.pista || "";
 
     var caja = document.getElementById("renglones");
+    var imprimir = document.getElementById("imprimir");
+    if (imprimir) imprimir.addEventListener("click", function () { window.print(); });
+
+    if (plana.dibujos) {
+      armarDibujos(plana, caja, function () {
+        document.documentElement.setAttribute("data-lista", "si");
+      });
+      return;
+    }
+
     var filas = renglones(plana);
     caja.innerHTML = filas.map(function (fila, i) {
       return dibujarFila(fila, i === 0);
     }).join("");
     recortar(caja);
     caber(caja);
-
-    var imprimir = document.getElementById("imprimir");
-    if (imprimir) imprimir.addEventListener("click", function () { window.print(); });
 
     /* para el generador de PDF: avisa que ya terminó de dibujar */
     document.documentElement.setAttribute("data-lista", "si");
