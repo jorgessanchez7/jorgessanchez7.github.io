@@ -663,6 +663,50 @@ window.ABECEDARIO = [
       { texto: "mira la foca del faro.", foto: "img/lecciones/f/foca-faro.jpg", ancha: true, rel: "16 / 9" },
       { texto: "saca tu cámara fina y toma una foto de ese faro y de la foca.", foto: "img/lecciones/f/camara-foto.jpg", completa: true, rel: "5 / 2" }
     ],
-    hojas: ["letra-f", "silabas-f", "frases-f"] }
+    hojas: ["letra-f", "silabas-f", "frases-f"] },
+
+  /* La h no suena. Palabras y frases de la edición del padre, más «hipo»,
+     «hipopótamo» y «Felipe cuida su hamaca», que pidió él. Felipe y Hugo
+     van con mayúscula: son nombres. */
+
+  { id: "h", letra: "h", mayuscula: "H", orden: 17,
+    banda: "#f1e4f0", tinta: "#7d3f78",
+    comoSuena: "No suena. La boca no hace nada: «hilo» se dice igual que si dijera «ilo». La h se escribe y se calla.",
+    aviso: [
+      "Esta es la primera letra que no suena, y conviene decirlo así, sin rodeos: «esta se queda " +
+      "callada». En «hilo», «humo» o «helado» se oye solo la vocal que viene después. Por eso, si el " +
+      "niño toca «ha» en la pantalla y oye «a», está bien: así es.",
+
+      "Lo difícil no es leerla, es escribirla: como no se oye, no hay forma de saber de oído que va. " +
+      "Pasa lo mismo que con la b y la v: hay que acordarse de cómo se escribe cada palabra. Fíjese " +
+      "en «ahorra» y «ahora»: la h va en medio, también callada.",
+
+      "En las frases aparecen «Felipe» y «Hugo», con mayúscula porque son nombres, como Nelson y " +
+      "Antonio. La de Hugo es una H mayúscula: la misma letra, más grande.",
+
+      "Para escribirla: es la n con el palito largo. Empieza arriba, como la l, baja hasta el " +
+      "renglón, sube por el mismo camino hasta la mitad y hace el puente de la n. Un solo trazo."
+    ],
+    palabra: "hilo", foto: "img/lecciones/h/hilo.jpg",
+    notaSilabas: "Van en el orden de la cartilla. Suenan como las vocales solas: la h no se oye.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["hi", "ha", "hu", "ho", "he"],
+    palabras: ["hilo","humo","hora","haba","helado","herida","hada","hamaca",
+               "hábito","higo","herradura","hipo","hipopótamo"],
+    tarjetas: [
+      { palabra: "herido", foto: "img/lecciones/h/herido.jpg" },
+      { palabra: "herradura", foto: "img/lecciones/h/herradura.jpg" },
+      { palabra: "hamaca", foto: "img/lecciones/h/hamaca.jpg" }
+    ],
+    frases: [
+      { texto: "ya sanó mi herida.", foto: "img/lecciones/h/sano-herida.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Felipe rifa una hamaca de pita.", foto: "img/lecciones/h/felipe-rifa.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Hugo ayuda a ese herido.", foto: "img/lecciones/h/hugo-herido.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "ese helado sabe rico.", foto: "img/lecciones/h/helado.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "ahorra dinero ahora.", foto: "img/lecciones/h/ahorra.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Felipe cuida su hamaca.", foto: "img/lecciones/h/felipe-cuida.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "ahora, mulita, te coloco la herradura y sanará tu herida.", foto: "img/lecciones/h/mulita.jpg", completa: true, rel: "5 / 2" }
+    ],
+    hojas: ["letra-h", "silabas-h", "frases-h"] }
 
 ];

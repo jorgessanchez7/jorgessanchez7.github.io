@@ -646,6 +646,35 @@ window.FICHAS = [
     lineas: ["faro foca sofá", "se rifa una foca."],
     trazos: [] },
 
+  /* La h es la n con el palito de la l: asta desde y=36 y el mismo puente.
+     Medida contra Quicksand (peso 600): avance 58, casi el de la n (59). */
+
+  { id: "letra-h", grupo: "letras", orden: 49, letra: "h", palabra: "hilo",
+    titulo: "La h",
+    pista: "El palito largo de arriba abajo; sube por el mismo camino hasta la mitad y hace el puente, como la n.",
+    banda: "#f1e4f0", tinta: "#7d3f78",
+    celda: [96, 130], repeticiones: 7, renglones: 2, guia: true,
+    trazos: [
+      { d: "M28 36 L28 110 L28 75 A20 20 0 0 1 68 75 L68 110", ini: [28, 36], ang: 90 }
+    ] },
+
+  { id: "silabas-h", grupo: "letras", orden: 50,
+    titulo: "hi, ha, hu, ho, he",
+    pista: "En el orden de la cartilla. Se escribe la h aunque no se oiga.",
+    banda: "#f1e4f0", tinta: "#7d3f78",
+    celda: [230, 130], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["hi", "ha", "hu", "ho", "he"],
+    trazos: [] },
+
+  { id: "frases-h", grupo: "letras", orden: 51,
+    titulo: "hilo humo hada",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#f1e4f0", tinta: "#7d3f78",
+    celda: [960, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["hilo humo hada", "ahorra dinero ahora."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,
