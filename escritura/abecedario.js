@@ -194,11 +194,15 @@ window.ABECEDARIO = [
     notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
     silabas: ["ne", "ni", "na", "nu", "no"],
     palabras: ["nena", "pino", "maní", "nulo", "mano", "pepino",
-               "pena", "mina", "enano", "luna", "molino", "lana"],
+               "pena", "mina", "enano", "luna", "molino", "lana",
+               "uno", "melena"],
     tarjetas: [
       { palabra: "mono", foto: "img/lecciones/n/mono.jpg" },
       { palabra: "luna", foto: "img/lecciones/n/luna.jpg" },
       { palabra: "pino", foto: "img/lecciones/n/pino.jpg" },
+      /* el 1 está hecho aquí en Quicksand: la imagen que vino era la
+         carátula de un disco, como en las palabras de la u */
+      { palabra: "uno", foto: "img/lecciones/n/uno.jpg" },
       { palabra: "Nelson", foto: "img/lecciones/n/nelson.jpg" }
     ],
     frases: [
