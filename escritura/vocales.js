@@ -39,7 +39,8 @@ window.VOCALES_PALABRAS = [
     { palabra: "isla",     foto: "img/lecciones/vocales/i/isla.jpg" },
     { palabra: "imán",     foto: "img/lecciones/vocales/i/iman.jpg" },
     { palabra: "indígena", foto: "img/lecciones/vocales/i/indigena.jpg" },
-    { palabra: "iglú",     foto: "img/lecciones/vocales/i/iglu.jpg" }
+    { palabra: "iglú",     foto: "img/lecciones/vocales/i/iglu.jpg" },
+    { palabra: "iguana",   foto: "img/lecciones/vocales/i/iguana.jpg" }
   ] },
   { vocal: "o", palabras: [
     { palabra: "ojo",      foto: "img/lecciones/vocales/o/ojo.jpg" },
