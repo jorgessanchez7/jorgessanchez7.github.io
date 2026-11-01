@@ -99,11 +99,15 @@ window.ABECEDARIO = [
     notaSilabas: "Van en el orden de la cartilla: sa, si, su, se, so. En desorden a propósito.",
     notaFrases: "Acá las imágenes son dibujos, no fotos de la casa: la s no tiene palabra de la familia. Léalas señalando con el dedo, palabra por palabra.",
     silabas: ["sa", "si", "su", "se", "so"],
-    palabras: ["sapo", "mesa", "oso", "sopa", "misa", "suma", "masa", "pesa", "piso"],
+    palabras: ["sapo", "mesa", "oso", "sopa", "misa", "suma", "masa", "pesa", "piso",
+               "paso", "peso", "seso"],
     tarjetas: [
       { palabra: "suma", foto: "img/lecciones/s/suma.jpg" },
       { palabra: "oso", foto: "img/lecciones/s/oso.jpg" },
-      { palabra: "mesa", foto: "img/lecciones/s/mesa.jpg" }
+      { palabra: "mesa", foto: "img/lecciones/s/mesa.jpg" },
+      /* de la otra fuente: las dos de comer hacen pareja abajo (3+2) */
+      { palabra: "sopa", foto: "img/lecciones/s/sopa.jpg" },
+      { palabra: "masa", foto: "img/lecciones/s/masa.jpg" }
     ],
     /* Las seis frases son las de la cartilla. Las imágenes las generó el
        padre con ChatGPT y Gemini; el sapo y el oso son fotos reales. A la
@@ -115,7 +119,12 @@ window.ABECEDARIO = [
       { texto: "ese oso pisa mi masa.", foto: "img/lecciones/s/oso-masa.jpg", ancha: true, rel: "16 / 9" },
       { texto: "mi mamá asa esa masa.", foto: "img/lecciones/s/mama-masa.jpg" },
       { texto: "mamá puso mi sopa.", foto: "img/lecciones/s/mama-sopa.jpg" },
-      { texto: "papá pasa mi mesa paso a paso.", foto: "img/lecciones/s/papa-mesa.jpg" }
+      { texto: "papá pasa mi mesa paso a paso.", foto: "img/lecciones/s/papa-mesa.jpg" },
+      /* de la otra fuente. Sisi y Susi con mayúscula: son nombres. Falta
+         «ese sapo se asoma»: la imagen que vino era otra cosa. */
+      { texto: "Sisi me pasa ese mapa.", foto: "img/lecciones/s/sisi-mapa.jpg" },
+      { texto: "mimo a ese oso mimoso.", foto: "img/lecciones/s/oso-mimoso.jpg" },
+      { texto: "Susi usa mi mesa.", foto: "img/lecciones/s/susi-mesa.jpg" }
     ],
     hojas: ["letra-s", "silabas-s", "frases-s"] },
 
