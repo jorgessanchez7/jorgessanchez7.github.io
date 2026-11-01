@@ -298,6 +298,40 @@
       else pdf.href = planaDe(f.id);
     }
 
+    /* las vocales traen además sus palabras con dibujo (escritura/vocales.js):
+       tarjetas en pantalla y la hoja de completar la vocal para imprimir */
+    if (f.grupo === "vocales" && window.VOCALES_PALABRAS) {
+      var V = null;
+      window.VOCALES_PALABRAS.forEach(function (x) { if (x.vocal === f.letra) V = x; });
+      if (V) {
+        var sec = document.getElementById("sec-palabras-vocal");
+        sec.hidden = false;
+        sec.style.setProperty("--letra", f.tinta);
+        sec.style.setProperty("--letra-suave", f.banda);
+        document.getElementById("titulo-palabras-vocal").textContent =
+          "Palabras que empiezan con " + f.letra;
+        document.getElementById("imprimible-palabras").href =
+          "pdf/plana-vocal-" + f.letra + "-palabras.pdf";
+        var cajaV = document.getElementById("palabras-vocal");
+        cajaV.dataset.cuantas = V.palabras.length;
+        V.palabras.forEach(function (w) {
+          var t = document.createElement("div");
+          t.className = "tarjeta";
+          var im = document.createElement("img");
+          im.src = w.foto; im.alt = w.palabra; im.loading = "lazy";
+          im.style.aspectRatio = "1 / 1";
+          var b = document.createElement("button");
+          b.type = "button";
+          b.className = "renglon-frase";
+          b.innerHTML = "<b>" + w.palabra.charAt(0) + "</b>" + w.palabra.slice(1);
+          t.appendChild(im);
+          t.appendChild(b);
+          t.addEventListener("click", function () { decir(w.palabra); });
+          cajaV.appendChild(t);
+        });
+      }
+    }
+
     /* anterior y siguiente dentro del mismo grupo */
     var g = hermanas();
     var pos = g.indexOf(f);
