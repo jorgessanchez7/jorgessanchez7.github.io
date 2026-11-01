@@ -621,6 +621,48 @@ window.ABECEDARIO = [
       { texto: "tu niño no raya la mesa.", foto: "img/lecciones/y/nino-raya.jpg", ancha: true, rel: "16 / 9" },
       { texto: "una semana de mayo yo vi ese payaso con su cara de yeso.", foto: "img/lecciones/y/payaso-mayo.jpg", ancha: true, rel: "16 / 9" }
     ],
-    hojas: ["letra-y", "silabas-y", "frases-y"] }
+    hojas: ["letra-y", "silabas-y", "frases-y"] },
+
+  /* La f. Palabras y frases de la edición del padre (la del PDF trae otras):
+     ahí están «rifa» y «se rifa una foca», que es la frase de la plana.
+     Él sumó «foto» y «fama» a la lista y «mira la foca del faro». */
+
+  { id: "f", letra: "f", mayuscula: "F", orden: 16,
+    banda: "#e2f0ea", tinta: "#2e6b55",
+    comoSuena: "Los dientes de arriba se apoyan en el labio de abajo y el aire sale soplando, sin voz: ffff. Como cuando se enfría la sopa.",
+    aviso: [
+      "Esta es fácil de oír y fácil de estirar, como la m y la s: ffff. Lo que conviene mostrar es " +
+      "dónde va la boca — los dientes de arriba tocan el labio de abajo —, porque el niño lo puede " +
+      "ver en su cara frente a un espejo. Y no tiene trampa: suena igual con todas las vocales.",
+
+      "En la última frase aparece la «y» suelta: «una foto de ese faro y de la foca». Es la de la " +
+      "lección anterior, la que cuando va solita suena i. Si el niño se detiene ahí, basta con " +
+      "recordárselo.",
+
+      "Para escribirla: dos trazos, como la t. Primero el bastón con el gancho arriba, que empieza " +
+      "a la derecha, se curva y baja derecho hasta el renglón. Después la rayita, de izquierda a " +
+      "derecha. Vale la pena escribir «t» y «f» juntas: la t tiene el gancho abajo; la f, arriba."
+    ],
+    palabra: "faro", foto: "img/lecciones/f/faro.jpg",
+    notaSilabas: "Van en el orden de la cartilla.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["fa", "fi", "fe", "fu", "fo"],
+    palabras: ["faro","foca","fuga","foco","café","sofá","fila","rifa",
+               "teléfono","foto","fama"],
+    tarjetas: [
+      { palabra: "foco", foto: "img/lecciones/f/foco.jpg" },
+      { palabra: "sofá", foto: "img/lecciones/f/sofa.jpg" },
+      { palabra: "foca", foto: "img/lecciones/f/foca.jpg" }
+    ],
+    frases: [
+      { texto: "oye, repica tu teléfono.", foto: "img/lecciones/f/telefono.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "apaga ya ese foco.", foto: "img/lecciones/f/apaga-foco.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "ese sofá se ve bonito.", foto: "img/lecciones/f/sofa-bonito.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "se rifa una foca.", foto: "img/lecciones/f/rifa-foca.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "papá afila su pala.", foto: "img/lecciones/f/papa-pala.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "mira la foca del faro.", foto: "img/lecciones/f/foca-faro.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "saca tu cámara fina y toma una foto de ese faro y de la foca.", foto: "img/lecciones/f/camara-foto.jpg", completa: true, rel: "5 / 2" }
+    ],
+    hojas: ["letra-f", "silabas-f", "frases-f"] }
 
 ];

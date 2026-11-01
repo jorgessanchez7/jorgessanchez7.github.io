@@ -614,6 +614,38 @@ window.FICHAS = [
     lineas: ["yate rayo yema", "ya cayó ese rayo."],
     trazos: [] },
 
+  /* La f: el bastón alto con el gancho arriba (asta 0,74 em, como la l) y
+     la rayita un poco por debajo de la altura de la x, donde la pone
+     Quicksand. Medida contra la fuente (peso 600): avance 41, ancho
+     visible 39. Es la t con el gancho arriba en vez de abajo. */
+
+  { id: "letra-f", grupo: "letras", orden: 46, letra: "f", palabra: "faro",
+    titulo: "La f",
+    pista: "Primero el bastón: empieza en el gancho, a la derecha, y baja derecho. Después la rayita, de izquierda a derecha.",
+    banda: "#e2f0ea", tinta: "#2e6b55",
+    celda: [96, 130], repeticiones: 7, renglones: 2, guia: true,
+    trazos: [
+      { d: "M62 42 Q57 37 52 37 Q45 37 45 48 L45 110", ini: [62, 42], ang: 200 },
+      { d: "M32 60 L60 60", ini: [32, 60], ang: 0 }
+    ] },
+
+  { id: "silabas-f", grupo: "letras", orden: 47,
+    titulo: "fa, fi, fe, fu, fo",
+    pista: "En el orden de la cartilla. El bastón, la rayita, y después la vocal.",
+    banda: "#e2f0ea", tinta: "#2e6b55",
+    celda: [230, 130], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["fa", "fi", "fe", "fu", "fo"],
+    trazos: [] },
+
+  { id: "frases-f", grupo: "letras", orden: 48,
+    titulo: "faro foca sofá",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#e2f0ea", tinta: "#2e6b55",
+    celda: [960, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["faro foca sofá", "se rifa una foca."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,
