@@ -52,7 +52,8 @@ window.ABECEDARIO = [
        así toca leerlas y no recitarlas de memoria */
     notaSilabas: "Van en desorden a propósito: así toca leerlas y no recitar a-e-i-o-u de memoria.",
     silabas: ["pa", "pu", "pi", "po", "pe"],
-    palabras: ["papá", "mapa", "pipa", "puma", "pomo", "papa", "papo", "pepe", "pipí", "popó"],
+    palabras: ["papá", "mapa", "pipa", "puma", "pomo", "papa", "papo", "pepe", "pipí", "popó",
+               "papi", "pepa"],
     tarjetas: [
       { palabra: "pipa", foto: "img/lecciones/p/pipa.jpg" },
       { palabra: "puma", foto: "img/lecciones/p/puma.jpg" },
@@ -63,6 +64,8 @@ window.ABECEDARIO = [
       { palabra: "mapa", foto: "img/lecciones/p/mapa.jpg" },
       /* pipí y popó son dibujos de línea, no fotos: no hay manera decente
          de fotografiar esto y el dibujo se entiende de una. */
+      /* la papa de comer, que el aviso ya pone al lado de «papá» */
+      { palabra: "papa", foto: "img/lecciones/p/papa-comer.jpg" },
       { palabra: "pipí", foto: "img/lecciones/p/pipi.jpg" },
       { palabra: "popó", foto: "img/lecciones/p/popo.jpg" }
     ],
@@ -72,7 +75,10 @@ window.ABECEDARIO = [
       { texto: "amo a mi papá.", foto: "img/lecciones/p/me-ama.jpg" },
       { texto: "mimo a mi papá.", foto: "img/lecciones/p/mimo.jpg" },
       { texto: "mimo a mamá.", foto: "img/lecciones/p/mimo-mama.jpg", ancha: true, rel: "3 / 2" },
-      { texto: "amo a papá.", foto: "img/lecciones/p/amo-papa.jpg", ancha: true, rel: "3 / 2" }
+      { texto: "amo a papá.", foto: "img/lecciones/p/amo-papa.jpg", ancha: true, rel: "3 / 2" },
+      /* agregadas de la otra fuente: las dos mitades del collage van lado a lado */
+      { texto: "papá ama a mamá.", foto: "img/lecciones/p/papa-ama-mama.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "amo a mi papi.", foto: "img/lecciones/p/amo-papi.jpg", ancha: true, rel: "16 / 9" }
     ],
     hojas: ["letra-p", "silabas-p", "frases-p"] },
 
