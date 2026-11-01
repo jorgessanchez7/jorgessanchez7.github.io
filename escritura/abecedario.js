@@ -20,12 +20,20 @@ window.ABECEDARIO = [
     palabra: "mamá",
     foto: "img/lecciones/m/mama.jpg",
     silabas: ["ma", "me", "mi", "mo", "mu"],
-    palabras: ["mamá", "amo", "ama", "mima", "mimo"],
+    palabras: ["mamá", "amo", "ama", "mima", "mimo", "mami"],
+    /* Las tarjetas las sumó el padre de otra fuente. Ojo: el «mimo» de la
+       tarjeta es el artista de cara blanca; el de la lista y la frase
+       «mimo a mi mamá» es el verbo. Misma palabra, dos cosas. */
+    tarjetas: [
+      { palabra: "mimo", foto: "img/lecciones/m/mimo-tarjeta.jpg" },
+      { palabra: "momia", foto: "img/lecciones/m/momia.jpg" }
+    ],
     frases: [
       { texto: "mi mamá me ama.", foto: "img/lecciones/m/me-ama.jpg" },
       { texto: "amo a mi mamá.", foto: "img/lecciones/m/amo.jpg" },
       { texto: "mimo a mi mamá.", foto: "img/lecciones/m/mimo.jpg" },
-      { texto: "mi mamá me mima.", foto: "img/lecciones/m/me-mima.jpg" }
+      { texto: "mi mamá me mima.", foto: "img/lecciones/m/me-mima.jpg" },
+      { texto: "mi mamá me ama a mí.", foto: "img/lecciones/m/me-ama-a-mi.jpg" }
     ],
     hojas: ["letra-m", "silabas-m", "frases-m"] },
 
