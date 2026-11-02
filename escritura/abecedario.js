@@ -1045,7 +1045,7 @@ window.ABECEDARIO = [
      yo: el padre no tenía. Periquito va en minúscula: es el pájaro. */
 
   { id: "que", letra: "qu", mayuscula: "QU", orden: 24,
-    marca: ["que", "qui"],
+    marca: ["que", "qui", "qué", "quí"],
     banda: "#dbf0ec", tinta: "#0f766e",
     comoSuena: "Como la c de casa, de golpe y bien atrás: que, qui. La u no suena: está ahí de muda, como en guitarra.",
     aviso: [
@@ -1081,6 +1081,47 @@ window.ABECEDARIO = [
       { texto: "Paquita usa la raqueta.", foto: "img/lecciones/que/paquita.jpg", ancha: true, rel: "16 / 9" },
       { texto: "mamá tomó un paquete de queso.", foto: "img/lecciones/que/paquete-queso.jpg", ancha: true, rel: "16 / 9" }
     ],
-    hojas: ["letra-que", "silabas-que", "frases-que"] }
+    hojas: ["letra-que", "silabas-que", "frases-que"] },
+
+  /* ge y gi: sin letra nueva. La g de siempre, que delante de la e y la
+     i suena como la j. Cierra el orden de la cartilla Nacho. Clave gemelo
+     (la escogió el padre); la frase de la plana la propuse yo. Colores de
+     la familia de la g, más fuertes, como la ce con la c. */
+
+  { id: "ge", letra: "g", mayuscula: "G", orden: 25,
+    marca: ["ge", "gi", "gé", "gí"],
+    banda: "#fdecd4", tinta: "#b45309",
+    comoSuena: "Con la e y la i, la g suena igual que la j: con aire, desde la garganta. ge, gi, como je, ji.",
+    aviso: [
+      "Es la misma g de «gato», pero con la e y la i cambia de sonido: suena como la j. «Gema» " +
+      "se lee igual que si dijera «jema». Es la última trampa pendiente de la lección de la g.",
+
+      "Conviene ponerla al lado de las otras dos: «ga, go, gu» suenan suave; «gue, gui» también " +
+      "suenan suave, gracias a la u muda; y «ge, gi», sin u, suenan como la j. Ponga «gato» y " +
+      "«gema» una al lado de la otra: la misma letra, dos sonidos.",
+
+      "Y vuelve la pareja de siempre: «ge» suena como «je» y «gi» como «ji». De oído no se sabe " +
+      "cuál va; hay que acordarse de cómo se escribe cada palabra, como con la b y la v o la c y " +
+      "la s. La mano no aprende nada nuevo: es la g de siempre."
+    ],
+    palabra: "gemelo", foto: "img/lecciones/ge/gemelo.jpg",
+    notaSilabas: "Solo dos. La g suena como la j.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["ge", "gi"],
+    palabras: ["gemelo","página","gema","generoso","gira","gitano","giro"],
+    tarjetas: [
+      { palabra: "gema", foto: "img/lecciones/ge/gema.jpg" },
+      { palabra: "gitano", foto: "img/lecciones/ge/gitano.jpg" },
+      { palabra: "género", foto: "img/lecciones/ge/genero.jpg" },
+      { palabra: "gelatina", foto: "img/lecciones/ge/gelatina.jpg" }
+    ],
+    frases: [
+      { texto: "joyero, coloca la gema a mi anillo.", foto: "img/lecciones/ge/joyero-gema.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "no pase la página ligero.", foto: "img/lecciones/ge/pagina-ligero.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "ese gitano dirige su carreta.", foto: "img/lecciones/ge/gitano-carreta.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "la hélice gira rápido.", foto: "img/lecciones/ge/helice.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "oye, chico, vigila mi pequeño coche.", foto: "img/lecciones/ge/chico-coche.jpg", ancha: true, rel: "16 / 9" }
+    ],
+    hojas: ["letra-ge", "silabas-ge", "frases-ge"] }
 
 ];

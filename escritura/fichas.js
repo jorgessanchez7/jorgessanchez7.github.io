@@ -880,6 +880,33 @@ window.FICHAS = [
     lineas: ["queso quijada paquete", "quiero queso, mamá."],
     trazos: [] },
 
+  /* ge y gi: sin glifo nuevo, las tres hojas son de texto (como ce). */
+
+  { id: "letra-ge", grupo: "letras", orden: 73,
+    titulo: "g",
+    pista: "La g de siempre: la rueda y el palito que baja y se dobla.",
+    banda: "#fdecd4", tinta: "#b45309",
+    celda: [230, 150], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["g"],
+    trazos: [] },
+
+  { id: "silabas-ge", grupo: "letras", orden: 74,
+    titulo: "ge, gi",
+    pista: "La g y la vocal. Suenan como je y ji.",
+    banda: "#fdecd4", tinta: "#b45309",
+    celda: [230, 150], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["ge", "gi", "ge", "gi"],
+    trazos: [] },
+
+  { id: "frases-ge", grupo: "letras", orden: 75,
+    titulo: "gemelo gema gira",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#fdecd4", tinta: "#b45309",
+    celda: [960, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["gemelo gema gira", "gemelo, gira la página."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,
