@@ -820,6 +820,36 @@ window.FICHAS = [
     lineas: ["cigarra cena cine", "cocinero, dame la cena."],
     trazos: [] },
 
+  /* La ch: la c y la h de siempre, una al lado de la otra, separadas por
+     el avance de la c (52) como en las hojas de texto. */
+
+  { id: "letra-ch", grupo: "letras", orden: 67, letra: "ch", palabra: "choza",
+    titulo: "La ch",
+    pista: "Primero la c, la o sin cerrar. Después, pegada, la h: el palito largo y el puente.",
+    banda: "#e0eef6", tinta: "#1f6f99",
+    celda: [150, 130], repeticiones: 5, renglones: 2, guia: true,
+    trazos: [
+      { d: "M59 57 A19.5 27 0 1 0 59 107", ini: [59, 57], ang: 209 },
+      { d: "M81 36 L81 110 L81 75 A20 20 0 0 1 121 75 L121 110", ini: [81, 36], ang: 90 }
+    ] },
+
+  { id: "silabas-ch", grupo: "letras", orden: 68,
+    titulo: "cho, chu, chi, che, cha",
+    pista: "En el orden de la cartilla. La c, la h y la vocal.",
+    banda: "#e0eef6", tinta: "#1f6f99",
+    celda: [230, 130], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["cho", "chu", "chi", "che", "cha"],
+    trazos: [] },
+
+  { id: "frases-ch", grupo: "letras", orden: 69,
+    titulo: "choza chivo leche",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#e0eef6", tinta: "#1f6f99",
+    celda: [960, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["choza chivo leche", "chinito come lechuga."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,

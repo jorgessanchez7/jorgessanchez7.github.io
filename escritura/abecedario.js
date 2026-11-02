@@ -341,7 +341,8 @@ window.ABECEDARIO = [
     tarjetas: [
       { palabra: "aro", foto: "img/lecciones/r/aro.jpg" },
       { palabra: "tetero", foto: "img/lecciones/r/tetero.jpg" },
-      { palabra: "loro", foto: "img/lecciones/r/loro.jpg" }
+      { palabra: "loro", foto: "img/lecciones/r/loro.jpg" },
+      { palabra: "arepa", foto: "img/lecciones/r/arepa.jpg" }
     ],
     frases: [
       { texto: "ese toro me mira.", foto: "img/lecciones/r/toro-mira.jpg", ancha: true, rel: "16 / 9" },
@@ -981,6 +982,60 @@ window.ABECEDARIO = [
       { texto: "Celina tuvo su cita médica.", foto: "img/lecciones/ce/celina-cita.jpg", ancha: true, rel: "16 / 9" },
       { texto: "doce niños van al cine.", foto: "img/lecciones/ce/doce-cine.jpg", ancha: true, rel: "16 / 9" }
     ],
-    hojas: ["letra-ce", "silabas-ce", "frases-ce"] }
+    hojas: ["letra-ce", "silabas-ce", "frases-ce"] },
+
+  /* La ch: dos letras que se leen como una sola. `marca` colorea «cha»,
+     «che»… enteras; la c y la h sueltas no. Con la ch ya se lee «Chepe»:
+     los tres nombres de la casa. Chepe y Nacho con mayúscula. */
+
+  { id: "ch", letra: "ch", mayuscula: "CH", orden: 23,
+    marca: ["ch"],
+    banda: "#e0eef6", tinta: "#1f6f99",
+    comoSuena: "La lengua se pega arriba y suelta el aire de golpe: ch, como cuando uno pide silencio pero con fuerza. cha, cho.",
+    aviso: [
+      "Son dos letras, la c y la h, que juntas hacen un sonido nuevo que ninguna de las dos " +
+      "tiene sola. Y aquí la h, que siempre se quedaba callada, sí cuenta: sin ella no hay ch. " +
+      "Por eso en esta página se colorea la ch entera, nunca la c sola.",
+
+      "Y hay premio grande: con la ch ya se lee «Chepe». Ya están los tres: Nelson, Antonio " +
+      "(y Toño) y Chepe. Vale la pena que él mismo encuentre su nombre en las tarjetas y en las " +
+      "frases, con mayúscula, como todos los nombres.",
+
+      "Para escribirla: primero la c, que es la o sin cerrar, y pegada la h, que es la n con el " +
+      "palito largo. Dos trazos, en ese orden."
+    ],
+    palabra: "choza", foto: "img/lecciones/ch/choza.jpg",
+    notaSilabas: "Van en el orden de la cartilla. La c y la h siempre juntas.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["cho", "chu", "chi", "che", "cha"],
+    palabras: ["choza","chivo","chorizo","chaleco","noche","techo","hacha","lechuga",
+               "ocho","coche","chocolate","leche","cachorro","chica","pechuga"],
+    tarjetas: [
+      { palabra: "chivo", foto: "img/lecciones/ch/chivo.jpg" },
+      { palabra: "serrucho", foto: "img/lecciones/ch/serrucho.jpg" },
+      { palabra: "hacha", foto: "img/lecciones/ch/hacha.jpg" },
+      { palabra: "cuchara", foto: "img/lecciones/ch/cuchara.jpg" },
+      { palabra: "chorizo", foto: "img/lecciones/ch/chorizo.jpg" },
+      { palabra: "lechuza", foto: "img/lecciones/ch/lechuza.jpg" },
+      { palabra: "ocho", foto: "img/lecciones/ch/ocho.jpg" },
+      { palabra: "chocolate", foto: "img/lecciones/ch/chocolate.jpg" },
+      { palabra: "leche", foto: "img/lecciones/ch/leche.jpg" },
+      { palabra: "cachorro", foto: "img/lecciones/ch/cachorro.jpg" },
+      { palabra: "Chepe", foto: "img/lecciones/ch/chepe.jpg" }
+    ],
+    frases: [
+      { texto: "la chiva da leche.", foto: "img/lecciones/ch/chiva-leche.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "dame a la cena chorizo y chocolate.", foto: "img/lecciones/ch/cena-chocolate.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "muchacho, lleva esa paja a la choza.", foto: "img/lecciones/ch/muchacho-paja.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "una lechuza chilla de noche.", foto: "img/lecciones/ch/lechuza-noche.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "chinito, sigue camino a tu chocita.", foto: "img/lecciones/ch/chinito.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "dame en la cena chorizo y lechuga.", foto: "img/lecciones/ch/cena-lechuga.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Chepe ama el chocolate.", foto: "img/lecciones/ch/chepe-chocolate.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Nacho come su lechuga.", foto: "img/lecciones/ch/nacho-lechuga.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "el mapache come su comida.", foto: "img/lecciones/ch/mapache.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Chepe tiene un cachorro.", foto: "img/lecciones/ch/chepe-cachorro.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "lunita juguetona, asoma tu carita, ilumina la noche, mi choza, mi cosecha.", foto: "img/lecciones/ch/lunita.jpg", completa: true, rel: "5 / 2" }
+    ],
+    hojas: ["letra-ch", "silabas-ch", "frases-ch"] }
 
 ];
