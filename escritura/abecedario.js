@@ -788,6 +788,7 @@ window.ABECEDARIO = [
       { palabra: "pájaro", foto: "img/lecciones/j/pajaro.jpg" },
       { palabra: "joya", foto: "img/lecciones/j/joya.jpg" },
       { palabra: "teja", foto: "img/lecciones/j/teja.jpg" },
+      { palabra: "conejo", foto: "img/lecciones/j/conejo.jpg" },
       { palabra: "Jesús", foto: "img/lecciones/j/jesus.jpg" }
     ],
     frases: [
@@ -873,6 +874,9 @@ window.ABECEDARIO = [
     tarjetas: [
       { palabra: "olla", foto: "img/lecciones/ll/olla.jpg" },
       { palabra: "gallo", foto: "img/lecciones/ll/gallo.jpg" },
+      /* la calle trae letreros (es de Japón); el padre decidió que entra:
+         «importa que es una calle» */
+      { palabra: "calle", foto: "img/lecciones/ll/calle.jpg" },
       { palabra: "anillo", foto: "img/lecciones/ll/anillo.jpg" },
       { palabra: "ballena", foto: "img/lecciones/ll/ballena.jpg" },
       { palabra: "silla", foto: "img/lecciones/ll/silla.jpg" },
@@ -890,6 +894,49 @@ window.ABECEDARIO = [
       { texto: "mi caballo recorre el valle.", foto: "img/lecciones/ll/caballo-valle.jpg", completa: true, rel: "5 / 2" },
       { texto: "la zorra mató a mi gallo, la gallina lo llora de acá para allá.", foto: "img/lecciones/ll/zorra-gallo.jpg", completa: true, rel: "5 / 2" }
     ],
-    hojas: ["letra-ll", "silabas-ll", "frases-ll"] }
+    hojas: ["letra-ll", "silabas-ll", "frases-ll"] },
+
+  /* gue y gui: no hay letra nueva, hay una regla. La u está ahí para que
+     la g suene suave delante de la e y la i, y NO se pronuncia. `marca`
+     colorea «gue» y «gui» enteras; el «gu» de «gusta» (g + u que sí
+     suena) no se colorea. La frase de la plana la propuse yo, de la misma
+     página: el padre no tenía. */
+
+  { id: "gue", letra: "gu", mayuscula: "GU", orden: 21,
+    marca: ["gue", "gui"],
+    banda: "#fbe7dc", tinta: "#c2410c",
+    comoSuena: "Como la g de gato, suave en la garganta: gue, gui. La u no suena: está ahí de muda.",
+    aviso: [
+      "Esta no es una letra nueva: es una regla. Con la e y la i, la g sola sonaría como la j " +
+      "(gente, girasol). Para que siga sonando suave, como en «gato», se le pone una u en medio: " +
+      "gue, gui. Y esa u no se dice. «Guitarra» se lee «gi-ta-rra», no «gu-i-ta-rra».",
+
+      "Por eso en esta página solo se colorea «gue» y «gui». En «gusta» la u sí suena (gu-s-ta): " +
+      "es la gu de siempre, la de «gusano», y queda sin color.",
+
+      "No hay trazo nuevo que aprender: la g, la u y la vocal, las tres ya vistas."
+    ],
+    palabra: "guitarra", foto: "img/lecciones/gue/guitarra.jpg",
+    notaSilabas: "Solo dos. La u va escrita pero no se dice.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["gui", "gue"],
+    palabras: ["guerra","águila","guerrero","guiso","sigue","juguete","guitarra","laguito",
+               "guiño","guisado","seguido"],
+    tarjetas: [
+      { palabra: "águila", foto: "img/lecciones/gue/aguila.jpg" },
+      { palabra: "juguete", foto: "img/lecciones/gue/juguete.jpg" },
+      /* el guiso sale del dibujo de «me gusta tu guisado»: no vino foto */
+      { palabra: "guiso", foto: "img/lecciones/gue/guiso.jpg" }
+    ],
+    frases: [
+      { texto: "esa águila cazó a mi conejo.", foto: "img/lecciones/gue/aguila-conejo.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "lleva tu guitarra a mi casa.", foto: "img/lecciones/gue/guitarra-casa.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "guerrero, sigue a tu jefe.", foto: "img/lecciones/gue/guerrero.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "ya acabó la guerra.", foto: "img/lecciones/gue/guerra.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "me gusta tu guisado.", foto: "img/lecciones/gue/guisado.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "mamá guisa la comida.", foto: "img/lecciones/gue/mama-guisa.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "el águila está en su nido.", foto: "img/lecciones/gue/aguila-nido.jpg", completa: true, rel: "5 / 2" }
+    ],
+    hojas: ["letra-gue", "silabas-gue", "frases-gue"] }
 
 ];

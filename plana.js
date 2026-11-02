@@ -117,6 +117,10 @@
     var w = 0;
     f.lineas.forEach(function (l) { w = Math.max(w, D.ancho(l)); });
     var cw = Math.min(f.celda[0], Math.round(w) + 55);
+    /* sílabas largas (gue, gui): con dos repeticiones no queda nada que
+       repasar. Se fuerzan tres por renglón; celdaTexto achica la letra
+       lo justo para que quepa. */
+    if (f.repeticiones > 1 && Math.round(ANCHO_UNIDADES / cw) < 3) cw = Math.floor(ANCHO_UNIDADES / 3);
     if (cw === f.celda[0]) return f;
     var copia = {};
     for (var k in f) copia[k] = f[k];

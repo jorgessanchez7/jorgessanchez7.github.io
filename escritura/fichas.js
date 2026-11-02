@@ -764,6 +764,35 @@ window.FICHAS = [
     lineas: ["llave silla olla", "lleva la silla a la sala."],
     trazos: [] },
 
+  /* gue/gui no tiene glifo nuevo: las tres hojas son de texto, compuestas
+     con la g, la u y las vocales que ya están dibujadas. Sin `letra`, a
+     propósito: no es una letra del alfabeto. */
+
+  { id: "letra-gue", grupo: "letras", orden: 61,
+    titulo: "gu",
+    pista: "La g y la u, juntas. Esa u va a quedarse callada.",
+    banda: "#fbe7dc", tinta: "#c2410c",
+    celda: [230, 150], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["gu"],
+    trazos: [] },
+
+  { id: "silabas-gue", grupo: "letras", orden: 62,
+    titulo: "gui, gue",
+    pista: "Se escribe la u, pero no se dice.",
+    banda: "#fbe7dc", tinta: "#c2410c",
+    celda: [230, 150], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["gui", "gue", "gui", "gue"],
+    trazos: [] },
+
+  { id: "frases-gue", grupo: "letras", orden: 63,
+    titulo: "guitarra guiso juguete",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#fbe7dc", tinta: "#c2410c",
+    celda: [960, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["guitarra guiso juguete", "lleva tu guitarra a mi casa."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,
