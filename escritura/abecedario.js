@@ -840,6 +840,56 @@ window.ABECEDARIO = [
       { texto: "la zorra le teme al cazador.", foto: "img/lecciones/z/zorra-cazador.jpg", completa: true, rel: "5 / 2" },
       { texto: "si la zorra pasa, ese zapatero la caza.", foto: "img/lecciones/z/zorra-caza.jpg", completa: true, rel: "5 / 2" }
     ],
-    hojas: ["letra-z", "silabas-z", "frases-z"] }
+    hojas: ["letra-z", "silabas-z", "frases-z"] },
+
+  /* La ll: dos l que se leen como una sola letra. `marca` colorea «lla»
+     entera y no la l suelta de «luna». Página del padre, más gallina,
+     caballo, pollito, amarillo, semilla, llavero y tres frases suyas. En
+     la rima va «de acá para allá», como la cartilla: el archivo decía
+     «aquí», que lleva qu y esa todavía no se ha visto. */
+
+  { id: "ll", letra: "ll", mayuscula: "LL", orden: 20,
+    marca: ["ll"],
+    banda: "#f3e3ef", tinta: "#8b3f7a",
+    comoSuena: "En Colombia suena igual que la y de «yo»: la lengua se pega al techo de la boca y la voz pasa por los lados. llla, lllo.",
+    aviso: [
+      "Son dos l juntas, pero se leen como una sola letra, con un sonido que no es el de la l. " +
+      "Conviene decirlo así: «cuando hay dos l pegadas, ya no suena l». Y suena igual que la y de " +
+      "«yo» y «yate»: es otra pareja como la b y la v, que hay que recordar de memoria.",
+
+      "Fíjese en que la l suelta sigue apareciendo en estas mismas palabras: «la», «sala», " +
+      "«luna». Por eso en esta página solo se colorea la ll; la l sola es la de siempre.",
+
+      "Para escribirla: son dos palitos de la l, uno al lado del otro, de arriba abajo. Nada " +
+      "nuevo que aprender con la mano."
+    ],
+    palabra: "llave", foto: "img/lecciones/ll/llave.jpg",
+    notaSilabas: "Van en el orden de la cartilla. Las dos l van siempre juntas.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["lla", "llu", "lli", "lle", "llo"],
+    palabras: ["llave","llama","llano","pollito","silla","calle","olla","botella",
+               "gallina","capilla","ballena","anillo","galleta",
+               "amarillo","semilla","llavero"],
+    tarjetas: [
+      { palabra: "olla", foto: "img/lecciones/ll/olla.jpg" },
+      { palabra: "gallo", foto: "img/lecciones/ll/gallo.jpg" },
+      { palabra: "anillo", foto: "img/lecciones/ll/anillo.jpg" },
+      { palabra: "ballena", foto: "img/lecciones/ll/ballena.jpg" },
+      { palabra: "silla", foto: "img/lecciones/ll/silla.jpg" },
+      { palabra: "gallina", foto: "img/lecciones/ll/gallina.jpg" },
+      { palabra: "caballo", foto: "img/lecciones/ll/caballo.jpg" },
+      { palabra: "pollito", foto: "img/lecciones/ll/pollito.jpg" }
+    ],
+    frases: [
+      { texto: "oye la bulla de la calle.", foto: "img/lecciones/ll/bulla-calle.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "ese pájaro lleva paja a su nido.", foto: "img/lecciones/ll/pajaro-paja.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "mamita, llena mi jarro de zumo.", foto: "img/lecciones/ll/mamita-zumo.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "niño, dale tu silla a la señora.", foto: "img/lecciones/ll/silla-senora.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "la gallina llama a sus pollitos.", foto: "img/lecciones/ll/gallina-pollitos.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "la luna llena ilumina el camino.", foto: "img/lecciones/ll/luna-llena.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "mi caballo recorre el valle.", foto: "img/lecciones/ll/caballo-valle.jpg", completa: true, rel: "5 / 2" },
+      { texto: "la zorra mató a mi gallo, la gallina lo llora de acá para allá.", foto: "img/lecciones/ll/zorra-gallo.jpg", completa: true, rel: "5 / 2" }
+    ],
+    hojas: ["letra-ll", "silabas-ll", "frases-ll"] }
 
 ];

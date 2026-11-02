@@ -734,6 +734,36 @@ window.FICHAS = [
     lineas: ["zorra pozo tiza", "dame tu taza de loza."],
     trazos: [] },
 
+  /* La ll son dos l, separadas por el avance de la l en Quicksand (27).
+     En las hojas de texto «ll» son dos caracteres l: no hay glifo nuevo. */
+
+  { id: "letra-ll", grupo: "letras", orden: 58, letra: "ll", palabra: "llave",
+    titulo: "La ll",
+    pista: "Dos palitos de la l, uno al lado del otro, de arriba abajo.",
+    banda: "#f3e3ef", tinta: "#8b3f7a",
+    celda: [96, 130], repeticiones: 7, renglones: 2, guia: true,
+    trazos: [
+      { d: "M35 36 L35 110", ini: [35, 36], ang: 90 },
+      { d: "M62 36 L62 110", ini: [62, 36], ang: 90 }
+    ] },
+
+  { id: "silabas-ll", grupo: "letras", orden: 59,
+    titulo: "lla, llu, lli, lle, llo",
+    pista: "En el orden de la cartilla. Las dos l y después la vocal.",
+    banda: "#f3e3ef", tinta: "#8b3f7a",
+    celda: [230, 130], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["lla", "llu", "lli", "lle", "llo"],
+    trazos: [] },
+
+  { id: "frases-ll", grupo: "letras", orden: 60,
+    titulo: "llave silla olla",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#f3e3ef", tinta: "#8b3f7a",
+    celda: [960, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["llave silla olla", "lleva la silla a la sala."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,
