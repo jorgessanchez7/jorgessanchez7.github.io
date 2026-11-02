@@ -789,6 +789,7 @@ window.ABECEDARIO = [
       { palabra: "joya", foto: "img/lecciones/j/joya.jpg" },
       { palabra: "teja", foto: "img/lecciones/j/teja.jpg" },
       { palabra: "conejo", foto: "img/lecciones/j/conejo.jpg" },
+      { palabra: "abeja", foto: "img/lecciones/j/abeja.jpg" },
       { palabra: "Jesús", foto: "img/lecciones/j/jesus.jpg" }
     ],
     frases: [
@@ -937,6 +938,49 @@ window.ABECEDARIO = [
       { texto: "mamá guisa la comida.", foto: "img/lecciones/gue/mama-guisa.jpg", ancha: true, rel: "16 / 9" },
       { texto: "el águila está en su nido.", foto: "img/lecciones/gue/aguila-nido.jpg", completa: true, rel: "5 / 2" }
     ],
-    hojas: ["letra-gue", "silabas-gue", "frases-gue"] }
+    hojas: ["letra-gue", "silabas-gue", "frases-gue"] },
+
+  /* ce y ci: la misma c de casa, que con la e y la i suena como la s.
+     Desde aquí el script deja de prohibir ce/ci. Palabra clave «cigarra»,
+     la escogió el padre (los animales primero); la frase de la plana la
+     propuse yo de la misma página. Celina con mayúscula: es un nombre. */
+
+  { id: "ce", letra: "c", mayuscula: "C", orden: 22,
+    marca: ["ce", "ci"],
+    banda: "#f6d9e1", tinta: "#b02a55",
+    comoSuena: "Con la e y la i, la c suena igual que la s: ssse, sssi. En Colombia no se pone la lengua entre los dientes.",
+    aviso: [
+      "Es la misma c de «casa», pero con la e y la i cambia de sonido: suena como la s. «Cine» se " +
+      "lee igual que si dijera «sine». Esa es la trampa que la lección de la c dejó pendiente.",
+
+      "Conviene mostrarlo con dos palabras de la misma familia: «cocina» tiene las dos c — la " +
+      "primera (co) suena fuerte y la segunda (ci) suena suave. Señale cada una con el dedo.",
+
+      "Y vuelve la pareja de siempre: «ce» suena como «se» y «ci» como «si». No hay forma de " +
+      "saber de oído cuál va; hay que acordarse de cómo se escribe cada palabra, como con la b y " +
+      "la v. La mano no aprende nada nuevo: es la c de siempre."
+    ],
+    palabra: "cigarra", foto: "img/lecciones/ce/cigarra.jpg",
+    notaSilabas: "Solo dos. La c suena como la s.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["ci", "ce"],
+    palabras: ["cine","cena","cigarro","cebolla","tocino","cocina","doce","cepillo",
+               "cereza","cera","racimo","ceniza","cigarra","cacerola"],
+    tarjetas: [
+      { palabra: "cepillo", foto: "img/lecciones/ce/cepillo.jpg" },
+      { palabra: "cebolla", foto: "img/lecciones/ce/cebolla.jpg" },
+      { palabra: "cocina", foto: "img/lecciones/ce/cocina.jpg" },
+      { palabra: "cocinero", foto: "img/lecciones/ce/cocinero.jpg" },
+      { palabra: "maceta", foto: "img/lecciones/ce/maceta.jpg" }
+    ],
+    frases: [
+      { texto: "cocinero, dame la cena.", foto: "img/lecciones/ce/cocinero-cena.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "ese guerrero fuma cigarro.", foto: "img/lecciones/ce/guerrero-cigarro.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "la cebolla no hace daño.", foto: "img/lecciones/ce/cebolla-dano.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "la abeja da cera.", foto: "img/lecciones/ce/abeja-cera.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Celina tuvo su cita médica.", foto: "img/lecciones/ce/celina-cita.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "doce niños van al cine.", foto: "img/lecciones/ce/doce-cine.jpg", ancha: true, rel: "16 / 9" }
+    ],
+    hojas: ["letra-ce", "silabas-ce", "frases-ce"] }
 
 ];

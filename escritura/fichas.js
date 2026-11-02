@@ -793,6 +793,33 @@ window.FICHAS = [
     lineas: ["guitarra guiso juguete", "lleva tu guitarra a mi casa."],
     trazos: [] },
 
+  /* ce y ci: sin glifo nuevo, las tres hojas son de texto (como gue). */
+
+  { id: "letra-ce", grupo: "letras", orden: 64,
+    titulo: "c",
+    pista: "La c de siempre: la o sin cerrar.",
+    banda: "#f6d9e1", tinta: "#b02a55",
+    celda: [230, 130], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["c"],
+    trazos: [] },
+
+  { id: "silabas-ce", grupo: "letras", orden: 65,
+    titulo: "ci, ce",
+    pista: "La c y la vocal. Suenan como si y se.",
+    banda: "#f6d9e1", tinta: "#b02a55",
+    celda: [230, 130], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["ci", "ce", "ci", "ce"],
+    trazos: [] },
+
+  { id: "frases-ce", grupo: "letras", orden: 66,
+    titulo: "cigarra cena cine",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#f6d9e1", tinta: "#b02a55",
+    celda: [960, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["cigarra cena cine", "cocinero, dame la cena."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,

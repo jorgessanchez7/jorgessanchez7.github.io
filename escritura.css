@@ -409,7 +409,8 @@ h1, h2, h3, .hero h1 { font-family: "Quicksand", "Trebuchet MS", sans-serif; fon
 @media (min-width: 920px) {
   .tarjetas[data-cuantas="4"],
   .tarjetas[data-cuantas="7"],
-  .tarjetas[data-cuantas="8"] { grid-template-columns: repeat(4, 1fr); }
+  .tarjetas[data-cuantas="8"],
+  .tarjetas[data-cuantas="10"] { grid-template-columns: repeat(4, 1fr); }
 }
 /* con dos (la m) no se estiran a media pantalla cada una */
 .tarjetas[data-cuantas="2"] { grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 340px)); }
