@@ -143,9 +143,16 @@
     a: 63, e: 59, i: 24, o: 62, u: 59,
     "á": 63, "é": 59, "í": 24, "ó": 62, "ú": 59,
     m: 92, p: 63, s: 48, l: 27, n: 60, t: 41, d: 63, r: 43, c: 52,
-    "\u00f1": 60, v: 55, b: 62, g: 63, y: 58, f: 41, h: 58,
+    "\u00f1": 60, v: 55, b: 62, g: 63, y: 58, f: 41, h: 58, j: 27,
     " ": 28, ".": 25, ",": 25
   };
+
+  /* Corrimiento de las letras cuyo dibujo no está centrado en su avance.
+     La j de Quicksand tiene la colita hacia atrás y el palito a la derecha:
+     centrada por su caja, el palito caía encima de la letra siguiente
+     («ji» parecía «ï»). Medido: la tinta de la j va 5 a la izquierda del
+     centro de su avance. */
+  var CORRE = { j: -5 };
 
   var CON_TILDE = "áéíóú", SIN_TILDE = "aeiou";
 
@@ -233,7 +240,7 @@
       var base = j < 0 ? ch : SIN_TILDE.charAt(j);
       var eje = pen + av / 2;
       if (A[base]) {
-        out += '<g transform="translate(' + (eje - C[base]).toFixed(1) + ',0)">' +
+        out += '<g transform="translate(' + (eje - C[base] + (CORRE[base] || 0)).toFixed(1) + ',0)">' +
           pluma(A[base], f, modelo, o) + "</g>";
         if (j >= 0) {
           out += '<g transform="translate(' + eje.toFixed(1) + ',0)">' +

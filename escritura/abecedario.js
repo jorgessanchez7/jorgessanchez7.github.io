@@ -749,6 +749,54 @@ window.ABECEDARIO = [
       { texto: "Felipe cuida su hamaca.", foto: "img/lecciones/h/felipe-cuida.jpg", ancha: true, rel: "16 / 9" },
       { texto: "ahora, mulita, te coloco la herradura y sanará tu herida.", foto: "img/lecciones/h/mulita.jpg", completa: true, rel: "5 / 2" }
     ],
-    hojas: ["letra-h", "silabas-h", "frases-h"] }
+    hojas: ["letra-h", "silabas-h", "frases-h"] },
+
+  /* La j. Página híbrida del padre (la otra cartilla no traía la j). Sumó
+     las tarjetas Jesús y teja y las palabras Jesús y hoja. Dos cambios
+     míos, dichos: «casita» pasó a «casa» (la c con i viene después) y la
+     tarjeta «jefe» quedó fuera (la foto era de un jefe de Estado real). */
+
+  { id: "j", letra: "j", mayuscula: "J", orden: 18,
+    banda: "#e2e8f3", tinta: "#3d5a8a",
+    comoSuena: "El aire sale fuerte desde el fondo de la garganta, como cuando uno se ríe «jajaja»: jjjj.",
+    aviso: [
+      "La j suena igual con todas las vocales: ja, jo, ju, je, ji. No tiene trampa en la lectura. " +
+      "La trampa viene después: la g con la e y con la i (gente, girasol) suena igual que la j, y " +
+      "eso es otra lección. Por ahora, la que suena así es la j.",
+
+      "Hay premio: con la j ya se puede leer entera la rima de la uva de la v, la que decía «dame " +
+      "tu jugo». Vale la pena volver a esa página y leerla de nuevo, ahora sin ayuda.",
+
+      "En las tarjetas está «Jesús», con mayúscula porque es un nombre. Y en la última frase " +
+      "aparece la «y» sola, la que suena i.",
+
+      "Para escribirla: es la i con colita. El palito baja más allá del renglón y se dobla hacia " +
+      "atrás, como el de la g; el puntico va al final, igual que en la i."
+    ],
+    palabra: "hoja", foto: "img/lecciones/j/hoja.jpg",
+    notaSilabas: "Van en el orden de la cartilla.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["ja", "ju", "ji", "jo", "je"],
+    palabras: ["jarro","jugo","jirafa","jefe","joya","reja","paja","lujo",
+               "teja","hijo","navaja","pájaro","oveja","oreja","aguja",
+               "hoja","Jesús"],
+    tarjetas: [
+      { palabra: "jarro", foto: "img/lecciones/j/jarro.jpg" },
+      { palabra: "jirafa", foto: "img/lecciones/j/jirafa.jpg" },
+      { palabra: "ojo", foto: "img/lecciones/j/ojo.jpg" },
+      { palabra: "navaja", foto: "img/lecciones/j/navaja.jpg" },
+      { palabra: "pájaro", foto: "img/lecciones/j/pajaro.jpg" },
+      { palabra: "joya", foto: "img/lecciones/j/joya.jpg" },
+      { palabra: "teja", foto: "img/lecciones/j/teja.jpg" },
+      { palabra: "Jesús", foto: "img/lecciones/j/jesus.jpg" }
+    ],
+    frases: [
+      { texto: "esa niña dibuja una jirafa.", foto: "img/lecciones/j/nina-jirafa.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "bebe jugo de piña.", foto: "img/lecciones/j/jugo-pina.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "deja ese jarro de barro.", foto: "img/lecciones/j/jarro-barro.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "oveja, dame tu lana, yo la tejeré.", foto: "img/lecciones/j/oveja-lana.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "mira una casa de teja roja y reja de madera.", foto: "img/lecciones/j/casa-teja.jpg", completa: true, rel: "5 / 2" }
+    ],
+    hojas: ["letra-j", "silabas-j", "frases-j"] }
 
 ];

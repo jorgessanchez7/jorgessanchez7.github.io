@@ -675,6 +675,36 @@ window.FICHAS = [
     lineas: ["hilo humo hada", "ahorra dinero ahora."],
     trazos: [] },
 
+  /* La j es la i con colita: el palito baja 17 bajo el renglón y se dobla
+     hacia atrás. Medida contra Quicksand (peso 600): avance 27. */
+
+  { id: "letra-j", grupo: "letras", orden: 52, letra: "j", palabra: "hoja",
+    titulo: "La j",
+    pista: "Baja derecho, pasa el renglón y dobla hacia atrás. Al final, el puntico.",
+    banda: "#e2e8f3", tinta: "#3d5a8a",
+    celda: [96, 150], repeticiones: 7, renglones: 2, guia: true,
+    trazos: [
+      { d: "M47 55 L47 116 Q47 127 38 127 Q33 127 30 124", ini: [47, 55], ang: 90 },
+      { punto: [47, 36] }
+    ] },
+
+  { id: "silabas-j", grupo: "letras", orden: 53,
+    titulo: "ja, ju, ji, jo, je",
+    pista: "En el orden de la cartilla. La colita de la j baja; la vocal se queda en el renglón.",
+    banda: "#e2e8f3", tinta: "#3d5a8a",
+    celda: [230, 150], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["ja", "ju", "ji", "jo", "je"],
+    trazos: [] },
+
+  { id: "frases-j", grupo: "letras", orden: 54,
+    titulo: "hoja jarro jirafa",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#e2e8f3", tinta: "#3d5a8a",
+    celda: [960, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["hoja jarro jirafa", "dibuja una jirafa."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,
