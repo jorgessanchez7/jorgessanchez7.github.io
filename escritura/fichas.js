@@ -705,6 +705,35 @@ window.FICHAS = [
     lineas: ["hoja jarro jirafa", "dibuja una jirafa."],
     trazos: [] },
 
+  /* La z: raya, diagonal, raya, de un solo trazo. Medida contra Quicksand
+     (peso 600): avance 48, ancho visible 43, alto de la x. */
+
+  { id: "letra-z", grupo: "letras", orden: 55, letra: "z", palabra: "zorra",
+    titulo: "La z",
+    pista: "Raya para la derecha, baja en diagonal hacia la izquierda y otra raya para la derecha, sin levantar el dedo.",
+    banda: "#e6f2df", tinta: "#4f7a2f",
+    celda: [96, 130], repeticiones: 7, renglones: 2, guia: true,
+    trazos: [
+      { d: "M30 60 L66 60 L30 106 L66 106", ini: [30, 60], ang: 0 }
+    ] },
+
+  { id: "silabas-z", grupo: "letras", orden: 56,
+    titulo: "zo, zu, za",
+    pista: "Solo tres. La z de un trazo, y después la vocal.",
+    banda: "#e6f2df", tinta: "#4f7a2f",
+    celda: [230, 130], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["zo", "zu", "za"],
+    trazos: [] },
+
+  { id: "frases-z", grupo: "letras", orden: 57,
+    titulo: "zorra pozo tiza",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#e6f2df", tinta: "#4f7a2f",
+    celda: [960, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["zorra pozo tiza", "dame tu taza de loza."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,

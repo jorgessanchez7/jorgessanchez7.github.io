@@ -797,6 +797,49 @@ window.ABECEDARIO = [
       { texto: "oveja, dame tu lana, yo la tejeré.", foto: "img/lecciones/j/oveja-lana.jpg", ancha: true, rel: "16 / 9" },
       { texto: "mira una casa de teja roja y reja de madera.", foto: "img/lecciones/j/casa-teja.jpg", completa: true, rel: "5 / 2" }
     ],
-    hojas: ["letra-j", "silabas-j", "frases-j"] }
+    hojas: ["letra-j", "silabas-j", "frases-j"] },
+
+  /* La z, solo con a, o, u: ze y zi casi no existen y ce/ci es otra
+     lección. Página del padre, más pizarra, zapote, tenaza, naturaleza y
+     dos frases suyas. José y Hugo con mayúscula: son nombres. */
+
+  { id: "z", letra: "z", mayuscula: "Z", orden: 19,
+    banda: "#e6f2df", tinta: "#4f7a2f",
+    comoSuena: "En Colombia suena igual que la s: zzzz, como una s larga. En España la dicen con la lengua entre los dientes; aquí no.",
+    aviso: [
+      "La z suena igual que la s, y conviene decirlo así: «esta suena como la de sapo». Es la " +
+      "misma trampa de la v y la b: no hay forma de saber de oído cuál va, hay que acordarse de " +
+      "cómo se escribe cada palabra. No le enseñe a meter la lengua entre los dientes: así se " +
+      "dice en España, no en la casa.",
+
+      "Va solo con la a, la o y la u: za, zo, zu. Con la e y la i casi nunca se escribe z; se " +
+      "escribe c (cena, cine), y esa es otra lección.",
+
+      "Para escribirla: un solo trazo, como un rayo acostado. Raya para la derecha, baja en " +
+      "diagonal hacia la izquierda, y otra raya para la derecha."
+    ],
+    palabra: "zorra", foto: "img/lecciones/z/zorra.jpg",
+    notaSilabas: "Solo son tres, como en la c y la g. Van en el orden de la cartilla.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["zo", "zu", "za"],
+    palabras: ["zorra","zapato","zumo","tiza","pozo","loza","buzo","cabeza",
+               "calabaza","zapote","tenaza","naturaleza"],
+    tarjetas: [
+      { palabra: "zapato", foto: "img/lecciones/z/zapato.jpg" },
+      { palabra: "pozo", foto: "img/lecciones/z/pozo.jpg" },
+      { palabra: "tiza", foto: "img/lecciones/z/tiza.jpg" },
+      { palabra: "pizarra", foto: "img/lecciones/z/pizarra.jpg" }
+    ],
+    frases: [
+      { texto: "mi pozo se ha secado.", foto: "img/lecciones/z/pozo-secado.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "José me regaló una taza de loza.", foto: "img/lecciones/z/taza-loza.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "esa zona la ocupa Hugo.", foto: "img/lecciones/z/zona-hugo.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "saca una tiza de la caja.", foto: "img/lecciones/z/tiza-caja.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "ese zapatero usa hilo y aguja.", foto: "img/lecciones/z/zapatero.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Hugo, la taza tiene zumo.", foto: "img/lecciones/z/taza-zumo.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "la zorra le teme al cazador.", foto: "img/lecciones/z/zorra-cazador.jpg", completa: true, rel: "5 / 2" },
+      { texto: "si la zorra pasa, ese zapatero la caza.", foto: "img/lecciones/z/zorra-caza.jpg", completa: true, rel: "5 / 2" }
+    ],
+    hojas: ["letra-z", "silabas-z", "frases-z"] }
 
 ];
