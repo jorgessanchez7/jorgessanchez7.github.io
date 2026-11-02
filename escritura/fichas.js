@@ -850,6 +850,36 @@ window.FICHAS = [
     lineas: ["choza chivo leche", "chinito come lechuga."],
     trazos: [] },
 
+  /* La q: la rueda de la a (como la d y la g) y el palito que baja
+     derecho, sin gancho, tan hondo como el de la p. */
+
+  { id: "letra-que", grupo: "letras", orden: 70, letra: "q", palabra: "queso",
+    titulo: "La q",
+    pista: "Primero la rueda, como la a. Después el palito: baja derecho por debajo del renglón, sin doblarse.",
+    banda: "#dbf0ec", tinta: "#0f766e",
+    celda: [96, 150], repeticiones: 7, renglones: 2, guia: true,
+    trazos: [
+      { d: "M44 55 A22 27 0 0 0 44 109 A22 27 0 0 0 44 55", ini: [44, 55], ang: 180 },
+      { d: "M66 55 L66 128", ini: [66, 55], ang: 90 }
+    ] },
+
+  { id: "silabas-que", grupo: "letras", orden: 71,
+    titulo: "que, qui",
+    pista: "La q, la u que no suena y la vocal.",
+    banda: "#dbf0ec", tinta: "#0f766e",
+    celda: [230, 150], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["que", "qui", "que", "qui"],
+    trazos: [] },
+
+  { id: "frases-que", grupo: "letras", orden: 72,
+    titulo: "queso quijada paquete",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#dbf0ec", tinta: "#0f766e",
+    celda: [960, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["queso quijada paquete", "quiero queso, mamá."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,

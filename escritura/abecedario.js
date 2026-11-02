@@ -1036,6 +1036,51 @@ window.ABECEDARIO = [
       { texto: "Chepe tiene un cachorro.", foto: "img/lecciones/ch/chepe-cachorro.jpg", ancha: true, rel: "16 / 9" },
       { texto: "lunita juguetona, asoma tu carita, ilumina la noche, mi choza, mi cosecha.", foto: "img/lecciones/ch/lunita.jpg", completa: true, rel: "5 / 2" }
     ],
-    hojas: ["letra-ch", "silabas-ch", "frases-ch"] }
+    hojas: ["letra-ch", "silabas-ch", "frases-ch"] },
+
+  /* que y qui: la q es letra nueva (su hoja de trazo la agrega al
+     alfabeto), pero nunca va sola: siempre «qu», y esa u no suena, como
+     en gue/gui. Es el sonido de ca, co, cu delante de la e y la i.
+     Clave queso (la escogió el padre); la frase de la plana la propuse
+     yo: el padre no tenía. Periquito va en minúscula: es el pájaro. */
+
+  { id: "que", letra: "qu", mayuscula: "QU", orden: 24,
+    marca: ["que", "qui"],
+    banda: "#dbf0ec", tinta: "#0f766e",
+    comoSuena: "Como la c de casa, de golpe y bien atrás: que, qui. La u no suena: está ahí de muda, como en guitarra.",
+    aviso: [
+      "Es una letra nueva, la q, pero nunca anda sola: siempre lleva la u pegada, y esa u no se " +
+      "dice. «Queso» se lee «keso». Es la misma trampa de «guitarra», así que ya la conoce.",
+
+      "Sirve para una sola cosa: el sonido de casa, coco y cuna delante de la e y la i. Con la a, " +
+      "la o y la u se escribe con c (casa); con la e y la i, con qu (queso, quijada). Vale la pena " +
+      "ponerlas lado a lado: «ca, co, cu, que, qui» suenan todas de la misma familia.",
+
+      "Para escribirla: es la rueda de la a con el palito que baja derecho por debajo del renglón, " +
+      "sin gancho. Si el palito se dobla, es una g."
+    ],
+    palabra: "queso", foto: "img/lecciones/que/queso.jpg",
+    notaSilabas: "Solo dos. Siempre con la u, que no suena.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["que", "qui"],
+    palabras: ["queso","chaqueta","líquido","quijada","máquina","paquete","queja","buque",
+               "pequeño","poquito","maqueta","maquila","equipo"],
+    tarjetas: [
+      { palabra: "raqueta", foto: "img/lecciones/que/raqueta.jpg" },
+      { palabra: "quijada", foto: "img/lecciones/que/quijada.jpg" },
+      { palabra: "paquete", foto: "img/lecciones/que/paquete.jpg" },
+      { palabra: "químico", foto: "img/lecciones/que/quimico.jpg" }
+    ],
+    frases: [
+      { texto: "si me da queso no me quejo.", foto: "img/lecciones/que/queso-quejo.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "ese buque navega a toda máquina.", foto: "img/lecciones/que/buque.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "toma mi chaqueta de lana.", foto: "img/lecciones/que/chaqueta.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "corre, se quema la choza.", foto: "img/lecciones/que/choza-quema.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "periquito come cacao.", foto: "img/lecciones/que/periquito.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "el equipo de papá gana la liga.", foto: "img/lecciones/que/equipo.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Paquita usa la raqueta.", foto: "img/lecciones/que/paquita.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "mamá tomó un paquete de queso.", foto: "img/lecciones/que/paquete-queso.jpg", ancha: true, rel: "16 / 9" }
+    ],
+    hojas: ["letra-que", "silabas-que", "frases-que"] }
 
 ];
