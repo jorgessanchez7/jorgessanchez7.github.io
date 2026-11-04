@@ -1308,14 +1308,14 @@ window.ABECEDARIO = [
       "«el perro» es esta misma sílaba. Lo mismo «al».",
 
       "Y la trampa de siempre: si después de la l viene vocal, la l se va con ella. En «Elisa» la " +
-      "l va con la i (E-li-sa), por eso no se colorea. Y la ll de «calle» o «pollito» es otra letra."
+      "l va con la i (E-li-sa): no es de esta lección. Y la ll de «calle» o «pollito» es otra letra."
     ],
     palabra: "sol", foto: "img/lecciones/al/sol.jpg",
     notaSilabas: "En el orden de la cartilla. La vocal primero, la l detrás.",
     notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
     silabas: ["al", "ul", "el", "il", "ol"],
     palabras: ["caldo","polvo","barril","salsa","selva","soldado","pastel","mantel",
-               "culpa","pulpo","dedal","panal","sal","mal","mil","Elsa","Sulma","Elisa"],
+               "culpa","pulpo","dedal","panal","sal","mal","mil","Elsa","Sulma"],
     tarjetas: [
       { palabra: "soldado", foto: "img/lecciones/al/soldado.jpg" },
       { palabra: "pulpo", foto: "img/lecciones/al/pulpo.jpg" },
