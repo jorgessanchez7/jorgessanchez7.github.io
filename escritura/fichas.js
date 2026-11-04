@@ -934,6 +934,33 @@ window.FICHAS = [
     lineas: ["papas isla escoba", "esta mosca pisa mis papas."],
     trazos: [] },
 
+  /* an, en, in, on, un: hojas de texto, como las de la s. */
+
+  { id: "letra-an", grupo: "letras", orden: 79,
+    titulo: "n",
+    pista: "La n de siempre. Ahora va detrás de la vocal.",
+    banda: "#fbe0c8", tinta: "#a34d12",
+    celda: [230, 130], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["n"],
+    trazos: [] },
+
+  { id: "silabas-an", grupo: "letras", orden: 80,
+    titulo: "an, in, on, un, en",
+    pista: "La vocal primero y la n detrás.",
+    banda: "#fbe0c8", tinta: "#a34d12",
+    celda: [230, 130], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["an", "in", "on", "un", "en"],
+    trazos: [] },
+
+  { id: "frases-an", grupo: "letras", orden: 81,
+    titulo: "manzana mundo panda",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#fbe0c8", tinta: "#a34d12",
+    celda: [960, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["manzana mundo panda", "un panda lindo anda en el monte."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,

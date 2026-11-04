@@ -791,7 +791,8 @@ window.ABECEDARIO = [
       { palabra: "teja", foto: "img/lecciones/j/teja.jpg" },
       { palabra: "conejo", foto: "img/lecciones/j/conejo.jpg" },
       { palabra: "abeja", foto: "img/lecciones/j/abeja.jpg" },
-      { palabra: "Jesús", foto: "img/lecciones/j/jesus.jpg" }
+      { palabra: "Jesús", foto: "img/lecciones/j/jesus.jpg" },
+      { palabra: "José", foto: "img/lecciones/ch/chepe.jpg" }
     ],
     frases: [
       { texto: "esa niña dibuja una jirafa.", foto: "img/lecciones/j/nina-jirafa.jpg", ancha: true, rel: "16 / 9" },
@@ -1174,8 +1175,61 @@ window.ABECEDARIO = [
       { texto: "mamá es la esposa de papá.", foto: "img/lecciones/es/esposa.jpg", ancha: true, rel: "16 / 9" },
       { texto: "mi sopa está espesa.", foto: "img/lecciones/es/sopa-espesa.jpg", ancha: true, rel: "16 / 9" },
       { texto: "¿me pasas esas papas?", foto: "img/lecciones/es/pasas-papas.jpg", ancha: true, rel: "16 / 9" },
-      { texto: "me gusta navegar a esta isla.", foto: "img/lecciones/es/navegar-isla.jpg", ancha: true, rel: "16 / 9" }
+      { texto: "me gusta navegar a esta isla.", foto: "img/lecciones/es/navegar-isla.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "esta mosca pisa mis papas.", foto: "img/lecciones/es/mosca-papas.jpg", ancha: true, rel: "16 / 9" }
     ],
-    hojas: ["letra-es", "silabas-es", "frases-es"] }
+    hojas: ["letra-es", "silabas-es", "frases-es"] },
+
+  /* Sílabas inversas con n: an, en, in, on, un. Igual que la de la s
+     (`inversa`), ahora con la n. Clave manzana (la escogió el padre); la
+     frase de la plana la propuse yo (sin mayúsculas: las hojas de
+     escribir no tienen letras mayúsculas). Antonio
+     y Nelson reusan sus tarjetas de la t y la n. */
+
+  { id: "an", letra: "n", mayuscula: "N", orden: 27,
+    nombre: "an, en, in, on, un", glifo: "an", inversa: "n",
+    banda: "#fbe0c8", tinta: "#a34d12",
+    comoSuena: "Primero la vocal y después la n, que sale por la nariz y cierra la sílaba: aaannn, eeennn.",
+    aviso: [
+      "Es lo mismo que con la s: la vocal primero y la consonante detrás. «an», «en», «on». La " +
+      "n del final se alarga por la nariz, con la boca casi cerrada.",
+
+      "Aquí aparecen los nombres de la casa: «Antonio» empieza con «an» y «Nelson» termina en " +
+      "«on». Vale la pena que él los busque en las tarjetas y las frases.",
+
+      "La misma trampa de antes: si después de la n viene una vocal, la n se va con ella. En " +
+      "«ventana» solo se colorea el «en» (ven-ta-na): el «na» del final es una sílaba de las de " +
+      "siempre."
+    ],
+    palabra: "manzana", foto: "img/lecciones/an/manzana.jpg",
+    notaSilabas: "En el orden de la cartilla. La vocal primero, la n detrás.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["an", "in", "on", "un", "en"],
+    palabras: ["banco","cinco","ventana","cinta","tinta","lanza","patín","ratón",
+               "santo","menta","manzana","capitán","bandera","mundo","botón","naranja",
+               "ensalada","andén","linda","panda","limón"],
+    tarjetas: [
+      { palabra: "candado", foto: "img/lecciones/an/candado.jpg" },
+      { palabra: "mundo", foto: "img/lecciones/an/mundo.jpg" },
+      { palabra: "limón", foto: "img/lecciones/an/limon.jpg" },
+      { palabra: "ensalada", foto: "img/lecciones/an/ensalada.jpg" },
+      { palabra: "pan", foto: "img/lecciones/an/pan.jpg" },
+      { palabra: "panda", foto: "img/lecciones/an/panda.jpg" },
+      { palabra: "ratón", foto: "img/lecciones/an/raton.jpg" },
+      { palabra: "Antonio", foto: "img/lecciones/t/antonio.jpg" },
+      { palabra: "Nelson", foto: "img/lecciones/n/nelson.jpg" }
+    ],
+    frases: [
+      { texto: "tengo una manzana roja y jugosa.", foto: "img/lecciones/an/manzana-roja.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "ese capitán manda su batallón.", foto: "img/lecciones/an/capitan.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "cinco gemas valen mucho.", foto: "img/lecciones/an/cinco-gemas.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Genaro canta la ronda.", foto: "img/lecciones/an/genaro-ronda.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Colombia ganará la copa del mundo.", foto: "img/lecciones/an/colombia-copa.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "papá pide una ensalada.", foto: "img/lecciones/an/papa-ensalada.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Nelson me mandó a la sala.", foto: "img/lecciones/an/nelson-sala.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Antonio anda en el andén.", foto: "img/lecciones/an/antonio-anden.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Linda usa el mapamundi.", foto: "img/lecciones/an/linda-mapamundi.jpg", ancha: true, rel: "16 / 9" }
+    ],
+    hojas: ["letra-an", "silabas-an", "frases-an"] }
 
 ];
