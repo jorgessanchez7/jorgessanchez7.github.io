@@ -1335,7 +1335,8 @@ window.ABECEDARIO = [
       { texto: "Sulma suma mil más mil.", foto: "img/lecciones/al/sulma-mil.jpg", ancha: true, rel: "16 / 9" },
       { texto: "Elisa le puso sal a la sopa.", foto: "img/lecciones/al/elisa-sal.jpg", ancha: true, rel: "16 / 9" },
       { texto: "la salsa de tomate es espesa.", foto: "img/lecciones/al/salsa-espesa.jpg", ancha: true, rel: "16 / 9" },
-      { texto: "ese soldado se fue cansado.", foto: "img/lecciones/al/soldado-cansado.jpg", ancha: true, rel: "16 / 9" }
+      { texto: "ese soldado se fue cansado.", foto: "img/lecciones/al/soldado-cansado.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "el pulpo salta al mar.", foto: "img/lecciones/al/pulpo-mar.jpg", ancha: true, rel: "16 / 9" }
     ],
     hojas: ["letra-al", "silabas-al", "frases-al"] }
 
