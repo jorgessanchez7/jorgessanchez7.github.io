@@ -522,7 +522,8 @@ window.ABECEDARIO = [
       { palabra: "vela", foto: "img/lecciones/v/vela.jpg" },
       { palabra: "uva", foto: "img/lecciones/v/uva.jpg" },
       { palabra: "vino", foto: "img/lecciones/v/vino.jpg" },
-      { palabra: "vaso", foto: "img/lecciones/v/vaso.jpg" }
+      { palabra: "vaso", foto: "img/lecciones/v/vaso.jpg" },
+      { palabra: "venado", foto: "img/lecciones/v/venado.jpg" }
     ],
     frases: [
       { texto: "la señorita visita mi casa.", foto: "img/lecciones/v/senorita-casa.jpg", ancha: true, rel: "16 / 9" },
