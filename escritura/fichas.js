@@ -985,7 +985,7 @@ window.FICHAS = [
     banda: "#f7dcdc", tinta: "#9b2c2c",
     celda: [960, 160], repeticiones: 1, renglones: 1, guia: true,
     tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
-    lineas: ["tortuga circo arpa", "la tortuga del circo duerme."],
+    lineas: ["tortuga circo arpa", "la tortuga del circo es dormilona."],
     trazos: [] },
 
   /* ---------- sin modelo, sin nada que acertar ---------- */

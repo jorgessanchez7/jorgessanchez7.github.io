@@ -1217,6 +1217,7 @@ window.ABECEDARIO = [
       { palabra: "pan", foto: "img/lecciones/an/pan.jpg" },
       { palabra: "panda", foto: "img/lecciones/an/panda.jpg" },
       { palabra: "ratón", foto: "img/lecciones/an/raton.jpg" },
+      { palabra: "llanta", foto: "img/lecciones/an/llanta.jpg" },
       { palabra: "Antonio", foto: "img/lecciones/t/antonio.jpg" },
       { palabra: "Nelson", foto: "img/lecciones/n/nelson.jpg" }
     ],
@@ -1236,8 +1237,9 @@ window.ABECEDARIO = [
 
   /* Sílabas inversas con r: ar, er, ir, or, ur. La r del final suena
      suave, como en «toro», nunca como la rr. Clave tortuga (la escogió el
-     padre); la frase de la plana la propuse yo. Jorge y Martha son los
-     papás: tarjetas con sus fotos. */
+     padre). La frase de la plana la corrigió él: «duerme» trae un
+     diptongo, que todavía no se ha visto; en las frases de lectura se
+     tolera, en la plana no. Jorge y Martha son los papás. */
 
   { id: "ar", letra: "r", mayuscula: "R", orden: 28,
     nombre: "ar, er, ir, or, ur", glifo: "ar", inversa: "r",
@@ -1282,7 +1284,9 @@ window.ABECEDARIO = [
       { texto: "la perla es de Armando.", foto: "img/lecciones/ar/perla-armando.jpg", ancha: true, rel: "16 / 9" },
       { texto: "Martín pide perdón a Martha.", foto: "img/lecciones/ar/martin-martha.jpg", ancha: true, rel: "16 / 9" },
       { texto: "tenemos partido el martes.", foto: "img/lecciones/ar/partido-martes.jpg", ancha: true, rel: "16 / 9" },
-      { texto: "el artista ama su arpa.", foto: "img/lecciones/ar/artista-arpa.jpg", ancha: true, rel: "16 / 9" }
+      { texto: "el artista ama su arpa.", foto: "img/lecciones/ar/artista-arpa.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "la tortuga del circo es dormilona.", foto: "img/lecciones/ar/tortuga-dormilona.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "el Solitario Jorge era una tortuga de las islas Galápagos.", foto: "img/lecciones/ar/solitario-jorge.jpg", ancha: true, rel: "16 / 9" }
     ],
     hojas: ["letra-ar", "silabas-ar", "frases-ar"] }
 
