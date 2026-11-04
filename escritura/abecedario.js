@@ -1288,6 +1288,55 @@ window.ABECEDARIO = [
       { texto: "la tortuga del circo es dormilona.", foto: "img/lecciones/ar/tortuga-dormilona.jpg", ancha: true, rel: "16 / 9" },
       { texto: "el Solitario Jorge era una tortuga de las islas Galápagos.", foto: "img/lecciones/ar/solitario-jorge.jpg", ancha: true, rel: "16 / 9" }
     ],
-    hojas: ["letra-ar", "silabas-ar", "frases-ar"] }
+    hojas: ["letra-ar", "silabas-ar", "frases-ar"] },
+
+  /* Sílabas inversas con l: al, el, il, ol, ul. Cierra las cuatro de la
+     cartilla antes de los diptongos (orden acordado el 4 nov: al, después
+     los diptongos, después az, am, ay…). Clave sol: el padre dudaba entre
+     pulpo y sol; sol es la sílaba casi sola. La doble l (calle, collar)
+     no cierra sílaba: letra.js ya la salta. */
+
+  { id: "al", letra: "l", mayuscula: "L", orden: 29,
+    nombre: "al, el, il, ol, ul", glifo: "al", inversa: "l",
+    banda: "#dcefe6", tinta: "#1b7a5a",
+    comoSuena: "Primero la vocal y después la l, con la lengua pegada arriba, sin soltarla: aaal, sooool.",
+    aviso: [
+      "La última de este grupo: la vocal primero y la l detrás. «al», «el», «ol». La l del final " +
+      "se sostiene con la lengua pegada arriba, como si uno no quisiera soltarla.",
+
+      "Hay una que él ya lee desde hace meses sin saberlo: «el». Vale la pena mostrárselo: «el» de " +
+      "«el perro» es esta misma sílaba. Lo mismo «al».",
+
+      "Y la trampa de siempre: si después de la l viene vocal, la l se va con ella. En «Elisa» la " +
+      "l va con la i (E-li-sa), por eso no se colorea. Y la ll de «calle» o «pollito» es otra letra."
+    ],
+    palabra: "sol", foto: "img/lecciones/al/sol.jpg",
+    notaSilabas: "En el orden de la cartilla. La vocal primero, la l detrás.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["al", "ul", "el", "il", "ol"],
+    palabras: ["caldo","polvo","barril","salsa","selva","soldado","pastel","mantel",
+               "culpa","pulpo","dedal","panal","sal","mal","mil","Elsa","Sulma","Elisa"],
+    tarjetas: [
+      { palabra: "soldado", foto: "img/lecciones/al/soldado.jpg" },
+      { palabra: "pulpo", foto: "img/lecciones/al/pulpo.jpg" },
+      { palabra: "dedal", foto: "img/lecciones/al/dedal.jpg" },
+      { palabra: "pastel", foto: "img/lecciones/al/pastel.jpg" },
+      { palabra: "sal", foto: "img/lecciones/al/sal.jpg" },
+      { palabra: "mil", foto: "img/lecciones/al/mil.jpg" }
+    ],
+    frases: [
+      { texto: "a ese soldado le falta su fusil.", foto: "img/lecciones/al/soldado-fusil.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "la abeja recoge almíbar y lo lleva a su panal.", foto: "img/lecciones/al/abeja-panal.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "sin culpa derramé la salsa.", foto: "img/lecciones/al/culpa-salsa.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "mi hermano salta fácil la cerca.", foto: "img/lecciones/al/hermano-cerca.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "este pastel está dulce.", foto: "img/lecciones/al/pastel-dulce.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Alma se puso mal.", foto: "img/lecciones/al/alma-mal.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Elsa sale al sol.", foto: "img/lecciones/al/elsa-sol.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Sulma suma mil más mil.", foto: "img/lecciones/al/sulma-mil.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Elisa le puso sal a la sopa.", foto: "img/lecciones/al/elisa-sal.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "la salsa de tomate es espesa.", foto: "img/lecciones/al/salsa-espesa.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "ese soldado se fue cansado.", foto: "img/lecciones/al/soldado-cansado.jpg", ancha: true, rel: "16 / 9" }
+    ],
+    hojas: ["letra-al", "silabas-al", "frases-al"] }
 
 ];

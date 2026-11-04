@@ -988,6 +988,33 @@ window.FICHAS = [
     lineas: ["tortuga circo arpa", "la tortuga del circo es dormilona."],
     trazos: [] },
 
+  /* al, el, il, ol, ul: hojas de texto, como las de la s, la n y la r. */
+
+  { id: "letra-al", grupo: "letras", orden: 85,
+    titulo: "l",
+    pista: "La l de siempre. Ahora va detrás de la vocal.",
+    banda: "#dcefe6", tinta: "#1b7a5a",
+    celda: [230, 130], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["l"],
+    trazos: [] },
+
+  { id: "silabas-al", grupo: "letras", orden: 86,
+    titulo: "al, ul, el, il, ol",
+    pista: "La vocal primero y la l detrás.",
+    banda: "#dcefe6", tinta: "#1b7a5a",
+    celda: [230, 130], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["al", "ul", "el", "il", "ol"],
+    trazos: [] },
+
+  { id: "frases-al", grupo: "letras", orden: 87,
+    titulo: "sol pulpo pastel",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#dcefe6", tinta: "#1b7a5a",
+    celda: [960, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["sol pulpo pastel", "el pulpo salta al mar."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,
