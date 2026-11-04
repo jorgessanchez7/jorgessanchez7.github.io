@@ -961,6 +961,33 @@ window.FICHAS = [
     lineas: ["manzana mundo panda", "un panda lindo anda en el monte."],
     trazos: [] },
 
+  /* ar, er, ir, or, ur: hojas de texto, como las de la s y la n. */
+
+  { id: "letra-ar", grupo: "letras", orden: 82,
+    titulo: "r",
+    pista: "La r de siempre. Ahora va detrás de la vocal.",
+    banda: "#f7dcdc", tinta: "#9b2c2c",
+    celda: [230, 130], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["r"],
+    trazos: [] },
+
+  { id: "silabas-ar", grupo: "letras", orden: 83,
+    titulo: "ar, ur, ir, er, or",
+    pista: "La vocal primero y la r detrás.",
+    banda: "#f7dcdc", tinta: "#9b2c2c",
+    celda: [230, 130], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["ar", "ur", "ir", "er", "or"],
+    trazos: [] },
+
+  { id: "frases-ar", grupo: "letras", orden: 84,
+    titulo: "tortuga circo arpa",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#f7dcdc", tinta: "#9b2c2c",
+    celda: [960, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["tortuga circo arpa", "la tortuga del circo duerme."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,

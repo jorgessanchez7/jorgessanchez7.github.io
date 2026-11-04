@@ -1232,6 +1232,58 @@ window.ABECEDARIO = [
       { texto: "Linda usa el mapamundi.", foto: "img/lecciones/an/linda-mapamundi.jpg", ancha: true, rel: "16 / 9" },
       { texto: "un panda lindo anda en el monte.", foto: "img/lecciones/an/panda-monte.jpg", ancha: true, rel: "16 / 9" }
     ],
-    hojas: ["letra-an", "silabas-an", "frases-an"] }
+    hojas: ["letra-an", "silabas-an", "frases-an"] },
+
+  /* Sílabas inversas con r: ar, er, ir, or, ur. La r del final suena
+     suave, como en «toro», nunca como la rr. Clave tortuga (la escogió el
+     padre); la frase de la plana la propuse yo. Jorge y Martha son los
+     papás: tarjetas con sus fotos. */
+
+  { id: "ar", letra: "r", mayuscula: "R", orden: 28,
+    nombre: "ar, er, ir, or, ur", glifo: "ar", inversa: "r",
+    banda: "#f7dcdc", tinta: "#9b2c2c",
+    comoSuena: "Primero la vocal y después la r, suave y cortita, con un solo toque de la lengua: ar, or.",
+    aviso: [
+      "Otra vez la vocal primero y la consonante detrás: «ar», «er», «or». La r del final es la " +
+      "suave de «toro», un solo golpecito de la lengua. No se arrastra como la rr de «perro».",
+
+      "Ojo con «terrón»: ahí hay rr, y la rr no se queda con la e (te-rrón). Lo mismo «carro» o " +
+      "«perro»: esas no son de esta lección, y por eso no se colorean.",
+
+      "Y llegan los papás: «Jorge» tiene «or» y «Martha» tiene «ar». Vale la pena buscarlos en " +
+      "las tarjetas."
+    ],
+    palabra: "tortuga", foto: "img/lecciones/ar/tortuga.jpg",
+    notaSilabas: "En el orden de la cartilla. La vocal primero, la r detrás.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["ar", "ur", "ir", "er", "or"],
+    palabras: ["arpa","parque","collar","barco","gordo","circo","hermano","jardín",
+               "cerdo","curva","azúcar","hormiga","olor","perla","urna","ordenar","mármol"],
+    tarjetas: [
+      { palabra: "ardilla", foto: "img/lecciones/ar/ardilla.jpg" },
+      { palabra: "circo", foto: "img/lecciones/ar/circo.jpg" },
+      { palabra: "arpa", foto: "img/lecciones/ar/arpa.jpg" },
+      { palabra: "dormilón", foto: "img/lecciones/ar/dormilon.jpg" },
+      { palabra: "hermanos", foto: "img/lecciones/ar/hermanos.jpg" },
+      { palabra: "perlas", foto: "img/lecciones/ar/perlas.jpg" },
+      { palabra: "torta", foto: "img/lecciones/ar/torta.jpg" },
+      { palabra: "urna", foto: "img/lecciones/ar/urna.jpg" },
+      { palabra: "hormiga", foto: "img/lecciones/ar/hormiga.jpg" },
+      { palabra: "Jorge", foto: "img/lecciones/ar/jorge.jpg" },
+      { palabra: "Martha", foto: "img/lecciones/ar/martha.jpg" }
+    ],
+    frases: [
+      { texto: "esa hormiga carga su terrón de azúcar.", foto: "img/lecciones/ar/hormiga-azucar.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "ese parque está verde y hermoso.", foto: "img/lecciones/ar/parque.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "perdí mi collar en tu jardín.", foto: "img/lecciones/ar/collar-jardin.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "ese barco lleva una carga de café.", foto: "img/lecciones/ar/barco-cafe.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "mi cerdo no está gordo porque no come.", foto: "img/lecciones/ar/cerdo.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Úrsula ordena su ropa.", foto: "img/lecciones/ar/ursula-ropa.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "la perla es de Armando.", foto: "img/lecciones/ar/perla-armando.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Martín pide perdón a Martha.", foto: "img/lecciones/ar/martin-martha.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "tenemos partido el martes.", foto: "img/lecciones/ar/partido-martes.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "el artista ama su arpa.", foto: "img/lecciones/ar/artista-arpa.jpg", ancha: true, rel: "16 / 9" }
+    ],
+    hojas: ["letra-ar", "silabas-ar", "frases-ar"] }
 
 ];

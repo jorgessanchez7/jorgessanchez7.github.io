@@ -84,8 +84,10 @@
     var marcas = [], i = 0;
     while (i < bajo.length - 1) {
       var sig = bajo.charAt(i + 2);
+      /* «terrón»: la rr no cierra la sílaba (te-rrón), así que la misma
+         consonante repetida tampoco cuenta; igual «collar» con la l. */
       if (VOCALES.indexOf(bajo.charAt(i)) >= 0 && bajo.charAt(i + 1) === c &&
-          !(sig && VOCALES.indexOf(sig) >= 0)) {
+          !(sig && (VOCALES.indexOf(sig) >= 0 || sig === c))) {
         marcas.push([i, 2]);
         i += 2;
       } else {
