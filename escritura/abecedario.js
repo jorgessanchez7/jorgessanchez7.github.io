@@ -1228,7 +1228,8 @@ window.ABECEDARIO = [
       { texto: "papá pide una ensalada.", foto: "img/lecciones/an/papa-ensalada.jpg", ancha: true, rel: "16 / 9" },
       { texto: "Nelson me mandó a la sala.", foto: "img/lecciones/an/nelson-sala.jpg", ancha: true, rel: "16 / 9" },
       { texto: "Antonio anda en el andén.", foto: "img/lecciones/an/antonio-anden.jpg", ancha: true, rel: "16 / 9" },
-      { texto: "Linda usa el mapamundi.", foto: "img/lecciones/an/linda-mapamundi.jpg", ancha: true, rel: "16 / 9" }
+      { texto: "Linda usa el mapamundi.", foto: "img/lecciones/an/linda-mapamundi.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "un panda lindo anda en el monte.", foto: "img/lecciones/an/panda-monte.jpg", ancha: true, rel: "16 / 9" }
     ],
     hojas: ["letra-an", "silabas-an", "frases-an"] }
 
