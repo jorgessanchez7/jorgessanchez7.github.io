@@ -90,13 +90,13 @@
       var cuantas = sil && sil.lineas ? sil.lineas.length : 5;
       out.push({
         id: L.id + "-1",
-        titulo: "La " + L.letra + " · la letra y las sílabas",
+        titulo: (L.nombre || "La " + L.letra) + " · la letra y las sílabas",
         pista: "Primero la letra sola; después pegada a cada vocal.",
         bloques: [{ ficha: h[0], filas: Math.max(1, 6 - cuantas) }, { ficha: h[1] }]
       });
       out.push({
         id: L.id + "-2",
-        titulo: "La " + L.letra + " · las frases",
+        titulo: (L.nombre || "La " + L.letra) + " · las frases",
         pista: "Repasa la línea punteada y después hazla sola en el renglón de abajo.",
         bloques: [{ ficha: h[2], aparte: true }]
       });

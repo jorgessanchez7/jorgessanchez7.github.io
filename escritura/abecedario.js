@@ -1122,6 +1122,60 @@ window.ABECEDARIO = [
       { texto: "la hélice gira rápido.", foto: "img/lecciones/ge/helice.jpg", ancha: true, rel: "16 / 9" },
       { texto: "oye, chico, vigila mi pequeño coche.", foto: "img/lecciones/ge/chico-coche.jpg", ancha: true, rel: "16 / 9" }
     ],
-    hojas: ["letra-ge", "silabas-ge", "frases-ge"] }
+    hojas: ["letra-ge", "silabas-ge", "frases-ge"] },
+
+  /* Sílabas inversas con s: as, es, is, os, us. Ya no hay letra nueva;
+     lo nuevo es que la consonante va DETRÁS de la vocal. `inversa: "s"`
+     cambia cómo se colorea (letra.js): vocal + s cuando después no viene
+     vocal. `nombre` y `glifo` reemplazan «La s», que se confundiría con la
+     lección de la s. Clave papas (la escogió el padre); la frase de la
+     plana la propuse yo. */
+
+  { id: "es", letra: "s", mayuscula: "S", orden: 26,
+    nombre: "as, es, is, os, us", glifo: "es", inversa: "s",
+    banda: "#d3ecd6", tinta: "#1f6b37",
+    comoSuena: "Primero la vocal y después la s, estirada al final: aaass, eeesss. La s cierra la sílaba.",
+    aviso: [
+      "Hasta ahora la consonante siempre iba primero: sa, se, si. Aquí es al revés: la vocal va " +
+      "primero y la s detrás. «es», «as», «os». Es la primera vez, y es un cambio grande: vale la " +
+      "pena decirlo despacio, alargando la s del final.",
+
+      "Para leer «escoba» no sirve juntar de a dos letras como antes (e-sc-o…): hay que ver que la " +
+      "s se queda con la e: es-co-ba. Una ayuda: tapar con el dedo el resto de la palabra y leer " +
+      "solo el pedacito coloreado, después el siguiente.",
+
+      "Y una trampa: no toda s detrás de una vocal es de esta lección. En «pesas» la primera s va " +
+      "con la a que sigue (pe-sas); por eso solo se colorea el «as» del final. La regla: si después " +
+      "de la s viene otra vocal, la s se va con ella."
+    ],
+    palabra: "papas", foto: "img/lecciones/es/papas.jpg",
+    notaSilabas: "En el orden de la cartilla. La vocal primero, la s detrás.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["es", "os", "is", "as", "us"],
+    palabras: ["escudo","bosque","máscara","manos","asma","pasto","pescado","lunes",
+               "escala","mosca","pasta","isla","estuche","susto","poste","pista",
+               "más","espeso","pues","mes","esposa","somos"],
+    tarjetas: [
+      { palabra: "isla", foto: "img/lecciones/es/isla.jpg" },
+      { palabra: "escoba", foto: "img/lecciones/es/escoba.jpg" },
+      { palabra: "castillo", foto: "img/lecciones/es/castillo.jpg" },
+      { palabra: "espejo", foto: "img/lecciones/es/espejo.jpg" },
+      { palabra: "mosquito", foto: "img/lecciones/es/mosquito.jpg" },
+      { palabra: "pesas", foto: "img/lecciones/es/pesas.jpg" },
+      { palabra: "espuma", foto: "img/lecciones/es/espuma.jpg" },
+      { palabra: "espumoso", foto: "img/lecciones/es/espumoso.jpg" }
+    ],
+    frases: [
+      { texto: "me asusta esa máscara.", foto: "img/lecciones/es/mascara.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "este pescado está rico.", foto: "img/lecciones/es/pescado.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "coge la pasta que te guste.", foto: "img/lecciones/es/pasta.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "sigue la pista y busca la costa.", foto: "img/lecciones/es/pista-costa.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "ese es mi baño espumoso.", foto: "img/lecciones/es/bano-espumoso.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "mamá es la esposa de papá.", foto: "img/lecciones/es/esposa.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "mi sopa está espesa.", foto: "img/lecciones/es/sopa-espesa.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "¿me pasas esas papas?", foto: "img/lecciones/es/pasas-papas.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "me gusta navegar a esta isla.", foto: "img/lecciones/es/navegar-isla.jpg", ancha: true, rel: "16 / 9" }
+    ],
+    hojas: ["letra-es", "silabas-es", "frases-es"] }
 
 ];

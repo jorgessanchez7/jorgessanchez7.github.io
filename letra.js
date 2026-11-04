@@ -74,8 +74,30 @@
     return null;
   }
 
+  /* Sílabas inversas (as, es, is…): la consonante va DETRÁS de la vocal y
+     cierra la sílaba. Se marca vocal + consonante solo si después no viene
+     vocal: en «escoba» va «es», pero en «pesas» no va «es» (pe-sas) sino
+     el «as» del final. `inversa` en el abecedario trae la consonante. */
+  var INVERSA = null;
+
+  function silabarInversa(bajo, c) {
+    var marcas = [], i = 0;
+    while (i < bajo.length - 1) {
+      var sig = bajo.charAt(i + 2);
+      if (VOCALES.indexOf(bajo.charAt(i)) >= 0 && bajo.charAt(i + 1) === c &&
+          !(sig && VOCALES.indexOf(sig) >= 0)) {
+        marcas.push([i, 2]);
+        i += 2;
+      } else {
+        i++;
+      }
+    }
+    return marcas;
+  }
+
   function silabar(palabra, grafias) {
     var marcas = [], bajo = palabra.toLowerCase(), i = 0;
+    if (INVERSA) return silabarInversa(bajo, INVERSA);
     while (i < bajo.length) {
       var g = calza(bajo, i, grafias);
       if (!g) { i++; continue; }
@@ -136,7 +158,9 @@
 
   function armar() {
     var GRAFIAS = grafiasDe(L);
-    document.title = "La " + L.letra + " · Lecciones de lectura";
+    INVERSA = L.inversa || null;
+    var NOMBRE = L.nombre || "La " + L.letra;
+    document.title = NOMBRE + " · Lecciones de lectura";
     document.documentElement.style.setProperty("--letra", L.tinta);
     document.documentElement.style.setProperty("--letra-suave", L.banda);
 
@@ -144,7 +168,7 @@
     volver.href = de.href;
     volver.innerHTML = "&#8592; " + de.texto;
 
-    document.getElementById("titulo").textContent = "La " + L.letra;
+    document.getElementById("titulo").textContent = NOMBRE;
     document.getElementById("como-suena").textContent = L.comoSuena;
 
     /* el aviso puede ser una línea o varias */
@@ -170,9 +194,9 @@
 
     /* el glifo grande: toca y suena el sonido, no el nombre */
     var glifo = document.getElementById("glifo");
-    glifo.textContent = L.letra;
+    glifo.textContent = L.glifo || L.letra;
     glifo.addEventListener("click", function () {
-      decir(L.letra + L.letra + L.letra, glifo);
+      decir(L.glifo || L.letra + L.letra + L.letra, glifo);
     });
 
     /* las sílabas */

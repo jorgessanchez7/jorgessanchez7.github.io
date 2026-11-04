@@ -66,8 +66,8 @@
         a.href = "letra.html?letra=" + L.id + "&de=" + encodeURIComponent(de);
         a.innerHTML =
           '<span class="vista" style="background:' + L.banda + '">' +
-          '<span class="glifo-mini" style="color:' + L.tinta + '">' + L.letra + "</span></span>" +
-          "<h3>La " + L.letra + " <em>" + L.palabra + "</em></h3>";
+          '<span class="glifo-mini" style="color:' + L.tinta + '">' + (L.glifo || L.letra) + "</span></span>" +
+          "<h3>" + (L.nombre || "La " + L.letra) + " <em>" + L.palabra + "</em></h3>";
         caja.appendChild(a);
       });
   }

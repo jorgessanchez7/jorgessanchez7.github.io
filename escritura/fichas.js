@@ -907,6 +907,33 @@ window.FICHAS = [
     lineas: ["gemelo gema gira", "gemelo, gira la página."],
     trazos: [] },
 
+  /* as, es, is, os, us: sin glifo nuevo, hojas de texto. */
+
+  { id: "letra-es", grupo: "letras", orden: 76,
+    titulo: "s",
+    pista: "La s de siempre. Ahora va detrás de la vocal.",
+    banda: "#d3ecd6", tinta: "#1f6b37",
+    celda: [230, 130], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["s"],
+    trazos: [] },
+
+  { id: "silabas-es", grupo: "letras", orden: 77,
+    titulo: "es, os, is, as, us",
+    pista: "La vocal primero y la s detrás.",
+    banda: "#d3ecd6", tinta: "#1f6b37",
+    celda: [230, 130], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["es", "os", "is", "as", "us"],
+    trazos: [] },
+
+  { id: "frases-es", grupo: "letras", orden: 78,
+    titulo: "papas isla escoba",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#d3ecd6", tinta: "#1f6b37",
+    celda: [960, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["papas isla escoba", "esta mosca pisa mis papas."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,
