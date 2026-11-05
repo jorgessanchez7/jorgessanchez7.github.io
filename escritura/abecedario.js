@@ -1500,6 +1500,7 @@ window.ABECEDARIO = [
       { palabra: "Luigi", foto: "img/lecciones/ua/luigi.jpg" },
       { palabra: "Luis", foto: "img/lecciones/ua/luis.jpg" },
       { palabra: "agua", foto: "img/lecciones/ua/agua.jpg" },
+      { palabra: "fuego", foto: "img/lecciones/ua/fuego.jpg" },
       { palabra: "lengua", foto: "img/lecciones/ua/lengua.jpg" },
       { palabra: "ruinas", foto: "img/lecciones/ua/ruinas.jpg" },
       { palabra: "nueve", foto: "img/lecciones/ua/nueve.jpg" },
