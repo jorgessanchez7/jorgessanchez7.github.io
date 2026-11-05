@@ -1070,6 +1070,33 @@ window.FICHAS = [
     lineas: ["piano nieve canario", "el canario come miel."],
     trazos: [] },
 
+  /* Diptongos ua, ue, uo, ui: hojas de texto. */
+
+  { id: "letra-ua", grupo: "letras", orden: 94,
+    titulo: "u",
+    pista: "La u va primero y se resbala hacia la otra vocal.",
+    banda: "#ecfccb", tinta: "#4d7c0f",
+    celda: [230, 130], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["u"],
+    trazos: [] },
+
+  { id: "silabas-ua", grupo: "letras", orden: 95,
+    titulo: "ua, ue, uo, ui",
+    pista: "Dos vocales juntas, sin separarlas.",
+    banda: "#ecfccb", tinta: "#4d7c0f",
+    celda: [230, 130], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["ua", "ue", "uo", "ui"],
+    trazos: [] },
+
+  { id: "frases-ua", grupo: "letras", orden: 96,
+    titulo: "iguana huevo nueve",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#ecfccb", tinta: "#4d7c0f",
+    celda: [960, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["iguana huevo nueve", "cuidado con ese huevo."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,

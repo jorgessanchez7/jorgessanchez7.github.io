@@ -967,13 +967,14 @@ window.ABECEDARIO = [
     notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
     silabas: ["ci", "ce"],
     palabras: ["cine","cena","cigarro","cebolla","tocino","cocina","doce","cepillo",
-               "cereza","cera","racimo","ceniza","cigarra","cacerola","cocinero","maceta"],
+               "cereza","cera","racimo","ceniza","cigarra","cacerola","cocinero","maceta","cero"],
     tarjetas: [
       { palabra: "cepillo", foto: "img/lecciones/ce/cepillo.jpg" },
       { palabra: "cebolla", foto: "img/lecciones/ce/cebolla.jpg" },
       { palabra: "cocina", foto: "img/lecciones/ce/cocina.jpg" },
       { palabra: "cocinero", foto: "img/lecciones/ce/cocinero.jpg" },
       { palabra: "maceta", foto: "img/lecciones/ce/maceta.jpg" },
+      { palabra: "cero", foto: "img/lecciones/ce/cero.jpg" },
       { palabra: "doce", foto: "img/lecciones/ce/doce.jpg" }
     ],
     frases: [
@@ -1431,7 +1432,7 @@ window.ABECEDARIO = [
     silabas: ["ia", "ie", "io", "iu"],
     palabras: ["patio","radio","indio","diamante","anciano","viajero","fiera","siete",
                "hierro","nieve","familia","palacio","geranio","miel","Mariana","miércoles",
-               "viuda","viernes","Mario","piano","Dios","violín","viejo","Mercurio","Tierra","cien","canario"],
+               "viuda","viernes","Mario","piano","Dios","violín","viejo","Mercurio","Tierra","cien","canario","Antonio","dieciséis","diecisiete","dieciocho"],
     tarjetas: [
       { palabra: "Dios", foto: "img/lecciones/ia/dios.jpg", destacada: true },
       { palabra: "violín", foto: "img/lecciones/ia/violin.jpg" },
@@ -1445,7 +1446,11 @@ window.ABECEDARIO = [
       { palabra: "Tierra", foto: "img/lecciones/ia/tierra.jpg" },
       { palabra: "Mario", foto: "img/lecciones/ia/mario.jpg" },
       { palabra: "cien", foto: "img/lecciones/ia/cien.jpg" },
-      { palabra: "canario", foto: "img/lecciones/ia/canario.jpg" }
+      { palabra: "canario", foto: "img/lecciones/ia/canario.jpg" },
+      { palabra: "Antonio", foto: "img/lecciones/t/antonio.jpg" },
+      { palabra: "dieciséis", foto: "img/lecciones/ia/dieciseis.jpg" },
+      { palabra: "diecisiete", foto: "img/lecciones/ia/diecisiete.jpg" },
+      { palabra: "dieciocho", foto: "img/lecciones/ia/dieciocho.jpg" }
     ],
     frases: [
       { texto: "ese indio cazó un caimán.", foto: "img/lecciones/ia/indio-caiman.jpg", ancha: true, rel: "16 / 9" },
@@ -1457,8 +1462,66 @@ window.ABECEDARIO = [
       { texto: "la reina vive en un palacio.", foto: "img/lecciones/ia/reina-palacio.jpg", ancha: true, rel: "16 / 9" },
       { texto: "una fiera atacó al viajero.", foto: "img/lecciones/ia/fiera-viajero.jpg", ancha: true, rel: "16 / 9" },
       { texto: "mi familia tiene un piano.", foto: "img/lecciones/ia/familia-piano.jpg", ancha: true, rel: "16 / 9" },
-      { texto: "el diamante y el hierro son caros.", foto: "img/lecciones/ia/diamante-hierro.jpg", ancha: true, rel: "16 / 9" }
+      { texto: "el diamante y el hierro son caros.", foto: "img/lecciones/ia/diamante-hierro.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "el canario come miel.", foto: "img/lecciones/ia/canario-miel.jpg", ancha: true, rel: "16 / 9" }
     ],
-    hojas: ["letra-ia", "silabas-ia", "frases-ia"] }
+    hojas: ["letra-ia", "silabas-ia", "frases-ia"] },
+
+  /* Diptongos 3: ua, ue, uo, ui — la u primero y la otra vocal detrás.
+     Cierra los diptongos. Ojo: en que/qui y gue/gui la u no suena y no es
+     diptongo (letra.js no los colorea); en agua, lengua, Luigi sí suena.
+     Clave iguana (la escogió el padre). Plana = una frase de lectura. */
+
+  { id: "ua", letra: "ua", mayuscula: "UA", orden: 32,
+    nombre: "ua, ue, uo, ui", glifo: "ua",
+    marca: ["ua", "ue", "uo", "ui", "ué", "uí"],
+    diptongos: ["ua", "ue", "uo", "ui"],
+    banda: "#ecfccb", tinta: "#4d7c0f",
+    comoSuena: "La u se dice cortita y se resbala hacia la otra vocal, de un solo golpe: hue-vo, no hu-e-vo.",
+    aviso: [
+      "La última de las vocales que se juntan: ahora la u va primero. «hue», «gua», «cui». La u " +
+      "se dice rapidito, casi como una w, y enseguida la otra vocal.",
+
+      "Cuidado con la trampa vieja: en «queso» y en «guitarra» la u NO suena; está ahí de muda. " +
+      "En «agua», «lengua» o «Luigi» sí suena. Por eso aquí se colorean unas y otras no.",
+
+      "La prueba de las palmadas: «hue-vo» dos, «nue-ve» dos, «i-gua-na» tres. Y llegan los " +
+      "números de la casa: nueve, diecinueve, cuarenta y cincuenta."
+    ],
+    palabra: "iguana", foto: "img/lecciones/ua/iguana.jpg",
+    notaSilabas: "Como en la otra cartilla. La u primero, de un solo golpe.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["ua", "ue", "uo", "ui"],
+    palabras: ["huevo","cuello","fuego","pues","iguana","lengua","muela","rueda","cuarenta","cincuenta","Luigi","Luis","agua","ruinas","nueve","diecinueve","huevos"],
+    tarjetas: [
+      { palabra: "rueda", foto: "img/lecciones/ua/rueda.jpg" },
+      { palabra: "cuarenta", foto: "img/lecciones/ua/cuarenta.jpg" },
+      { palabra: "cincuenta", foto: "img/lecciones/ua/cincuenta.jpg" },
+      { palabra: "Luigi", foto: "img/lecciones/ua/luigi.jpg" },
+      { palabra: "Luis", foto: "img/lecciones/ua/luis.jpg" },
+      { palabra: "agua", foto: "img/lecciones/ua/agua.jpg" },
+      { palabra: "lengua", foto: "img/lecciones/ua/lengua.jpg" },
+      { palabra: "ruinas", foto: "img/lecciones/ua/ruinas.jpg" },
+      { palabra: "nueve", foto: "img/lecciones/ua/nueve.jpg" },
+      { palabra: "diecinueve", foto: "img/lecciones/ua/diecinueve.jpg" },
+      { palabra: "huevos", foto: "img/lecciones/ua/huevos.jpg" }
+    ],
+    frases: [
+      { texto: "me gusta desayunar con huevos.", foto: "img/lecciones/ua/desayunar-huevos.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "yo desayuno con huevo, tortillas y jugo.", foto: "img/lecciones/ua/desayuno-huevo.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "cuidado con ese huevo.", foto: "img/lecciones/ua/cuidado-huevo.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "quita la paila, abuelita.", foto: "img/lecciones/ua/paila-abuelita.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "mi familia tiene un piano nuevo.", foto: "img/lecciones/ua/piano-nuevo.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "el aceite de maní es bueno.", foto: "img/lecciones/ua/aceite-mani.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Maura tiene seis muelas.", foto: "img/lecciones/ua/maura-muelas.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "no bebas agua de la pila.", foto: "img/lecciones/ua/agua-pila.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Amalia tiene una iguana.", foto: "img/lecciones/ua/amalia-iguana.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Daniel es un buen pianista.", foto: "img/lecciones/ua/buen-pianista.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Luisa cuida mi boina.", foto: "img/lecciones/ua/luisa-boina.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "fui a la casa de Luis el miércoles.", foto: "img/lecciones/ua/casa-luis.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Emilio fue a las ruinas de Ciudad Perdida en Santa Marta.", foto: "img/lecciones/ua/ciudad-perdida.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "cuidado con el canario, se vuela.", foto: "img/lecciones/ua/canario-vuela.jpg", ancha: true, rel: "16 / 9" }
+    ],
+    hojas: ["letra-ua", "silabas-ua", "frases-ua"] }
 
 ];

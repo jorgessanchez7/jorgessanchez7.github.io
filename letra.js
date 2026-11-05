@@ -102,6 +102,10 @@
     if (INVERSA) return silabarInversa(bajo, INVERSA);
     while (i < bajo.length) {
       var g = calza(bajo, i, grafias);
+      /* «ue», «ui» después de q o g no son diptongo: la u es muda
+         (queso, guiso). En «agua» o «lengua» sí suena: esas se marcan. */
+      if (g && g.charAt(0) === "u" && "eéií".indexOf(g.charAt(1)) >= 0 &&
+          i > 0 && "qg".indexOf(bajo.charAt(i - 1)) >= 0) g = null;
       if (!g) { i++; continue; }
       /* ojo: charAt fuera de rango devuelve "" y indexOf("") da 0,
          así que hay que preguntar primero si de verdad hay letra */
