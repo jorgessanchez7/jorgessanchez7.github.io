@@ -1043,6 +1043,33 @@ window.FICHAS = [
     lineas: ["caimán jaula peine", "la reina baila con el caimán."],
     trazos: [] },
 
+  /* Diptongos ia, ie, io, iu: hojas de texto. */
+
+  { id: "letra-ia", grupo: "letras", orden: 91,
+    titulo: "i",
+    pista: "La i va primero y se resbala hacia la otra vocal.",
+    banda: "#fce7f3", tinta: "#be185d",
+    celda: [230, 130], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["i"],
+    trazos: [] },
+
+  { id: "silabas-ia", grupo: "letras", orden: 92,
+    titulo: "ia, ie, io, iu",
+    pista: "Dos vocales juntas, sin separarlas.",
+    banda: "#fce7f3", tinta: "#be185d",
+    celda: [230, 130], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["ia", "ie", "io", "iu"],
+    trazos: [] },
+
+  { id: "frases-ia", grupo: "letras", orden: 93,
+    titulo: "piano nieve canario",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#fce7f3", tinta: "#be185d",
+    celda: [960, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["piano nieve canario", "el canario come miel."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,

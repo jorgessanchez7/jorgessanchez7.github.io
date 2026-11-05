@@ -223,9 +223,13 @@
       /* cuantas son decide el ancho de la fila: con cuatro, cuatro columnas,
          para que no quede una sola colgando debajo de tres */
       cajaT.dataset.cuantas = L.tarjetas.length;
-      L.tarjetas.forEach(function (t) {
+      /* `destacada`: la tarjeta va primero, más grande y con marco dorado
+         (Jesús, Dios: el padre pidió darles más importancia). */
+      var orden = L.tarjetas.filter(function (t) { return t.destacada; })
+        .concat(L.tarjetas.filter(function (t) { return !t.destacada; }));
+      orden.forEach(function (t) {
         var div = document.createElement("div");
-        div.className = "tarjeta";
+        div.className = t.destacada ? "tarjeta destacada" : "tarjeta";
         if (t.foto) {
           var img = document.createElement("img");
           img.src = t.foto;

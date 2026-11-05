@@ -1168,7 +1168,7 @@ window.ABECEDARIO = [
       { palabra: "espumoso", foto: "img/lecciones/es/espumoso.jpg" },
       { palabra: "Venus", foto: "img/lecciones/es/venus.jpg" },
       { palabra: "dos", foto: "img/lecciones/es/dos.jpg" },
-      { palabra: "Jesús", foto: "img/lecciones/j/jesus.jpg" }
+      { palabra: "Jesús", foto: "img/lecciones/j/jesus.jpg", destacada: true }
     ],
     frases: [
       { texto: "me asusta esa máscara.", foto: "img/lecciones/es/mascara.jpg", ancha: true, rel: "16 / 9" },
@@ -1383,7 +1383,7 @@ window.ABECEDARIO = [
     notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
     silabas: ["ai", "au", "ei", "eu", "oi"],
     palabras: ["jaula","caimán","caucho","paila","auto","aire","peine","aceite",
-               "deuda","Europa","seis","boina","oigo","baile","reina"],
+               "deuda","Europa","seis","boina","oigo","baile","reina","veinte"],
     tarjetas: [
       { palabra: "jaula", foto: "img/lecciones/ai/jaula.jpg" },
       { palabra: "auto", foto: "img/lecciones/ai/auto.jpg" },
@@ -1391,7 +1391,8 @@ window.ABECEDARIO = [
       { palabra: "baile", foto: "img/lecciones/ai/baile.jpg" },
       { palabra: "reina", foto: "img/lecciones/ai/reina.jpg" },
       { palabra: "seis", foto: "img/lecciones/ai/seis.jpg" },
-      { palabra: "boina", foto: "img/lecciones/ai/boina.jpg" }
+      { palabra: "boina", foto: "img/lecciones/ai/boina.jpg" },
+      { palabra: "veinte", foto: "img/lecciones/ai/veinte.jpg" }
     ],
     frases: [
       { texto: "Reinaldo baila con Paulina.", foto: "img/lecciones/ai/reinaldo-paulina.jpg", ancha: true, rel: "16 / 9" },
@@ -1401,6 +1402,63 @@ window.ABECEDARIO = [
       { texto: "mi aula será la de arriba.", foto: "img/lecciones/ai/aula-arriba.jpg", ancha: true, rel: "16 / 9" },
       { texto: "la reina baila con el caimán.", foto: "img/lecciones/ai/reina-caiman.jpg", ancha: true, rel: "16 / 9" }
     ],
-    hojas: ["letra-ai", "silabas-ai", "frases-ai"] }
+    hojas: ["letra-ai", "silabas-ai", "frases-ai"] },
+
+  /* Diptongos 2: ia, ie, io, iu — ahora la i va primero y la otra vocal
+     detrás, de un solo golpe. Clave piano (las dos cartillas). Dios es
+     tarjeta destacada (pedido del padre). La frase de la plana la propuse
+     yo: el padre no tenía. */
+
+  { id: "ia", letra: "ia", mayuscula: "IA", orden: 31,
+    nombre: "ia, ie, io, iu", glifo: "ia",
+    marca: ["ia", "ie", "io", "iu", "ié", "ió"],
+    diptongos: ["ia", "ie", "io", "iu"],
+    banda: "#fce7f3", tinta: "#be185d",
+    comoSuena: "La i se dice cortita y se resbala hacia la otra vocal, de un solo golpe: pia-no, no pi-a-no.",
+    aviso: [
+      "Es lo mismo que en la lección anterior, pero al revés: ahora la i va primero. «pia», «nie», " +
+      "«rio». La i se dice rapidito, casi como si fuera una y, y enseguida la otra vocal.",
+
+      "La prueba de las palmadas sigue sirviendo: «pia-no» son dos, «sie-te» dos, «ca-na-rio» " +
+      "tres. Si él cuenta una de más, está separando la i.",
+
+      "Aquí aparece «Mario», «Mariana» y «Dios». Y se puede volver a la lección de la t: «Antonio» " +
+      "termina en «nio», que ya se puede leer entero."
+    ],
+    palabra: "piano", foto: "img/lecciones/ia/piano.jpg",
+    notaSilabas: "Como en la otra cartilla. La i primero, de un solo golpe.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["ia", "ie", "io", "iu"],
+    palabras: ["patio","radio","indio","diamante","anciano","viajero","fiera","siete",
+               "hierro","nieve","familia","palacio","geranio","miel","Mariana","miércoles",
+               "viuda","viernes","Mario","piano","Dios","violín","viejo","Mercurio","Tierra","cien","canario"],
+    tarjetas: [
+      { palabra: "Dios", foto: "img/lecciones/ia/dios.jpg", destacada: true },
+      { palabra: "violín", foto: "img/lecciones/ia/violin.jpg" },
+      { palabra: "viejo", foto: "img/lecciones/ia/viejo.jpg" },
+      { palabra: "siete", foto: "img/lecciones/ia/siete.jpg" },
+      { palabra: "nieve", foto: "img/lecciones/ia/nieve.jpg" },
+      { palabra: "familia", foto: "img/lecciones/ia/familia.jpg" },
+      { palabra: "indio", foto: "img/lecciones/ia/indio.jpg" },
+      { palabra: "miel", foto: "img/lecciones/ia/miel.jpg" },
+      { palabra: "Mercurio", foto: "img/lecciones/ia/mercurio.jpg" },
+      { palabra: "Tierra", foto: "img/lecciones/ia/tierra.jpg" },
+      { palabra: "Mario", foto: "img/lecciones/ia/mario.jpg" },
+      { palabra: "cien", foto: "img/lecciones/ia/cien.jpg" },
+      { palabra: "canario", foto: "img/lecciones/ia/canario.jpg" }
+    ],
+    frases: [
+      { texto: "ese indio cazó un caimán.", foto: "img/lecciones/ia/indio-caiman.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "tu canario se escapó de la jaula.", foto: "img/lecciones/ia/canario-jaula.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Tania tiene siete de nota.", foto: "img/lecciones/ia/tania-siete.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Diana tiene seis diamantes.", foto: "img/lecciones/ia/diana-diamantes.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Daniel es un pianista.", foto: "img/lecciones/ia/daniel-pianista.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Mario estará al mediodía.", foto: "img/lecciones/ia/mario-mediodia.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "la reina vive en un palacio.", foto: "img/lecciones/ia/reina-palacio.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "una fiera atacó al viajero.", foto: "img/lecciones/ia/fiera-viajero.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "mi familia tiene un piano.", foto: "img/lecciones/ia/familia-piano.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "el diamante y el hierro son caros.", foto: "img/lecciones/ia/diamante-hierro.jpg", ancha: true, rel: "16 / 9" }
+    ],
+    hojas: ["letra-ia", "silabas-ia", "frases-ia"] }
 
 ];
