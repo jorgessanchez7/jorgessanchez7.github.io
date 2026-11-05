@@ -149,7 +149,7 @@ window.ABECEDARIO = [
     silabas: ["lo", "le", "li", "lu", "la"],
     palabras: ["loma", "sala", "paloma", "lima", "lupa", "mula",
                "palo", "pule", "lomo", "pala", "ala", "alelí",
-               "lema", "ola", "pelo"],
+               "lema", "ola", "pelo","pila"],
     tarjetas: [
       { palabra: "lima", foto: "img/lecciones/l/lima.jpg" },
       { palabra: "lupa", foto: "img/lecciones/l/lupa.jpg" },
@@ -195,7 +195,7 @@ window.ABECEDARIO = [
     silabas: ["ne", "ni", "na", "nu", "no"],
     palabras: ["nena", "pino", "maní", "nulo", "mano", "pepino",
                "pena", "mina", "enano", "luna", "molino", "lana",
-               "uno", "melena"],
+               "uno", "melena","nene","mono"],
     tarjetas: [
       { palabra: "mono", foto: "img/lecciones/n/mono.jpg" },
       { palabra: "luna", foto: "img/lecciones/n/luna.jpg" },
@@ -290,7 +290,7 @@ window.ABECEDARIO = [
     silabas: ["da", "di", "do", "du", "de"],
     palabras: ["dama", "seda", "todo", "nada", "duda", "mudo",
                "pomada", "soda", "dime", "lado", "moneda", "pide",
-               "medida"],
+               "medida","dado","dedo","nudo","nido"],
     tarjetas: [
       { palabra: "dedo", foto: "img/lecciones/d/dedo.jpg" },
       { palabra: "nudo", foto: "img/lecciones/d/nudo.jpg" },
@@ -337,12 +337,13 @@ window.ABECEDARIO = [
     notaSilabas: "Van en el orden de la cartilla: ro, re, ra, ru, ri. Acuérdese de lo del aviso: sueltas suenan fuertes.",
     notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
     silabas: ["ro", "re", "ra", "ru", "ri"],
-    palabras: ["toro","salero","mora","muro","mariposa","torero","arena","madera","pera","loro","arete","marino"],
+    palabras: ["toro","salero","mora","muro","mariposa","torero","arena","madera","pera","loro","arete","marino","aro","tetero","arepa","Urano"],
     tarjetas: [
       { palabra: "aro", foto: "img/lecciones/r/aro.jpg" },
       { palabra: "tetero", foto: "img/lecciones/r/tetero.jpg" },
       { palabra: "loro", foto: "img/lecciones/r/loro.jpg" },
-      { palabra: "arepa", foto: "img/lecciones/r/arepa.jpg" }
+      { palabra: "arepa", foto: "img/lecciones/r/arepa.jpg" },
+      { palabra: "Urano", foto: "img/lecciones/r/urano.jpg" }
     ],
     frases: [
       { texto: "ese toro me mira.", foto: "img/lecciones/r/toro-mira.jpg", ancha: true, rel: "16 / 9" },
@@ -422,7 +423,7 @@ window.ABECEDARIO = [
     notaSilabas: "Solo son tres, no cinco. Con la e y la i la c suena distinto, y eso viene después.",
     notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
     silabas: ["ca", "co", "cu"],
-    palabras: ["casa","copa","pico","cono","camisa","saco","cuna","corona","loco","cara","capa","rico","cola"],
+    palabras: ["casa","copa","pico","cono","camisa","saco","cuna","corona","loco","cara","capa","rico","cola","carro","carreta"],
     tarjetas: [
       { palabra: "carro", foto: "img/lecciones/c/carro.jpg" },
       { palabra: "copa", foto: "img/lecciones/c/copa.jpg" },
@@ -470,7 +471,7 @@ window.ABECEDARIO = [
     notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
     silabas: ["ña", "ñi", "ñu", "ñe", "ño"],
     palabras: ["niña","niño","uña","año","moño","paño","leña","caña",
-               "señora","mañana","piña","muñeca"],
+               "señora","mañana","piña","muñeca","araña","puño","Toño"],
     tarjetas: [
       { palabra: "muñeca", foto: "img/lecciones/enie/muneca.jpg" },
       { palabra: "araña", foto: "img/lecciones/enie/arana.jpg" },
@@ -651,7 +652,7 @@ window.ABECEDARIO = [
     notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
     silabas: ["ya", "yi", "yo", "yu", "ye"],
     palabras: ["yate","yuca","yeso","yodo","rayo","mayo","raya","ayuno",
-               "payaso","yola","arroyo","soya"],
+               "payaso","yola","arroyo","soya","yema"],
     tarjetas: [
       { palabra: "yema", foto: "img/lecciones/y/yema.jpg" },
       { palabra: "rayo", foto: "img/lecciones/y/rayo.jpg" },
@@ -736,7 +737,7 @@ window.ABECEDARIO = [
     notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
     silabas: ["hi", "ha", "hu", "ho", "he"],
     palabras: ["hilo","humo","hora","haba","helado","herida","hada","hamaca",
-               "hábito","higo","herradura","hipo","hipopótamo"],
+               "hábito","higo","herradura","hipo","hipopótamo","herido"],
     tarjetas: [
       { palabra: "herido", foto: "img/lecciones/h/herido.jpg" },
       { palabra: "herradura", foto: "img/lecciones/h/herradura.jpg" },
@@ -781,7 +782,7 @@ window.ABECEDARIO = [
     silabas: ["ja", "ju", "ji", "jo", "je"],
     palabras: ["jarro","jugo","jirafa","jefe","joya","reja","paja","lujo",
                "teja","hijo","navaja","pájaro","oveja","oreja","aguja",
-               "hoja","Jesús"],
+               "hoja","Jesús","ojo","conejo","abeja","José"],
     tarjetas: [
       { palabra: "jarro", foto: "img/lecciones/j/jarro.jpg" },
       { palabra: "jirafa", foto: "img/lecciones/j/jirafa.jpg" },
@@ -828,7 +829,7 @@ window.ABECEDARIO = [
     notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
     silabas: ["zo", "zu", "za"],
     palabras: ["zorra","zapato","zumo","tiza","pozo","loza","buzo","cabeza",
-               "calabaza","zapote","tenaza","naturaleza"],
+               "calabaza","zapote","tenaza","naturaleza","pizarra"],
     tarjetas: [
       { palabra: "zapato", foto: "img/lecciones/z/zapato.jpg" },
       { palabra: "pozo", foto: "img/lecciones/z/pozo.jpg" },
@@ -874,7 +875,7 @@ window.ABECEDARIO = [
     silabas: ["lla", "llu", "lli", "lle", "llo"],
     palabras: ["llave","llama","llano","pollito","silla","calle","olla","botella",
                "gallina","capilla","ballena","anillo","galleta",
-               "amarillo","semilla","llavero"],
+               "amarillo","semilla","llavero","gallo","caballo"],
     tarjetas: [
       { palabra: "olla", foto: "img/lecciones/ll/olla.jpg" },
       { palabra: "gallo", foto: "img/lecciones/ll/gallo.jpg" },
@@ -968,13 +969,14 @@ window.ABECEDARIO = [
     notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
     silabas: ["ci", "ce"],
     palabras: ["cine","cena","cigarro","cebolla","tocino","cocina","doce","cepillo",
-               "cereza","cera","racimo","ceniza","cigarra","cacerola"],
+               "cereza","cera","racimo","ceniza","cigarra","cacerola","cocinero","maceta"],
     tarjetas: [
       { palabra: "cepillo", foto: "img/lecciones/ce/cepillo.jpg" },
       { palabra: "cebolla", foto: "img/lecciones/ce/cebolla.jpg" },
       { palabra: "cocina", foto: "img/lecciones/ce/cocina.jpg" },
       { palabra: "cocinero", foto: "img/lecciones/ce/cocinero.jpg" },
-      { palabra: "maceta", foto: "img/lecciones/ce/maceta.jpg" }
+      { palabra: "maceta", foto: "img/lecciones/ce/maceta.jpg" },
+      { palabra: "doce", foto: "img/lecciones/ce/doce.jpg" }
     ],
     frases: [
       { texto: "cocinero, dame la cena.", foto: "img/lecciones/ce/cocinero-cena.jpg", ancha: true, rel: "16 / 9" },
@@ -1011,7 +1013,7 @@ window.ABECEDARIO = [
     notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
     silabas: ["cho", "chu", "chi", "che", "cha"],
     palabras: ["choza","chivo","chorizo","chaleco","noche","techo","hacha","lechuga",
-               "ocho","coche","chocolate","leche","cachorro","chica","pechuga"],
+               "ocho","coche","chocolate","leche","cachorro","chica","pechuga","serrucho","cuchara","lechuza","Chepe"],
     tarjetas: [
       { palabra: "chivo", foto: "img/lecciones/ch/chivo.jpg" },
       { palabra: "serrucho", foto: "img/lecciones/ch/serrucho.jpg" },
@@ -1066,7 +1068,7 @@ window.ABECEDARIO = [
     notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
     silabas: ["que", "qui"],
     palabras: ["queso","chaqueta","líquido","quijada","máquina","paquete","queja","buque",
-               "pequeño","poquito","maqueta","maquila","equipo"],
+               "pequeño","poquito","maqueta","maquila","equipo","raqueta","químico"],
     tarjetas: [
       { palabra: "raqueta", foto: "img/lecciones/que/raqueta.jpg" },
       { palabra: "quijada", foto: "img/lecciones/que/quijada.jpg" },
@@ -1110,7 +1112,7 @@ window.ABECEDARIO = [
     notaSilabas: "Solo dos. La g suena como la j.",
     notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
     silabas: ["ge", "gi"],
-    palabras: ["gemelo","página","gema","generoso","gira","gitano","giro"],
+    palabras: ["gemelo","página","gema","generoso","gira","gitano","giro","género","gelatina"],
     tarjetas: [
       { palabra: "gema", foto: "img/lecciones/ge/gema.jpg" },
       { palabra: "gitano", foto: "img/lecciones/ge/gitano.jpg" },
@@ -1156,7 +1158,7 @@ window.ABECEDARIO = [
     silabas: ["es", "os", "is", "as", "us"],
     palabras: ["escudo","bosque","máscara","manos","asma","pasto","pescado","lunes",
                "escala","mosca","pasta","isla","estuche","susto","poste","pista",
-               "más","espeso","pues","mes","esposa","somos"],
+               "más","espeso","pues","mes","esposa","somos","papas","escoba","castillo","espejo","mosquito","pesas","espuma","espumoso","Venus","dos"],
     tarjetas: [
       { palabra: "isla", foto: "img/lecciones/es/isla.jpg" },
       { palabra: "escoba", foto: "img/lecciones/es/escoba.jpg" },
@@ -1165,7 +1167,9 @@ window.ABECEDARIO = [
       { palabra: "mosquito", foto: "img/lecciones/es/mosquito.jpg" },
       { palabra: "pesas", foto: "img/lecciones/es/pesas.jpg" },
       { palabra: "espuma", foto: "img/lecciones/es/espuma.jpg" },
-      { palabra: "espumoso", foto: "img/lecciones/es/espumoso.jpg" }
+      { palabra: "espumoso", foto: "img/lecciones/es/espumoso.jpg" },
+      { palabra: "Venus", foto: "img/lecciones/es/venus.jpg" },
+      { palabra: "dos", foto: "img/lecciones/es/dos.jpg" }
     ],
     frases: [
       { texto: "me asusta esa máscara.", foto: "img/lecciones/es/mascara.jpg", ancha: true, rel: "16 / 9" },
@@ -1208,7 +1212,7 @@ window.ABECEDARIO = [
     silabas: ["an", "in", "on", "un", "en"],
     palabras: ["banco","cinco","ventana","cinta","tinta","lanza","patín","ratón",
                "santo","menta","manzana","capitán","bandera","mundo","botón","naranja",
-               "ensalada","andén","linda","panda","limón"],
+               "ensalada","andén","linda","panda","limón","candado","pan","llanta","once","quince","sesenta","setenta","ochenta","noventa"],
     tarjetas: [
       { palabra: "candado", foto: "img/lecciones/an/candado.jpg" },
       { palabra: "mundo", foto: "img/lecciones/an/mundo.jpg" },
@@ -1219,7 +1223,14 @@ window.ABECEDARIO = [
       { palabra: "ratón", foto: "img/lecciones/an/raton.jpg" },
       { palabra: "llanta", foto: "img/lecciones/an/llanta.jpg" },
       { palabra: "Antonio", foto: "img/lecciones/t/antonio.jpg" },
-      { palabra: "Nelson", foto: "img/lecciones/n/nelson.jpg" }
+      { palabra: "Nelson", foto: "img/lecciones/n/nelson.jpg" },
+      { palabra: "cinco", foto: "img/lecciones/an/cinco.jpg" },
+      { palabra: "once", foto: "img/lecciones/an/once.jpg" },
+      { palabra: "quince", foto: "img/lecciones/an/quince.jpg" },
+      { palabra: "sesenta", foto: "img/lecciones/an/sesenta.jpg" },
+      { palabra: "setenta", foto: "img/lecciones/an/setenta.jpg" },
+      { palabra: "ochenta", foto: "img/lecciones/an/ochenta.jpg" },
+      { palabra: "noventa", foto: "img/lecciones/an/noventa.jpg" }
     ],
     frases: [
       { texto: "tengo una manzana roja y jugosa.", foto: "img/lecciones/an/manzana-roja.jpg", ancha: true, rel: "16 / 9" },
@@ -1260,7 +1271,7 @@ window.ABECEDARIO = [
     notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
     silabas: ["ar", "ur", "ir", "er", "or"],
     palabras: ["arpa","parque","collar","barco","gordo","circo","hermano","jardín",
-               "cerdo","curva","azúcar","hormiga","olor","perla","urna","ordenar","mármol"],
+               "cerdo","curva","azúcar","hormiga","olor","perla","urna","ordenar","mármol","tortuga","ardilla","dormilón","hermanos","perlas","torta","Jorge","Martha","Júpiter","Marte","Saturno","catorce"],
     tarjetas: [
       { palabra: "ardilla", foto: "img/lecciones/ar/ardilla.jpg" },
       { palabra: "circo", foto: "img/lecciones/ar/circo.jpg" },
@@ -1272,7 +1283,11 @@ window.ABECEDARIO = [
       { palabra: "urna", foto: "img/lecciones/ar/urna.jpg" },
       { palabra: "hormiga", foto: "img/lecciones/ar/hormiga.jpg" },
       { palabra: "Jorge", foto: "img/lecciones/ar/jorge.jpg" },
-      { palabra: "Martha", foto: "img/lecciones/ar/martha.jpg" }
+      { palabra: "Martha", foto: "img/lecciones/ar/martha.jpg" },
+      { palabra: "Júpiter", foto: "img/lecciones/ar/jupiter.jpg" },
+      { palabra: "Marte", foto: "img/lecciones/ar/marte.jpg" },
+      { palabra: "Saturno", foto: "img/lecciones/ar/saturno.jpg" },
+      { palabra: "catorce", foto: "img/lecciones/ar/catorce.jpg" }
     ],
     frases: [
       { texto: "esa hormiga carga su terrón de azúcar.", foto: "img/lecciones/ar/hormiga-azucar.jpg", ancha: true, rel: "16 / 9" },
@@ -1315,14 +1330,15 @@ window.ABECEDARIO = [
     notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
     silabas: ["al", "ul", "el", "il", "ol"],
     palabras: ["caldo","polvo","barril","salsa","selva","soldado","pastel","mantel",
-               "culpa","pulpo","dedal","panal","sal","mal","mil","Elsa","Sulma"],
+               "culpa","pulpo","dedal","panal","sal","mal","mil","Elsa","Sulma","sol","Nelson"],
     tarjetas: [
       { palabra: "soldado", foto: "img/lecciones/al/soldado.jpg" },
       { palabra: "pulpo", foto: "img/lecciones/al/pulpo.jpg" },
       { palabra: "dedal", foto: "img/lecciones/al/dedal.jpg" },
       { palabra: "pastel", foto: "img/lecciones/al/pastel.jpg" },
       { palabra: "sal", foto: "img/lecciones/al/sal.jpg" },
-      { palabra: "mil", foto: "img/lecciones/al/mil.jpg" }
+      { palabra: "mil", foto: "img/lecciones/al/mil.jpg" },
+      { palabra: "Nelson", foto: "img/lecciones/n/nelson.jpg" }
     ],
     frases: [
       { texto: "a ese soldado le falta su fusil.", foto: "img/lecciones/al/soldado-fusil.jpg", ancha: true, rel: "16 / 9" },
