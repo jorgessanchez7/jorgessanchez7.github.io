@@ -1156,7 +1156,7 @@ window.ABECEDARIO = [
     silabas: ["es", "os", "is", "as", "us"],
     palabras: ["escudo","bosque","máscara","manos","asma","pasto","pescado","lunes",
                "escala","mosca","pasta","isla","estuche","susto","poste","pista",
-               "más","espeso","pues","mes","esposa","somos","papas","escoba","castillo","espejo","mosquito","pesas","espuma","espumoso","Venus","dos","Jesús"],
+               "más","espeso","mes","esposa","somos","papas","escoba","castillo","espejo","mosquito","pesas","espuma","espumoso","Venus","dos","Jesús"],
     tarjetas: [
       { palabra: "isla", foto: "img/lecciones/es/isla.jpg" },
       { palabra: "escoba", foto: "img/lecciones/es/escoba.jpg" },
