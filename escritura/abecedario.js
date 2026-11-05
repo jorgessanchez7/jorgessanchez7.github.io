@@ -1353,6 +1353,54 @@ window.ABECEDARIO = [
       { texto: "ese soldado se fue cansado.", foto: "img/lecciones/al/soldado-cansado.jpg", ancha: true, rel: "16 / 9" },
       { texto: "el pulpo salta al mar.", foto: "img/lecciones/al/pulpo-mar.jpg", ancha: true, rel: "16 / 9" }
     ],
-    hojas: ["letra-al", "silabas-al", "frases-al"] }
+    hojas: ["letra-al", "silabas-al", "frases-al"] },
+
+  /* Diptongos 1: ai, au, ei, eu, oi — la vocal fuerte primero y la i o la
+     u pegada detrás, en un solo golpe de voz. Primera de tres lecciones
+     de diptongos (orden acordado el 4 nov). `marca` colorea solo las dos
+     vocales, como la otra cartilla. `diptongos` le dice a v/regla.js qué
+     pares ya se pueden leer. Clave caimán (las dos cartillas la usan). */
+
+  { id: "ai", letra: "ai", mayuscula: "AI", orden: 30,
+    nombre: "ai, au, ei, eu, oi", glifo: "ai",
+    marca: ["ai", "au", "ei", "eu", "oi"],
+    diptongos: ["ai", "au", "ei", "eu", "oi"],
+    banda: "#e0f2fe", tinta: "#0369a1",
+    comoSuena: "Dos vocales que se dicen de un solo golpe, sin parar en medio: cai-mán, no ca-i-mán. La segunda (la i o la u) se dice cortita.",
+    aviso: [
+      "Hasta ahora cada vocal era su propia sílaba o iba con una consonante. Aquí dos vocales " +
+      "van juntas en el mismo golpe de voz: «ai», «au», «ei». Se dice la primera bien clara y la " +
+      "segunda se pega cortita detrás, como un rebote.",
+
+      "La prueba es aplaudir: «cai-mán» son dos palmadas, no tres. «Pei-ne», dos. «Jau-la», dos. " +
+      "Si él aplaude tres, está separando las vocales: hay que volver a decirlo juntito.",
+
+      "Las que se pegan son siempre la i y la u. Por eso «Europa» empieza con «eu» y «seis» tiene " +
+      "«ei». Cuando la i lleva tilde («maíz»), ya no se pega: eso es otra cosa y viene después."
+    ],
+    palabra: "caimán", foto: "img/lecciones/ai/caiman.jpg",
+    notaSilabas: "Como en la otra cartilla. Dos vocales, un solo golpe.",
+    notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
+    silabas: ["ai", "au", "ei", "eu", "oi"],
+    palabras: ["jaula","caimán","caucho","paila","auto","aire","peine","aceite",
+               "deuda","Europa","seis","boina","oigo","baile","reina"],
+    tarjetas: [
+      { palabra: "jaula", foto: "img/lecciones/ai/jaula.jpg" },
+      { palabra: "auto", foto: "img/lecciones/ai/auto.jpg" },
+      { palabra: "peine", foto: "img/lecciones/ai/peine.jpg" },
+      { palabra: "baile", foto: "img/lecciones/ai/baile.jpg" },
+      { palabra: "reina", foto: "img/lecciones/ai/reina.jpg" },
+      { palabra: "seis", foto: "img/lecciones/ai/seis.jpg" },
+      { palabra: "boina", foto: "img/lecciones/ai/boina.jpg" }
+    ],
+    frases: [
+      { texto: "Reinaldo baila con Paulina.", foto: "img/lecciones/ai/reinaldo-paulina.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Paula peina a la reina.", foto: "img/lecciones/ai/paula-reina.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "Europa es un continente.", foto: "img/lecciones/ai/europa.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "el caimán me asustó.", foto: "img/lecciones/ai/caiman-susto.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "mi aula será la de arriba.", foto: "img/lecciones/ai/aula-arriba.jpg", ancha: true, rel: "16 / 9" },
+      { texto: "la reina baila con el caimán.", foto: "img/lecciones/ai/reina-caiman.jpg", ancha: true, rel: "16 / 9" }
+    ],
+    hojas: ["letra-ai", "silabas-ai", "frases-ai"] }
 
 ];

@@ -1015,6 +1015,34 @@ window.FICHAS = [
     lineas: ["sol pulpo pastel", "el pulpo salta al mar."],
     trazos: [] },
 
+  /* Diptongos ai, au, ei, eu, oi: hojas de texto. La primera hoja trae
+     las dos vocales que se pegan: la i y la u. */
+
+  { id: "letra-ai", grupo: "letras", orden: 88,
+    titulo: "i, u",
+    pista: "Las dos vocales que se pegan a las otras.",
+    banda: "#e0f2fe", tinta: "#0369a1",
+    celda: [230, 130], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["i u"],
+    trazos: [] },
+
+  { id: "silabas-ai", grupo: "letras", orden: 89,
+    titulo: "ai, au, ei, eu, oi",
+    pista: "Dos vocales juntas, sin separarlas.",
+    banda: "#e0f2fe", tinta: "#0369a1",
+    celda: [230, 130], repeticiones: 4, guia: true, tamano: 100,
+    lineas: ["ai", "au", "ei", "eu", "oi"],
+    trazos: [] },
+
+  { id: "frases-ai", grupo: "letras", orden: 90,
+    titulo: "caimán jaula peine",
+    pista: "Primero las palabras, después la frase entera.",
+    banda: "#e0f2fe", tinta: "#0369a1",
+    celda: [960, 160], repeticiones: 1, renglones: 1, guia: true,
+    tamano: 96, linea: 112, cuerpo: 59, sinModelo: true,
+    lineas: ["caimán jaula peine", "la reina baila con el caimán."],
+    trazos: [] },
+
   /* ---------- sin modelo, sin nada que acertar ---------- */
 
   { id: "pizarra", grupo: "libre", orden: 1,
