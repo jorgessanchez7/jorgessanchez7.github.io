@@ -770,8 +770,7 @@ window.ABECEDARIO = [
       "Hay premio: con la j ya se puede leer entera la rima de la uva de la v, la que decía «dame " +
       "tu jugo». Vale la pena volver a esa página y leerla de nuevo, ahora sin ayuda.",
 
-      "En las tarjetas está «Jesús», con mayúscula porque es un nombre. Y en la última frase " +
-      "aparece la «y» sola, la que suena i.",
+      "En la última frase aparece la «y» sola, la que suena i.",
 
       "Para escribirla: es la i con colita. El palito baja más allá del renglón y se dobla hacia " +
       "atrás, como el de la g; el puntico va al final, igual que en la i."
@@ -782,7 +781,7 @@ window.ABECEDARIO = [
     silabas: ["ja", "ju", "ji", "jo", "je"],
     palabras: ["jarro","jugo","jirafa","jefe","joya","reja","paja","lujo",
                "teja","hijo","navaja","pájaro","oveja","oreja","aguja",
-               "hoja","Jesús","ojo","conejo","abeja","José"],
+               "hoja","ojo","conejo","abeja","José"],
     tarjetas: [
       { palabra: "jarro", foto: "img/lecciones/j/jarro.jpg" },
       { palabra: "jirafa", foto: "img/lecciones/j/jirafa.jpg" },
@@ -793,7 +792,6 @@ window.ABECEDARIO = [
       { palabra: "teja", foto: "img/lecciones/j/teja.jpg" },
       { palabra: "conejo", foto: "img/lecciones/j/conejo.jpg" },
       { palabra: "abeja", foto: "img/lecciones/j/abeja.jpg" },
-      { palabra: "Jesús", foto: "img/lecciones/j/jesus.jpg" },
       { palabra: "José", foto: "img/lecciones/ch/chepe.jpg" }
     ],
     frases: [
@@ -1158,7 +1156,7 @@ window.ABECEDARIO = [
     silabas: ["es", "os", "is", "as", "us"],
     palabras: ["escudo","bosque","máscara","manos","asma","pasto","pescado","lunes",
                "escala","mosca","pasta","isla","estuche","susto","poste","pista",
-               "más","espeso","pues","mes","esposa","somos","papas","escoba","castillo","espejo","mosquito","pesas","espuma","espumoso","Venus","dos"],
+               "más","espeso","pues","mes","esposa","somos","papas","escoba","castillo","espejo","mosquito","pesas","espuma","espumoso","Venus","dos","Jesús"],
     tarjetas: [
       { palabra: "isla", foto: "img/lecciones/es/isla.jpg" },
       { palabra: "escoba", foto: "img/lecciones/es/escoba.jpg" },
@@ -1169,7 +1167,8 @@ window.ABECEDARIO = [
       { palabra: "espuma", foto: "img/lecciones/es/espuma.jpg" },
       { palabra: "espumoso", foto: "img/lecciones/es/espumoso.jpg" },
       { palabra: "Venus", foto: "img/lecciones/es/venus.jpg" },
-      { palabra: "dos", foto: "img/lecciones/es/dos.jpg" }
+      { palabra: "dos", foto: "img/lecciones/es/dos.jpg" },
+      { palabra: "Jesús", foto: "img/lecciones/j/jesus.jpg" }
     ],
     frases: [
       { texto: "me asusta esa máscara.", foto: "img/lecciones/es/mascara.jpg", ancha: true, rel: "16 / 9" },
@@ -1271,7 +1270,7 @@ window.ABECEDARIO = [
     notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
     silabas: ["ar", "ur", "ir", "er", "or"],
     palabras: ["arpa","parque","collar","barco","gordo","circo","hermano","jardín",
-               "cerdo","curva","azúcar","hormiga","olor","perla","urna","ordenar","mármol","tortuga","ardilla","dormilón","hermanos","perlas","torta","Jorge","Martha","Júpiter","Marte","Saturno","catorce"],
+               "cerdo","curva","azúcar","hormiga","olor","perla","urna","ordenar","tortuga","ardilla","dormilón","hermanos","perlas","torta","Jorge","Martha","Júpiter","Marte","Saturno","catorce"],
     tarjetas: [
       { palabra: "ardilla", foto: "img/lecciones/ar/ardilla.jpg" },
       { palabra: "circo", foto: "img/lecciones/ar/circo.jpg" },
@@ -1330,7 +1329,7 @@ window.ABECEDARIO = [
     notaFrases: "Acá las imágenes son dibujos, no fotos de la casa. Léalas señalando con el dedo, palabra por palabra.",
     silabas: ["al", "ul", "el", "il", "ol"],
     palabras: ["caldo","polvo","barril","salsa","selva","soldado","pastel","mantel",
-               "culpa","pulpo","dedal","panal","sal","mal","mil","Elsa","Sulma","sol","Nelson"],
+               "culpa","pulpo","dedal","panal","sal","mal","mil","Elsa","Sulma","mármol","sol","Nelson"],
     tarjetas: [
       { palabra: "soldado", foto: "img/lecciones/al/soldado.jpg" },
       { palabra: "pulpo", foto: "img/lecciones/al/pulpo.jpg" },
