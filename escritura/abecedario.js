@@ -25,8 +25,7 @@ window.ABECEDARIO = [
        tarjeta es el artista de cara blanca; el de la lista y la frase
        «mimo a mi mamá» es el verbo. Misma palabra, dos cosas. */
     tarjetas: [
-      { palabra: "mimo", foto: "img/lecciones/m/mimo-tarjeta.jpg" },
-      { palabra: "momia", foto: "img/lecciones/m/momia.jpg" }
+      { palabra: "mimo", foto: "img/lecciones/m/mimo-tarjeta.jpg" }
     ],
     frases: [
       { texto: "mi mamá me ama.", foto: "img/lecciones/m/me-ama.jpg" },
@@ -1432,7 +1431,7 @@ window.ABECEDARIO = [
     silabas: ["ia", "ie", "io", "iu"],
     palabras: ["patio","radio","indio","diamante","anciano","viajero","fiera","siete",
                "hierro","nieve","familia","palacio","geranio","miel","Mariana","miércoles",
-               "viuda","viernes","Mario","piano","Dios","violín","viejo","Mercurio","Tierra","cien","canario","Antonio","dieciséis","diecisiete","dieciocho"],
+               "viuda","viernes","Mario","piano","Dios","violín","viejo","Mercurio","Tierra","cien","canario","Antonio","dieciséis","diecisiete","dieciocho","momia"],
     tarjetas: [
       { palabra: "Dios", foto: "img/lecciones/ia/dios.jpg", destacada: true },
       { palabra: "violín", foto: "img/lecciones/ia/violin.jpg" },
@@ -1450,7 +1449,8 @@ window.ABECEDARIO = [
       { palabra: "Antonio", foto: "img/lecciones/t/antonio.jpg" },
       { palabra: "dieciséis", foto: "img/lecciones/ia/dieciseis.jpg" },
       { palabra: "diecisiete", foto: "img/lecciones/ia/diecisiete.jpg" },
-      { palabra: "dieciocho", foto: "img/lecciones/ia/dieciocho.jpg" }
+      { palabra: "dieciocho", foto: "img/lecciones/ia/dieciocho.jpg" },
+      { palabra: "momia", foto: "img/lecciones/m/momia.jpg" }
     ],
     frases: [
       { texto: "ese indio cazó un caimán.", foto: "img/lecciones/ia/indio-caiman.jpg", ancha: true, rel: "16 / 9" },
