@@ -756,9 +756,9 @@
      LIBRO 6 - Dinosaurios
      Cuento de Chepe (7 nov 2026). Lo dictó él; papá le puso la
      ortografía y la puntuación. Las palabras son las suyas.
-     Ilustraciones: SVG dibujado en código (como Gotita).
-     Si llegan ilustraciones de otra IA, se cambian las "svg" por
-     "imagen: DINO + '01.jpg'" y se agrega portadaImagen.
+     Ilustraciones: acuarelas que trajo papá (img/dinosaurios/).
+     Los dibujos en SVG se quedan de respaldo: si se borra "imagen"
+     o "portadaImagen", el visor los usa.
      ============================================================ */
   var DINO = "img/dinosaurios/";
 
@@ -929,17 +929,20 @@
     edad: "Para leer en voz alta",
     resumen: "Un T-Rex que tumba árboles se encuentra con un triceratops que también los tumba.",
     color: "#d93a2b",
+    portadaImagen: DINO + "00.jpg",
     portada: svg(fondoDino(CIELO_D, SUELO_D) + volcan(330, 214, .55, 1) + sol(60, 44) +
       arbolAlto(200, 236, .55) + tocon(250, 250, 1) + tronco(270, 268, .55, 0) + helecho(30, 262, .9) + helecho(380, 270, .8) +
       trex(110, 262, .78, ROJO) + triceratops(300, 270, .7, NEGRO, true)),
     paginas: [
-      { texto: "Un día, había un T-Rex que estaba derribando árboles cuando se encontró con un triceratops.",
+      { imagen: DINO + "01.jpg",
+        texto: "Un día, había un T-Rex que estaba derribando árboles cuando se encontró con un triceratops.",
         svg: svg(fondoDino(CIELO_D, SUELO_D) + sol(345, 44) + nube(40, 50, .8) + nube(200, 36, .6) +
           tocon(40, 246, 1) + tronco(18, 274, .6, 0) + arbolAlto(340, 226, .5) +
           arbolCae(258, 250, .95, 32, true) + helecho(370, 272, .9) + helecho(24, 230, .7) +
           trex(150, 262, .95, ROJO)) },
 
-      { texto: "El T-Rex dijo:<br>—¡No! ¿Ahora los triceratops derriban árboles?<br>" +
+      { imagen: DINO + "02.jpg",
+        texto: "El T-Rex dijo:<br>—¡No! ¿Ahora los triceratops derriban árboles?<br>" +
                "El triceratops respondió:<br>—¡Sí! Nosotros derribamos árboles.",
         svg: svg(fondoDino(CIELO_D, SUELO_D) + sol(200, 40) + nube(60, 46, .7) +
           tocon(36, 246, .9) + tronco(250, 238, .5, 0) +
@@ -947,7 +950,8 @@
           trex(92, 268, .72, ROJO) + triceratops(300, 272, .78, NEGRO, true) +
           helecho(200, 284, .8)) },
 
-      { texto: "—¡Papá! —exclamó el T-Rex pequeño.<br>" +
+      { imagen: DINO + "03.jpg",
+        texto: "—¡Papá! —exclamó el T-Rex pequeño.<br>" +
                "—Vamos a hablar con el brontosaurio, que está en su casa —respondió el T-Rex.<br>" +
                "El T-Rex pequeño dijo: —¡Sí, visitémoslo!",
         svg: svg(fondoDino(CIELO_D, SUELO_D) + sol(340, 44) + nube(150, 40, .7) +
@@ -955,8 +959,9 @@
           trex(140, 270, .9, ROJO) + trex(275, 276, .5, ROJO, true, true) +
           helecho(360, 286, .9) + helecho(20, 288, .8)) },
 
-      { texto: "Al llegar a la casa del brontosaurio, este estaba comiendo hojas frescas de un árbol muy alto.<br>" +
-               "—Juguemos un juego llamado «árbol caído» —dijeron los dos T-Rex.<br>" +
+      { imagen: DINO + "04.jpg",
+        texto: "Al llegar a la casa del brontosaurio, este estaba comiendo hojas frescas de un árbol muy alto.<br>" +
+               "—Juguemos un juego llamado «abajo el árbol» —dijeron los dos T-Rex.<br>" +
                "El brontosaurio respondió: —¡Sí!",
         svg: svg(fondoDino(CIELO_D, SUELO_D) + volcan(64, 206, .75, 1) + cueva(186, 222, .6) +
           arbolAlto(360, 266, 1.3) +
@@ -964,7 +969,8 @@
           trex(66, 268, .55, ROJO) + trex(132, 272, .33, ROJO, false, true) +
           triceratops(186, 290, .48, NEGRO) + helecho(16, 290, .7)) },
 
-      { texto: "Y los dos T-Rex, el brontosaurio y el triceratops jugaron «abajo el árbol» juntos.<br>" +
+      { imagen: DINO + "05.jpg",
+        texto: "Y los dos T-Rex, el brontosaurio y el triceratops jugaron «abajo el árbol» juntos.<br>" +
                "El T-Rex papá dijo:<br>—El volcán de fuego no está explotando.",
         svg: svg(fondoDino(CIELO_D, SUELO_D) + volcan(70, 204, .8, 2) + sol(360, 40) +
           arbolCae(374, 252, .8, 22, true) + brontosaurio(318, 262, .5, BRONTO, 96, -120) +
