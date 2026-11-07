@@ -752,7 +752,229 @@
     ]
   };
 
-  window.BIBLIOTECA = [tresCerditos, liebreTortuga, leonRaton, rinRin, gotita];
+  /* ============================================================
+     LIBRO 6 - Dinosaurios
+     Cuento de Chepe (7 nov 2026). Lo dictó él; papá le puso la
+     ortografía y la puntuación. Las palabras son las suyas.
+     Ilustraciones: SVG dibujado en código (como Gotita).
+     Si llegan ilustraciones de otra IA, se cambian las "svg" por
+     "imagen: DINO + '01.jpg'" y se agrega portadaImagen.
+     ============================================================ */
+  var DINO = "img/dinosaurios/";
+
+  function tono(hex, f) {               // f < 0 oscurece, f > 0 aclara
+    var n = parseInt(hex.slice(1), 16), r = n >> 16, g = (n >> 8) & 255, b = n & 255;
+    function m(v) { return Math.round(f < 0 ? v * (1 + f) : v + (255 - v) * f); }
+    return "#" + ((1 << 24) + (m(r) << 16) + (m(g) << 8) + m(b)).toString(16).slice(1);
+  }
+  function lugar(x, y, s, voltear) {
+    return '<g transform="translate(' + x + ',' + y + ') scale(' + (voltear ? -s : s) + ',' + s + ')">';
+  }
+
+  /* T-Rex parado sobre (x, y), mirando a la derecha. cria = ojos grandes. */
+  function trex(x, y, s, c, voltear, cria) {
+    var os = tono(c, -0.35), cl = tono(c, 0.45), ojo = cria ? 7 : 5;
+    var lin = ' stroke="' + os + '" stroke-width="2.4" stroke-linejoin="round"';
+    return lugar(x, y, s, voltear) +
+      // pata de atrás
+      '<path d="M-16,-30 Q-24,-10 -18,0 L-4,0 Q-7,-14 2,-28 Z" fill="' + os + '"/>' +
+      '<path d="M-24,0 L2,0 Q4,-6 -2,-6 L-20,-6 Z" fill="' + os + '"/>' +
+      // cola y cuerpo
+      '<path d="M-94,-56 Q-60,-60 -30,-68 Q0,-82 26,-74 Q42,-68 46,-54 Q48,-34 30,-25 Q10,-17 -12,-23 Q-42,-34 -94,-56 Z" fill="' + c + '"' + lin + '/>' +
+      '<path d="M-8,-24 Q14,-19 30,-27 Q42,-38 42,-52 Q30,-38 8,-32 Q-4,-28 -8,-24 Z" fill="' + cl + '"/>' +
+      '<g stroke="' + os + '" stroke-width="3" fill="none" stroke-linecap="round" opacity=".55">' +
+        '<path d="M-40,-58 q4,6 0,12"/><path d="M-22,-64 q4,7 0,14"/><path d="M-4,-70 q4,7 0,14"/></g>' +
+      // pata de adelante
+      '<ellipse cx="-2" cy="-38" rx="20" ry="22" fill="' + c + '"' + lin + '/>' +
+      '<path d="M-10,-22 Q-3,-10 -8,0 L9,0 Q6,-12 12,-24 Z" fill="' + c + '"' + lin + '/>' +
+      '<path d="M-14,0 L16,0 Q18,-7 10,-7 L-10,-7 Z" fill="' + c + '"' + lin + '/>' +
+      // cabeza
+      '<path d="M18,-64 Q20,-96 46,-101 L80,-99 Q93,-97 93,-87 L93,-83 L58,-80 L89,-76 Q91,-65 78,-63 L46,-61 Q30,-59 18,-64 Z" fill="' + c + '"' + lin + '/>' +
+      '<path d="M64,-81 l3,5 l3,-5 Z M72,-81.4 l3,5 l3,-5 Z M80,-81.8 l3,5 l3,-5 Z" fill="#ffffff"/>' +
+      '<circle cx="86" cy="-93" r="1.8" fill="' + os + '"/>' +
+      '<circle cx="58" cy="-90" r="' + ojo + '" fill="#ffffff" stroke="' + os + '" stroke-width="1.5"/>' +
+      '<circle cx="60" cy="-90" r="' + (ojo / 2) + '" fill="#222"/>' +
+      '<circle cx="61" cy="-91.5" r="' + (ojo / 5) + '" fill="#ffffff"/>' +
+      // bracito
+      '<path d="M36,-50 Q46,-47 50,-40" stroke="' + os + '" stroke-width="5" fill="none" stroke-linecap="round"/>' +
+      '<path d="M50,-40 l5,1 M50,-40 l2,4" stroke="' + os + '" stroke-width="2.5" fill="none" stroke-linecap="round"/>' +
+      '</g>';
+  }
+
+  /* Triceratops parado sobre (x, y), mirando a la derecha. */
+  function triceratops(x, y, s, c, voltear) {
+    var os = tono(c, -0.5), gola = tono(c, 0.14), punta = tono(c, 0.3), hueso = "#f3ead2";
+    var lin = ' stroke="' + os + '" stroke-width="2.4" stroke-linejoin="round"';
+    var bordes = '', i;
+    for (i = 0; i < 9; i++) {
+      var a = (-150 + i * 30) * Math.PI / 180;
+      bordes += '<circle cx="' + (Math.cos(a) * 26).toFixed(1) + '" cy="' + (Math.sin(a) * 33).toFixed(1) + '" r="5" fill="' + punta + '"/>';
+    }
+    return lugar(x, y, s, voltear) +
+      '<rect x="-40" y="-30" width="15" height="30" rx="5" fill="' + os + '"/>' +
+      '<rect x="18" y="-30" width="15" height="30" rx="5" fill="' + os + '"/>' +
+      '<path d="M-48,-44 Q-82,-30 -100,-20 Q-80,-20 -46,-28 Z" fill="' + c + '"' + lin + '/>' +
+      '<ellipse cx="-6" cy="-42" rx="52" ry="29" fill="' + c + '"' + lin + '/>' +
+      '<g fill="' + gola + '"><circle cx="-30" cy="-52" r="6"/><circle cx="-12" cy="-58" r="5"/><circle cx="6" cy="-54" r="6"/><circle cx="-20" cy="-36" r="4"/></g>' +
+      '<rect x="-30" y="-26" width="16" height="26" rx="5" fill="' + c + '"' + lin + '/>' +
+      '<rect x="26" y="-26" width="16" height="26" rx="5" fill="' + c + '"' + lin + '/>' +
+      // gola
+      '<g transform="translate(44,-60) rotate(-22)">' + bordes +
+        '<ellipse cx="0" cy="0" rx="24" ry="31" fill="' + gola + '"' + lin + '/>' +
+        '<ellipse cx="2" cy="0" rx="14" ry="20" fill="' + c + '" opacity=".6"/></g>' +
+      // cabeza
+      '<path d="M36,-62 Q60,-72 80,-56 Q92,-46 98,-36 L86,-30 Q70,-27 50,-30 Q34,-38 36,-62 Z" fill="' + c + '"' + lin + '/>' +
+      '<path d="M90,-40 L98,-36 L88,-31 Z" fill="' + hueso + '"/>' +
+      // cuernos
+      '<path d="M52,-64 Q64,-86 86,-96 Q72,-78 62,-60 Z" fill="' + hueso + '" stroke="#b9ab86" stroke-width="1.5"/>' +
+      '<path d="M62,-62 Q78,-82 100,-88 Q84,-72 72,-56 Z" fill="' + hueso + '" stroke="#b9ab86" stroke-width="1.5"/>' +
+      '<path d="M84,-46 Q90,-56 95,-61 Q96,-50 91,-42 Z" fill="' + hueso + '" stroke="#b9ab86" stroke-width="1.5"/>' +
+      '<circle cx="68" cy="-50" r="5.5" fill="#ffffff"/><circle cx="70" cy="-50" r="2.8" fill="#111"/>' +
+      '<circle cx="71" cy="-51.5" r="1" fill="#ffffff"/>' +
+      '</g>';
+  }
+
+  /* Brontosaurio parado sobre (x, y), mirando a la derecha. (hx, hy) = cabeza, relativa. */
+  function brontosaurio(x, y, s, c, hx, hy) {
+    hx = hx === undefined ? 112 : hx; hy = hy === undefined ? -190 : hy;
+    var os = tono(c, -0.35), cl = tono(c, 0.4);
+    var lin = ' stroke="' + os + '" stroke-width="2.4" stroke-linejoin="round"';
+    var cuello = 'M36,-92 Q' + (hx * 0.5) + ',' + (hy * 0.45) + ' ' + (hx - 6) + ',' + (hy + 6);
+    return lugar(x, y, s) +
+      '<rect x="-40" y="-56" width="20" height="56" rx="7" fill="' + os + '"/>' +
+      '<rect x="28" y="-56" width="20" height="56" rx="7" fill="' + os + '"/>' +
+      '<path d="M-52,-82 Q-110,-64 -156,-18 Q-100,-46 -46,-52 Z" fill="' + c + '"' + lin + '/>' +
+      '<path d="' + cuello + '" stroke="' + os + '" stroke-width="27" fill="none" stroke-linecap="round"/>' +
+      '<path d="' + cuello + '" stroke="' + c + '" stroke-width="22" fill="none" stroke-linecap="round"/>' +
+      '<ellipse cx="0" cy="-76" rx="64" ry="42" fill="' + c + '"' + lin + '/>' +
+      '<path d="M-44,-50 Q0,-30 46,-52 Q0,-42 -44,-50 Z" fill="' + cl + '"/>' +
+      '<g fill="' + tono(c, -0.12) + '"><circle cx="-24" cy="-96" r="7"/><circle cx="0" cy="-104" r="8"/><circle cx="24" cy="-98" r="7"/></g>' +
+      '<rect x="-30" y="-50" width="22" height="50" rx="7" fill="' + c + '"' + lin + '/>' +
+      '<rect x="38" y="-50" width="22" height="50" rx="7" fill="' + c + '"' + lin + '/>' +
+      '<g transform="translate(' + hx + ',' + hy + ')">' +
+        '<ellipse cx="0" cy="0" rx="18" ry="12" fill="' + c + '"' + lin + '/>' +
+        '<circle cx="2" cy="-4" r="4" fill="#ffffff"/><circle cx="3.5" cy="-4" r="2" fill="#222"/>' +
+        '<path d="M6,5 Q12,7 17,3" stroke="' + os + '" stroke-width="2" fill="none" stroke-linecap="round"/>' +
+        '<path d="M15,4 q10,-2 14,6 q-10,2 -14,-6 Z" fill="#5fb06c"/>' +
+      '</g></g>';
+  }
+
+  function arbolAlto(x, y, s) {
+    return lugar(x, y, s) +
+      '<path d="M-9,0 L-6,-150 L6,-150 L9,0 Z" fill="#8a5a3b"/>' +
+      '<path d="M0,-90 L22,-112 M0,-60 L-20,-80" stroke="#8a5a3b" stroke-width="6" stroke-linecap="round"/>' +
+      '<g fill="#4f9d5d"><circle cx="0" cy="-170" r="34"/><circle cx="-30" cy="-150" r="24"/><circle cx="30" cy="-152" r="25"/>' +
+      '<circle cx="26" cy="-112" r="15"/><circle cx="-22" cy="-82" r="14"/></g>' +
+      '<g fill="#5fb06c"><circle cx="-14" cy="-180" r="18"/><circle cx="16" cy="-160" r="16"/></g></g>';
+  }
+  /* Árbol que se va cayendo: ang en grados (positivo = hacia la derecha). */
+  function arbolCae(x, y, s, ang, conRayitas) {
+    var r = conRayitas ?
+      '<g stroke="#6b5847" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7">' +
+      '<path d="M-44,-96 q-10,20 -4,40"/><path d="M-56,-80 q-8,16 -2,30"/></g>' : '';
+    return lugar(x, y, s) + '<g transform="rotate(' + ang + ')">' +
+      '<path d="M-7,0 L-5,-80 L5,-80 L7,0 Z" fill="#8a5a3b"/>' +
+      '<g fill="#4f9d5d"><circle cx="0" cy="-96" r="26"/><circle cx="-20" cy="-80" r="18"/><circle cx="20" cy="-82" r="19"/></g>' +
+      '<circle cx="-8" cy="-104" r="12" fill="#5fb06c"/>' + r + '</g>' +
+      '<path d="M-10,0 L-6,-6 L6,-6 L10,0 Z" fill="#6f4a30"/></g>';
+  }
+  function tocon(x, y, s) {
+    return lugar(x, y, s) + '<path d="M-10,0 L-8,-14 L-3,-10 L1,-16 L5,-11 L8,-14 L10,0 Z" fill="#8a5a3b"/>' +
+      '<ellipse cx="0" cy="-12" rx="8" ry="2.5" fill="#d9b48a"/></g>';
+  }
+  function tronco(x, y, s, ang) {          // árbol ya en el piso
+    return lugar(x, y, s) + '<g transform="rotate(' + (ang || 0) + ')">' +
+      '<rect x="0" y="-12" width="80" height="12" rx="4" fill="#8a5a3b"/>' +
+      '<ellipse cx="0" cy="-6" rx="4" ry="6" fill="#d9b48a"/>' +
+      '<g fill="#4f9d5d"><circle cx="96" cy="-16" r="20"/><circle cx="82" cy="-4" r="13"/><circle cx="112" cy="-4" r="14"/></g></g></g>';
+  }
+  function helecho(x, y, s, c) {
+    c = c || "#3f8f4f";
+    return lugar(x, y, s) + '<g stroke="' + c + '" stroke-width="5" fill="none" stroke-linecap="round">' +
+      '<path d="M0,0 Q-6,-20 -26,-26"/><path d="M0,0 Q-2,-26 -10,-40"/><path d="M0,0 Q4,-28 12,-40"/>' +
+      '<path d="M0,0 Q8,-18 28,-24"/><path d="M0,0 Q0,-20 2,-44"/></g></g>';
+  }
+  /* Volcán con humo. nivel 1 = poco humo, 2 = más humo y brillo. Nunca explota. */
+  function volcan(x, y, s, nivel) {
+    var humo = '<g fill="#9aa0a8" opacity=".85"><circle cx="0" cy="-100" r="13"/><circle cx="10" cy="-118" r="16"/><circle cx="-4" cy="-138" r="19"/>';
+    if (nivel > 1) humo += '<circle cx="16" cy="-160" r="23"/><circle cx="-14" cy="-176" r="20"/><circle cx="12" cy="-196" r="17"/>';
+    humo += '</g>';
+    return lugar(x, y, s) + humo +
+      '<path d="M-90,0 L-20,-90 L20,-90 L90,0 Z" fill="#8a6a55"/>' +
+      '<path d="M8,-90 L20,-90 L90,0 L40,0 Z" fill="#735744"/>' +
+      '<ellipse cx="0" cy="-90" rx="20" ry="6" fill="' + (nivel > 1 ? "#ff8a1f" : "#e2672a") + '"/>' +
+      '<path d="M-10,-89 q-4,14 -10,22 q6,-4 12,-20 Z M8,-89 q4,10 2,18 q4,-6 2,-18 Z" fill="#ff8a1f"/>' +
+      (nivel > 1 ? '<ellipse cx="0" cy="-92" rx="30" ry="12" fill="#ffb347" opacity=".35"/>' : '') +
+      '</g>';
+  }
+  function cueva(x, y, s) {
+    return lugar(x, y, s) +
+      '<path d="M-80,0 Q-74,-70 -10,-86 Q60,-90 84,0 Z" fill="#a39385"/>' +
+      '<path d="M-30,0 Q-30,-46 2,-48 Q32,-46 32,0 Z" fill="#3e352f"/>' +
+      '<path d="M-60,-30 q10,-6 20,0 M40,-50 q10,-4 18,2" stroke="#8b7b6d" stroke-width="3" fill="none" stroke-linecap="round"/></g>';
+  }
+  function fondoDino(cielo, suelo) {
+    return '<rect width="400" height="300" fill="' + cielo + '"/>' +
+      '<path d="M0 190 Q 70 150 140 176 T 280 168 T 400 172 L400 300 L0 300 Z" fill="#c9dcae" opacity=".8"/>' +
+      '<path d="M0 226 Q 100 208 200 220 T 400 214 L400 300 L0 300 Z" fill="' + suelo + '"/>';
+  }
+
+  var ROJO = "#d93a2b", NEGRO = "#2a2a2a", BRONTO = "#8fb0d9";
+  var CIELO_D = "#cbe9f4", SUELO_D = "#a9c76a";
+
+  var dinosaurios = {
+    id: "dinosaurios",
+    titulo: "Dinosaurios",
+    autor: "Cuento de Chepe",
+    edad: "Para leer en voz alta",
+    resumen: "Un T-Rex que tumba árboles se encuentra con un triceratops que también los tumba.",
+    color: "#d93a2b",
+    portada: svg(fondoDino(CIELO_D, SUELO_D) + volcan(330, 214, .55, 1) + sol(60, 44) +
+      arbolAlto(200, 236, .55) + tocon(250, 250, 1) + tronco(270, 268, .55, 0) + helecho(30, 262, .9) + helecho(380, 270, .8) +
+      trex(110, 262, .78, ROJO) + triceratops(300, 270, .7, NEGRO, true)),
+    paginas: [
+      { texto: "Un día, había un T-Rex que estaba derribando árboles cuando se encontró con un triceratops.",
+        svg: svg(fondoDino(CIELO_D, SUELO_D) + sol(345, 44) + nube(40, 50, .8) + nube(200, 36, .6) +
+          tocon(40, 246, 1) + tronco(18, 274, .6, 0) + arbolAlto(340, 226, .5) +
+          arbolCae(258, 250, .95, 32, true) + helecho(370, 272, .9) + helecho(24, 230, .7) +
+          trex(150, 262, .95, ROJO)) },
+
+      { texto: "El T-Rex dijo:<br>—¡No! ¿Ahora los triceratops derriban árboles?<br>" +
+               "El triceratops respondió:<br>—¡Sí! Nosotros derribamos árboles.",
+        svg: svg(fondoDino(CIELO_D, SUELO_D) + sol(200, 40) + nube(60, 46, .7) +
+          tocon(36, 246, .9) + tronco(250, 238, .5, 0) +
+          arbolCae(120, 244, .7, -18, false) + arbolCae(352, 244, .75, 30, true) +
+          trex(92, 268, .72, ROJO) + triceratops(300, 272, .78, NEGRO, true) +
+          helecho(200, 284, .8)) },
+
+      { texto: "—¡Papá! —exclamó el T-Rex pequeño.<br>" +
+               "—Vamos a hablar con el brontosaurio, que está en su casa —respondió el T-Rex.<br>" +
+               "El T-Rex pequeño dijo: —¡Sí, visitémoslo!",
+        svg: svg(fondoDino(CIELO_D, SUELO_D) + sol(340, 44) + nube(150, 40, .7) +
+          arbolAlto(36, 226, .45) + tocon(370, 240, .9) + tronco(300, 236, .45, 0) +
+          trex(140, 270, .9, ROJO) + trex(275, 276, .5, ROJO, true, true) +
+          helecho(360, 286, .9) + helecho(20, 288, .8)) },
+
+      { texto: "Al llegar a la casa del brontosaurio, este estaba comiendo hojas frescas de un árbol muy alto.<br>" +
+               "—Juguemos un juego llamado «árbol caído» —dijeron los dos T-Rex.<br>" +
+               "El brontosaurio respondió: —¡Sí!",
+        svg: svg(fondoDino(CIELO_D, SUELO_D) + volcan(64, 206, .75, 1) + cueva(186, 222, .6) +
+          arbolAlto(360, 266, 1.3) +
+          brontosaurio(262, 258, .72, BRONTO, 112, -200) +
+          trex(66, 268, .55, ROJO) + trex(132, 272, .33, ROJO, false, true) +
+          triceratops(186, 290, .48, NEGRO) + helecho(16, 290, .7)) },
+
+      { texto: "Y los dos T-Rex, el brontosaurio y el triceratops jugaron «abajo el árbol» juntos.<br>" +
+               "El T-Rex papá dijo:<br>—El volcán de fuego no está explotando.",
+        svg: svg(fondoDino(CIELO_D, SUELO_D) + volcan(70, 204, .8, 2) + sol(360, 40) +
+          arbolCae(374, 252, .8, 22, true) + brontosaurio(318, 262, .5, BRONTO, 96, -120) +
+          arbolCae(214, 270, .7, 34, true) + triceratops(160, 282, .5, NEGRO) +
+          arbolCae(282, 298, .5, 30, true) + trex(236, 296, .32, ROJO, false, true) +
+          trex(92, 280, .68, ROJO, true) + helecho(150, 292, .7)) }
+    ]
+  };
+
+  window.BIBLIOTECA = [tresCerditos, liebreTortuga, leonRaton, rinRin, gotita, dinosaurios];
 
   // Los ayudantes de dibujo quedan disponibles para las actividades
   window.DIBUJO = {
