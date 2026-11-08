@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, noimageindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Los números · Plan en casa</title>
+<meta name="description" content="Del 1 al 10: contar, decir el nombre y escribir cada número.">
+<link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="lectura.css">
+<link rel="stylesheet" href="escritura.css">
+</head>
+<body>
+
+<header class="hero chepe">
+  <div class="envoltura">
+    <a class="volver" href="index.html">&#8592; Inicio</a>
+    <p class="eyebrow">Contar, nombrar y escribir</p>
+    <h1>Los números</h1>
+    <p class="lead">Un número por lección. En cada una, las tres cosas de siempre: contar cuántas
+       hay, decir el nombre del número y escribirlo.</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="envoltura">
+    <h2>Las lecciones</h2>
+    <p class="sub">Del 1 al 9, después el 0 y al final el 10. Cada número es el anterior y uno
+       más; el 10 va de último porque se escribe con el 1 y el 0.</p>
+    <div class="hojas" id="numeros"></div>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <h2>Para hacer con lápiz</h2>
+    <p class="sub">Dos hojas por número: el número con su nombre en letras, y marcos para contar
+       y escribir cuántas cosas hay. Están en cada lección y todas juntas en las hojas para imprimir.</p>
+    <div class="botonera">
+      <a class="btn grande papel" href="planas.html">Las hojas para imprimir &#8594;</a>
+    </div>
+  </div>
+</section>
+
+<section class="rutina">
+  <div class="envoltura">
+    <div class="nota verde">
+      <h3>Cómo usar cada lección</h3>
+      <p><strong>Contar es tocar.</strong> Cada cosa se toca una vez, una detrás de otra, y se
+         dice un número por cada toque. Lo que más se equivoca a esta edad no es la serie de
+         números: es tocar una dos veces o saltarse una. Por eso en la pantalla cada cosa
+         que ya se contó queda marcada.</p>
+      <p><strong>El último número dice cuántas hay.</strong> Después de contar «uno, dos, tres»,
+         la pregunta «¿cuántas hay?» se contesta «tres», sin volver a contar. Eso parece obvio y
+         no lo es: es el paso que convierte recitar números en contar.</p>
+      <p><strong>El número, la palabra y la cantidad dicen lo mismo.</strong> El 3, la palabra
+         «tres» y tres manzanas son tres maneras de decir una sola cosa. Toque el número y la
+         palabra: suenan igual.</p>
+      <p><strong>Escribirlo.</strong> En pantalla se ve por dónde empieza y para dónde va; la
+         mano se entrena con lápiz. Igual que en las letras.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <div class="nota verde">
+      <h3>Si un número sale al revés</h3>
+      <p>Es normal y es común hasta los siete u ocho años, sobre todo con el 2, el 3, el 5, el 7
+         y el 9. No es un problema de la vista: la mano todavía no tiene claro para qué lado mira
+         el número. Se corrige mostrando el punto de salida, no borrando y repitiendo la plana.</p>
+      <p>Los números se escriben como en la escuela, que no siempre es como salen en los libros
+         o en la pantalla: el 4 va abierto arriba y el 3 lleva dos barrigas. Si en un cuento el
+         4 sale cerrado, vale la pena decirle que es el mismo número.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="envoltura">
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="lecciones.html">Lecciones de lectura</a>
+      <a href="lecturas.html">Las lecturas</a>
+    </nav>
+    <p>Sin reloj, sin puntaje. Se cuenta, se escribe y ya.</p>
+  </div>
+</footer>
+
+<script src="escritura/fichas.js"></script>
+<script src="escritura/numeros.js"></script>
+<script>
+(function () {
+  "use strict";
+  var caja = document.getElementById("numeros");
+  (window.NUMEROS || []).forEach(function (N) {
+    var a = document.createElement("a");
+    a.className = "ficha numero-ficha";
+    a.href = "numero.html?n=" + N.id;
+    var cosa = window.NUMEROS_OBJETOS[N.objeto];
+    a.innerHTML = '<span class="vista" style="background:' + N.banda + '">' +
+      window.NUMERO_SVG(N.id, N.tinta, 9) +
+      (N.n > 0 ? '<span class="mini-cosa"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">' +
+        cosa(false) + "</svg></span>" : "") +
+      "</span><h3>El " + N.palabra + " <em>" + N.cosas + "</em></h3>";
+    caja.appendChild(a);
+  });
+})();
+</script>
+</body>
+</html>

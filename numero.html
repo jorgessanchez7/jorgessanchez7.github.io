@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, noimageindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El número · Los números</title>
+<meta name="description" content="Un número a la vez: contarlo, decir su nombre y escribirlo.">
+<link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="lectura.css">
+<link rel="stylesheet" href="escritura.css">
+</head>
+<body>
+
+<header class="hero hero-letra">
+  <div class="envoltura">
+    <a class="volver" href="numeros.html">&#8592; Los números</a>
+    <p class="eyebrow">Contarlo, nombrarlo y escribirlo</p>
+    <h1 id="titulo">El número</h1>
+    <p class="lead" id="lead"></p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="envoltura">
+    <div class="clave clave-numero">
+      <button type="button" class="num-grande" id="glifo"></button>
+      <div class="clave-texto">
+        <button type="button" class="palabra-clave" id="palabra"></button>
+        <p class="tocar">Toque el número o la palabra para oírlo. Los dos dicen lo mismo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rutina">
+  <div class="envoltura">
+    <h2>A contar</h2>
+    <p class="sub" id="nota-contar">Toque cada cosa una sola vez, una detrás de otra. El último número que se dice es cuántas hay.</p>
+    <div class="contadero" id="cosas"></div>
+    <div class="cuenta-fin" id="fin" hidden></div>
+    <div class="botonera" style="margin-top:16px">
+      <button type="button" class="btn suave" id="otra-vez">Contar otra vez</button>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <h2>Así se ve en el marco</h2>
+    <p class="sub">Dos filas de cinco. Cinco es una fila llena; diez, las dos. Con el tiempo la
+       cantidad se reconoce de un vistazo, sin contar una por una.</p>
+    <button type="button" class="marco" id="marco"></button>
+  </div>
+</section>
+
+<section class="rutina">
+  <div class="envoltura">
+    <h2>En la fila de los números</h2>
+    <p class="sub">Cada número es el de antes y uno más. Toque cualquiera para oírlo.
+       Vale la pena preguntar cuál viene después de este, y cuál antes.</p>
+    <div class="fila-numeros" id="fila"></div>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <h2>Ahora a escribirlo</h2>
+    <p class="sub">En pantalla se traza con el dedo, para ver por dónde empieza y para dónde va.
+       Para aprender a escribirlo de verdad hace falta lápiz: ahí están las hojas para imprimir.</p>
+    <div class="botonera" id="hojas"></div>
+    <h3 class="para-papel">Para hacerlo con lápiz</h3>
+    <p class="sub">Se imprimen en hoja carta. La primera trae el número y su nombre; la segunda,
+       marcos para contar y escribir cuántas cosas hay.</p>
+    <div class="botonera" id="imprimibles"></div>
+    <div class="nota" style="margin-top:24px" id="aviso">
+      <h3>Cómo se escribe, para decirlo en voz alta</h3>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="envoltura">
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="numeros.html">Los números</a>
+      <a href="lecciones.html">Lecciones de lectura</a>
+    </nav>
+    <p>Sin reloj, sin puntaje. Se cuenta, se escribe y ya.</p>
+  </div>
+</footer>
+
+<script src="escritura/fichas.js"></script>
+<script src="escritura/numeros.js"></script>
+<script src="numero.js"></script>
+</body>
+</html>

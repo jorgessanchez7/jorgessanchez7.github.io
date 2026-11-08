@@ -271,7 +271,9 @@
     if (f.guia) {
       s += '<g fill="none" stroke="' + o.guia + '" stroke-width="1.6">' +
         '<path d="M0 ' + (f.cuerpo || 55) + " H" + W + '" stroke-dasharray="8 8"/>' +
-        '<path d="M0 ' + (f.linea || 110) + " H" + W + '"/></g>';
+        '<path d="M0 ' + (f.linea || 110) + " H" + W + '"/>' +
+        /* los números llevan además una raya arriba, donde empiezan */
+        (f.techo ? '<path d="M0 ' + f.techo + " H" + W + '"/>' : "") + "</g>";
     }
     /* dónde empieza el tramo en blanco: ahí el niño vuelve a arrancar
        solo, así que ahí va otra marca de salida aunque el trazo sea

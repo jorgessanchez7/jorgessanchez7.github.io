@@ -25,7 +25,8 @@
 
   var DESTINOS = {
     global:   { href: "global.html",   texto: "Método global" },
-    silabico: { href: "silabico.html", texto: "Método silábico" }
+    silabico: { href: "silabico.html", texto: "Método silábico" },
+    numeros:  { href: "numeros.html",  texto: "Los números" }
   };
 
   function param(n) {
@@ -197,7 +198,17 @@
 
     /* la muestra grande, solo en las vocales */
     var muestra = document.getElementById("muestra");
-    if (f.letra) {
+    if (f.numero && window.NUMERO_SVG) {
+      /* los números van dibujados con sus trazos, nunca con la fuente:
+         el 3 y el 4 de Quicksand no son los de la escuela */
+      muestra.innerHTML = '<button type="button" class="glifo-grande num" aria-label="' + f.palabra + '">' +
+        window.NUMERO_SVG(f.numero, f.tinta, 8) + "</button>" +
+        '<span class="palabra">' + f.palabra + "</span>";
+      var dice = function () { decir(f.palabra); };
+      muestra.querySelector(".glifo-grande").addEventListener("click", dice);
+      muestra.querySelector(".palabra").addEventListener("click", dice);
+      muestra.hidden = false;
+    } else if (f.letra) {
       var html = '<button type="button" class="glifo-grande" style="color:' + f.tinta + '">' +
         f.letra + "</button>";
       if (f.dibujo) {

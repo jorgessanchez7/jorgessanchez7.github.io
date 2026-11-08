@@ -53,15 +53,17 @@
 <script src="escritura/fichas.js"></script>
 <script src="escritura/abecedario.js"></script>
 <script src="escritura/vocales.js"></script>
+<script src="escritura/numeros.js"></script>
 <script src="escritura/dibujo.js"></script>
 <script src="plana.js"></script>
 <script>
 (function () {
   "use strict";
   var GRUPOS = [
-    { titulo: "Los trazos, antes de las letras", prueba: function (p) { return !/^vocal-|-[12]$/.test(p.id); } },
+    { titulo: "Los trazos, antes de las letras", prueba: function (p) { return !/^vocal-|^numero-|^contar-|-[12]$/.test(p.id); } },
     { titulo: "Las vocales",                     prueba: function (p) { return /^vocal-/.test(p.id); } },
-    { titulo: "Las letras",                      prueba: function (p) { return /-[12]$/.test(p.id); } }
+    { titulo: "Las letras",                      prueba: function (p) { return /-[12]$/.test(p.id); } },
+    { titulo: "Los números",                     prueba: function (p) { return /^(numero|contar)-/.test(p.id); } }
   ];
   var caja = document.getElementById("listas");
   var todas = window.PLANAS.catalogo();

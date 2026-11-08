@@ -463,3 +463,128 @@ h3.para-papel {
 }
 
 .barra .btn.papel { padding: 7px 15px; font-size: .88rem; }
+
+/* ============================================================
+   Los números
+   El número va siempre DIBUJADO con sus trazos (un <svg>), nunca
+   en texto: la fuente hace el 3 y el 4 distintos de la escuela.
+   ============================================================ */
+
+.glifo-grande.num { padding: 0; width: 1.05em; }
+.glifo-grande.num svg { width: 100%; height: auto; display: block; }
+
+/* el número grande y su palabra */
+.clave-numero { grid-template-columns: auto minmax(0, 1fr); padding: 22px 30px; }
+.num-grande {
+  border: 0;
+  background: none;
+  padding: 0 10px;
+  cursor: pointer;
+  width: clamp(110px, 16vw, 170px);
+  transition: transform .14s ease;
+}
+.clave-numero .num-grande:has(svg[viewBox^="30"]) { width: clamp(190px, 28vw, 300px); }
+.num-grande svg { width: 100%; height: auto; display: block; }
+.num-grande:hover { transform: scale(1.05); }
+.num-grande.sonando { transform: scale(1.08); }
+.clave-numero .palabra-clave { color: var(--letra); }
+
+/* las cosas para contar: de a cinco por fila, como el marco */
+.contadero {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 120px));
+  gap: 14px;
+  justify-content: start;
+}
+.cosa {
+  position: relative;
+  border: 3px solid transparent;
+  background: var(--letra-suave);
+  border-radius: 18px;
+  padding: 10px 10px 38px;
+  cursor: pointer;
+  transition: transform .14s ease, border-color .14s ease;
+}
+.cosa svg { width: 100%; height: auto; display: block; }
+.cosa:hover { transform: translateY(-3px); }
+.cosa.contada { border-color: var(--letra); background: #fff; cursor: default; }
+.cosa.contada:hover { transform: none; }
+.cosa .cual {
+  position: absolute;
+  left: 0; right: 0; bottom: 6px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+}
+.cosa .cual svg { height: 100%; width: auto; }
+
+.cuenta-fin {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 20px;
+  padding: 14px 22px;
+  background: var(--letra-suave);
+  border-radius: 18px;
+  width: fit-content;
+  cursor: pointer;
+  font-family: "Quicksand", "Trebuchet MS", sans-serif;
+  font-size: clamp(1.8rem, 4.6vw, 2.7rem);
+  font-weight: 700;
+  color: #4a4038;
+}
+.cuenta-fin[hidden] { display: none; }
+.cuenta-fin .num-fin { height: 1.6em; width: auto; }
+.cuenta-fin.sonando { outline: 3px solid var(--letra); }
+.plato-vacio { width: min(320px, 100%); }
+.plato-vacio svg { width: 100%; display: block; }
+
+/* el marco de diez */
+.marco {
+  display: block;
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  width: min(460px, 100%);
+}
+.marco svg { width: 100%; height: auto; display: block; }
+.marco.sonando { transform: scale(1.02); }
+
+/* la fila de los números, del 0 al 10, en línea como una regla */
+.fila-numeros {
+  display: grid;
+  grid-template-columns: repeat(11, minmax(0, 1fr));
+  gap: 6px;
+}
+.casilla {
+  border: 2px solid #e3d4bd;
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px 4px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  transition: transform .14s ease;
+}
+.casilla svg { height: clamp(26px, 5vw, 52px); width: auto; display: block; }
+.casilla:hover { transform: translateY(-3px); }
+.casilla.despues { opacity: .45; }
+.casilla.actual { background: var(--letra); border-color: var(--letra); }
+.casilla.sonando { outline: 3px solid var(--letra); outline-offset: 2px; }
+
+@media (max-width: 700px) {
+  .clave-numero { grid-template-columns: 1fr; justify-items: start; }
+  .contadero { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+  .cosa { padding: 6px 6px 30px; border-radius: 12px; }
+  .cosa .cual { height: 22px; }
+  .fila-numeros { gap: 3px; }
+  .casilla { padding: 6px 2px; border-radius: 8px; }
+}
+
+/* la tarjeta de un número en la lista */
+.numero-ficha .vista { display: flex; align-items: center; justify-content: center; gap: 14px; }
+.numero-ficha .vista svg.num-dibujado { height: 70px; width: auto; }
+.numero-ficha .vista .mini-cosa { width: 46px; height: 46px; }
+.numero-ficha .vista .mini-cosa svg { width: 100%; height: 100%; display: block; }
+.numero-ficha h3 em { font-style: normal; color: var(--suave); font-weight: 600; }
