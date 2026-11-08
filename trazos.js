@@ -39,6 +39,14 @@
      tres hojas de una letra se reparten en dos: letra + sílabas, y
      frases aparte, que ocupan el ancho entero del papel. */
   function planaDe(id) {
+    /* las figuras no tienen hoja propia: van de a cuatro en dos hojas
+       (figuras-1 y figuras-2), y cada una abre la de su grupo */
+    var fg = /^figura-(.+)$/.exec(id);
+    if (fg && window.FIGURAS) {
+      var g = 1;
+      window.FIGURAS.forEach(function (F) { if (F.id === fg[1]) g = F.grupo; });
+      return "pdf/plana-figuras-" + g + ".pdf";
+    }
     var m = /^(letra|silabas|frases)-(.+)$/.exec(id);
     if (!m) return "pdf/plana-" + id + ".pdf";
     return "pdf/plana-" + m[2] + (m[1] === "frases" ? "-2" : "-1") + ".pdf";
