@@ -6,17 +6,17 @@
    letras y el número escrito. Y una cuarta que es la que más le
    cuesta a Chepe: escribirlo.
 
-   El orden es 1, 2, … 9, después el 0 y al final el 10: cada número
-   es el anterior más uno, y el 10 necesita el 0 ya visto, porque se
-   escribe con el 1 y el 0.
+   El orden es 1, 2, … 9, después el 0, el 10 y del 11 al 20: cada
+   número es el anterior más uno, y el 10 necesita el 0 ya visto,
+   porque se escribe con el 1 y el 0.
 
    LA FORMA DE LOS NÚMEROS. Se dibujan con trazos, igual que las
    letras, y no con la fuente: Quicksand hace el 3 con la parte de
    arriba plana (como una z) y el 4 cerrado, y en la escuela los
    enseñan con dos barrigas y abierto. El padre escogió la forma de
-   la escuela. Mientras llega la foto de cómo los escribe la
-   profesora, van con la forma escolar más común; si la de ella es
-   distinta, se cambia aquí y se regeneran los PDF.
+   la escuela y la confirmó el 8 nov: el 1 es un palito, el 3 lleva
+   dos barrigas, el 4 va abierto y el 7 lleva la rayita en la mitad.
+   Si algo cambia, se cambia aquí y se regeneran los PDF.
 
    Por eso en las páginas de números el número NUNCA va en texto:
    va dibujado con estos mismos trazos (DIBUJO de abajo). Si fuera
@@ -24,8 +24,9 @@
    ese es justo el problema de la «a» que ya se arregló una vez.
 
    Celda de 96 x 130, como las letras. El número va de y=40 a y=110
-   (la altura de los números en Quicksand es 0,70 em). El 10 va en
-   una celda de 150, como la rr.
+   (la altura de los números en Quicksand es 0,70 em). Del 10 al 20
+   van en una celda de 150, como la rr, armados con dos de los de una
+   cifra (ver armar()).
    ============================================================ */
 (function () {
   "use strict";
@@ -50,7 +51,9 @@
     "6": [ { d: "M64 45 C59 41 54 40 49 40 C36 40 29 54 29 75 C29 97 37 110 49 110 " +
                 "C61 110 69 102 69 90 C69 78 61 70 49 70 C40 70 32 76 29 84",
              ini: [64, 45], ang: 219 } ],
-    "7": [ { d: "M28 40 L70 40 L42 110", ini: [28, 40], ang: 0 } ],
+    /* el 7 con la rayita en la mitad: así lo escribe la profesora */
+    "7": [ { d: "M28 40 L70 40 L42 110", ini: [28, 40], ang: 0 },
+           { d: "M44 76 L68 76", ini: [44, 76], ang: 0, insignia: [-14, 0] } ],
     "8": [ { d: "M64 49 C61 43 55 40 48 40 C38 40 31 46 31 56 C31 66 39 71 48 74 " +
                 "C59 77 68 83 68 94 C68 104 59 110 48 110 C37 110 28 104 28 94 " +
                 "C28 83 37 77 48 74 C57 71 65 66 65 56 C65 53 65 51 64 49",
@@ -58,12 +61,51 @@
     "9": [ { d: "M66 50 C63 44 57 40 48 40 C37 40 29 48 29 58 C29 69 37 76 48 76 " +
                 "C58 76 66 69 66 56 L66 110",
              ini: [66, 50], ang: 244 } ],
-    "0": [ { d: "M48 40 " + CERO, ini: [48, 40], ang: 180 } ],
-    "10": [ { d: "M50 40 L50 110", ini: [50, 40], ang: 90 },
-            { d: "M98 40 C86 40 78 56 78 75 C78 94 86 110 98 110 " +
-                 "C110 110 118 94 118 75 C118 56 110 40 98 40",
-              ini: [98, 40], ang: 180 } ]
+    "0": [ { d: "M48 40 " + CERO, ini: [48, 40], ang: 180 } ]
   };
+
+  /* ---------- los de dos cifras se arman, no se dibujan ----------
+
+     Del 10 al 20 cada número es dos de los de arriba, uno al lado del
+     otro, centrados en una celda de 150. Así el 1 del 14 es exactamente
+     el mismo 1 del 1, y el 4 el mismo 4: no hay un dibujo nuevo que
+     aprender. CAJA es dónde empieza y termina cada número a lo ancho;
+     entre los dos van 12 de aire, y 28 detrás del 1, que es un palito
+     sin ancho y con 12 quedaría pegado. */
+
+  var CAJA = { "0": [28, 68], "1": [48, 48], "2": [29, 70], "3": [28, 68], "4": [28, 72],
+               "5": [28, 69], "6": [29, 69], "7": [28, 70], "8": [28, 68], "9": [29, 66] };
+
+  function correr(d, dx) {
+    /* los caminos solo usan M, L y C absolutos: van por pares x y */
+    var par = 0;
+    return d.replace(/-?\d+(\.\d+)?/g, function (n) {
+      var v = parseFloat(n);
+      var r = (par % 2 === 0) ? +(v + dx).toFixed(1) : v;
+      par++;
+      return String(r);
+    });
+  }
+
+  function armar(id) {
+    var a = id.charAt(0), b = id.charAt(1);
+    var ca = CAJA[a], cb = CAJA[b];
+    var aire = a === "1" ? 28 : 12;
+    var total = (ca[1] - ca[0]) + aire + (cb[1] - cb[0]);
+    var dxa = 75 - total / 2 - ca[0];
+    var dxb = dxa + ca[1] + aire - cb[0];
+    var out = [];
+    [[a, dxa], [b, dxb]].forEach(function (p) {
+      TRAZOS[p[0]].forEach(function (t) {
+        var c = { d: correr(t.d, p[1]), ini: [+(t.ini[0] + p[1]).toFixed(1), t.ini[1]], ang: t.ang };
+        if (t.insignia) c.insignia = t.insignia;
+        out.push(c);
+      });
+    });
+    return out;
+  }
+
+  for (var k = 10; k <= 20; k++) TRAZOS[String(k)] = armar(String(k));
 
   window.NUMEROS_TRAZOS = TRAZOS;
 
@@ -140,6 +182,17 @@
         '<circle cx="50" cy="50" r="26" fill="none" stroke="' + c.b + '" stroke-width="3"/>' +
         '<circle cx="41" cy="41" r="5" fill="' + h + '"/><circle cx="59" cy="41" r="5" fill="' + h + '"/>' +
         '<circle cx="41" cy="59" r="5" fill="' + h + '"/><circle cx="59" cy="59" r="5" fill="' + h + '"/>';
+    },
+    luna: function (papel) {
+      var c = tinta(papel, "#ffe08a", "#c9a227");
+      return '<path d="M62 12 C38 16 22 34 22 56 C22 76 38 90 58 90 C70 90 80 85 88 76 ' +
+        'C60 80 42 64 42 44 C42 30 50 18 62 12 Z" fill="' + c.r + '" stroke="' + c.b +
+        '" stroke-width="4" stroke-linejoin="round"/>';
+    },
+    huevo: function (papel) {
+      var c = tinta(papel, "#fdf6e3", "#c9a26b");
+      return '<path d="M50 10 C30 10 18 42 18 60 C18 79 32 92 50 92 C68 92 82 79 82 60 ' +
+        'C82 42 70 10 50 10 Z" fill="' + c.r + '" stroke="' + c.b + '" stroke-width="4"/>';
     }
   };
 
@@ -241,14 +294,14 @@
     { n: 7, palabra: "siete", objeto: "pez", cosas: "siete peces",
       banda: "#e0f2fe", tinta: "#0369a1",
       lead: "Seis y uno más: siete.",
-      pista: "Una raya derecha hacia la derecha y, sin levantar el lápiz, baja en diagonal.",
+      pista: "Una raya derecha hacia la derecha y, sin levantar el lápiz, baja en diagonal. Después la rayita de la mitad.",
       cuentas: [7, 5, 6, 4, 7, 3],
       aviso: [
         "Una raya derecha de izquierda a derecha y, sin levantar el lápiz, baja en diagonal " +
-        "hasta el renglón.",
-        "En Colombia mucha gente le pone una rayita en la mitad al 7. En la escuela de él casi " +
-        "seguro no la usan; mejor sin rayita, como en la escuela, para que no vea dos sietes " +
-        "distintos."
+        "hasta el renglón. Después se levanta el lápiz y va la rayita que lo cruza en la mitad.",
+        "La rayita es la de la escuela de él, y también la de la casa. En los libros y en la " +
+        "pantalla el 7 sale casi siempre sin ella: es el mismo número, y vale la pena decírselo " +
+        "cuando lo vea."
       ] },
 
     { n: 8, palabra: "ocho", objeto: "hoja", cosas: "ocho hojas",
@@ -304,6 +357,118 @@
         "los números se arman con estos diez dibujos.",
         "«diez» todavía no se puede leer: termina en z, y la z al final de la sílaba no se ha " +
         "dado. La lee usted."
+      ] },
+
+    /* ---------- del 11 al 20 ----------
+
+       Todos son «diez y algo más», y así se muestran: el primer marco
+       lleno y lo que sobra en el segundo. El número lo dice igual: el 1
+       de la izquierda es el diez, el de la derecha lo que sobra.
+
+       Los nombres no ayudan parejo. Del 16 al 19 el nombre dice la
+       cuenta (dieci-séis = diez y seis). Del 11 al 15 no: once, doce,
+       trece, catorce y quince se aprenden de memoria. Por eso el aviso
+       de cada uno lo dice distinto. */
+
+    { n: 11, palabra: "once", objeto: "luna", cosas: "once lunas",
+      banda: "#fdf1d8", tinta: "#b5832a",
+      lead: "Diez y uno más: once.",
+      pista: "Dos palitos: el 1 del diez y el 1 que sobra, con espacio en medio.",
+      aviso: [
+        "Once es diez y uno: el marco de arriba lleno, y uno solo en el de abajo. Se escribe con " +
+        "dos palitos iguales: el primero es el diez, el segundo el uno que sobra. Que quede " +
+        "espacio entre los dos, si no parece un 11 de un solo palito gordo.",
+        "El nombre no lo dice: «once» no suena a «diez y uno». Del 11 al 15 los nombres se " +
+        "aprenden de memoria; desde el 16 el nombre ayuda."
+      ] },
+
+    { n: 12, palabra: "doce", objeto: "huevo", cosas: "doce huevos",
+      banda: "#e0eef6", tinta: "#1f6f99",
+      lead: "Diez y dos más: doce. Una docena.",
+      pista: "Primero el 1, que es el diez. Después el 2, a la derecha.",
+      aviso: [
+        "Doce es diez y dos. Se escribe el 1 primero y el 2 después, a la derecha.",
+        "El error típico de aquí al 19 es escribirlo al revés: 21 en vez de 12. En la escuela " +
+        "le va a pasar más, porque en inglés «sixteen» empieza diciendo el seis aunque se " +
+        "escriba con el 1 primero. La regla que sirve en los dos idiomas: el diez va primero, a " +
+        "la izquierda, como el marco lleno va primero.",
+        "Doce huevos son una docena: si hay un cartón en la nevera, ahí está el doce de verdad."
+      ] },
+
+    { n: 13, palabra: "trece", objeto: "manzana", cosas: "trece manzanas", leeLaPalabra: false,
+      banda: "#fde4e4", tinta: "#b42318",
+      lead: "Diez y tres más: trece.",
+      pista: "Primero el 1. Después el 3, con sus dos barrigas mirando a la derecha.",
+      aviso: [
+        "Trece es diez y tres: el 1 y después el 3.",
+        "«trece» todavía no se puede leer: lleva tr, como «tres». La lee usted. Vale la pena " +
+        "decirle que «tres» y «trece» se parecen porque los dos tienen el tres adentro."
+      ] },
+
+    { n: 14, palabra: "catorce", objeto: "pelota", cosas: "catorce pelotas",
+      banda: "#dcefe6", tinta: "#1b7a5a",
+      lead: "Diez y cuatro más: catorce.",
+      pista: "Primero el 1. Después el 4: la silla y el palito largo.",
+      aviso: [
+        "Catorce es diez y cuatro: el 1 y después el 4, abierto arriba y en dos trazos.",
+        "Ya la puede leer él: ca-tor-ce, con lo de «or» y «ce» que ya vio en las lecciones."
+      ] },
+
+    { n: 15, palabra: "quince", objeto: "estrella", cosas: "quince estrellas",
+      banda: "#fbf3c8", tinta: "#8a6d0b",
+      lead: "Diez y cinco más: quince. Tres manos.",
+      pista: "Primero el 1. Después el 5: baja, barriga, y el sombrero de último.",
+      aviso: [
+        "Quince es diez y cinco: un marco lleno y media fila del otro. Son tres manos.",
+        "Es el último de los que se aprenden de memoria. Desde el 16 el nombre dice la cuenta."
+      ] },
+
+    { n: 16, palabra: "dieciséis", objeto: "flor", cosas: "dieciséis flores",
+      banda: "#fce7f3", tinta: "#be185d",
+      lead: "Diez y seis: dieciséis. El nombre lo dice.",
+      pista: "Primero el 1. Después el 6, que baja como tobogán y cierra la rueda abajo.",
+      aviso: [
+        "Aquí el nombre ayuda: dieci-séis es «diez y seis», dicho rápido. Vale la pena decirlo " +
+        "despacio las dos maneras para que lo oiga: diez y seis, dieciséis.",
+        "Y se escribe en el mismo orden en que se dice: primero el diez (el 1) y después el seis."
+      ] },
+
+    { n: 17, palabra: "diecisiete", objeto: "pez", cosas: "diecisiete peces",
+      banda: "#e0f2fe", tinta: "#0369a1",
+      lead: "Diez y siete: diecisiete.",
+      pista: "Primero el 1. Después el 7, con su rayita en la mitad.",
+      aviso: [
+        "Dieci-siete: diez y siete. Primero el 1, después el 7 con la rayita.",
+        "Ojo con el 1 y el 7 juntos: sin la rayita se parecen. Por eso la rayita ayuda."
+      ] },
+
+    { n: 18, palabra: "dieciocho", objeto: "hoja", cosas: "dieciocho hojas",
+      banda: "#ecfccb", tinta: "#4d7c0f",
+      lead: "Diez y ocho: dieciocho.",
+      pista: "Primero el 1. Después el 8: la s y de vuelta para arriba.",
+      aviso: [
+        "Dieci-ocho: diez y ocho. Primero el 1, después el 8.",
+        "En el marco de abajo faltan solo dos para llenarlo: dieciocho y dos más son veinte."
+      ] },
+
+    { n: 19, palabra: "diecinueve", objeto: "corazon", cosas: "diecinueve corazones",
+      banda: "#f1e4f0", tinta: "#7d3f78",
+      lead: "Diez y nueve: diecinueve. Falta uno para el veinte.",
+      pista: "Primero el 1. Después el 9: la rueda hacia la izquierda y el palito que baja.",
+      aviso: [
+        "Dieci-nueve: diez y nueve. Primero el 1, después el 9.",
+        "Al segundo marco le falta un solo hueco, igual que al nueve le faltaba uno para el diez."
+      ] },
+
+    { n: 20, palabra: "veinte", objeto: "boton", cosas: "veinte botones",
+      banda: "#e6f2df", tinta: "#4f7a2f",
+      lead: "Diecinueve y uno más: veinte. Los dos marcos llenos.",
+      pista: "Primero el 2. Después el 0, la rueda alta, a la derecha.",
+      aviso: [
+        "Veinte son dos dieces: los dos marcos llenos, las manos y los pies. Se escribe con el 2 " +
+        "y el 0: el 2 dice cuántos dieces hay, y el 0 que no sobra ninguno.",
+        "Es la misma idea del 10 (un diez y nada más) un paso más arriba. Si eso se entiende, " +
+        "el 30, el 40 y los demás vienen solos."
       ] }
   ];
 
@@ -311,7 +476,13 @@
     N.id = String(N.n);
     N.orden = i + 1;
     N.trazos = TRAZOS[N.id];
-    N.ancho = N.n === 10 ? 150 : 96;
+    N.ancho = N.n >= 10 ? 150 : 96;
+    /* las cantidades de la hoja «Cuenta y escribe» de los de dos cifras:
+       el número varias veces, mezclado con los anteriores */
+    if (!N.cuentas) {
+      var n = N.n;
+      N.cuentas = [n, n - 2, n - 1, n - 3, n, n - 4];
+    }
   });
 
   window.NUMEROS = NUMEROS;
@@ -333,7 +504,7 @@
         titulo: "El número " + N.palabra,
         pista: N.pista,
         banda: N.banda, tinta: N.tinta,
-        celda: [N.ancho, 130], repeticiones: N.n === 10 ? 5 : 7, renglones: 3,
+        celda: [N.ancho, 130], repeticiones: N.n >= 10 ? 5 : 7, renglones: 3,
         guia: true, cuerpo: 75, techo: 40,
         trazos: N.trazos
       });
@@ -350,8 +521,9 @@
     var t = TRAZOS[id];
     if (!t) return "";
     var g = grosor || 7;
-    var s = '<svg class="' + (clase || "num-dibujado") + '" viewBox="' + (id === "10" ? 30 : 20) +
-      " 33 " + (id === "10" ? 108 : 56) + ' 84" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">';
+    var dos = id.length > 1;
+    var s = '<svg class="' + (clase || "num-dibujado") + '" viewBox="' + (dos ? "22 33 106" : "20 33 56") +
+      ' 84" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">';
     for (var i = 0; i < t.length; i++) {
       s += '<path d="' + t[i].d + '" fill="none" stroke="' + (color || "currentColor") +
         '" stroke-width="' + g + '" stroke-linecap="round" stroke-linejoin="round"/>';

@@ -100,6 +100,20 @@
       });
     });
 
+    /* las figuras: dos hojas de cuatro, un renglón por figura (con dos no cabían en la hoja) */
+    if (window.FIGURAS) {
+      [1, 2].forEach(function (g) {
+        var mias = window.FIGURAS.filter(function (F) { return F.grupo === g; });
+        out.push({
+          id: "figuras-" + g,
+          titulo: "Las figuras · " + mias.map(function (F) { return F.es; }).join(", "),
+          pista: mias.map(function (F) { return F.es + " (" + F.en + ")"; }).join(" · ") +
+            ". Empieza en el punto y sigue la flecha.",
+          bloques: mias.map(function (F) { return { ficha: "figura-" + F.id, filas: 1 }; })
+        });
+      });
+    }
+
     LETRAS.forEach(function (L) {
       var h = L.hojas || [];
       /* La hoja se llena hasta seis renglones. Casi todas las letras traen
@@ -215,15 +229,18 @@
     var n = repeticiones(f);
     for (var i = 0; i < 4; i++) filas.push({ f: f, linea: null, reps: n, celdas: patron(n, i === 0) });
 
+    /* dieciséis, diecisiete, diecinueve: con dos por renglón la letra
+       quedaría a la mitad. Esas van una por renglón: modelo, repasar,
+       hacerla sola. */
     var w = D.ancho(N.palabra);
-    var reps = w <= 200 ? 3 : 2;
+    var reps = w <= 200 ? 3 : w <= 330 ? 2 : 1;
     var pf = {
       celda: [Math.floor(ANCHO_UNIDADES / reps), 150], guia: true, tamano: 100,
       linea: 110, cuerpo: 55, tinta: NEGRO.tinta, lineas: [N.palabra], trazos: []
     };
-    var pat = reps === 3
-      ? [["modelo", "punteado", "vacio"], ["punteado", "punteado", "vacio"]]
-      : [["modelo", "punteado"], ["punteado", "vacio"], ["punteado", "vacio"]];
+    var pat = reps === 3 ? [["modelo", "punteado", "vacio"], ["punteado", "punteado", "vacio"]]
+      : reps === 2 ? [["modelo", "punteado"], ["punteado", "vacio"], ["punteado", "vacio"]]
+      : [["modelo"], ["punteado"], ["vacio"]];
     pat.forEach(function (c) { filas.push({ f: pf, linea: N.palabra, reps: reps, celdas: c }); });
     return filas;
   }
@@ -240,30 +257,46 @@
 
   var CELDA_MARCO = 50;
 
-  function filaContar(q, N, punteado) {
-    var W = ANCHO_UNIDADES, x0 = 6, y0 = 10, c = CELDA_MARCO;
-    var dibujo = (window.NUMEROS_OBJETOS || {})[N.objeto];
-    var s = '<svg viewBox="0 0 ' + W + ' 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">';
-    /* el marco */
-    s += '<g fill="none" stroke="#8f8f8f" stroke-width="2">';
+  /* Del 11 al 20 van dos marcos, lado a lado: el primero se llena antes
+     de pasar al segundo. Eso es justo lo que dice el número: un diez
+     lleno y lo que sobra. Para que quepan con el espacio de escribir
+     (que para dos cifras es más ancho) las casillas se achican. */
+  function marcoPapel(x0, y0, c, desde, q, dibujo) {
+    var s = '<g fill="none" stroke="#8f8f8f" stroke-width="2">';
     s += '<rect x="' + x0 + '" y="' + y0 + '" width="' + 5 * c + '" height="' + 2 * c + '" rx="4"/>';
     for (var k = 1; k < 5; k++) s += '<path d="M' + (x0 + k * c) + " " + y0 + " V" + (y0 + 2 * c) + '"/>';
     s += '<path d="M' + x0 + " " + (y0 + c) + " H" + (x0 + 5 * c) + '"/></g>';
-    /* las cosas, primero la fila de arriba */
-    for (var i = 0; i < q; i++) {
+    var esc = (c - 12) / 100;
+    for (var i = 0; i < Math.min(10, q - desde); i++) {
       var cx = x0 + (i % 5) * c, cy = y0 + Math.floor(i / 5) * c;
-      s += '<g transform="translate(' + (cx + 6) + "," + (cy + 6) + ') scale(.38)">' +
+      s += '<g transform="translate(' + (cx + 6) + "," + (cy + 6) + ") scale(" + esc.toFixed(3) + ')">' +
         (dibujo ? dibujo(true) : '<circle cx="50" cy="50" r="30" fill="#222"/>') + "</g>";
     }
+    return s;
+  }
+
+  function filaContar(q, N, punteado) {
+    var W = ANCHO_UNIDADES, x0 = 6, y0 = 10;
+    var dos = N.n > 10;
+    var c = dos ? 36 : CELDA_MARCO;
+    var dibujo = (window.NUMEROS_OBJETOS || {})[N.objeto];
+    var s = '<svg viewBox="0 0 ' + W + ' 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">';
+    /* el marco (o los dos), con las cosas: primero la fila de arriba */
+    s += marcoPapel(x0, y0 + (dos ? 14 : 0), c, 0, q, dibujo);
+    var fin = x0 + 5 * c;
+    if (dos) {
+      s += marcoPapel(fin + 14, y0 + 14, c, 10, q, dibujo);
+      fin += 14 + 5 * c;
+    }
     /* el renglón para escribir: raya arriba, la de la mitad punteada y el piso */
-    var xa = x0 + 5 * c + 40;
+    var xa = fin + (dos ? 24 : 40);
     s += '<g fill="none" stroke="' + NEGRO.guia + '" stroke-width="1.6">' +
       '<path d="M' + xa + " 40 H" + W + '"/>' +
       '<path d="M' + xa + " 75 H" + W + '" stroke-dasharray="8 8"/>' +
       '<path d="M' + xa + " 110 H" + W + '"/></g>';
     if (punteado) {
       var t = (window.NUMEROS_TRAZOS || {})[String(q)] || [];
-      s += '<g transform="translate(' + (xa + 20) + ',0)">';
+      s += '<g transform="translate(' + (xa + (q >= 10 ? 0 : 20)) + ',0)">';
       t.forEach(function (tr) {
         s += '<path d="' + tr.d + '" fill="none" stroke="' + NEGRO.punteado + '" stroke-width="' +
           NEGRO.finura + '" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="' + NEGRO.raya + '"/>' +

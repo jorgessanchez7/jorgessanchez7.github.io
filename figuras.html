@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, noimageindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Las figuras · Números y figuras</title>
+<meta name="description" content="Las figuras geométricas, con su nombre en español y en inglés.">
+<link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="lectura.css">
+<link rel="stylesheet" href="escritura.css">
+</head>
+<body>
+
+<header class="hero jorge">
+  <div class="envoltura">
+    <a class="volver" href="numeros.html">&#8592; Números y figuras</a>
+    <p class="eyebrow">Para Nelson · en español y en inglés</p>
+    <h1>Las figuras</h1>
+    <p class="lead">Cada figura con su nombre en los dos idiomas. Se tocan y se oyen.
+       Y después, a buscarlas en la casa.</p>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="envoltura">
+    <h2>Las primeras cuatro</h2>
+    <p class="sub">Las que se ven en todas partes. Toque el nombre en español o en inglés para oírlo.</p>
+    <div class="figuras" id="grupo-1"></div>
+  </div>
+</section>
+
+<section class="rutina">
+  <div class="envoltura">
+    <h2>Cuatro más</h2>
+    <p class="sub">Cuando las primeras ya le suenen. No hay afán.</p>
+    <div class="figuras" id="grupo-2"></div>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <h2>Para trazarlas</h2>
+    <p class="sub">Igual que las rayas y las ruedas de los trazos: en pantalla con el dedo, y en papel con crayola.</p>
+    <div class="hojas" id="trazar"></div>
+    <h3 class="para-papel">Para hacerlas con crayola</h3>
+    <p class="sub">Dos hojas carta, cuatro figuras en cada una.</p>
+    <div class="botonera">
+      <a class="btn papel" href="pdf/plana-figuras-1.pdf" download>Las primeras cuatro (PDF)</a>
+      <a class="btn papel" href="pdf/plana-figuras-2.pdf" download>Cuatro más (PDF)</a>
+    </div>
+  </div>
+</section>
+
+<section class="rutina">
+  <div class="envoltura">
+    <div class="nota verde">
+      <h3>Cómo usarla</h3>
+      <p><strong>Una o dos figuras a la vez.</strong> Se toca, se oye, y se busca en la casa: el plato
+         es un círculo, la ventana un cuadrado. Lo que se encuentra en la casa es lo que se queda.</p>
+      <p><strong>Primero en español, después en inglés.</strong> «Círculo… y en inglés, circle.» Los
+         dos nombres son de la misma cosa, igual que mamá le dice de una manera y la profesora de
+         otra. No hay que escoger.</p>
+      <p><strong>Sin preguntas de examen.</strong> Si él solo dice «círculo» al ver un plato, eso ya es
+         todo. Si quiere rayar por encima de la figura o cambiar de color cada dos segundos, también
+         es el ejercicio.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="envoltura">
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="numeros.html">Números y figuras</a>
+      <a href="lecciones.html">Lecciones de lectura</a>
+    </nav>
+    <p>Sin reloj, sin puntaje. Se toca, se oye y ya.</p>
+  </div>
+</footer>
+
+<script src="escritura/fichas.js"></script>
+<script src="escritura/figuras.js"></script>
+<script src="lecciones.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  /* la voz: español para el nombre de acá, inglés para el de allá */
+  function decir(txt, lang, nodo) {
+    if (nodo) {
+      nodo.classList.add("sonando");
+      setTimeout(function () { nodo.classList.remove("sonando"); }, 1200);
+    }
+    if (!window.speechSynthesis) return;
+    try {
+      speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(txt);
+      u.lang = lang;
+      u.rate = 0.8;
+      var vs = speechSynthesis.getVoices() || [];
+      var pref = lang.slice(0, 2);
+      for (var i = 0; i < vs.length; i++) {
+        if (vs[i].lang.toLowerCase().indexOf(pref) === 0) { u.voice = vs[i]; break; }
+      }
+      speechSynthesis.speak(u);
+    } catch (x) {}
+  }
+
+  (window.FIGURAS || []).forEach(function (F) {
+    var caja = document.getElementById("grupo-" + F.grupo);
+    var t = document.createElement("div");
+    t.className = "figura";
+    t.style.setProperty("--letra", F.tinta);
+    t.style.setProperty("--letra-suave", F.banda);
+    t.innerHTML =
+      '<button type="button" class="fig-dibujo" aria-label="' + F.es + '">' + window.FIGURA_SVG(F) + "</button>" +
+      '<button type="button" class="fig-es" lang="es">' + F.es + "</button>" +
+      '<button type="button" class="fig-en" lang="en">' + F.en + "</button>" +
+      '<p class="fig-donde"><span lang="es">' + F.dondeEs + '</span><span lang="en">' + F.dondeEn + "</span></p>";
+    var dib = t.querySelector(".fig-dibujo"), es = t.querySelector(".fig-es"), en = t.querySelector(".fig-en");
+    dib.addEventListener("click", function () { decir(F.es, "es-MX", dib); });
+    es.addEventListener("click", function () { decir(F.es, "es-MX", es); });
+    en.addEventListener("click", function () { decir(F.en, "en-US", en); });
+    caja.appendChild(t);
+  });
+
+  LECCIONES.rejilla("trazar", "figuras", "figuras");
+})();
+</script>
+</body>
+</html>

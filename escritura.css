@@ -483,7 +483,7 @@ h3.para-papel {
   width: clamp(110px, 16vw, 170px);
   transition: transform .14s ease;
 }
-.clave-numero .num-grande:has(svg[viewBox^="30"]) { width: clamp(190px, 28vw, 300px); }
+.num-grande.dos { width: clamp(190px, 28vw, 300px); }
 .num-grande svg { width: 100%; height: auto; display: block; }
 .num-grande:hover { transform: scale(1.05); }
 .num-grande.sonando { transform: scale(1.08); }
@@ -572,6 +572,11 @@ h3.para-papel {
 .casilla.despues { opacity: .45; }
 .casilla.actual { background: var(--letra); border-color: var(--letra); }
 .casilla.sonando { outline: 3px solid var(--letra); outline-offset: 2px; }
+.fila-numeros.dos-filas { grid-template-columns: repeat(10, minmax(0, 1fr)); }
+
+/* la raya que separa el primer diez en el conteo del 11 al 20 */
+.separa-diez { grid-column: 1 / -1; border-top: 3px dashed var(--letra); opacity: .5; margin: 4px 0; }
+.marco:has(svg[viewBox^="0 0 640"]) { width: min(920px, 100%); }
 
 @media (max-width: 700px) {
   .clave-numero { grid-template-columns: 1fr; justify-items: start; }
@@ -588,3 +593,54 @@ h3.para-papel {
 .numero-ficha .vista .mini-cosa { width: 46px; height: 46px; }
 .numero-ficha .vista .mini-cosa svg { width: 100%; height: 100%; display: block; }
 .numero-ficha h3 em { font-style: normal; color: var(--suave); font-weight: 600; }
+
+/* ============================================================
+   Las figuras (para Nelson): la figura grande, el nombre en
+   español grande y el de inglés debajo, más chico y en otro tono
+   para que se vea que son dos idiomas.
+   ============================================================ */
+.figuras { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.figura {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: var(--sombra);
+  padding: 18px 14px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+}
+.fig-dibujo {
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  width: 100%;
+  transition: transform .14s ease;
+}
+.fig-dibujo svg { width: 100%; height: 130px; display: block; }
+.fig-dibujo:hover, .fig-dibujo.sonando { transform: scale(1.05); }
+.fig-es, .fig-en {
+  font-family: "Quicksand", "Trebuchet MS", sans-serif;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  border-radius: 12px;
+  padding: 2px 12px;
+}
+.fig-es { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; color: var(--letra); }
+.fig-en { font-size: clamp(1.15rem, 2.2vw, 1.5rem); font-weight: 600; color: #5d7a88; }
+.fig-en::before { content: "EN"; font-size: .55em; font-weight: 700; letter-spacing: .08em;
+  color: #fff; background: #5d7a88; border-radius: 6px; padding: 2px 5px; margin-right: 8px;
+  vertical-align: middle; }
+.fig-es.sonando, .fig-en.sonando { background: var(--letra-suave); }
+.fig-donde { margin: 8px 0 0; font-size: .82rem; color: var(--suave); display: flex; flex-direction: column; gap: 2px; }
+.fig-donde span[lang="en"] { font-style: italic; }
+
+@media (max-width: 900px) { .figuras { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 420px) { .figuras { gap: 10px; } .fig-dibujo svg { height: 96px; } }
+.numero-ficha .vista svg.mini-fig { height: 60px; width: auto; }
+.glifo-grande.fig { width: 1.3em; padding: 0; }
+.glifo-grande.fig svg { width: 100%; height: auto; display: block; }
+.muestra .palabra .en { color: #5d7a88; font-weight: 600; }

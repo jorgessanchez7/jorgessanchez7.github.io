@@ -26,7 +26,8 @@
   var DESTINOS = {
     global:   { href: "global.html",   texto: "Método global" },
     silabico: { href: "silabico.html", texto: "Método silábico" },
-    numeros:  { href: "numeros.html",  texto: "Los números" }
+    numeros:  { href: "numeros.html",  texto: "Números y figuras" },
+    figuras:  { href: "figuras.html",  texto: "Las figuras" }
   };
 
   function param(n) {
@@ -162,6 +163,22 @@
     } catch (x) {}
   }
 
+  /* el nombre en inglés de las figuras */
+  function decirEn(txt) {
+    if (!window.speechSynthesis) return;
+    try {
+      speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(txt);
+      u.lang = "en-US";
+      u.rate = 0.82;
+      var vs = speechSynthesis.getVoices() || [];
+      for (var i = 0; i < vs.length; i++) {
+        if (/^en/i.test(vs[i].lang)) { u.voice = vs[i]; break; }
+      }
+      speechSynthesis.speak(u);
+    } catch (x) {}
+  }
+
   /* ---------- armar la página ---------- */
 
   function hermanas() {
@@ -198,7 +215,21 @@
 
     /* la muestra grande, solo en las vocales */
     var muestra = document.getElementById("muestra");
-    if (f.numero && window.NUMERO_SVG) {
+    if (f.figura && window.FIGURAS) {
+      /* la figura rellena y sus dos nombres; cada nombre suena en su idioma */
+      var F = null;
+      window.FIGURAS.forEach(function (x) { if (x.id === f.figura) F = x; });
+      muestra.innerHTML = '<button type="button" class="glifo-grande fig" aria-label="' + F.es + '">' +
+        window.FIGURA_SVG(F) + "</button>" +
+        '<span class="palabra">' + F.es + ' <span class="en" lang="en">· ' + F.en + "</span></span>";
+      muestra.querySelector(".glifo-grande").addEventListener("click", function () { decir(F.es); });
+      muestra.querySelector(".palabra").addEventListener("click", function () { decir(F.es); });
+      muestra.querySelector(".en").addEventListener("click", function (e) {
+        e.stopPropagation();
+        decirEn(F.en);
+      });
+      muestra.hidden = false;
+    } else if (f.numero && window.NUMERO_SVG) {
       /* los números van dibujados con sus trazos, nunca con la fuente:
          el 3 y el 4 de Quicksand no son los de la escuela */
       muestra.innerHTML = '<button type="button" class="glifo-grande num" aria-label="' + f.palabra + '">' +

@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, noimageindex">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Los números · Plan en casa</title>
-<meta name="description" content="Del 1 al 10: contar, decir el nombre y escribir cada número.">
+<title>Números y figuras · Plan en casa</title>
+<meta name="description" content="Del 0 al 20: contar, decir el nombre y escribir cada número.">
 <link rel="icon" href="icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,9 +19,9 @@
   <div class="envoltura">
     <a class="volver" href="index.html">&#8592; Inicio</a>
     <p class="eyebrow">Contar, nombrar y escribir</p>
-    <h1>Los números</h1>
-    <p class="lead">Un número por lección. En cada una, las tres cosas de siempre: contar cuántas
-       hay, decir el nombre del número y escribirlo.</p>
+    <h1>Números y figuras</h1>
+    <p class="lead">Los números del 0 al 20, uno por lección: contar cuántas hay, decir el nombre
+       del número y escribirlo. Y las figuras, con su nombre en español y en inglés.</p>
   </div>
 </header>
 
@@ -29,14 +29,39 @@
 
 <section>
   <div class="envoltura">
-    <h2>Las lecciones</h2>
+    <h2>Del cero al diez</h2>
     <p class="sub">Del 1 al 9, después el 0 y al final el 10. Cada número es el anterior y uno
-       más; el 10 va de último porque se escribe con el 1 y el 0.</p>
+       más. El cero va después del nueve y no antes del uno porque se cuenta desde uno, y
+       el 10 va de último porque se escribe con el 1 y el 0.</p>
     <div class="hojas" id="numeros"></div>
   </div>
 </section>
 
+<section class="rutina">
+  <div class="envoltura">
+    <h2>Del once al veinte</h2>
+    <p class="sub">Todos son «diez y algo más»: un marco lleno y lo que sobra en el segundo. El
+       número lo dice igual: el 1 de la izquierda es el diez. Del 11 al 15 los nombres se aprenden
+       de memoria; desde el 16 el nombre ayuda (dieci-séis es diez y seis).</p>
+    <div class="hojas" id="numeros-2"></div>
+  </div>
+</section>
+
 <section>
+  <div class="envoltura">
+    <h2>Las figuras</h2>
+    <p class="sub">Ocho figuras con su nombre en español y en inglés, para tocar, oír y trazar.
+       Pensadas para Nelson, pero sirven para los tres.</p>
+    <div class="hojas">
+      <a class="ficha numero-ficha" href="figuras.html">
+        <span class="vista" style="background:#fdeedd" id="vista-figuras"></span>
+        <h3>Las figuras <em>círculo, cuadrado, triángulo…</em></h3>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="rutina">
   <div class="envoltura">
     <h2>Para hacer con lápiz</h2>
     <p class="sub">Dos hojas por número: el número con su nombre en letras, y marcos para contar
@@ -47,7 +72,7 @@
   </div>
 </section>
 
-<section class="rutina">
+<section>
   <div class="envoltura">
     <div class="nota verde">
       <h3>Cómo usar cada lección</h3>
@@ -67,7 +92,7 @@
   </div>
 </section>
 
-<section>
+<section class="rutina">
   <div class="envoltura">
     <div class="nota verde">
       <h3>Si un número sale al revés</h3>
@@ -75,8 +100,11 @@
          y el 9. No es un problema de la vista: la mano todavía no tiene claro para qué lado mira
          el número. Se corrige mostrando el punto de salida, no borrando y repitiendo la plana.</p>
       <p>Los números se escriben como en la escuela, que no siempre es como salen en los libros
-         o en la pantalla: el 4 va abierto arriba y el 3 lleva dos barrigas. Si en un cuento el
-         4 sale cerrado, vale la pena decirle que es el mismo número.</p>
+         o en la pantalla: el 1 es un palito, el 3 lleva dos barrigas, el 4 va abierto arriba y
+         el 7 lleva la rayita en la mitad. Si en un cuento el 4 sale cerrado o el 7 sin rayita,
+         vale la pena decirle que es el mismo número.</p>
+      <p>Del 11 al 20 el error típico es escribirlos al revés: 21 en vez de 12. El diez va
+         primero, a la izquierda, igual que el marco lleno va primero.</p>
     </div>
   </div>
 </section>
@@ -96,11 +124,12 @@
 
 <script src="escritura/fichas.js"></script>
 <script src="escritura/numeros.js"></script>
+<script src="escritura/figuras.js"></script>
 <script>
 (function () {
   "use strict";
-  var caja = document.getElementById("numeros");
   (window.NUMEROS || []).forEach(function (N) {
+    var caja = document.getElementById(N.n > 10 ? "numeros-2" : "numeros");
     var a = document.createElement("a");
     a.className = "ficha numero-ficha";
     a.href = "numero.html?n=" + N.id;
@@ -112,6 +141,10 @@
       "</span><h3>El " + N.palabra + " <em>" + N.cosas + "</em></h3>";
     caja.appendChild(a);
   });
+  var v = document.getElementById("vista-figuras");
+  if (v && window.FIGURAS) {
+    v.innerHTML = window.FIGURAS.slice(0, 3).map(function (F) { return window.FIGURA_SVG(F, "mini-fig"); }).join("");
+  }
 })();
 </script>
 </body>
