@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, noimageindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inglés · Plan en casa</title>
+<meta name="description" content="Las tarjetas de las lecciones, en inglés, por temas.">
+<link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="lectura.css">
+<link rel="stylesheet" href="escritura.css">
+</head>
+<body>
+
+<header class="hero antonio">
+  <div class="envoltura">
+    <a class="volver" href="index.html">&#8592; Inicio</a>
+    <p class="eyebrow">Las mismas tarjetas, en inglés</p>
+    <h1>Inglés</h1>
+    <p class="lead">Las fotos de las lecciones de lectura, con su nombre en inglés y agrupadas por
+       tema. Se tocan y se oyen. Es para oír y repetir, no para leer.</p>
+  </div>
+</header>
+
+<main>
+<section>
+  <div class="envoltura">
+    <div class="nota verde">
+      <h3>Por qué va aparte de la lectura</h3>
+      <p>En la lección de lectura el niño está aprendiendo que cada letra suena siempre igual, y en
+         español casi siempre es así. En inglés no: «house» no se lee «o-u-se». Si las dos palabras
+         van juntas en la misma tarjeta, la que pierde es la lectura. Aquí la palabra en inglés está
+         escrita para el adulto; lo que el niño aprende es cómo suena.</p>
+      <p><strong>Cómo usarla:</strong> un tema por vez, pocas tarjetas. Toque la tarjeta: se oye en
+         inglés. Toque la palabra chiquita de abajo: se oye en español. Repetir en voz alta, señalar
+         la cosa de verdad si está en la casa, y ya.</p>
+    </div>
+    <nav class="temas" id="temas"></nav>
+  </div>
+</section>
+<div id="secciones"></div>
+</main>
+
+<footer>
+  <div class="envoltura">
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="lecciones.html">Lecciones de lectura</a>
+      <a href="numeros.html">Números y figuras</a>
+    </nav>
+    <p>Sin reloj, sin puntaje. Se toca, se oye y ya.</p>
+  </div>
+</footer>
+
+<script src="escritura/fichas.js"></script>
+<script src="escritura/abecedario.js"></script>
+<script src="escritura/vocales.js"></script>
+<script src="escritura/numeros.js"></script>
+<script src="escritura/figuras.js"></script>
+<script src="escritura/ingles.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  function decir(txt, lang, nodo) {
+    if (nodo) {
+      nodo.classList.add("sonando");
+      setTimeout(function () { nodo.classList.remove("sonando"); }, 1200);
+    }
+    if (!window.speechSynthesis) return;
+    try {
+      speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(txt);
+      u.lang = lang;
+      u.rate = 0.8;
+      var vs = speechSynthesis.getVoices() || [];
+      var pref = lang.slice(0, 2);
+      for (var i = 0; i < vs.length; i++) {
+        if (vs[i].lang.toLowerCase().indexOf(pref) === 0) { u.voice = vs[i]; break; }
+      }
+      speechSynthesis.speak(u);
+    } catch (x) {}
+  }
+
+  /* la foto de cada palabra: primero las palabras clave de las lecciones,
+     después las tarjetas, después las palabras de las vocales */
+  var FOTO = {};
+  (window.ABECEDARIO || []).forEach(function (L) {
+    if (L.palabra && L.foto && !FOTO[L.palabra]) FOTO[L.palabra] = { foto: L.foto };
+    (L.tarjetas || []).forEach(function (t) {
+      if (!FOTO[t.palabra]) FOTO[t.palabra] = t.foto ? { foto: t.foto } : { dibujo: t.dibujo };
+    });
+  });
+  (window.VOCALES_PALABRAS || []).forEach(function (V) {
+    V.palabras.forEach(function (w) { if (!FOTO[w.palabra]) FOTO[w.palabra] = { foto: w.foto }; });
+  });
+
+  /* los números y las figuras van dibujados, como en sus páginas */
+  var temas = window.INGLES_TEMAS.slice();
+  var nums = [];
+  for (var n = 0; n <= 20; n++) {
+    var N = null;
+    (window.NUMEROS || []).forEach(function (x) { if (x.n === n) N = x; });
+    if (N) nums.push([N.palabra, window.INGLES_NUMEROS[n], { svg: window.NUMERO_SVG(N.id, N.tinta, 9), fondo: N.banda }]);
+  }
+  temas.push({ id: "numeros", es: "Los números", en: "Numbers", palabras: nums });
+  temas.push({ id: "figuras", es: "Las figuras", en: "Shapes", palabras: (window.FIGURAS || []).map(function (F) {
+    return [F.es, F.en, { svg: window.FIGURA_SVG(F), fondo: F.banda }];
+  }) });
+
+  var nav = document.getElementById("temas");
+  var cont = document.getElementById("secciones");
+  var faltan = [];
+
+  temas.forEach(function (T, k) {
+    var sec = document.createElement("section");
+    sec.id = "tema-" + T.id;
+    if (k % 2 === 0) sec.className = "rutina";
+    sec.innerHTML = '<div class="envoltura"><h2>' + T.en + ' <span class="tema-es">· ' + T.es +
+      '</span></h2><div class="tarjetas-en"></div></div>';
+    var rej = sec.querySelector(".tarjetas-en");
+
+    T.palabras.forEach(function (p) {
+      var img = p[2] || FOTO[p[0]];
+      if (!img) { faltan.push(p[0]); return; }
+      var t = document.createElement("div");
+      t.className = "tarjeta-en";
+      var vista;
+      if (img.foto) {
+        vista = '<img src="' + img.foto + '" alt="' + p[1] + '" loading="lazy">';
+      } else if (img.svg) {
+        vista = '<span class="dibujado" style="background:' + img.fondo + '">' + img.svg + "</span>";
+      } else {
+        vista = '<span class="dibujado"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">' +
+          img.dibujo + "</svg></span>";
+      }
+      t.innerHTML = '<button type="button" class="en-vista" lang="en" aria-label="' + p[1] + '">' + vista + "</button>" +
+        '<button type="button" class="en-palabra" lang="en">' + p[1] + "</button>" +
+        '<button type="button" class="es-palabra" lang="es">' + p[0] + "</button>";
+      var v = t.querySelector(".en-vista"), e = t.querySelector(".en-palabra"), s = t.querySelector(".es-palabra");
+      v.addEventListener("click", function () { decir(p[1], "en-US", e); });
+      e.addEventListener("click", function () { decir(p[1], "en-US", e); });
+      s.addEventListener("click", function () { decir(p[0], "es-MX", s); });
+      rej.appendChild(t);
+    });
+    cont.appendChild(sec);
+
+    var a = document.createElement("a");
+    a.href = "#tema-" + T.id;
+    a.className = "tema-salto";
+    a.textContent = T.es;
+    nav.appendChild(a);
+  });
+
+  /* para quien mantenga el sitio: palabras de ingles.js sin foto en las lecciones */
+  if (faltan.length && window.console) console.warn("Inglés sin foto:", faltan.join(", "));
+})();
+</script>
+</body>
+</html>
