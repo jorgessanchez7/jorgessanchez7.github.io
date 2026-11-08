@@ -153,6 +153,22 @@
     });
   }
 
+  /* Una sílaba suelta que no es palabra («chu», «gui», «ar») la voz del
+     navegador la lee como sigla, letra por letra: «chu» salía «ce, hache,
+     u». Con tilde la toma como palabra y la pronuncia. La tilde no cambia
+     el sonido de una sílaba sola; va en la vocal fuerte (a, e, o) para no
+     partir los diptongos («ai» → «ái», no «aí», que serían dos sílabas). */
+  function paraVoz(silaba) {
+    if (/[áéíóú\s]/.test(silaba)) return silaba;
+    var CON = { a: "á", e: "é", i: "í", o: "ó", u: "ú" };
+    var i = -1, k;
+    for (k = silaba.length - 1; k >= 0; k--) if ("aeo".indexOf(silaba.charAt(k)) >= 0) { i = k; break; }
+    if (i < 0) for (k = silaba.length - 1; k >= 0; k--) if ("iu".indexOf(silaba.charAt(k)) >= 0) { i = k; break; }
+    /* en gue, gui, que, qui la u no suena: la tilde va en la e o la i */
+    if (i < 0) return silaba;
+    return silaba.slice(0, i) + CON[silaba.charAt(i)] + silaba.slice(i + 1);
+  }
+
   function boton(clase, html, dicho) {
     var b = document.createElement("button");
     b.type = "button";
@@ -210,7 +226,7 @@
     if (L.notaFrases)  document.getElementById("nota-frases").textContent  = L.notaFrases;
     var cajaS = document.getElementById("silabas");
     L.silabas.forEach(function (s) {
-      cajaS.appendChild(boton("silabon", pintar(s, GRAFIAS), s));
+      cajaS.appendChild(boton("silabon", pintar(s, GRAFIAS), paraVoz(s)));
     });
 
     /* las palabras */
