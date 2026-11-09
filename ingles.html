@@ -104,7 +104,7 @@
   for (var n = 0; n <= 20; n++) {
     var N = null;
     (window.NUMEROS || []).forEach(function (x) { if (x.n === n) N = x; });
-    if (N) nums.push([N.palabra, window.INGLES_NUMEROS[n], { svg: window.NUMERO_SVG(N.id, N.tinta, 9), fondo: N.banda }]);
+    if (N) nums.push([N.palabra, N.en, { svg: window.NUMERO_SVG(N.id, N.tinta, 9), fondo: N.banda }]);
   }
   temas.push({ id: "numeros", es: "Los números", en: "Numbers", palabras: nums });
   temas.push({ id: "figuras", es: "Las figuras", en: "Shapes", palabras: (window.FIGURAS || []).map(function (F) {

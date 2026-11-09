@@ -138,7 +138,7 @@
       window.NUMERO_SVG(N.id, N.tinta, 9) +
       (N.n > 0 ? '<span class="mini-cosa"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">' +
         cosa(false) + "</svg></span>" : "") +
-      "</span><h3>El " + N.palabra + " <em>" + N.cosas + "</em></h3>";
+      "</span><h3>El " + N.palabra + " <span class=\"en-ficha\" lang=\"en\">" + N.en + "</span> <em>" + N.cosas + "</em></h3>";
     caja.appendChild(a);
   });
   var v = document.getElementById("vista-figuras");

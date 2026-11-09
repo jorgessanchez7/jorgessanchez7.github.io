@@ -472,7 +472,13 @@
       ] }
   ];
 
+  /* el nombre en inglés, para las tarjetas (no va en las planas) */
+  var EN = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+            "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen",
+            "nineteen", "twenty"];
+
   NUMEROS.forEach(function (N, i) {
+    N.en = EN[N.n];
     N.id = String(N.n);
     N.orden = i + 1;
     N.trazos = TRAZOS[N.id];
@@ -500,7 +506,7 @@
     NUMEROS.forEach(function (N) {
       window.FICHAS.push({
         id: "numero-" + N.id, grupo: "numeros", orden: N.orden,
-        numero: N.id, palabra: N.palabra,
+        numero: N.id, palabra: N.palabra, en: N.en,
         titulo: "El número " + N.palabra,
         pista: N.pista,
         banda: N.banda, tinta: N.tinta,

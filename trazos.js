@@ -242,10 +242,14 @@
          el 3 y el 4 de Quicksand no son los de la escuela */
       muestra.innerHTML = '<button type="button" class="glifo-grande num" aria-label="' + f.palabra + '">' +
         window.NUMERO_SVG(f.numero, f.tinta, 8) + "</button>" +
-        '<span class="palabra">' + f.palabra + "</span>";
+        '<span class="palabra">' + f.palabra + ' <span class="en" lang="en">· ' + f.en + "</span></span>";
       var dice = function () { decir(f.palabra); };
       muestra.querySelector(".glifo-grande").addEventListener("click", dice);
       muestra.querySelector(".palabra").addEventListener("click", dice);
+      muestra.querySelector(".en").addEventListener("click", function (e) {
+        e.stopPropagation();
+        decirEn(f.en);
+      });
       muestra.hidden = false;
     } else if (f.letra) {
       var html = '<button type="button" class="glifo-grande" style="color:' + f.tinta + '">' +

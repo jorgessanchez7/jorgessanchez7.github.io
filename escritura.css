@@ -685,3 +685,9 @@ h3.para-papel {
 .en-palabra { font-size: clamp(1.3rem, 2.6vw, 1.75rem); font-weight: 700; color: #2f6690; padding: 8px 6px 0; }
 .es-palabra { font-size: .92rem; font-weight: 600; color: var(--suave); padding: 2px 6px 10px; }
 .en-palabra.sonando, .es-palabra.sonando { background: #e6f3fa; }
+/* el nombre en inglés de los números */
+.clave-numero .fig-en { margin-top: 2px; }
+.en-ficha { color: #5d7a88; font-weight: 600; font-size: .9em; }
+.en-ficha::before { content: "EN"; font-size: .62em; font-weight: 700; letter-spacing: .08em; color: #fff;
+  background: #5d7a88; border-radius: 5px; padding: 1px 4px; margin: 0 4px 0 2px; vertical-align: middle; }
+.numero-ficha h3 em { display: block; font-size: .9em; }

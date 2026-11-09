@@ -38,7 +38,7 @@
   /* ---------- voz ---------- */
   var sonando = null;
 
-  function decir(txt, nodo) {
+  function decir(txt, nodo, lang) {
     if (nodo) {
       if (sonando) sonando.classList.remove("sonando");
       nodo.classList.add("sonando");
@@ -49,11 +49,12 @@
     try {
       speechSynthesis.cancel();
       var u = new SpeechSynthesisUtterance(txt);
-      u.lang = "es-MX";
+      u.lang = lang || "es-MX";
       u.rate = 0.8;
+      var pref = u.lang.slice(0, 2);
       var vs = speechSynthesis.getVoices() || [];
       for (var i = 0; i < vs.length; i++) {
-        if (/^es/i.test(vs[i].lang)) { u.voice = vs[i]; break; }
+        if (vs[i].lang.toLowerCase().indexOf(pref) === 0) { u.voice = vs[i]; break; }
       }
       speechSynthesis.speak(u);
     } catch (x) {}
@@ -207,6 +208,11 @@
     var pal = document.getElementById("palabra");
     pal.textContent = N.palabra;
     pal.addEventListener("click", function () { decir(N.palabra, pal); });
+
+    /* y en inglés, como en las figuras: más chico y con su voz */
+    var en = document.getElementById("palabra-en");
+    en.textContent = N.en;
+    en.addEventListener("click", function () { decir(N.en, en, "en-US"); });
 
     armarConteo();
 
