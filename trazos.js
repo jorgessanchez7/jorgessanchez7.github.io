@@ -402,6 +402,10 @@
       nav.innerHTML += '<a class="salto der" href="trazos.html?hoja=' + g[pos + 1].id + cola +
         '">' + g[pos + 1].titulo + " &#8594;</a>";
     }
+    /* después de la u siguen las letras: la primera lección, la m */
+    if (f.grupo === "vocales" && pos === g.length - 1) {
+      nav.innerHTML += '<a class="salto der" href="letra.html?letra=m' + cola + '">La m &#8594;</a>';
+    }
 
     /* primer pintado y repintado al cambiar de tamaño */
     setTimeout(function () { pizarras.forEach(pintar); }, 0);

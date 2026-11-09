@@ -159,14 +159,11 @@
      el sonido de una sílaba sola; va en la vocal fuerte (a, e, o) para no
      partir los diptongos («ai» → «ái», no «aí», que serían dos sílabas). */
   function paraVoz(silaba) {
-    if (/[áéíóú\s]/.test(silaba)) return silaba;
-    var CON = { a: "á", e: "é", i: "í", o: "ó", u: "ú" };
-    var i = -1, k;
-    for (k = silaba.length - 1; k >= 0; k--) if ("aeo".indexOf(silaba.charAt(k)) >= 0) { i = k; break; }
-    if (i < 0) for (k = silaba.length - 1; k >= 0; k--) if ("iu".indexOf(silaba.charAt(k)) >= 0) { i = k; break; }
-    /* en gue, gui, que, qui la u no suena: la tilde va en la e o la i */
-    if (i < 0) return silaba;
-    return silaba.slice(0, i) + CON[silaba.charAt(i)] + silaba.slice(i + 1);
+    /* Solo las que el padre oyó deletreadas. La versión anterior les ponía
+       tilde a todas y dañó otras («mo» → «mó» ya no sonaba bien). Si otra
+       sílaba suena letra por letra, se agrega aquí y nada más. */
+    var FIJAS = { cho: "chó", chu: "chú" };
+    return FIJAS[silaba] || silaba;
   }
 
   function boton(clase, html, dicho) {
@@ -286,6 +283,28 @@
       div.appendChild(boton("renglon-frase", pintar(f.texto, GRAFIAS), f.texto));
       cajaF.appendChild(div);
     });
+
+    /* anterior y siguiente: todas las lecciones en fila, como un libro.
+       Antes de la primera letra van las vocales (su última hoja, la u). */
+    var nav = document.getElementById("saltos");
+    if (nav) {
+      var orden = (window.ABECEDARIO || []).slice().sort(function (a, b) { return (a.orden || 0) - (b.orden || 0); });
+      var k = orden.indexOf(L), qs = "&de=" + encodeURIComponent(param("de"));
+      var titulo = function (M) {
+        if (M.nombre) return M.nombre;
+        /* ce, gue, que, ge: «La c» no dice cuál; mejor sus sílabas */
+        if (M.marca && M.marca[0].length !== M.letra.length) return M.silabas.join(", ");
+        return "La " + M.letra;
+      };
+      if (k > 0) {
+        nav.innerHTML += '<a class="salto" href="letra.html?letra=' + orden[k - 1].id + qs + '">&#8592; ' + titulo(orden[k - 1]) + "</a>";
+      } else if (k === 0) {
+        nav.innerHTML += '<a class="salto" href="trazos.html?hoja=vocal-u' + qs + '">&#8592; La u</a>';
+      }
+      if (k > -1 && k < orden.length - 1) {
+        nav.innerHTML += '<a class="salto der" href="letra.html?letra=' + orden[k + 1].id + qs + '">' + titulo(orden[k + 1]) + " &#8594;</a>";
+      }
+    }
 
     /* las hojas para escribirla */
     var cajaH = document.getElementById("hojas");
