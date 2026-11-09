@@ -124,7 +124,9 @@
     var rej = sec.querySelector(".tarjetas-en");
 
     T.palabras.forEach(function (p) {
-      var img = p[2] || FOTO[p[0]];
+      var extra = p[2] || {};
+      var img = (extra.svg || extra.foto || extra.dibujo) ? extra : FOTO[p[0]];
+      var es = extra.es || p[0];
       if (!img) { faltan.push(p[0]); return; }
       var t = document.createElement("div");
       t.className = "tarjeta-en";
@@ -139,11 +141,11 @@
       }
       t.innerHTML = '<button type="button" class="en-vista" lang="en" aria-label="' + p[1] + '">' + vista + "</button>" +
         '<button type="button" class="en-palabra" lang="en">' + p[1] + "</button>" +
-        '<button type="button" class="es-palabra" lang="es">' + p[0] + "</button>";
+        '<button type="button" class="es-palabra" lang="es">' + es + "</button>";
       var v = t.querySelector(".en-vista"), e = t.querySelector(".en-palabra"), s = t.querySelector(".es-palabra");
       v.addEventListener("click", function () { decir(p[1], "en-US", e); });
       e.addEventListener("click", function () { decir(p[1], "en-US", e); });
-      s.addEventListener("click", function () { decir(p[0], "es-MX", s); });
+      s.addEventListener("click", function () { decir(es, "es-MX", s); });
       rej.appendChild(t);
     });
     cont.appendChild(sec);

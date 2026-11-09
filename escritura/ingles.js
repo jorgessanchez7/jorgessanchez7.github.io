@@ -10,11 +10,19 @@
    Va por temas y no por letras: en otro idioma la letra con que
    empieza la palabra en español no ayuda a nada; el tema sí.
 
+   Un tercer elemento { es: "…" } cambia solo lo que se ve y se oye en
+   español, no la búsqueda de la foto: «manzana» y «uva» buscan su foto
+   así, pero se muestran en plural, como el inglés y como la foto
+   (decisión del padre).
+
    El inglés es el de Estados Unidos (allá van a la escuela): «ax»,
    «couch», «cookie». Cada traducción se escogió mirando la foto, no
    la palabra: la «lima» de la l es una lima de pulir («file»), la
    «pila» es una pila de piedra («fountain»), el «foco» es un
    reflector de teatro («spotlight»), la «boina» es una gorra («cap»).
+   «químico» es «chemist» y no «scientist»: lo pidió el padre (tienen
+   un amigo químico). «gelatina» es «gelatin», como en EE. UU.; «jelly»
+   allá es la mermelada.
 
    Se quedaron por fuera, a propósito:
    - los nombres de personas (no se traducen), y los números sueltos
@@ -45,7 +53,7 @@
       ["agua", "water"], ["leche", "milk"], ["pan", "bread"], ["arepa", "arepa"], ["huevos", "eggs"],
       ["yema", "yolk"], ["queso", "cheese"], ["sopa", "soup"], ["guiso", "stew"], ["papa", "potato"],
       ["papas", "fries"], ["cebolla", "onion"], ["tomate", "tomato"], ["ensalada", "salad"], ["chorizo", "sausage"],
-      ["manzana", "apples"], ["uva", "grapes"], ["limón", "lemon"], ["miel", "honey"], ["sal", "salt"],
+      ["manzana", "apples", { es: "manzanas" }], ["uva", "grapes", { es: "uvas" }], ["limón", "lemon"], ["miel", "honey"], ["sal", "salt"],
       ["masa", "dough"], ["torta", "cake"], ["chocolate", "chocolate"], ["gelatina", "gelatin"], ["cono", "ice cream cone"]
     ] },
     { id: "cuerpo", es: "El cuerpo", en: "The body", palabras: [
@@ -95,7 +103,7 @@
     { id: "personas", es: "Personas y personajes", en: "People", palabras: [
       ["Dios", "God"], ["Jesús", "Jesus"], ["mamá", "mom"], ["papá", "dad"], ["familia", "family"], ["hermanos", "brothers"], ["gemelo", "twins"],
       ["nene", "little boy"], ["niña", "girl"], ["viejo", "old man"], ["reina", "queen"], ["cocinero", "cook"], ["soldado", "soldier"],
-      ["químico", "scientist"], ["payaso", "clown"], ["mimo", "mime"], ["dormilón", "sleepyhead"],
+      ["químico", "chemist"], ["payaso", "clown"], ["mimo", "mime"], ["dormilón", "sleepyhead"],
       ["enano", "dwarf"], ["momia", "mummy"], ["unicornio", "unicorn"]
     ] }
   ];
