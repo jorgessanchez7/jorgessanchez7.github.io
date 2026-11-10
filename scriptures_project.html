@@ -14,6 +14,16 @@
         #map { flex: 1 1 62%; position: relative; }
         #mapa { position: absolute; inset: 0; }
         #crumbs a { cursor: pointer; }
+        /* Encabezado un poco más alto para el título grande y las dos líneas de créditos. */
+        #header { height: 72px; }
+        #content { top: 72px; }
+        #title { font-size: 1.6em; line-height: 1.2; }
+        #subtitle { line-height: 1.35; }
+        @media all and (max-width: 720px) {
+            #header { height: 64px; }
+            #content { top: 64px; }
+            #title { font-size: 1.35em; }
+        }
         #subtitle a:link, #subtitle a:visited { color: #f3dcc0; text-decoration: none; }
         #subtitle a:hover { color: #fff; text-decoration: underline; }
 
@@ -69,11 +79,12 @@
     <div id="crumbs"></div>
     <div id="centerhead">
         <div id="title">La Biblia georreferenciada</div>
-        <div id="subtitle">Lugares:
-            <a href="https://scriptures.byu.edu/mapscrip/" target="_blank" rel="noopener">The Scriptures, Mapped (BYU)</a>;
-            libros deuterocanónicos:
+        <div id="subtitle">
+            <div>Texto: <a href="https://ebible.org/find/details.php?id=spablm" target="_blank" rel="noopener">Santa Biblia libre para el mundo</a></div>
+            <div>Lugares: <a href="https://scriptures.byu.edu/mapscrip/" target="_blank" rel="noopener">The Scriptures, Mapped (BYU)</a>,
             <a href="https://pleiades.stoa.org" target="_blank" rel="noopener">Pleiades</a> y
             <a href="https://www.openbible.info/geo/" target="_blank" rel="noopener">OpenBible.info</a></div>
+        </div>
     </div>
 </div>
 <div id="content">
