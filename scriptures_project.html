@@ -1,82 +1,323 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html lang="es">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>The Scriptures, Mapped</title>
-    <meta name="description" content="The Standard Works, Mapped">
-    <meta name="author" content="Stephen W. Liddle">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>La Biblia georreferenciada</title>
+    <meta name="description" content="La Biblia georreferenciada: los lugares de cada capítulo, marcados en el texto y en el mapa">
+    <link rel="icon" href="icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+    <link rel="stylesheet" href="css/styles.css?v=3.0">
+    <style>
+        /* Ajustes pequeños al estilo original. */
+        #scriptures { flex: 1 1 38%; }
+        #map { flex: 1 1 62%; position: relative; }
+        #mapa { position: absolute; inset: 0; }
+        #crumbs a { cursor: pointer; }
+        #subtitle a:link, #subtitle a:visited { color: #f3dcc0; text-decoration: none; }
+        #subtitle a:hover { color: #fff; text-decoration: underline; }
 
-    <link rel="manifest" href="site.webmanifest">
-    <link rel="apple-touch-icon" href="icon.png">
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Place favicon.ico in the root directory -->
+        #scripnav { padding-bottom: 2em; }
+        div.books .btn { flex: 0 0 7.5em; margin: .35em; padding: 0 .4em; font-size: 9.5pt;
+                         font-family: Arial, Helvetica, sans-serif; white-space: nowrap;
+                         overflow: hidden; text-overflow: ellipsis; }
+        div.books .btn.chapter { flex: 0 0 3.2em; }
 
-    <link rel="stylesheet" href="css/styles.css?v=1.0">
+        .scripturewrapper { width: 100%; }
+        div.navheading { position: relative; align-items: center; min-height: 2.2em; }
+        .navheading .nextprev { display: flex; gap: .1em; top: 0; }
+        .navheading .nextprev a { font-size: 18pt; padding: 0 .3em; }
+        .navheading .nextprev a.apagado { color: #ccc; pointer-events: none; }
+        ul.versesblock li { white-space: pre-line; }
+        ul.versesblock li.sectionHeader { color: #555; margin: .6em 0 .2em; }
+        .scripturewrapper li a.lugar { border-bottom: 1px dotted #44b; }
+        .scripturewrapper li a.lugar.sin-mapa:link, .scripturewrapper li a.lugar.sin-mapa:visited { color: #777; border-bottom-color: #999; }
+        .fuente { font-family: Arial, Helvetica, sans-serif; font-size: 9pt; color: #666;
+                  padding: 1em 1.5em 0; line-height: 1.5; }
+        .fuente a { color: #44b; }
 
-    <script src="js/scriptures.js" type="text/javascript"></script>
+        #estado-mapa { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); z-index: 500;
+                       background: rgba(63,32,0,.85); color: #fff; font-family: Arial, Helvetica, sans-serif;
+                       font-weight: normal; font-size: 10pt; padding: .4em .9em; border-radius: 4px;
+                       max-width: 80%; text-align: center; }
+        #estado-mapa:empty { display: none; }
+        .etiqueta { background: rgba(255,248,240,.9); border: 0; box-shadow: none; padding: 0 4px;
+                    font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: bold; color: #201000; }
+        .etiqueta::before { display: none; }
+        .pin { background: none; border: 0; }
+        .pin svg { display: block; filter: drop-shadow(0 1px 1px rgba(0,0,0,.45)); transform-origin: 50% 100%; }
+        .pin-salta svg { animation: salta .9s ease-out; }
+        @keyframes salta {
+            0% { transform: translateY(0) scale(1); }
+            30% { transform: translateY(-14px) scale(1.25); }
+            55% { transform: translateY(0) scale(1.25); }
+            75% { transform: translateY(-5px) scale(1.15); }
+            100% { transform: translateY(0) scale(1); }
+        }
+        .leaflet-control-layers { font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; }
+        .leaflet-tooltip.etiqueta { margin: 0; line-height: 18px; height: 18px; box-sizing: border-box; white-space: nowrap; }
+
+        @media all and (max-width: 720px) {
+            #content > #map { flex: 0 0 40vh; }
+            #content > #scriptures { flex: 1 0 60vh; }
+        }
+    </style>
 </head>
 <body>
-<!--[if lte IE 9]>
-<p class="browserupgrade">You are using an <strong>outdated</strong> browser.
-    Please <a href="https://browsehappy.com/">upgrade your browser</a>
-    to improve your experience and security.</p>
-<![endif]-->
 
 <div id="header">
     <div id="crumbs"></div>
     <div id="centerhead">
-        <div id="title">The Scriptures, Mapped</div>
-        <div id="subtitle">By Jorge Luis Sanchez-Lozano</div>
+        <div id="title">La Biblia georreferenciada</div>
+        <div id="subtitle">Lugares:
+            <a href="https://scriptures.byu.edu/mapscrip/" target="_blank" rel="noopener">The Scriptures, Mapped (BYU)</a>;
+            libros deuterocanónicos:
+            <a href="https://pleiades.stoa.org" target="_blank" rel="noopener">Pleiades</a> y
+            <a href="https://www.openbible.info/geo/" target="_blank" rel="noopener">OpenBible.info</a></div>
     </div>
 </div>
 <div id="content">
     <div id="scriptures"></div>
-    <div id="scriptures2"></div>
-    <div id="map"></div>
+    <div id="map">
+        <div id="mapa" role="region" aria-label="Mapa de los lugares del capítulo"></div>
+        <div id="estado-mapa"></div>
+    </div>
 </div>
-<script type="text/javascript">
-	let map;
 
-	function initMap() {
-		map = new google.maps.Map(document.getElementById('map'), {
-			center: {lat: 31.777444, lng: 35.234935},
-			zoom: 8
-		});
-	}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="biblia/libros.js"></script>
+<script src="js/biblia-mapa.js"></script>
+<script>
+"use strict";
 
-	function ready(eventHandler) {
-		"use strict";
+const TESTAMENTOS = {at: "Antiguo Testamento", nt: "Nuevo Testamento"};
+const TITULO = "La Biblia georreferenciada";
+const LIBROS = LIBROS_BIBLIA.map(([cod, nombre, corto, caps, test]) => ({cod, nombre, corto, caps, test}));
 
-		if (document.attachEvent
-			? document.readyState === "complete"
-			: document.readyState !== "loading") {
-			eventHandler();
-		} else {
-			document.addEventListener("DOMContentLoaded", eventHandler);
-		}
-	}
+// Número de cada libro en la app de SOBICAIN (Biblia Latinoamericana), para el enlace "Leer en...".
+const SOBICAIN = {GEN: 1, EXO: 2, LEV: 3, NUM: 4, DEU: 5, JOS: 6, JDG: 7, "1SA": 8, "2SA": 9, "1KI": 10,
+    "2KI": 11, "1CH": 12, "2CH": 13, EZR: 14, NEH: 15, "1MA": 16, "2MA": 17, ISA: 18, JER: 19, EZK: 20,
+    HOS: 21, JOL: 22, AMO: 23, OBA: 24, JON: 25, MIC: 26, NAM: 27, HAB: 28, ZEP: 29, HAG: 30, ZEC: 31,
+    MAL: 32, DAN: 33, JOB: 34, PRO: 35, ECC: 36, SNG: 37, RUT: 38, LAM: 39, EST: 40, TOB: 41, JDT: 42,
+    BAR: 43, WIS: 44, SIR: 45, PSA: 46, MAT: 47, MRK: 48, LUK: 49, JHN: 50, ACT: 51, ROM: 52, "1CO": 53,
+    "2CO": 54, GAL: 55, EPH: 56, PHP: 57, COL: 58, PHM: 59, "1TH": 60, "2TH": 61, "1TI": 62, "2TI": 63,
+    TIT: 64, HEB: 65, JAS: 66, "1PE": 67, "2PE": 68, JUD: 69, "1JN": 70, "2JN": 71, "3JN": 72, REV: 73};
 
-	function showLocation() {
-		Scriptures.showLocation(...arguments);
-	};
+const $ = (id) => document.getElementById(id);
+const cache = {};
+let peticion = 0;
 
-	ready(function () {
-		Scriptures.init(function () {
-			MapLabelInit();
-			window.addEventListener("hashchange", Scriptures.onHashChanged);
-			Scriptures.onHashChanged();
-		});
-	});
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAN66MFaVRg5gwIXoBS5Ggxjb-6IwlcZgY&callback=initMap"
-        async defer></script>
-<script src="js/maplabel.js" defer></script>
-<script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous">
+function libro(cod) { return LIBROS.find((l) => l.cod === cod); }
+
+function el(tag, clase, texto) {
+    const e = document.createElement(tag);
+    if (clase) e.className = clase;
+    if (texto !== undefined) e.textContent = texto;
+    return e;
+}
+
+function enlaceHash(hash, texto, clase) {
+    const a = el("a", clase, texto);
+    a.href = "#" + hash;
+    return a;
+}
+
+// Migas: La Biblia > Testamento > Libro > Capítulo
+function migas(test, l, cp) {
+    if (!test && !l) {               // portada: el título ya lo dice todo
+        $("crumbs").replaceChildren();
+        return;
+    }
+    const ul = el("ul");
+    const pasos = [["", "Inicio"]];
+    if (test) pasos.push([test, TESTAMENTOS[test]]);
+    if (l) pasos.push([l.cod, l.nombre]);
+    if (cp) pasos.push([l.cod + "-" + cp, String(cp)]);
+    pasos.forEach(([hash, texto], i) => {
+        const li = el("li");
+        if (i === pasos.length - 1) li.textContent = texto;
+        else li.appendChild(enlaceHash(hash, texto));
+        ul.appendChild(li);
+    });
+    $("crumbs").replaceChildren(ul);
+}
+
+function botonera(titulo, botones) {
+    const vol = el("div", "volume");
+    vol.appendChild(el("h5", "", titulo));
+    const books = el("div", "books");
+    botones.forEach((b) => books.appendChild(b));
+    return [vol, books];
+}
+
+function mostrarInicio(test) {
+    const nav = el("div");
+    nav.id = "scripnav";
+    Object.keys(TESTAMENTOS).filter((t) => !test || t === test).forEach((t) => {
+        nav.append(...botonera(TESTAMENTOS[t], LIBROS.filter((l) => l.test === t).map((l) => {
+            const a = enlaceHash(l.cod, l.corto, "btn");
+            a.title = l.nombre;
+            return a;
+        })));
+    });
+    $("scriptures").replaceChildren(nav);
+    migas(test);
+    BibliaMapa.limpiar("");
+}
+
+function mostrarLibro(l) {
+    const nav = el("div");
+    nav.id = "scripnav";
+    const caps = [];
+    for (let c = 1; c <= l.caps; c++) caps.push(enlaceHash(l.cod + "-" + c, String(c), "btn chapter"));
+    nav.append(...botonera(l.nombre, caps));
+    $("scriptures").replaceChildren(nav);
+    migas(l.test, l);
+    BibliaMapa.limpiar("");
+}
+
+// Capítulo anterior/siguiente, pasando de un libro al otro.
+function vecino(l, cp, paso) {
+    let i = LIBROS.indexOf(l);
+    cp += paso;
+    if (cp < 1) {
+        if (i === 0) return null;
+        i--;
+        cp = LIBROS[i].caps;
+    } else if (cp > LIBROS[i].caps) {
+        if (i === LIBROS.length - 1) return null;
+        i++;
+        cp = 1;
+    }
+    return LIBROS[i].cod + "-" + cp;
+}
+
+// Enlace al mismo capítulo en la Biblia Latinoamericana (SOBICAIN), que numera Joel y Malaquías distinto.
+function urlSobicain(l, cp) {
+    let c = cp;
+    if (l.cod === "JOL" && cp === 3) c = 4;
+    if (l.cod === "MAL" && cp === 4) c = 3;
+    return `https://sobicain.org/bibleapp/?bid=1&bk=${SOBICAIN[l.cod]}&cp=${c}`;
+}
+
+// Cada libro está en biblia/<código>.js y se carga con una etiqueta <script>,
+// así funciona también al abrir el archivo directamente (sin servidor).
+window.BibliaDatos = {
+    esperando: {},
+    agregar(cod, datos) {
+        const e = this.esperando[cod];
+        if (e) { delete this.esperando[cod]; e.resolver(datos); }
+    }
+};
+
+function cargarLibro(cod) {
+    if (!cache[cod]) {
+        cache[cod] = new Promise((resolver, rechazar) => {
+            BibliaDatos.esperando[cod] = {resolver};
+            const s = document.createElement("script");
+            s.src = `biblia/${cod}.js`;
+            s.onerror = () => { delete cache[cod]; delete BibliaDatos.esperando[cod]; s.remove(); rechazar(new Error(cod)); };
+            document.head.appendChild(s);
+        });
+    }
+    return cache[cod];
+}
+
+// Texto del versículo con los lugares convertidos en enlaces.
+function textoVersiculo(li, texto, marcas, lugares) {
+    let ultimo = 0;
+    (marcas || []).forEach(([ini, fin, i]) => {
+        li.appendChild(document.createTextNode(texto.slice(ultimo, ini)));
+        const sinMapa = lugares[i][2] === null;
+        const a = el("a", sinMapa ? "lugar sin-mapa" : "lugar", texto.slice(ini, fin));
+        a.href = "javascript:void(0);";
+        if (sinMapa) a.title = "Ubicación desconocida";
+        a.addEventListener("click", () => BibliaMapa.enfocar(i, lugares[i][1]));
+        li.appendChild(a);
+        ultimo = fin;
+    });
+    li.appendChild(document.createTextNode(texto.slice(ultimo)));
+}
+
+function mostrarCapitulo(l, cp) {
+    const yo = ++peticion;
+    migas(l.test, l, cp);
+    document.title = `${l.nombre} ${cp} · ${TITULO}`;
+
+    cargarLibro(l.cod).then((datos) => {
+        if (yo !== peticion) return;
+        const cap = datos.caps[cp - 1];
+
+        const wrap = el("div", "scripturewrapper");
+        wrap.appendChild(el("div", "chapterheading")).appendChild(el("b", "big", l.nombre));
+
+        const nav = el("div", "navheading");
+        nav.appendChild(el("div", "divtitle", (l.cod === "PSA" ? "SALMO " : "CAPÍTULO ") + cp));
+        const np = el("div", "nextprev");
+        [[-1, "‹", "Capítulo anterior"], [1, "›", "Capítulo siguiente"]].forEach(([paso, txt, titulo]) => {
+            const destino = vecino(l, cp, paso);
+            const a = destino ? enlaceHash(destino, txt) : el("a", "apagado", txt);
+            a.title = titulo;
+            a.setAttribute("aria-label", titulo);
+            np.appendChild(a);
+        });
+        nav.appendChild(np);
+        wrap.appendChild(nav);
+
+        const ul = el("ul", "versesblock");
+        cap.i.forEach(([v, texto, marcas]) => {
+            if (v === 0) {
+                ul.appendChild(el("li", "sectionHeader", texto));
+                return;
+            }
+            const li = el("li");
+            li.id = "v" + v;
+            li.appendChild(el("span", "verse", String(v)));
+            textoVersiculo(li, texto, marcas, cap.l);
+            ul.appendChild(li);
+        });
+        wrap.appendChild(ul);
+
+        const fuente = el("div", "fuente");
+        fuente.innerHTML = `Texto: <a href="https://ebible.org/find/details.php?id=spablm" target="_blank" rel="noopener">Santa Biblia libre para el mundo</a>
+            (eBible.org, dominio público; traducción en revisión).
+            Lugares: <a href="https://scriptures.byu.edu/mapscrip/" target="_blank" rel="noopener">The Scriptures, Mapped</a> (BYU),
+            <a href="https://www.openbible.info/geo/" target="_blank" rel="noopener">OpenBible.info</a> y
+            <a href="https://pleiades.stoa.org" target="_blank" rel="noopener">Pleiades</a> (CC BY).<br>
+            <a class="sobicain" target="_blank" rel="noopener">Leer este capítulo en la Biblia Latinoamericana</a>`;
+        fuente.querySelector(".sobicain").href = urlSobicain(l, cp);
+        wrap.appendChild(fuente);
+
+        $("scriptures").replaceChildren(wrap);
+        $("scriptures").scrollTop = 0;
+
+        let mensaje = "";
+        if (!cap.l.length) mensaje = "Este capítulo no menciona lugares del mapa.";
+        else if (cap.a) mensaje = "Lugares de este capítulo: lista propia (BYU, OpenBible.info y Pleiades).";
+        BibliaMapa.mostrar(cap.l, mensaje);
+    }).catch(() => {
+        if (yo !== peticion) return;
+        $("scriptures").replaceChildren(el("div", "text", "No se pudo cargar el capítulo. Intenta de nuevo."));
+        BibliaMapa.limpiar("");
+    });
+}
+
+function onHashChanged() {
+    const h = decodeURIComponent(location.hash.slice(1));
+    let m;
+    document.title = TITULO;
+    if (h === "at" || h === "nt") return mostrarInicio(h);
+    if ((m = /^(\w+)-(\d+)$/.exec(h)) && libro(m[1])) {
+        const l = libro(m[1]);
+        return mostrarCapitulo(l, Math.min(Math.max(Number(m[2]), 1), l.caps));
+    }
+    if (libro(h)) return mostrarLibro(libro(h));
+    mostrarInicio();
+}
+
+BibliaMapa.init("mapa", "estado-mapa");
+window.addEventListener("hashchange", onHashChanged);
+onHashChanged();
 </script>
 </body>
 </html>
