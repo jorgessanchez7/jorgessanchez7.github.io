@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Biblia · Biblia Latinoamericana</title>
+<meta name="description" content="La Biblia Latinoamericana, libro por libro y capítulo por capítulo.">
+<link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="lectura.css">
+<style>
+  .hero { padding: 30px 0 26px; }
+  .hero .lead a { color: inherit; }
+
+  .biblia {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 22px;
+    padding: 26px 20px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .panel {
+    background: var(--tarjeta);
+    border-radius: 18px;
+    box-shadow: var(--sombra);
+    padding: 18px;
+    align-self: start;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    position: sticky;
+    top: 20px;
+  }
+  .panel h2 { font-size: 1.15rem; margin: 14px 0 8px; color: #7a4a32; }
+  .panel h2:first-child { margin-top: 0; }
+
+  .libros, .capitulos {
+    display: grid;
+    gap: 6px;
+  }
+  .libros { grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); }
+  .capitulos { grid-template-columns: repeat(auto-fill, minmax(42px, 1fr)); }
+
+  .libros button, .capitulos button {
+    font: inherit;
+    font-size: .85rem;
+    border: 0;
+    border-radius: 10px;
+    padding: 7px 4px;
+    background: #fdf1e1;
+    color: var(--tinta);
+    cursor: pointer;
+    line-height: 1.2;
+  }
+  .libros button:hover, .capitulos button:hover { background: #fbe0bf; }
+  .libros button[aria-current="true"], .capitulos button[aria-current="true"] {
+    background: var(--acento);
+    color: #fff;
+  }
+
+  .lector { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+  .barra {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .barra h2 { margin: 0; flex: 1; font-size: 1.5rem; color: #7a4a32; min-width: 12ch; }
+  .barra .btn { padding: 8px 14px; font-size: .9rem; }
+  .barra .btn[disabled] { opacity: .4; pointer-events: none; }
+
+  iframe {
+    width: 100%;
+    height: calc(100vh - 140px);
+    min-height: 520px;
+    border: 0;
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: var(--sombra);
+  }
+  .nota { margin: 0; font-size: .85rem; color: var(--suave); }
+  .nota a { color: var(--azul); }
+
+  @media (max-width: 820px) {
+    .biblia { grid-template-columns: 1fr; padding: 16px; }
+    .panel { position: static; max-height: none; }
+    iframe { height: 75vh; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="envoltura">
+    <p class="eyebrow"><a href="index.html" style="color:inherit">← Plan de lectura en casa</a></p>
+    <h1>La Biblia</h1>
+    <p class="lead">Biblia Latinoamericana, de la <a href="https://labiblialatinoamerica.com/biblia-online/">Sociedad Bíblica Católica Internacional (SOBICAIN)</a>.</p>
+  </div>
+</header>
+
+<main class="biblia">
+  <nav class="panel" aria-label="Libros y capítulos">
+    <h2>Antiguo Testamento</h2>
+    <div class="libros" id="at"></div>
+    <h2>Nuevo Testamento</h2>
+    <div class="libros" id="nt"></div>
+    <h2 id="titulo-capitulos">Capítulos</h2>
+    <div class="capitulos" id="capitulos"></div>
+  </nav>
+
+  <section class="lector" style="padding:0">
+    <div class="barra">
+      <button class="btn suave" id="anterior" type="button">← Anterior</button>
+      <h2 id="titulo">Génesis 1</h2>
+      <button class="btn suave" id="siguiente" type="button">Siguiente →</button>
+    </div>
+    <iframe id="texto" title="Texto de la Biblia" src="about:blank"></iframe>
+    <p class="nota">El texto se muestra desde el sitio de SOBICAIN.
+      Si no aparece, <a id="abrir" href="https://sobicain.org/bibleapp/?bid=1&bk=1&cp=1" target="_blank" rel="noopener">ábrelo en una pestaña nueva</a>.</p>
+  </section>
+</main>
+
+<script>
+// Libros en el orden y con la numeración (bk) de la app de SOBICAIN, Biblia Latinoamericana (bid=1).
+// [bk, nombre, nombre corto, capítulos, testamento]
+const LIBROS = [
+  [1, "Génesis", "Génesis", 50, "at"],
+  [2, "Éxodo", "Éxodo", 40, "at"],
+  [3, "Levítico", "Levítico", 27, "at"],
+  [4, "Números", "Números", 36, "at"],
+  [5, "Deuteronomio", "Deuteron.", 34, "at"],
+  [6, "Josué", "Josué", 24, "at"],
+  [7, "Jueces", "Jueces", 21, "at"],
+  [8, "1 Samuel", "1 Samuel", 31, "at"],
+  [9, "2 Samuel", "2 Samuel", 24, "at"],
+  [10, "1 Reyes", "1 Reyes", 22, "at"],
+  [11, "2 Reyes", "2 Reyes", 25, "at"],
+  [12, "1 Crónicas", "1 Crónicas", 29, "at"],
+  [13, "2 Crónicas", "2 Crónicas", 36, "at"],
+  [14, "Esdras", "Esdras", 10, "at"],
+  [15, "Nehemías", "Nehemías", 13, "at"],
+  [16, "1 Macabeos", "1 Macabeos", 16, "at"],
+  [17, "2 Macabeos", "2 Macabeos", 15, "at"],
+  [18, "Isaías", "Isaías", 66, "at"],
+  [19, "Jeremías", "Jeremías", 52, "at"],
+  [20, "Ezequiel", "Ezequiel", 48, "at"],
+  [21, "Oseas", "Oseas", 14, "at"],
+  [22, "Joel", "Joel", 4, "at"],
+  [23, "Amós", "Amós", 9, "at"],
+  [24, "Abdías", "Abdías", 1, "at"],
+  [25, "Jonás", "Jonás", 4, "at"],
+  [26, "Miqueas", "Miqueas", 7, "at"],
+  [27, "Nahúm", "Nahúm", 3, "at"],
+  [28, "Habacuq", "Habacuq", 3, "at"],
+  [29, "Sofonías", "Sofonías", 3, "at"],
+  [30, "Ageo", "Ageo", 2, "at"],
+  [31, "Zacarías", "Zacarías", 14, "at"],
+  [32, "Malaquías", "Malaquías", 3, "at"],
+  [33, "Daniel", "Daniel", 14, "at"],
+  [34, "Job", "Job", 42, "at"],
+  [35, "Proverbios", "Proverbios", 31, "at"],
+  [36, "Qohelet", "Qohelet", 12, "at"],
+  [37, "Cantar de los Cantares", "Cantar", 8, "at"],
+  [38, "Rut", "Rut", 4, "at"],
+  [39, "Lamentaciones", "Lamentac.", 5, "at"],
+  [40, "Ester", "Ester", 18, "at"],
+  [41, "Tobías", "Tobías", 14, "at"],
+  [42, "Judit", "Judit", 16, "at"],
+  [43, "Baruc", "Baruc", 6, "at"],
+  [44, "Sabiduría", "Sabiduría", 18, "at"],
+  [45, "Sirácides", "Sirácides", 51, "at"],
+  [46, "Salmos", "Salmos", 150, "at"],
+  [47, "Mateo", "Mateo", 28, "nt"],
+  [48, "Marcos", "Marcos", 16, "nt"],
+  [49, "Lucas", "Lucas", 24, "nt"],
+  [50, "Juan", "Juan", 21, "nt"],
+  [51, "Hechos de los Apóstoles", "Hechos", 28, "nt"],
+  [52, "Romanos", "Romanos", 16, "nt"],
+  [53, "1 Corintios", "1 Corintios", 16, "nt"],
+  [54, "2 Corintios", "2 Corintios", 13, "nt"],
+  [55, "Gálatas", "Gálatas", 6, "nt"],
+  [56, "Efesios", "Efesios", 6, "nt"],
+  [57, "Filipenses", "Filipenses", 4, "nt"],
+  [58, "Colosenses", "Colosenses", 4, "nt"],
+  [59, "Filemón", "Filemón", 1, "nt"],
+  [60, "1 Tesalonicenses", "1 Tesal.", 5, "nt"],
+  [61, "2 Tesalonicenses", "2 Tesal.", 3, "nt"],
+  [62, "1 Timoteo", "1 Timoteo", 6, "nt"],
+  [63, "2 Timoteo", "2 Timoteo", 4, "nt"],
+  [64, "Tito", "Tito", 3, "nt"],
+  [65, "Hebreos", "Hebreos", 13, "nt"],
+  [66, "Santiago", "Santiago", 5, "nt"],
+  [67, "1 Pedro", "1 Pedro", 5, "nt"],
+  [68, "2 Pedro", "2 Pedro", 3, "nt"],
+  [69, "Judas", "Judas", 1, "nt"],
+  [70, "1 Juan", "1 Juan", 5, "nt"],
+  [71, "2 Juan", "2 Juan", 1, "nt"],
+  [72, "3 Juan", "3 Juan", 1, "nt"],
+  [73, "Apocalipsis", "Apocalipsis", 22, "nt"],
+].map(([bk, nombre, corto, caps, test]) => ({ bk, nombre, corto, caps, test }));
+
+const URL_APP = "https://sobicain.org/bibleapp/?bid=1";
+const $ = (id) => document.getElementById(id);
+let actual = { bk: 1, cp: 1 };
+
+function libro(bk) { return LIBROS.find((l) => l.bk === bk); }
+
+function pintarLibros() {
+  for (const l of LIBROS) {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.textContent = l.corto;
+    b.title = l.nombre;
+    b.dataset.bk = l.bk;
+    b.addEventListener("click", () => ir(l.bk, 1));
+    $(l.test).appendChild(b);
+  }
+}
+
+function pintarCapitulos(l) {
+  const cont = $("capitulos");
+  cont.innerHTML = "";
+  $("titulo-capitulos").textContent = "Capítulos de " + l.nombre;
+  for (let c = 1; c <= l.caps; c++) {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.textContent = c;
+    b.dataset.cp = c;
+    b.addEventListener("click", () => ir(l.bk, c));
+    cont.appendChild(b);
+  }
+}
+
+// Capítulo anterior/siguiente, pasando de un libro al otro.
+function vecino(paso) {
+  let i = LIBROS.findIndex((l) => l.bk === actual.bk);
+  let cp = actual.cp + paso;
+  if (cp < 1) {
+    if (i === 0) return null;
+    i--;
+    cp = LIBROS[i].caps;
+  } else if (cp > LIBROS[i].caps) {
+    if (i === LIBROS.length - 1) return null;
+    i++;
+    cp = 1;
+  }
+  return { bk: LIBROS[i].bk, cp };
+}
+
+function ir(bk, cp) {
+  location.hash = bk + "-" + cp;
+}
+
+function mostrar() {
+  const m = /^#(\d+)-(\d+)$/.exec(location.hash);
+  let bk = m ? Number(m[1]) : 1;
+  let cp = m ? Number(m[2]) : 1;
+  const l = libro(bk) || LIBROS[0];
+  cp = Math.min(Math.max(cp, 1), l.caps);
+  const cambioLibro = l.bk !== actual.bk || !$("capitulos").children.length;
+  actual = { bk: l.bk, cp };
+
+  if (cambioLibro) pintarCapitulos(l);
+  document.querySelectorAll(".libros button").forEach((b) =>
+    b.setAttribute("aria-current", String(Number(b.dataset.bk) === l.bk)));
+  document.querySelectorAll(".capitulos button").forEach((b) =>
+    b.setAttribute("aria-current", String(Number(b.dataset.cp) === cp)));
+
+  const url = `${URL_APP}&bk=${l.bk}&cp=${cp}`;
+  $("texto").src = url;
+  $("abrir").href = url;
+  $("titulo").textContent = `${l.nombre} ${cp}`;
+  document.title = `${l.nombre} ${cp} · La Biblia`;
+  $("anterior").disabled = !vecino(-1);
+  $("siguiente").disabled = !vecino(1);
+}
+
+$("anterior").addEventListener("click", () => { const v = vecino(-1); if (v) ir(v.bk, v.cp); });
+$("siguiente").addEventListener("click", () => { const v = vecino(1); if (v) ir(v.bk, v.cp); });
+window.addEventListener("hashchange", mostrar);
+
+pintarLibros();
+mostrar();
+</script>
+</body>
+</html>

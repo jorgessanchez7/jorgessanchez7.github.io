@@ -4,10 +4,14 @@
 :root {
   --crema: #fdf6ea;
   --tinta: #3a3330;
-  --suave: #7d7268;
+  --suave: #665b52;
   --acento: #e2725b;
   --verde: #4f9d5d;
   --azul: #3f7fa6;
+  /* versiones más oscuras para texto o fondo con letra blanca (contraste 4.5:1) */
+  --acento-texto: #bf4f39;
+  --verde-texto: #2f7a3e;
+  --azul-texto: #336e93;
   --tarjeta: #ffffff;
   --sombra: 0 10px 28px rgba(58, 51, 48, .12);
 }
@@ -33,15 +37,15 @@ h1, h2, h3 { font-family: "Baloo 2", "Trebuchet MS", sans-serif; font-weight: 70
   padding: 46px 0 40px;
   border-bottom: 4px solid #f3c592;
 }
+/* la línea de contexto va debajo del título, como subtítulo */
 .hero .eyebrow {
-  margin: 0 0 6px;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  font-size: .78rem;
-  color: #b9713f;
+  margin: 8px 0 0;
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: #8c4f25;
 }
 .hero h1 { margin: 0; font-size: clamp(2rem, 5vw, 3rem); color: #7a4a32; }
-.hero .lead { margin: 12px 0 0; max-width: 46ch; color: #8a6449; font-size: 1.05rem; }
+.hero .lead { margin: 10px 0 0; max-width: 46ch; color: #6f4a33; font-size: 1.05rem; }
 
 .btn {
   border: 0;
@@ -50,7 +54,7 @@ h1, h2, h3 { font-family: "Baloo 2", "Trebuchet MS", sans-serif; font-weight: 70
   font: inherit;
   font-weight: 700;
   color: #fff;
-  background: var(--acento);
+  background: var(--acento-texto);
   cursor: pointer;
   text-decoration: none;
   display: inline-flex;
@@ -61,7 +65,7 @@ h1, h2, h3 { font-family: "Baloo 2", "Trebuchet MS", sans-serif; font-weight: 70
 .btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
 .btn:active { transform: translateY(1px); }
 .btn.suave { background: #fff; color: #7a4a32; box-shadow: inset 0 0 0 2px #f0d3ae; }
-.btn.hecho { background: var(--verde); }
+.btn.hecho { background: var(--verde-texto); }
 
 /* ---------- biblioteca ---------- */
 section { padding: 44px 0; }
@@ -103,11 +107,11 @@ section .sub { margin: 0 0 24px; color: var(--suave); }
   flex-wrap: wrap;
   margin-top: 6px;
   font-size: .76rem;
-  color: #8a7f74;
+  color: #665b52;
   font-weight: 700;
 }
 .libro .meta span { background: #f6efe2; border-radius: 999px; padding: 3px 10px; }
-.libro .meta span.act { background: #e6f2e7; color: #3f7a4a; }
+.libro .meta span.act { background: #e6f2e7; color: #2f6a3a; }
 
 /* ---------- rutina ---------- */
 .rutina { background: #fff; border-top: 1px solid #f0e6d5; border-bottom: 1px solid #f0e6d5; }
@@ -116,7 +120,7 @@ section .sub { margin: 0 0 24px; color: var(--suave); }
 .paso .num {
   display: inline-flex; align-items: center; justify-content: center;
   width: 32px; height: 32px; border-radius: 50%;
-  background: var(--acento); color: #fff; font-weight: 700; margin-bottom: 8px;
+  background: var(--acento-texto); color: #fff; font-weight: 700; margin-bottom: 8px;
 }
 .paso h3 { margin: 0 0 4px; font-size: 1.05rem; }
 .paso p { margin: 0; font-size: .92rem; color: var(--suave); font-weight: 500; }
@@ -124,7 +128,7 @@ section .sub { margin: 0 0 24px; color: var(--suave); }
 /* ---------- pie ---------- */
 footer { padding: 30px 0 46px; color: var(--suave); font-size: .9rem; }
 footer nav { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-bottom: 12px; }
-footer a { color: var(--azul); text-decoration: none; font-weight: 700; }
+footer a { color: var(--azul-texto); text-decoration: none; font-weight: 700; }
 footer a:hover { text-decoration: underline; }
 
 @media (max-width: 560px) {
@@ -138,7 +142,7 @@ footer a:hover { text-decoration: underline; }
 .hero .volver {
   display: inline-block;
   margin-bottom: 14px;
-  color: #b9713f;
+  color: #8c4f25;
   text-decoration: none;
   font-weight: 700;
   font-size: .92rem;
@@ -175,7 +179,8 @@ footer a:hover { text-decoration: underline; }
 .puerta .entrar {
   align-self: flex-start;
   margin-top: 6px;
-  background: var(--c, var(--acento));
+  /* el color de la tarjeta, oscurecido para que la letra blanca se lea */
+  background: color-mix(in srgb, var(--c, var(--acento)) 72%, #000);
   color: #fff;
   border-radius: 999px;
   padding: 8px 18px;
@@ -241,17 +246,17 @@ footer a:hover { text-decoration: underline; }
   transition: background .15s ease, border-color .15s ease;
 }
 .silaba:hover { background: #fdf0d8; }
-.sonando, .silaba.sonando { background: var(--acento) !important; border-color: var(--acento); color: #fff; }
+.sonando, .silaba.sonando { background: var(--acento-texto) !important; border-color: var(--acento-texto); color: #fff; }
 .letra.vocal.sonando .glifo, .glifo-boton.sonando .glifo { color: #fff; }
 
 .aviso-ingles {
-  background: #fff;
-  border-left: 6px solid var(--azul);
+  background: #f4f9fc;
+  border: 1px solid #d3e6f1;
   border-radius: 14px;
   padding: 20px 24px;
   box-shadow: var(--sombra);
 }
-.aviso-ingles h3 { margin: 0 0 8px; font-size: 1.15rem; color: #7a4a32; }
+.aviso-ingles h2, .aviso-ingles h3 { margin: 0 0 8px; font-size: 1.15rem; color: #7a4a32; }
 .aviso-ingles p { margin: 0; color: var(--suave); font-weight: 500; }
 
 @media (max-width: 560px) {
@@ -259,3 +264,26 @@ footer a:hover { text-decoration: underline; }
   .letras { grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: 12px; }
   .glifo { font-size: 2.3rem; }
 }
+
+/* ============================================================
+   Accesibilidad (revisión con Impeccable)
+   ============================================================ */
+/* foco del teclado igual en todas las páginas */
+:focus-visible { outline: 3px solid #2f6690; outline-offset: 2px; }
+
+/* dedos de niño: todo lo que se toca mide al menos 44 px */
+.btn { min-height: 44px; }
+.hero .volver { padding: 11px 0; margin: -11px 0 3px; }
+footer nav { gap: 0 18px; margin-bottom: 4px; }
+footer nav a { display: inline-block; padding: 11px 0; }
+
+/* Movimiento reducido: quien lo pide en su sistema ve los cambios sin animación. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+.glifo-boton { min-height: 44px; padding: 2px 6px; }

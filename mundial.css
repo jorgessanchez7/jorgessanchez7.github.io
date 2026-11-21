@@ -27,7 +27,7 @@ header h1 {
 }
 
 header .subtitle {
-    color: #8888aa;
+    color: #a9a9d9;
     font-size: 0.9em;
     margin-top: 4px;
 }
@@ -73,7 +73,7 @@ nav {
 .nav-btn {
     background: none;
     border: none;
-    color: #8888aa;
+    color: #a9a9d9;
     padding: 10px 20px;
     cursor: pointer;
     font-size: 0.95em;
@@ -116,7 +116,7 @@ main {
 }
 
 .filters label {
-    color: #8888aa;
+    color: #a9a9d9;
     font-size: 0.9em;
 }
 
@@ -133,6 +133,12 @@ select:focus, input:focus {
     outline: none;
     border-color: #c4a635;
 }
+/* con teclado el foco se ve siempre */
+:focus-visible {
+    outline: 3px solid #c4a635;
+    outline-offset: 2px;
+}
+input::placeholder { color: #9a9cc4; }
 
 /* Match Cards */
 .match-date-header {
@@ -196,7 +202,7 @@ select:focus, input:focus {
 }
 
 .match-vs {
-    color: #555;
+    color: #9a9cc4;
     font-size: 0.85em;
     margin: 0 8px;
 }
@@ -211,7 +217,7 @@ select:focus, input:focus {
 
 .match-group {
     background: #1a1f4e;
-    color: #8888aa;
+    color: #a9a9d9;
     padding: 3px 8px;
     border-radius: 4px;
     font-size: 0.75em;
@@ -219,7 +225,7 @@ select:focus, input:focus {
 }
 
 .match-time {
-    color: #8888aa;
+    color: #a9a9d9;
     font-size: 0.8em;
     min-width: 50px;
     text-align: right;
@@ -236,8 +242,9 @@ select:focus, input:focus {
     color: #c4a635;
     border: 1px solid #c4a635;
     border-radius: 4px;
-    padding: 3px 10px;
-    font-size: 0.7em;
+    padding: 6px 12px;
+    min-height: 32px;
+    font-size: 0.8em;
     cursor: pointer;
     margin-top: 4px;
 }
@@ -301,7 +308,7 @@ select:focus, input:focus {
 
 .modal-content label {
     display: block;
-    color: #8888aa;
+    color: #a9a9d9;
     font-size: 0.85em;
     margin: 12px 0 5px;
 }
@@ -341,7 +348,7 @@ select:focus, input:focus {
 }
 
 .vs-label {
-    color: #555;
+    color: #9a9cc4;
     font-size: 0.9em;
 }
 
@@ -427,7 +434,7 @@ select:focus, input:focus {
 .rank-tab {
     background: #111433;
     border: 1px solid #222;
-    color: #8888aa;
+    color: #a9a9d9;
     padding: 8px 20px;
     cursor: pointer;
     border-radius: 6px;
@@ -448,7 +455,7 @@ select:focus, input:focus {
 }
 
 .scoring-toggle label {
-    color: #8888aa;
+    color: #a9a9d9;
     font-size: 0.85em;
 }
 
@@ -647,3 +654,14 @@ select:focus, input:focus {
     width: 100%;
     margin-top: 5px;
 }
+
+/* Movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}
+.nav-btn { min-height: 44px; }
+footer p { padding: 0 16px; }

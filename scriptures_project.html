@@ -17,7 +17,7 @@
         /* Encabezado un poco más alto para el título grande y las dos líneas de créditos. */
         #header { height: 72px; }
         #content { top: 72px; }
-        #title { font-size: 1.6em; line-height: 1.2; }
+        #title { font-size: 1.6em; line-height: 1.2; margin: 0; }
         #subtitle { line-height: 1.35; }
         @media all and (max-width: 720px) {
             #header { height: 64px; }
@@ -36,7 +36,8 @@
         .scripturewrapper { width: 100%; }
         div.navheading { position: relative; align-items: center; min-height: 2.2em; }
         .navheading .nextprev { display: flex; gap: .1em; top: 0; }
-        .navheading .nextprev a { font-size: 18pt; padding: 0 .3em; }
+        .navheading .nextprev a { font-size: 18pt; min-width: 44px; min-height: 44px;
+                                  display: inline-flex; align-items: center; justify-content: center; }
         .navheading .nextprev a.apagado { color: #ccc; pointer-events: none; }
         ul.versesblock li { white-space: pre-line; }
         ul.versesblock li.sectionHeader { color: #555; margin: .6em 0 .2em; }
@@ -57,6 +58,13 @@
         .pin { background: none; border: 0; }
         .pin svg { display: block; filter: drop-shadow(0 1px 1px rgba(0,0,0,.45)); transform-origin: 50% 100%; }
         .pin-salta svg { animation: salta .9s ease-out; }
+        @media (prefers-reduced-motion: reduce) { .pin-salta svg { animation: none; } }
+        /* objetivos táctiles: migas y botones de zoom del mapa */
+        #crumbs li a { display: inline-block; padding: 14px 2px; }
+        .volume h2 { font-size: 1.24rem; margin: 0.72rem 0 0.556rem 0; }
+        div.books .btn { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+        .leaflet-touch .leaflet-bar a, .leaflet-bar a { width: 40px; height: 40px; line-height: 40px; font-size: 20px; }
+        :focus-visible { outline: 3px solid #2f6690; outline-offset: 2px; }
         @keyframes salta {
             0% { transform: translateY(0) scale(1); }
             30% { transform: translateY(-14px) scale(1.25); }
@@ -78,7 +86,7 @@
 <div id="header">
     <div id="crumbs"></div>
     <div id="centerhead">
-        <div id="title">La Biblia georreferenciada</div>
+        <h1 id="title">La Biblia georreferenciada</h1>
         <div id="subtitle">
             <div>Texto: <a href="https://ebible.org/find/details.php?id=spablm" target="_blank" rel="noopener">Santa Biblia libre para el mundo</a></div>
             <div>Lugares: <a href="https://scriptures.byu.edu/mapscrip/" target="_blank" rel="noopener">The Scriptures, Mapped (BYU)</a>,
@@ -155,7 +163,7 @@ function migas(test, l, cp) {
 
 function botonera(titulo, botones) {
     const vol = el("div", "volume");
-    vol.appendChild(el("h5", "", titulo));
+    vol.appendChild(el("h2", "", titulo));
     const books = el("div", "books");
     botones.forEach((b) => books.appendChild(b));
     return [vol, books];

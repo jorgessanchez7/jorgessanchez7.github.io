@@ -34,7 +34,7 @@ body {
   background: #fff;
   box-shadow: 0 1px 4px rgba(0, 0, 0, .12);
 }
-.barra-papel a { color: #3f7fa6; text-decoration: none; font-weight: 600; }
+.barra-papel a { color: #336e93; text-decoration: none; font-weight: 600; padding: 11px 0; }
 .barra-papel button {
   font-family: inherit;
   font-size: .95rem;
@@ -42,7 +42,8 @@ body {
   padding: 9px 20px;
   border: 0;
   border-radius: 999px;
-  background: #3f7fa6;
+  min-height: 44px;
+  background: #336e93;
   color: #fff;
   cursor: pointer;
 }
@@ -68,7 +69,7 @@ body {
   gap: 1.2cm;
   margin-bottom: 0.35cm;
   font-size: 9pt;
-  color: #8a8279;
+  color: #6f675f;
 }
 .quien span {
   flex: 1;
@@ -135,5 +136,22 @@ body {
     height: var(--alto);
     box-shadow: none;
     page-break-after: avoid;
+  }
+}
+
+/* En pantallas angostas la hoja se achica para verse completa (en la
+   impresión no se toca: sigue saliendo en tamaño carta). plana.html
+   calcula --escala con el ancho de la pantalla. */
+@media screen {
+  .hoja { zoom: var(--escala, 1); }
+}
+
+/* Movimiento reducido: quien lo pide en su sistema ve los cambios sin animación. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
   }
 }

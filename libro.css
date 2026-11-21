@@ -60,7 +60,7 @@ body.lector {
 }
 .btn:hover { transform: translateY(-1px); background: #ffeecb; }
 .btn:active { transform: translateY(1px); }
-.btn.activo { background: var(--acento); color: #fff; }
+.btn.activo { background: #bf4f39; color: #fff; }
 .btn.icono { padding: 9px 13px; font-size: 1.05rem; }
 
 /* ---------- escenario ---------- */
@@ -200,8 +200,8 @@ body.lector {
   margin: 6px 0 0;
   color: #7a4a32;
 }
-.pagina.portada .autor { margin: 0; font-size: .95rem; color: #9a7f68; }
-.pagina.portada .pista { margin: 10px 0 0; font-size: .85rem; color: #b09a84; }
+.pagina.portada .autor { margin: 0; font-size: .95rem; color: #6f5a47; }
+.pagina.portada .pista { margin: 10px 0 0; font-size: .9rem; color: #73604d; }
 
 /* página en blanco y final */
 .pagina.blanca { background: #fbf6ea; }
@@ -217,10 +217,10 @@ body.lector {
   margin: 0;
   color: #7a4a32;
 }
-.pagina.fin p { margin: 0; text-align: center; color: #9a7f68; }
+.pagina.fin p { margin: 0; text-align: center; color: #6f5a47; }
 .pagina.fin .acciones { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
-.pagina.fin .credito { font-size: .72rem; color: #b09a84; margin-top: 10px; padding: 0 16px; }
-.pagina.fin .credito a { color: #b09a84; }
+.pagina.fin .credito { font-size: .75rem; color: #73604d; margin-top: 10px; padding: 0 16px; overflow-wrap: anywhere; }
+.pagina.fin .credito a { color: #73604d; }
 
 /* --- páginas de estribillo --- */
 .pagina.estribillo .lineas {
@@ -621,3 +621,18 @@ body.lector {
   color: var(--tinta);
 }
 .pagina.verso .hueco { display: block; height: .62em; }
+
+/* Movimiento reducido: quien lo pide en su sistema ve los cambios sin animación. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* botones táctiles de al menos 44 px (revisión con Impeccable) */
+.btn, .btn.icono { min-height: 44px; min-width: 44px; }
+.btn-otra { min-height: 44px; padding-left: 16px; padding-right: 16px; }
+.pagina.fin .credito a { word-break: break-all; }

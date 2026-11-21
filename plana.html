@@ -19,14 +19,14 @@
   <button type="button" id="imprimir">Imprimir</button>
 </div>
 
-<div class="hoja">
+<main class="hoja">
   <div class="encabezado">
     <div class="quien"><span>Nombre</span><span>Fecha</span></div>
     <h1 id="titulo"></h1>
     <p id="pista"></p>
   </div>
   <div id="renglones"></div>
-</div>
+</main>
 
 <script src="escritura/fichas.js"></script>
 <script src="escritura/abecedario.js"></script>
@@ -35,5 +35,17 @@
 <script src="escritura/figuras.js"></script>
 <script src="escritura/dibujo.js"></script>
 <script src="plana.js"></script>
+<script>
+// En pantallas angostas la hoja (tamaño carta, 21.6 cm = 816 px) se achica
+// para verse completa. Al imprimir no se aplica (ver plana.css).
+(function () {
+  function ajustar() {
+    var escala = Math.min(1, (window.innerWidth - 16) / 816);
+    document.documentElement.style.setProperty("--escala", escala.toFixed(3));
+  }
+  ajustar();
+  window.addEventListener("resize", ajustar);
+})();
+</script>
 </body>
 </html>

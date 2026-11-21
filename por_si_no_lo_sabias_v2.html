@@ -14,6 +14,7 @@
     --azul:#00318B;
     --azul-deep:#001A40;
     --rojo:#E0001B;
+    --rojo-texto:#FF4D5E; /* el mismo rojo, más claro para leerse sobre el azul oscuro */
     --rojo-deep:#A8001A;
     --crema:#F7F0DC;
     --crema-2:#EFE6CC;
@@ -75,7 +76,7 @@
     line-height:1.18;color:#eaf0ff;text-transform:uppercase;letter-spacing:.01em;
   }
   .thesis b{color:var(--amarillo);}
-  .thesis .never{color:var(--rojo);font-family:'Anton';font-weight:400;letter-spacing:.5px;}
+  .thesis .never{color:var(--rojo-texto);font-family:'Anton';font-weight:400;letter-spacing:.5px;}
 
   .rule{height:4px;width:100%;margin:26px 0 18px;
     background:linear-gradient(90deg,var(--amarillo) 0 50%,var(--azul) 50% 75%,var(--rojo) 75% 100%);}
@@ -110,13 +111,13 @@
   .yearblock svg{width:20px;height:20px;opacity:.85;margin-bottom:3px;}
   .yearblock .yr{font-family:'Anton';font-size:30px;line-height:.9;}
   .row.bad .yearblock .yr{color:#ffd9dd;}
-  .yearblock .host{font-family:'Barlow Condensed';font-weight:600;font-size:10.5px;
+  .yearblock .host{font-family:'Barlow Condensed';font-weight:600;font-size:12px;
     text-transform:uppercase;letter-spacing:.08em;color:var(--amarillo);margin-top:3px;}
   .row.bad .yearblock .host{color:#ffb3bb;}
 
   .person{padding:11px 18px;}
   .person .party{font-family:'Barlow Condensed';font-weight:600;font-size:13px;
-    text-transform:uppercase;letter-spacing:.05em;color:#5a6680;line-height:1;}
+    text-transform:uppercase;letter-spacing:.05em;color:#48546c;line-height:1;}
   .person .name{font-family:'Barlow';font-weight:800;font-size:clamp(18px,3.2vw,23px);
     color:var(--tinta);line-height:1.02;margin-top:2px;}
   .person .party b{color:var(--azul);}
@@ -129,7 +130,7 @@
     padding:6px 12px;transform:rotate(-4deg);background:rgba(30,138,76,.07);
   }
   .stamp .badge .chk{font-family:'Anton';font-size:22px;line-height:.9;}
-  .stamp .badge .lbl{font-family:'Barlow Condensed';font-weight:700;font-size:10.5px;
+  .stamp .badge .lbl{font-family:'Barlow Condensed';font-weight:700;font-size:12px;
     text-transform:uppercase;letter-spacing:.04em;line-height:1.02;margin-top:2px;}
   .row.bad .stamp .badge{border-color:var(--rojo);color:var(--rojo-deep);background:rgba(224,0,27,.06);}
 
@@ -161,7 +162,7 @@
     text-transform:uppercase;letter-spacing:.1em;font-size:13px;margin-bottom:5px;}
   .note p{color:#dbe3f5;font-size:14.5px;line-height:1.45;font-weight:500;}
   .note p b{color:#fff;}
-  .note .score{color:var(--rojo);font-family:'Anton';font-weight:400;}
+  .note .score{color:var(--rojo-texto);font-family:'Anton';font-weight:400;}
 
   /* footer */
   footer{margin-top:26px;text-align:center;}

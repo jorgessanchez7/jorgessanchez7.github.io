@@ -14,8 +14,8 @@ h1, h2, h3, .hero h1 { font-family: "Quicksand", "Trebuchet MS", sans-serif; fon
 .hero.chepe   { background: linear-gradient(160deg, #e4f3e0 0%, #cfe9c8 55%, #c1e2b8 100%); border-bottom-color: #a5d29a; }
 .hero.jorge   { background: linear-gradient(160deg, #fdeedd 0%, #fbdcc0 55%, #f9d2ac 100%); border-bottom-color: #efbb8a; }
 .hero.antonio h1, .hero.chepe h1, .hero.jorge h1 { color: #3c4a52; }
-.hero.antonio .lead, .hero.chepe .lead, .hero.jorge .lead { color: #5a6a72; }
-.hero.antonio .eyebrow, .hero.chepe .eyebrow, .hero.jorge .eyebrow { color: #5d7a88; }
+.hero.antonio .lead, .hero.chepe .lead, .hero.jorge .lead { color: #45535a; }
+.hero.antonio .eyebrow, .hero.chepe .eyebrow, .hero.jorge .eyebrow { color: #3d5866; }
 .hero.antonio .volver, .hero.chepe .volver, .hero.jorge .volver { color: #4c6b7a; }
 
 /* ---------- la hoja ---------- */
@@ -36,8 +36,8 @@ h1, h2, h3, .hero h1 { font-family: "Quicksand", "Trebuchet MS", sans-serif; fon
 }
 #crayones { display: flex; gap: 8px; }
 .crayon {
-  width: 34px;
-  height: 34px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: 3px solid #fff;
   box-shadow: 0 2px 6px rgba(58, 51, 48, .25);
@@ -59,9 +59,9 @@ h1, h2, h3, .hero h1 { font-family: "Quicksand", "Trebuchet MS", sans-serif; fon
 
 .deshacer {
   flex: 0 0 auto;
-  width: 38px;
-  height: 38px;
-  padding: 7px;
+  width: 44px;
+  height: 44px;
+  padding: 9px;
   border: 0;
   border-radius: 50%;
   background: #f3efe9;
@@ -191,7 +191,7 @@ h1, h2, h3, .hero h1 { font-family: "Quicksand", "Trebuchet MS", sans-serif; fon
   margin: 0;
   font-size: .82rem;
   font-weight: 700;
-  color: #8a7f74;
+  color: #665b52;
   background: #f6efe2;
   border-radius: 999px;
   padding: 4px 12px;
@@ -201,25 +201,25 @@ h1, h2, h3, .hero h1 { font-family: "Quicksand", "Trebuchet MS", sans-serif; fon
 /* ---------- nota del método ---------- */
 .nota {
   background: #fff;
-  border-left: 6px solid var(--azul);
+  border: 1px solid #ecdcc4;
   border-radius: 14px;
   padding: 20px 24px;
   box-shadow: var(--sombra);
 }
-.nota h3 { margin: 0 0 8px; font-size: 1.15rem; color: #7a4a32; }
+.nota h2, .nota h3 { margin: 0 0 8px; font-size: 1.15rem; color: #7a4a32; }
 .nota p { margin: 0 0 10px; color: var(--suave); font-weight: 500; }
 .nota p:last-child { margin-bottom: 0; }
-.nota.verde { border-left-color: var(--verde); }
+.nota.verde { background: #f5faf3; border-color: #d3e8cf; }
 
 @media (max-width: 560px) {
   .glifo-grande { font-size: 3.4rem; }
   .muestra { gap: 14px; padding: 12px 16px; }
   .muestra .dibujo { width: 62px; height: 62px; }
   .muestra .palabra { font-size: 1.35rem; }
-  .crayon { width: 30px; height: 30px; }
+  .crayon { width: 44px; height: 44px; }
   .hojas { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
   .fila { gap: 7px; }
-  .deshacer { width: 34px; height: 34px; padding: 6px; }
+  .deshacer { width: 44px; height: 44px; padding: 9px; }
 }
 
 /* ============================================================
@@ -630,9 +630,9 @@ h3.para-papel {
   padding: 2px 12px;
 }
 .fig-es { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; color: var(--letra); }
-.fig-en { font-size: clamp(1.15rem, 2.2vw, 1.5rem); font-weight: 600; color: #5d7a88; }
+.fig-en { font-size: clamp(1.15rem, 2.2vw, 1.5rem); font-weight: 600; color: #4a6774; }
 .fig-en::before { content: "EN"; font-size: .55em; font-weight: 700; letter-spacing: .08em;
-  color: #fff; background: #5d7a88; border-radius: 6px; padding: 2px 5px; margin-right: 8px;
+  color: #fff; background: #4a6774; border-radius: 6px; padding: 2px 5px; margin-right: 8px;
   vertical-align: middle; }
 .fig-es.sonando, .fig-en.sonando { background: var(--letra-suave); }
 .fig-donde { margin: 8px 0 0; font-size: .82rem; color: var(--suave); display: flex; flex-direction: column; gap: 2px; }
@@ -643,7 +643,7 @@ h3.para-papel {
 .numero-ficha .vista svg.mini-fig { height: 60px; width: auto; }
 .glifo-grande.fig { width: 1.3em; padding: 0; }
 .glifo-grande.fig svg { width: 100%; height: auto; display: block; }
-.muestra .palabra .en { color: #5d7a88; font-weight: 600; }
+.muestra .palabra .en { color: #4a6774; font-weight: 600; }
 
 /* ============================================================
    Inglés: las tarjetas de lectura con su nombre en inglés.
@@ -658,7 +658,8 @@ h3.para-papel {
   background: #fff;
   border: 2px solid #c9e4f2;
   border-radius: 999px;
-  padding: 6px 14px;
+  padding: 10px 16px;
+  display: inline-block;
 }
 .tema-salto:hover { background: #eef7fc; }
 .tema-es { color: var(--suave); font-weight: 600; font-size: .7em; }
@@ -691,3 +692,14 @@ h3.para-papel {
 .en-ficha::before { content: "EN"; font-size: .62em; font-weight: 700; letter-spacing: .08em; color: #fff;
   background: #5d7a88; border-radius: 5px; padding: 1px 4px; margin: 0 4px 0 2px; vertical-align: middle; }
 .numero-ficha h3 em { display: block; font-size: .9em; }
+
+/* ============================================================
+   Accesibilidad (revisión con Impeccable)
+   ============================================================ */
+/* botones que tocan los niños: al menos 44 px */
+.glifo-boton, .fig-es, .fig-en, .en-palabra, .es-palabra, .casilla { min-height: 44px; }
+.glifo-boton { padding: 2px 6px; }
+/* en el teléfono las casillas del 0 al 10 bajan a dos filas para que quepan los dedos */
+@media (max-width: 560px) {
+  .fila-numeros, .fila-numeros.dos-filas { grid-template-columns: repeat(6, minmax(44px, 1fr)); }
+}
