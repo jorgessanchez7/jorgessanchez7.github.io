@@ -87,25 +87,39 @@
     });
   }
 
+  /* Funciona con cualquier cantidad de cifras (del 21 al 100 se arman
+     solo cuando se piden, ver trazosDe()). Siempre centrado en x=75. */
   function armar(id) {
-    var a = id.charAt(0), b = id.charAt(1);
-    var ca = CAJA[a], cb = CAJA[b];
-    var aire = a === "1" ? 28 : 12;
-    var total = (ca[1] - ca[0]) + aire + (cb[1] - cb[0]);
-    var dxa = 75 - total / 2 - ca[0];
-    var dxb = dxa + ca[1] + aire - cb[0];
+    var cifras = id.split("");
+    var total = 0, i;
+    for (i = 0; i < cifras.length; i++) {
+      total += CAJA[cifras[i]][1] - CAJA[cifras[i]][0];
+      if (i > 0) total += cifras[i - 1] === "1" ? 28 : 12;
+    }
     var out = [];
-    [[a, dxa], [b, dxb]].forEach(function (p) {
-      TRAZOS[p[0]].forEach(function (t) {
-        var c = { d: correr(t.d, p[1]), ini: [+(t.ini[0] + p[1]).toFixed(1), t.ini[1]], ang: t.ang };
-        if (t.insignia) c.insignia = t.insignia;
-        out.push(c);
+    var x = 75 - total / 2;
+    cifras.forEach(function (c, j) {
+      if (j > 0) x += cifras[j - 1] === "1" ? 28 : 12;
+      var dx = x - CAJA[c][0];
+      TRAZOS[c].forEach(function (t) {
+        var n = { d: correr(t.d, dx), ini: [+(t.ini[0] + dx).toFixed(1), t.ini[1]], ang: t.ang };
+        if (t.insignia) n.insignia = t.insignia;
+        out.push(n);
       });
+      x += CAJA[c][1] - CAJA[c][0];
     });
     return out;
   }
 
   for (var k = 10; k <= 20; k++) TRAZOS[String(k)] = armar(String(k));
+
+  /* Del 21 al 100: se arman la primera vez que se piden. */
+  function trazosDe(id) {
+    id = String(id);
+    if (!TRAZOS[id] && /^[0-9]{2,3}$/.test(id)) TRAZOS[id] = armar(id);
+    return TRAZOS[id];
+  }
+  window.NUMERO_TRAZOS_DE = trazosDe;
 
   window.NUMEROS_TRAZOS = TRAZOS;
 
@@ -524,11 +538,12 @@
      números. */
 
   function svgNumero(id, color, grosor, clase) {
-    var t = TRAZOS[id];
+    id = String(id);
+    var t = trazosDe(id);
     if (!t) return "";
     var g = grosor || 7;
-    var dos = id.length > 1;
-    var s = '<svg class="' + (clase || "num-dibujado") + '" viewBox="' + (dos ? "22 33 106" : "20 33 56") +
+    var caja = id.length > 2 ? "8 33 134" : id.length > 1 ? "22 33 106" : "20 33 56";
+    var s = '<svg class="' + (clase || "num-dibujado") + '" viewBox="' + caja +
       ' 84" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">';
     for (var i = 0; i < t.length; i++) {
       s += '<path d="' + t[i].d + '" fill="none" stroke="' + (color || "currentColor") +

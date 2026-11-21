@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, noimageindex">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Números y figuras · Plan en casa</title>
-<meta name="description" content="Del 0 al 20: contar, decir el nombre y escribir cada número.">
+<meta name="description" content="Del 0 al 20: contar, decir el nombre y escribir cada número. Y la tabla del 1 al 100.">
 <link rel="icon" href="icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,6 +49,25 @@
 
 <section>
   <div class="envoltura">
+    <h2>Del uno al cien</h2>
+    <p class="sub">La tabla de 10 en 10, como la hoja de la escuela: faltan algunos números y hay
+       que escribirlos. En pantalla, con teclado y voz en español o en inglés; y en papel, la
+       hoja de la escuela o una nueva al azar.</p>
+    <div class="hojas">
+      <a class="ficha numero-ficha" href="cien.html">
+        <span class="vista" style="background:#e4f3e0" id="vista-cien"></span>
+        <h3>Del 1 al 100 <em>completar la tabla</em></h3>
+      </a>
+    </div>
+    <div class="botonera" style="margin-top:18px">
+      <a class="btn grande papel" href="pdf/cien-escuela.pdf" download>La hoja de la escuela (PDF)</a>
+      <a class="btn grande papel" href="cien.html#imprimir">Hojas nuevas al azar &#8594;</a>
+    </div>
+  </div>
+</section>
+
+<section class="rutina">
+  <div class="envoltura">
     <h2>Las figuras</h2>
     <p class="sub">Ocho figuras con su nombre en español y en inglés, para tocar, oír y trazar.
        Pensadas para Nelson, pero sirven para los tres.</p>
@@ -61,7 +80,7 @@
   </div>
 </section>
 
-<section class="rutina">
+<section>
   <div class="envoltura">
     <h2>Para hacer con lápiz</h2>
     <p class="sub">Dos hojas por número: el número con su nombre en letras, y marcos para contar
@@ -72,7 +91,7 @@
   </div>
 </section>
 
-<section>
+<section class="rutina">
   <div class="envoltura">
     <div class="nota verde">
       <h3>Cómo usar cada lección</h3>
@@ -92,7 +111,7 @@
   </div>
 </section>
 
-<section class="rutina">
+<section>
   <div class="envoltura">
     <div class="nota verde">
       <h3>Si un número sale al revés</h3>
@@ -141,6 +160,8 @@
       "</span><h3>El " + N.palabra + " <span class=\"en-ficha\" lang=\"en\">" + N.en + "</span> <em>" + N.cosas + "</em></h3>";
     caja.appendChild(a);
   });
+  var c = document.getElementById("vista-cien");
+  if (c) c.innerHTML = window.NUMERO_SVG("100", "#2f7a3e", 9);
   var v = document.getElementById("vista-figuras");
   if (v && window.FIGURAS) {
     v.innerHTML = window.FIGURAS.slice(0, 3).map(function (F) { return window.FIGURA_SVG(F, "mini-fig"); }).join("");

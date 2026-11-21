@@ -1,0 +1,198 @@
+/* ============================================================
+   cien.css - la tabla del 1 al 100 (cien.html)
+   Se carga después de lectura.css y escritura.css.
+   ============================================================ */
+
+.juego-cien { padding-top: 28px; }
+
+/* ---------- niveles y voz ---------- */
+.cien-controles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 28px;
+  margin-bottom: 22px;
+}
+.grupo { display: flex; flex-direction: column; gap: 6px; }
+.grupo-titulo { font-size: .85rem; font-weight: 700; color: var(--suave); text-transform: uppercase; letter-spacing: .06em; }
+.botones-grupo { display: flex; flex-wrap: wrap; gap: 8px; }
+.opcion {
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 2px solid #cfe2c9;
+  border-radius: 999px;
+  background: #fff;
+  color: #3c4a52;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.opcion small { font-size: .8rem; font-weight: 600; color: var(--suave); margin-left: 3px; }
+.opcion:hover { border-color: #9cc792; }
+.opcion[aria-pressed="true"] { background: var(--verde-texto); border-color: var(--verde-texto); color: #fff; }
+.opcion[aria-pressed="true"] small { color: #e3f1df; }
+
+/* ---------- la tabla y el teclado ---------- */
+.cien-juego {
+  display: grid;
+  grid-template-columns: minmax(0, 600px) minmax(220px, 280px);
+  gap: 28px;
+  align-items: start;
+}
+
+.tabla-cien {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  border: 2px solid #3a3330;
+  background: #3a3330;
+  gap: 1px;
+  user-select: none;
+}
+.celda {
+  aspect-ratio: 1 / 1.15;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font: inherit;
+}
+.celda svg { height: 46%; max-width: 88%; display: block; pointer-events: none; }
+.celda.hueco { background: #fff7d6; }
+.celda.hueco:hover { background: #ffefb0; }
+.celda.elegida {
+  background: #fff;
+  box-shadow: inset 0 0 0 3px var(--azul-texto);
+  position: relative;
+  z-index: 1;
+}
+.celda.bien { background: #e6f4e3; }
+.celda.vecino { animation: vecino 2.6s ease; }
+.celda.fallo { animation: meneo .45s ease; }
+/* el global .sonando pinta fondo de acento; aquí se queda suave para que el número se siga viendo */
+.celda.sonando { background: #ffe2c4 !important; }
+.tabla-cien.completa .celda { background: #e6f4e3; }
+
+@keyframes meneo {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-4px); }
+  40% { transform: translateX(4px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(3px); }
+}
+@keyframes vecino {
+  0%, 80% { background: #ffe2c4; }
+  100% { background: #fff; }
+}
+
+.cien-lado { position: sticky; top: 16px; }
+.cien-estado { margin: 0 0 12px; min-height: 1.6em; color: var(--suave); font-weight: 700; }
+
+.cien-teclado {
+  background: #fff;
+  border: 1px solid #e3ddd2;
+  border-radius: 20px;
+  padding: 14px;
+  box-shadow: var(--sombra);
+}
+.escrito {
+  height: 64px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  background: #f4f8fb;
+  border: 2px solid #c8dbe8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.escrito svg { height: 70%; }
+.escrito.vacio::after { content: "?"; font-size: 2rem; font-weight: 700; color: #a8bfcf; }
+
+.teclado { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.tecla {
+  height: 58px;
+  border: 0;
+  border-radius: 14px;
+  background: #f3efe8;
+  color: #3a3330;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform .1s ease, background .15s ease;
+}
+.tecla:hover { background: #ebe4d8; }
+.tecla:active { transform: scale(.95); }
+.tecla svg { height: 34px; pointer-events: none; }
+.tecla-borrar svg { height: 26px; }
+.tecla-listo { background: var(--verde-texto); color: #fff; }
+.tecla-listo:hover { background: #276834; }
+.tecla-listo svg { height: 28px; }
+
+/* ---------- al terminar ---------- */
+.cien-final {
+  margin-top: 24px;
+  padding: 22px 24px;
+  border-radius: 20px;
+  background: #f5faf3;
+  border: 2px solid #b9dcb1;
+  max-width: 640px;
+  text-align: center;
+}
+.cien-final p { margin: 0 0 12px; color: var(--suave); }
+.cien-final .cien-final-titulo { font-size: 1.8rem; font-weight: 700; color: var(--verde-texto); margin-bottom: 4px; }
+.cien-final .btn.grande { background: var(--verde-texto); }
+
+/* ---------- para imprimir ---------- */
+.al-azar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 12px;
+  margin-top: 16px;
+}
+.al-azar label { font-weight: 700; color: #5c534c; }
+.al-azar select {
+  min-height: 44px;
+  padding: 6px 12px;
+  border: 2px solid #c9bfb2;
+  border-radius: 12px;
+  background: #fff;
+  font: inherit;
+  font-weight: 700;
+  color: #3a3330;
+}
+.aviso-pdf { margin: 10px 0 0; min-height: 1.5em; color: var(--verde-texto); font-weight: 700; }
+
+/* ---------- pantallas chicas: el teclado abajo, siempre a mano ---------- */
+@media (max-width: 760px) {
+  .cien-juego { grid-template-columns: 1fr; gap: 12px; }
+  .cien-lado {
+    position: sticky;
+    top: auto;
+    bottom: 0;
+    z-index: 5;
+    margin: 0 -20px;
+    padding: 8px 20px 12px;
+    background: rgba(253, 246, 234, .96);
+    backdrop-filter: blur(6px);
+    border-top: 1px solid #eadfcd;
+  }
+  .cien-estado { margin: 0 0 6px; min-height: 1.4em; font-size: .92rem; }
+  .cien-teclado { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 8px; padding: 8px; border-radius: 16px; box-shadow: none; }
+  .escrito { height: auto; margin: 0; }
+  .teclado { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; }
+  .tecla { height: 48px; }
+  .tecla svg { height: 26px; }
+}
+@media (max-width: 400px) {
+  .celda svg { height: 44%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .celda.fallo, .celda.vecino { animation: none; }
+  .celda.vecino { background: #ffe2c4; }
+}

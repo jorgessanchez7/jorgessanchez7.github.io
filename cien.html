@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, noimageindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Del 1 al 100 · Plan en casa</title>
+<meta name="description" content="La tabla del 1 al 100: completar los números que faltan, en pantalla y en papel.">
+<link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="lectura.css">
+<link rel="stylesheet" href="escritura.css">
+<link rel="stylesheet" href="cien.css">
+</head>
+<body>
+
+<header class="hero chepe">
+  <div class="envoltura">
+    <a class="volver" href="numeros.html">&#8592; Números y figuras</a>
+    <h1>Del 1 al 100</h1>
+    <p class="eyebrow">La tabla con los números que faltan</p>
+    <p class="lead">Como la hoja de la escuela: faltan algunos números y hay que escribirlos.
+       Toque un hueco, escriba el número con el teclado y toque la palomita.</p>
+  </div>
+</header>
+
+<main>
+
+<section class="juego-cien">
+  <div class="envoltura">
+    <div class="cien-controles">
+      <div class="grupo">
+        <span class="grupo-titulo" id="t-niveles">Huecos</span>
+        <div class="botones-grupo" id="niveles" role="group" aria-labelledby="t-niveles">
+          <button type="button" class="opcion" data-valor="pocos">Pocos <small>10</small></button>
+          <button type="button" class="opcion" data-valor="hoja">Como la hoja <small>25</small></button>
+          <button type="button" class="opcion" data-valor="muchos">Muchos <small>40</small></button>
+          <button type="button" class="opcion" data-valor="escuela">La hoja de la escuela</button>
+        </div>
+      </div>
+      <div class="grupo">
+        <span class="grupo-titulo" id="t-voces">Voz</span>
+        <div class="botones-grupo" id="voces" role="group" aria-labelledby="t-voces">
+          <button type="button" class="opcion" data-valor="es">Español</button>
+          <button type="button" class="opcion" data-valor="en" lang="en">English</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="cien-juego">
+      <div class="tabla-cien" id="tabla-cien" aria-label="Tabla del 1 al 100"></div>
+      <div class="cien-lado">
+        <p class="cien-estado" id="cien-estado" aria-live="polite"></p>
+        <div class="cien-teclado">
+          <div class="escrito vacio" id="escrito" aria-hidden="true"></div>
+          <div class="teclado" id="teclado"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cien-final" id="cien-final" hidden>
+      <p class="cien-final-titulo">¡Lo lograste!</p>
+      <p>La tabla está completa.</p>
+      <button type="button" class="btn grande" id="otra-vez">Otra vez</button>
+    </div>
+  </div>
+</section>
+
+<section class="rutina imprimir" id="imprimir">
+  <div class="envoltura">
+    <h2>Para hacer con lápiz</h2>
+    <p class="sub">En inglés, igual que la de la escuela. La hoja de la escuela es siempre la
+       misma; la hoja al azar sale distinta cada vez que se toca el botón.</p>
+    <div class="botonera">
+      <a class="btn grande papel" href="pdf/cien-escuela.pdf" download>La hoja de la escuela (PDF)</a>
+    </div>
+    <div class="al-azar">
+      <label for="huecos-pdf">Hoja nueva al azar, con</label>
+      <select id="huecos-pdf">
+        <option value="10">10 huecos</option>
+        <option value="25" selected>25 huecos</option>
+        <option value="40">40 huecos</option>
+        <option value="60">60 huecos</option>
+      </select>
+      <button type="button" class="btn grande papel" id="hacer-pdf">Hacer el PDF</button>
+    </div>
+    <p class="aviso-pdf" id="aviso-pdf" aria-live="polite"></p>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <div class="nota verde">
+      <h3>Cómo ayudarle</h3>
+      <p><strong>La tabla tiene un orden.</strong> Cada número es el de su izquierda y uno más,
+         y cada fila empieza donde terminó la anterior. Si no sabe cuál va en un hueco, la
+         pregunta es «¿cuál está antes?»: si antes está el 22, después viene el 23.</p>
+      <p><strong>Hacia abajo también hay un orden.</strong> Cada número es el de arriba y diez
+         más: en la columna del 3 están el 13, el 23, el 33… Todos terminan en 3. Cuando ya
+         domina la fila, esa es la siguiente pista.</p>
+      <p><strong>Si se equivoca,</strong> la tabla no lo dice con rojo: se menean el hueco y los
+         dos números de al lado, para que mire el de antes y el de después. A la segunda, la voz
+         le dice cuál número va antes.</p>
+      <p><strong>Toque cualquier número</strong> para oírlo. La voz puede ir en español o en
+         inglés: en la escuela la tabla es en inglés y en casa se cuenta en español, y las dos
+         sirven.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="envoltura">
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="numeros.html">Números y figuras</a>
+      <a href="planas.html">Las hojas para imprimir</a>
+    </nav>
+    <p>Sin reloj, sin puntaje. Se cuenta, se escribe y ya.</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="escritura/fichas.js"></script>
+<script src="escritura/numeros.js"></script>
+<script src="cien.js"></script>
+</body>
+</html>
