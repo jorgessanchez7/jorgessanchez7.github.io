@@ -92,7 +92,7 @@
         '<p>' + libro.titulo + '</p>' +
         '<div class="acciones">' +
         '<button class="btn" data-accion="reiniciar">Leerlo otra vez</button>' +
-        '<a class="btn" href="index.html">Otro libro</a>' +
+        '<a class="btn" href="lecturas.html">Otro libro</a>' +
         '</div>' + credito + '</div>';
     }
     var ilus = item.pg.imagen

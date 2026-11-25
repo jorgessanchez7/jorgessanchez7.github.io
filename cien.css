@@ -30,6 +30,12 @@
 .opcion:hover { border-color: #9cc792; }
 .opcion[aria-pressed="true"] { background: var(--verde-texto); border-color: var(--verde-texto); color: #fff; }
 .opcion[aria-pressed="true"] small { color: #e3f1df; }
+.grupo-hasta { flex-basis: 100%; }
+.opcion-num { padding: 6px 12px; min-width: 56px; justify-content: center; display: inline-flex; align-items: center; }
+.opcion-num svg { height: 24px; width: auto; display: block; }
+.titulo-tabla { display: flex; align-items: center; gap: 10px; margin: 0 0 2px; color: #3c4a52; font-size: 1.5rem; }
+.titulo-tabla svg { height: 28px; width: auto; }
+.instruccion { margin: 0 0 14px; color: var(--suave); }
 
 /* ---------- la tabla y el teclado ---------- */
 .cien-juego {

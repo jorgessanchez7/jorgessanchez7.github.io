@@ -3,8 +3,9 @@
 
    Tres cosas, todas con la misma tabla de 10 x 10:
    1. El juego: faltan algunos números y Chepe los escribe con el
-      teclado. La cantidad de huecos es el nivel. También se puede
-      jugar con la hoja exacta de la escuela.
+      teclado. Se escoge hasta dónde llega la tabla (del 1 al 10, al
+      20, … al 100) y cuántos huecos tiene. También se puede jugar con
+      la hoja exacta de la escuela, que es del 1 al 100.
    2. La hoja de la escuela en PDF (pdf/cien-escuela.pdf), igual a
       la que trajo: en inglés, con «Name:» arriba y los mismos huecos.
    3. Hojas nuevas al azar, en el mismo formato, para imprimir.
@@ -23,19 +24,28 @@
   var ESCUELA = [3, 6, 9, 14, 18, 22, 25, 30, 31, 37, 43, 46, 48, 52, 55,
                  60, 64, 67, 73, 76, 79, 81, 88, 92, 95, 100];
 
+  /* La cantidad de huecos va en proporción al tamaño de la tabla: en
+     la del 1 al 100, pocos son 10, como la hoja 25 y muchos 40. */
   var NIVELES = {
-    pocos:   { huecos: 10, nombre: "Pocos huecos" },
-    hoja:    { huecos: 25, nombre: "Como la hoja" },
-    muchos:  { huecos: 40, nombre: "Muchos huecos" },
-    escuela: { huecos: ESCUELA.length, nombre: "La hoja de la escuela" }
+    pocos:   { parte: 0.10, minimo: 2 },
+    hoja:    { parte: 0.25, minimo: 3 },
+    muchos:  { parte: 0.40, minimo: 4 },
+    escuela: {}
   };
+
+  function cuantosHuecos(nivel, hasta) {
+    if (nivel === "escuela") return ESCUELA.length;
+    var N = NIVELES[nivel];
+    return Math.max(N.minimo, Math.round(hasta * N.parte));
+  }
 
   /* Huecos al azar, distintos cada vez. Ninguna fila queda vacía del
      todo: con al menos un número en cada fila siempre hay de dónde
      agarrarse. */
-  function huecosAlAzar(cuantos) {
+  function huecosAlAzar(cuantos, hasta) {
     var todos = [], n;
-    for (n = 1; n <= 100; n++) todos.push(n);
+    hasta = hasta || 100;
+    for (n = 1; n <= hasta; n++) todos.push(n);
     for (n = todos.length - 1; n > 0; n--) {
       var j = Math.floor(Math.random() * (n + 1));
       var t = todos[n]; todos[n] = todos[j]; todos[j] = t;
@@ -50,8 +60,8 @@
     return elegidos.sort(function (a, b) { return a - b; });
   }
 
-  function huecosDe(nivel) {
-    return nivel === "escuela" ? ESCUELA.slice() : huecosAlAzar(NIVELES[nivel].huecos);
+  function huecosDe(nivel, hasta) {
+    return nivel === "escuela" ? ESCUELA.slice() : huecosAlAzar(cuantosHuecos(nivel, hasta), hasta);
   }
 
   /* ---------- la hoja en PDF ----------
@@ -96,7 +106,9 @@
     });
   }
 
-  function hojaPDF(huecos) {
+  function hojaPDF(huecos, hasta) {
+    hasta = hasta || 100;
+    var filas = hasta / 10;
     var jsPDF = window.jspdf.jsPDF;
     var doc = new jsPDF({ unit: "mm", format: "letter", orientation: "portrait" });
     var H = HOJA, vacio = {};
@@ -111,13 +123,11 @@
     doc.setLineWidth(0.4);
     doc.line(H.x0 + 23, 26, H.x0 + 110, 26);
 
-    var w = H.celdaW * 10, h = H.celdaH * 10;
+    var w = H.celdaW * 10, h = H.celdaH * filas, i;
     doc.setLineWidth(0.45);
-    for (var i = 0; i <= 10; i++) {
-      doc.line(H.x0 + i * H.celdaW, H.y0, H.x0 + i * H.celdaW, H.y0 + h);
-      doc.line(H.x0, H.y0 + i * H.celdaH, H.x0 + w, H.y0 + i * H.celdaH);
-    }
-    for (var n = 1; n <= 100; n++) {
+    for (i = 0; i <= 10; i++) doc.line(H.x0 + i * H.celdaW, H.y0, H.x0 + i * H.celdaW, H.y0 + h);
+    for (i = 0; i <= filas; i++) doc.line(H.x0, H.y0 + i * H.celdaH, H.x0 + w, H.y0 + i * H.celdaH);
+    for (var n = 1; n <= hasta; n++) {
       if (vacio[n]) continue;
       var f = Math.floor((n - 1) / 10), c = (n - 1) % 10;
       numeroEnPDF(doc, n, H.x0 + (c + 0.5) * H.celdaW, H.y0 + (f + 0.5) * H.celdaH, 8.5);
@@ -187,6 +197,9 @@
   var elegida = null;       // número del hueco seleccionado
   var nivel = leer("cien-nivel", "pocos");
   if (!NIVELES[nivel]) nivel = "pocos";
+  var hasta = Number(leer("cien-hasta", "20"));
+  if (!(hasta >= 10 && hasta <= 100 && hasta % 10 === 0)) hasta = 20;
+  if (nivel === "escuela") hasta = 100;
   voz = leer("cien-voz", "es") === "en" ? "en" : "es";
 
   var TINTA = "#3a3330", TINTA_ESCRITA = "#336e93";
@@ -208,9 +221,10 @@
     elegida = null;
     final.hidden = true;
     tabla.classList.remove("completa");
-    huecosDe(nivel).forEach(function (n) { faltan[n] = 0; });
+    tabla.setAttribute("aria-label", "Tabla del 1 al " + hasta);
+    huecosDe(nivel, hasta).forEach(function (n) { faltan[n] = 0; });
 
-    for (var n = 1; n <= 100; n++) {
+    for (var n = 1; n <= hasta; n++) {
       var b = document.createElement("button");
       b.type = "button";
       b.className = "celda";
@@ -246,7 +260,7 @@
   /* El siguiente hueco después de n (y si no hay, el primero que quede). */
   function siguiente(n) {
     var k;
-    for (k = n + 1; k <= 100; k++) if (k in faltan) return seleccionar(k);
+    for (k = n + 1; k <= hasta; k++) if (k in faltan) return seleccionar(k);
     for (k = 1; k <= n; k++) if (k in faltan) return seleccionar(k);
     seleccionar(null);
   }
@@ -373,12 +387,47 @@
     });
   }
 
+  /* los botones de «hasta»: el número va dibujado, como en todas partes */
+  var hastas = document.getElementById("hastas");
+  for (var h = 10; h <= 100; h += 10) {
+    var bh = document.createElement("button");
+    bh.type = "button";
+    bh.className = "opcion opcion-num";
+    bh.dataset.valor = String(h);
+    bh.setAttribute("aria-label", "Del 1 al " + h);
+    bh.innerHTML = window.NUMERO_SVG(String(h), "currentColor", 9);
+    hastas.appendChild(bh);
+  }
+
+  /* cuántos huecos lleva cada nivel con la tabla escogida */
+  function pintarNiveles() {
+    marcarGrupo("hastas", String(hasta));
+    marcarGrupo("niveles", nivel);
+    ["pocos", "hoja", "muchos"].forEach(function (k) {
+      var s = document.querySelector('#niveles [data-valor="' + k + '"] small');
+      if (s) s.textContent = cuantosHuecos(k, hasta);
+    });
+    var t = document.getElementById("titulo-tabla");
+    if (t) t.innerHTML = "Del " + window.NUMERO_SVG("1", "currentColor", 10) + " al " + window.NUMERO_SVG(String(hasta), "currentColor", 10);
+  }
+
+  hastas.addEventListener("click", function (e) {
+    var b = e.target.closest("button");
+    if (!b) return;
+    hasta = Number(b.dataset.valor);
+    if (nivel === "escuela" && hasta !== 100) { nivel = "hoja"; guardar("cien-nivel", nivel); }
+    guardar("cien-hasta", String(hasta));
+    pintarNiveles();
+    armarTabla();
+  });
+
   document.getElementById("niveles").addEventListener("click", function (e) {
     var b = e.target.closest("button");
     if (!b) return;
     nivel = b.dataset.valor;
+    if (nivel === "escuela") { hasta = 100; guardar("cien-hasta", "100"); }   // la hoja de la escuela es del 1 al 100
     guardar("cien-nivel", nivel);
-    marcarGrupo("niveles", nivel);
+    pintarNiveles();
     armarTabla();
   });
 
@@ -401,12 +450,13 @@
       aviso.textContent = "No se pudo cargar la herramienta para hacer el PDF. Revise la conexión e intente otra vez.";
       return;
     }
-    var cuantos = Number(document.getElementById("huecos-pdf").value);
-    hojaPDF(huecosAlAzar(cuantos)).save("hundreds-chart-" + cuantos + ".pdf");
+    var hastaPDF = Number(document.getElementById("hasta-pdf").value);
+    var cuantos = cuantosHuecos(document.getElementById("huecos-pdf").value, hastaPDF);
+    hojaPDF(huecosAlAzar(cuantos, hastaPDF), hastaPDF).save("chart-1-" + hastaPDF + "-" + cuantos + ".pdf");
     aviso.textContent = "Listo. Cada vez que lo toque sale una hoja distinta.";
   });
 
-  marcarGrupo("niveles", nivel);
+  pintarNiveles();
   marcarGrupo("voces", voz);
   if ("speechSynthesis" in window) speechSynthesis.getVoices();
   armarTabla();

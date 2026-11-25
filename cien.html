@@ -22,7 +22,7 @@
     <h1>Del 1 al 100</h1>
     <p class="eyebrow">La tabla con los números que faltan</p>
     <p class="lead">Como la hoja de la escuela: faltan algunos números y hay que escribirlos.
-       Toque un hueco, escriba el número con el teclado y toque la palomita.</p>
+       Se empieza con una tabla corta (del 1 al 10, al 20…) y se va creciendo hasta el 100.</p>
   </div>
 </header>
 
@@ -31,12 +31,16 @@
 <section class="juego-cien">
   <div class="envoltura">
     <div class="cien-controles">
+      <div class="grupo grupo-hasta">
+        <span class="grupo-titulo" id="t-hastas">Del 1 al…</span>
+        <div class="botones-grupo" id="hastas" role="group" aria-labelledby="t-hastas"></div>
+      </div>
       <div class="grupo">
         <span class="grupo-titulo" id="t-niveles">Huecos</span>
         <div class="botones-grupo" id="niveles" role="group" aria-labelledby="t-niveles">
-          <button type="button" class="opcion" data-valor="pocos">Pocos <small>10</small></button>
-          <button type="button" class="opcion" data-valor="hoja">Como la hoja <small>25</small></button>
-          <button type="button" class="opcion" data-valor="muchos">Muchos <small>40</small></button>
+          <button type="button" class="opcion" data-valor="pocos">Pocos <small></small></button>
+          <button type="button" class="opcion" data-valor="hoja">Como la hoja <small></small></button>
+          <button type="button" class="opcion" data-valor="muchos">Muchos <small></small></button>
           <button type="button" class="opcion" data-valor="escuela">La hoja de la escuela</button>
         </div>
       </div>
@@ -49,6 +53,8 @@
       </div>
     </div>
 
+    <h2 class="titulo-tabla" id="titulo-tabla"></h2>
+    <p class="instruccion">Toque un hueco, escriba el número con el teclado y toque la palomita.</p>
     <div class="cien-juego">
       <div class="tabla-cien" id="tabla-cien" aria-label="Tabla del 1 al 100"></div>
       <div class="cien-lado">
@@ -72,17 +78,30 @@
   <div class="envoltura">
     <h2>Para hacer con lápiz</h2>
     <p class="sub">En inglés, igual que la de la escuela. La hoja de la escuela es siempre la
-       misma; la hoja al azar sale distinta cada vez que se toca el botón.</p>
+       misma (del 1 al 100); la hoja al azar sale distinta cada vez que se toca el botón, y puede
+       ser más corta.</p>
     <div class="botonera">
       <a class="btn grande papel" href="pdf/cien-escuela.pdf" download>La hoja de la escuela (PDF)</a>
     </div>
     <div class="al-azar">
-      <label for="huecos-pdf">Hoja nueva al azar, con</label>
+      <label for="hasta-pdf">Hoja nueva al azar, del 1 al</label>
+      <select id="hasta-pdf">
+        <option value="10">10</option>
+        <option value="20" selected>20</option>
+        <option value="30">30</option>
+        <option value="40">40</option>
+        <option value="50">50</option>
+        <option value="60">60</option>
+        <option value="70">70</option>
+        <option value="80">80</option>
+        <option value="90">90</option>
+        <option value="100">100</option>
+      </select>
+      <label for="huecos-pdf">con</label>
       <select id="huecos-pdf">
-        <option value="10">10 huecos</option>
-        <option value="25" selected>25 huecos</option>
-        <option value="40">40 huecos</option>
-        <option value="60">60 huecos</option>
+        <option value="pocos">pocos huecos</option>
+        <option value="hoja" selected>huecos como la hoja</option>
+        <option value="muchos">muchos huecos</option>
       </select>
       <button type="button" class="btn grande papel" id="hacer-pdf">Hacer el PDF</button>
     </div>
@@ -94,6 +113,9 @@
   <div class="envoltura">
     <div class="nota verde">
       <h3>Cómo ayudarle</h3>
+      <p><strong>Poco a poco.</strong> La tabla entera es larga para empezar. Mejor una corta
+         que salga bien que una larga a medias: del 1 al 10, después al 20, y cuando esa sale
+         sin ayuda, al 30. Repetir la misma varios días también está bien.</p>
       <p><strong>La tabla tiene un orden.</strong> Cada número es el de su izquierda y uno más,
          y cada fila empieza donde terminó la anterior. Si no sabe cuál va en un hueco, la
          pregunta es «¿cuál está antes?»: si antes está el 22, después viene el 23.</p>
