@@ -273,6 +273,16 @@
     return null;
   }
 
+  /* Lo que se ve en la página no siempre se puede leer tal cual: los
+     saltos de línea (<br>) y otras etiquetas la voz los deletrea, y en
+     «T-Rex» lee el guion como «menos». */
+  function paraVoz(t) {
+    return String(t)
+      .replace(/<br\s*\/?>/gi, " ")
+      .replace(/<[^>]+>/g, "")
+      .replace(/([A-Za-zÁÉÍÓÚÑáéíóúñ])-([A-Za-zÁÉÍÓÚÑáéíóúñ])/g, "$1 $2");
+  }
+
   function leerVisible() {
     if (!puedeHablar) return;
     window.speechSynthesis.cancel();
@@ -286,7 +296,7 @@
       if (p && p.t === "portada") textos.push(libro.titulo);
     });
     if (!textos.length) return;
-    var u = new SpeechSynthesisUtterance(textos.join(" "));
+    var u = new SpeechSynthesisUtterance(paraVoz(textos.join(" ")));
     u.lang = "es-MX";
     u.rate = .88;
     u.pitch = 1.05;

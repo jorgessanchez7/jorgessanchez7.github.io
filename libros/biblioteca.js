@@ -1119,12 +1119,24 @@
         tipo: "palabras",
         consigna: "La cajita de palabras. Toca una tarjeta para oírla.",
         tarjetas: [
-          { palabra: "SOL",      img: SS + "02.jpg" },
-          { palabra: "LUNA",     img: SS + "08.jpg" },
-          { palabra: "TIERRA",   img: SS + "06.jpg" },
-          { palabra: "MARTE",    img: SS + "10.jpg" },
-          { palabra: "SATURNO",  img: SS + "12.jpg" },
-          { palabra: "ESTRELLA", img: SS + "estrella.jpg" }
+          { palabra: "SOL",      img: SS + "t-sol.jpg" },
+          { palabra: "MERCURIO", img: SS + "t-mercurio.jpg" },
+          { palabra: "VENUS",    img: SS + "t-venus.jpg" },
+          { palabra: "TIERRA",   img: SS + "t-tierra.jpg" },
+          { palabra: "LUNA",     img: SS + "t-luna.jpg" },
+          { palabra: "MARTE",    img: SS + "t-marte.jpg" }
+        ]
+      },
+      {
+        tipo: "palabras",
+        consigna: "Y más palabras del espacio.",
+        tarjetas: [
+          { palabra: "JÚPITER",    img: SS + "t-jupiter.jpg" },
+          { palabra: "SATURNO",    img: SS + "t-saturno.jpg" },
+          { palabra: "URANO",      img: SS + "t-urano.jpg" },
+          { palabra: "NEPTUNO",    img: SS + "t-neptuno.jpg" },
+          { palabra: "ESTRELLA",   img: SS + "t-estrella.jpg" },
+          { palabra: "ASTRONAUTA", img: SS + "t-astronauta.jpg" }
         ]
       }
     ],
@@ -1136,13 +1148,17 @@
       { imagen: SS + "03.jpg",
         texto: "Alrededor del Sol giran ocho planetas. Cada uno tiene su camino, y nunca se chocan. ¿Quién va primero?" },
       { imagen: SS + "04.jpg",
-        texto: "Mercurio es el más cercano al Sol y el más pequeño. Es el más rápido: da la vuelta al Sol en solo 88 días. Pero gira muy despacio: su día dura casi dos meses. ¿Quién sigue?" },
+        texto: "Mercurio es el más cercano al Sol y el más pequeño. De día hace muchísimo calor y de noche muchísimo frío." },
+      { imagen: SS + "04b.jpg",
+        texto: "Mercurio es el más rápido: da la vuelta al Sol en solo 88 días. Pero gira muy despacio: su día dura casi dos meses. Una nave llamada MESSENGER lo visitó y le tomó miles de fotos. ¿Quién sigue?" },
       { imagen: SS + "05.jpg",
-        texto: "Venus está cubierto de nubes que atrapan el calor: es el planeta más caliente. Gira tan despacio que su día es más largo que su año. ¿Quién sigue?" },
+        texto: "Venus está cubierto de nubes gruesas que atrapan el calor: es el planeta más caliente. Gira tan despacio que su día es más largo que su año. ¿Quién sigue?" },
       { imagen: SS + "06.jpg",
         texto: "¡La Tierra! Es nuestra casa. Tiene agua, aire, plantas y animales. Es el único planeta donde sabemos que hay vida." },
       { imagen: SS + "07.jpg",
-        texto: "La Tierra gira como un trompo: cada vuelta es un día, de 24 horas. Y viaja alrededor del Sol: cada vuelta es un año, de 365 días. ¡Por eso cumplimos años!" },
+        texto: "La Tierra gira como un trompo: cada vuelta es un día, de 24 horas. Desde la Luna se ve así: donde le da el Sol es de día, y la parte oscura está de noche." },
+      { imagen: SS + "03.jpg",
+        texto: "Además, la Tierra viaja alrededor del Sol: cada vuelta completa es un año, de 365 días. ¡Por eso cumplimos años!" },
       { imagen: SS + "08.jpg",
         texto: "La Tierra tiene una compañera: la Luna. La Luna no tiene luz propia; brilla porque el Sol la ilumina. Le da la vuelta a la Tierra en casi un mes." },
       { imagen: SS + "09.jpg",
@@ -1154,7 +1170,9 @@
       { imagen: SS + "10c.jpg",
         texto: "¡Nosotros también exploramos Marte! En el planetario de Salt Lake City hay un pedacito de Marte de mentiritas, con piedras rojas para trepar. ¿Quién sigue?" },
       { imagen: SS + "11.jpg",
-        texto: "Júpiter es el más grande: dentro de él cabrían más de mil Tierras. Gira tan rápido que su día dura solo 10 horas. Su año dura casi 12 de los nuestros. ¿Quién sigue?" },
+        texto: "Júpiter es el más grande: dentro de él cabrían más de mil Tierras. Gira tan rápido que su día dura solo 10 horas, y su año dura casi 12 de los nuestros." },
+      { imagen: SS + "11b.jpg",
+        texto: "¿Ves esa mancha roja? Es una tormenta más grande que la Tierra, y lleva cientos de años girando. La nave Juno la fotografió de cerca. ¿Quién sigue?" },
       { imagen: SS + "12.jpg",
         texto: "Saturno tiene anillos de hielo y piedras. Su día dura casi 11 horas y su año, casi 30 de los nuestros. Es tan ligero que en una tina gigante flotaría. ¿Quién sigue?" },
       { imagen: SS + "13.jpg",
