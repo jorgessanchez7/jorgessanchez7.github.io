@@ -980,7 +980,193 @@
     ]
   };
 
-  window.BIBLIOTECA = [tresCerditos, liebreTortuga, leonRaton, rinRin, gotita, dinosaurios];
+
+  /* ---------- Nuestro vecindario en el espacio ----------
+     Libro de datos sobre el sistema solar, pensado para leer en voz alta.
+     Cada planeta termina con «¿Quién sigue?» para que Chepe conteste.
+     Fotos: NASA (dominio público: Apolo 8, Apolo 11, Apolo 17, Voyager 2,
+     JPL) y las fotos de los planetas que ya usan las lecciones; la
+     portada y el niño en la ventana son imágenes generadas que trajo papá.
+     10c.jpg: los niños en el simulador de Marte del planetario de Salt
+     Lake City (14 mar 2026), foto de la familia, sin datos EXIF ni GPS. */
+  var SS = "img/sistema-solar/";
+
+  var sistemaSolar = {
+    id: "sistema-solar",
+    titulo: "Nuestro vecindario en el espacio",
+    autor: "El Sol, la Luna y los ocho planetas",
+    edad: "4 a 8 años",
+    resumen: "Un paseo por el sistema solar, del Sol hasta Neptuno.",
+    color: "#2b4a8b",
+    portadaImagen: SS + "00.jpg",
+    credito: {
+      texto: "Fotos: NASA y Wikimedia Commons · portada y pág. 1: imágenes generadas con IA",
+      url: "https://images.nasa.gov/"
+    },
+    actividades: [
+      {
+        tipo: "preguntas",
+        consigna: "Una pregunta de lo que acabamos de leer.",
+        despuesDePagina: 3,
+        preguntas: [
+          { texto: "¿Qué es el Sol?",
+            opciones: [
+              { texto: "Una estrella", ok: true },
+              { texto: "Un planeta" },
+              { texto: "Una luna" }
+            ] }
+        ]
+      },
+      {
+        tipo: "preguntas",
+        consigna: "Toca la respuesta.",
+        preguntas: [
+          { texto: "¿Cuál es nuestra casa?",
+            opciones: [
+              { texto: "Marte", img: SS + "10.jpg" },
+              { texto: "La Tierra", img: SS + "06.jpg", ok: true },
+              { texto: "Neptuno", img: SS + "14.jpg" }
+            ] },
+          { texto: "¿Cuál es el planeta más grande?",
+            opciones: [
+              { texto: "Mercurio", img: SS + "04.jpg" },
+              { texto: "La Tierra", img: SS + "06.jpg" },
+              { texto: "Júpiter", img: SS + "11.jpg", ok: true }
+            ] }
+        ]
+      },
+      {
+        tipo: "preguntas",
+        consigna: "Toca la respuesta.",
+        preguntas: [
+          { texto: "¿Cuál planeta tiene anillos?",
+            opciones: [
+              { texto: "Saturno", img: SS + "12.jpg", ok: true },
+              { texto: "Venus", img: SS + "05.jpg" },
+              { texto: "Marte", img: SS + "10.jpg" }
+            ] },
+          { texto: "¿Cuál es el planeta rojo?",
+            opciones: [
+              { texto: "Urano", img: SS + "13.jpg" },
+              { texto: "Marte", img: SS + "10.jpg", ok: true },
+              { texto: "Venus", img: SS + "05.jpg" }
+            ] }
+        ]
+      },
+      {
+        tipo: "preguntas",
+        consigna: "Dos preguntas de la Luna.",
+        preguntas: [
+          { texto: "¿Por qué brilla la Luna?",
+            opciones: [
+              { texto: "Porque tiene su propia luz." },
+              { texto: "Porque el Sol la ilumina.", ok: true },
+              { texto: "Porque está caliente." }
+            ] },
+          { texto: "¿Por qué las huellas de los astronautas siguen en la Luna?",
+            opciones: [
+              { texto: "Porque allá no hay viento que las borre.", ok: true },
+              { texto: "Porque están pegadas con goma." },
+              { texto: "Porque las pintaron." }
+            ] }
+        ]
+      },
+      {
+        tipo: "preguntas",
+        consigna: "Los días y los años.",
+        preguntas: [
+          { texto: "¿Cuánto dura un año en la Tierra?",
+            opciones: [
+              { texto: "24 horas" },
+              { texto: "365 días", ok: true },
+              { texto: "10 días" }
+            ] },
+          { texto: "¿En qué planeta el día es más largo que el año?",
+            opciones: [
+              { texto: "En la Tierra" },
+              { texto: "En Júpiter" },
+              { texto: "En Venus", ok: true }
+            ] }
+        ]
+      },
+      {
+        tipo: "preguntas",
+        consigna: "Toca la respuesta.",
+        preguntas: [
+          { texto: "¿Quién camina en la Luna?",
+            opciones: [
+              { texto: "Un astronauta", img: SS + "09.jpg", ok: true },
+              { texto: "Un robot", img: SS + "10b.jpg" }
+            ] },
+          { texto: "¿Dónde pasea el robot Curiosity?",
+            opciones: [
+              { texto: "En la Luna", img: SS + "08.jpg" },
+              { texto: "En Marte", img: SS + "10.jpg", ok: true }
+            ] }
+        ]
+      },
+      {
+        tipo: "ordenar",
+        consigna: "Toca los planetas en orden, del más cercano al Sol al más lejano.",
+        escenas: [
+          { n: 1, img: SS + "04.jpg" }, { n: 2, img: SS + "05.jpg" },
+          { n: 3, img: SS + "06.jpg" }, { n: 4, img: SS + "10.jpg" },
+          { n: 5, img: SS + "11.jpg" }, { n: 6, img: SS + "12.jpg" },
+          { n: 7, img: SS + "13.jpg" }, { n: 8, img: SS + "14.jpg" }
+        ]
+      },
+      {
+        tipo: "palabras",
+        consigna: "La cajita de palabras. Toca una tarjeta para oírla.",
+        tarjetas: [
+          { palabra: "SOL",      img: SS + "02.jpg" },
+          { palabra: "LUNA",     img: SS + "08.jpg" },
+          { palabra: "TIERRA",   img: SS + "06.jpg" },
+          { palabra: "MARTE",    img: SS + "10.jpg" },
+          { palabra: "SATURNO",  img: SS + "12.jpg" },
+          { palabra: "ESTRELLA", img: SS + "estrella.jpg" }
+        ]
+      }
+    ],
+    paginas: [
+      { imagen: SS + "01.jpg",
+        texto: "Cuando miramos el cielo de noche, vemos estrellas, la Luna y, a veces, algún planeta. ¿Qué hay allá arriba?" },
+      { imagen: SS + "02.jpg",
+        texto: "En el centro de nuestro vecindario está el Sol. El Sol es una estrella: una bola de fuego enorme que nos da luz y calor." },
+      { imagen: SS + "03.jpg",
+        texto: "Alrededor del Sol giran ocho planetas. Cada uno tiene su camino, y nunca se chocan. ¿Quién va primero?" },
+      { imagen: SS + "04.jpg",
+        texto: "Mercurio es el más cercano al Sol y el más pequeño. Es el más rápido: da la vuelta al Sol en solo 88 días. Pero gira muy despacio: su día dura casi dos meses. ¿Quién sigue?" },
+      { imagen: SS + "05.jpg",
+        texto: "Venus está cubierto de nubes que atrapan el calor: es el planeta más caliente. Gira tan despacio que su día es más largo que su año. ¿Quién sigue?" },
+      { imagen: SS + "06.jpg",
+        texto: "¡La Tierra! Es nuestra casa. Tiene agua, aire, plantas y animales. Es el único planeta donde sabemos que hay vida." },
+      { imagen: SS + "07.jpg",
+        texto: "La Tierra gira como un trompo: cada vuelta es un día, de 24 horas. Y viaja alrededor del Sol: cada vuelta es un año, de 365 días. ¡Por eso cumplimos años!" },
+      { imagen: SS + "08.jpg",
+        texto: "La Tierra tiene una compañera: la Luna. La Luna no tiene luz propia; brilla porque el Sol la ilumina. Le da la vuelta a la Tierra en casi un mes." },
+      { imagen: SS + "09.jpg",
+        texto: "Unos astronautas viajaron a la Luna y caminaron en ella. Como allá no hay viento, sus huellas siguen ahí." },
+      { imagen: SS + "10.jpg",
+        texto: "Marte es el planeta rojo: su suelo está lleno de polvo oxidado, como un clavo viejo. Su día dura casi lo mismo que el nuestro, pero su año dura casi dos de los nuestros." },
+      { imagen: SS + "10b.jpg",
+        texto: "En Marte hay robots exploradores. Este se llama Curiosity: tiene seis ruedas, toma fotos y estudia las piedras. ¡Hasta se toma fotos a sí mismo!" },
+      { imagen: SS + "10c.jpg",
+        texto: "¡Nosotros también exploramos Marte! En el planetario de Salt Lake City hay un pedacito de Marte de mentiritas, con piedras rojas para trepar. ¿Quién sigue?" },
+      { imagen: SS + "11.jpg",
+        texto: "Júpiter es el más grande: dentro de él cabrían más de mil Tierras. Gira tan rápido que su día dura solo 10 horas. Su año dura casi 12 de los nuestros. ¿Quién sigue?" },
+      { imagen: SS + "12.jpg",
+        texto: "Saturno tiene anillos de hielo y piedras. Su día dura casi 11 horas y su año, casi 30 de los nuestros. Es tan ligero que en una tina gigante flotaría. ¿Quién sigue?" },
+      { imagen: SS + "13.jpg",
+        texto: "Urano es azul verdoso y gira acostado, como una pelota que rueda. Su día dura 17 horas y su año, 84 de los nuestros. ¿Quién sigue?" },
+      { imagen: SS + "14.jpg",
+        texto: "Neptuno es el más lejano. Es azul, muy frío y tiene los vientos más fuertes. Su día dura 16 horas, pero su año dura 165 de los nuestros: ¡allá nadie cumpliría ni un año!" },
+      { imagen: SS + "15.jpg",
+        texto: "Mercurio, Venus, Tierra, Marte, Júpiter, Saturno, Urano y Neptuno. Ocho planetas, un Sol y una Luna: nuestro vecindario en el espacio." }
+    ]
+  };
+
+  window.BIBLIOTECA = [tresCerditos, liebreTortuga, leonRaton, rinRin, gotita, dinosaurios, sistemaSolar];
 
   // Los ayudantes de dibujo quedan disponibles para las actividades
   window.DIBUJO = {
